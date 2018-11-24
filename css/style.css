@@ -1,0 +1,94 @@
+:root {
+    --nav-bg-color: #F4F3EF;
+    --background: #C6C0B8;
+    --button_bg: #252422;
+    --latte: #DDBC95;
+    --coffe: #B38867;
+    --text: #1C2127;
+}
+
+body {
+    margin: 0; 
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    padding: 0; 
+    background-color: var(--background);
+}
+
+body > header { 
+    background-color: var(--nav-bg-color);
+    color: var(--text);
+    display: flex;
+    margin: 0; 
+    padding: 0;
+    align-items: center;
+}
+
+body > header h1{
+    flex-grow: 10;
+}
+
+#logo{
+    font-weight: bolder;
+    font-size: 200%;
+    padding: 0 0 0 2em;
+    margin: 1em 0;
+    flex-grow: 10;
+}
+
+
+
+a{
+    text-decoration: none;
+    color: var(--text);
+}
+
+.normal-button{
+    padding: 1em;
+    margin: 1em;
+    background-color: white;
+    color: var(--button_bg);
+    text-align: center;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#login-button:hover , #signup-button:hover{
+    background-color: var(--background);
+    transition: 1s ease;
+}
+
+#login-button{
+    flex-grow: 1;
+    border-radius: 5px 5px 5px 5px;
+    border-right-width: 1px;
+}
+
+#signup-button {
+    flex-grow: 1;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 10em 0 0;
+    border-left-width: 1px;
+}
+
+
+#login, #signup{
+ max-width: 30em;
+ background-color: white;
+ display: block;
+ box-shadow: whitesmoke 2px;
+ margin: 10em auto;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ border-radius: 5px 5px 5px 5px;
+    height: 15em;
+}
+
+#login form, #signup form{
+    display: flex;
+    flex-direction: column;
+    margin: auto auto;
+    width: 15em;
+}
