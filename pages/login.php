@@ -1,5 +1,8 @@
 <?php
     include_once('../templates/tpl_common.php');
-    
-    draw_header(null);
+    include_once('../templates/tpl_auth.php');
+
+    draw_simple_header();
+    draw_login();
+    draw_footer();
 ?>
