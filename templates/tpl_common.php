@@ -12,14 +12,14 @@
 
             <header>
                 <h1> 
-                    <a href="#"> 
+                    <a href="list.php"> 
                         Mate
                     </a>
                 </h1>
 
                 <?php if($username == NULL){ ?>
-                   <a href="../actions/action_login.php"> Log In</a>
-                   <a href="../actions/action_signup.php"> Sign Up </a>
+                   <a href="login.php"> Log In</a>
+                   <a href="signup.php"> Sign Up </a>
                 <?php }else{ ?>
                     <h2 id="username"> <?=$username?> </h2>
                 <?php } ?>
@@ -41,7 +41,12 @@
 
             <header>
                 <h1> 
-                    <a href="#"> Mate </a>
+                    <a href="list.php"> Mate </a>
+                </h1>
+                <h1> 
+                    <a href="list.php"> 
+                        Back
+                    </a>
                 </h1>
             </header>
 <?php } ?> 
