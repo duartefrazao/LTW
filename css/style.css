@@ -120,6 +120,10 @@ a{
     width:30%;
     background-color:var(--latte);
 }
+
+#username{
+    margin:0;
+}
  
 .post{
     display: block;

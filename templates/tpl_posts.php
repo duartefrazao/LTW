@@ -33,8 +33,8 @@
             <?=$post['content']?>
         </h2>
 
-        <h2 class="num-comments">
-            <?=$posts['num-comments']?>
+        <h2 class="votes">
+            <?=$posts['votes']?>
         </h2>
 
         <h2 class="votes">
