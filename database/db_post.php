@@ -4,9 +4,19 @@
 
     function getPosts(){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT POST.id, POST.title, POST.content, POST.author, POST.votes, POST.creationDate, POST.numComments, USER.username FROM POST JOIN USER ON POST.author = USER.id');
+        $stmt = $db->prepare('SELECT POST.* , USER.username FROM POST JOIN USER ON POST.author = USER.id');
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    function getPostById($id){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT POST.* , USER.username FROM POST JOIN USER ON POST.author = USER.id where POST.id = ?');
+        $stmt->execute(array($id));
+        return $stmt->fetch();
+    }
+
+
+    
 
 ?>
