@@ -5,7 +5,7 @@
     --latte: #DDBC95;
     --coffe: #c7140b;
     --text: #1C2127;
-    --test_color:#0384c9;
+    --test_color: #0384c9;
 }
 
 body {
@@ -16,6 +16,7 @@ body {
 }
 
 /* Navbar */
+
 body>header {
     background-color: var(--nav-bg-color);
     color: var(--text);
@@ -28,19 +29,17 @@ body>header {
 }
 
 /* Text in navbar style */
+
 body>header h1 {
     margin: 0.1em;
     flex-grow: 10;
 }
 
-
 #logo {
     font-weight: bolder;
     color: var(--text);
     font-size: 150%;
-
     flex-grow: 10;
-
     margin: 0em 0em 0em 0.1em;
 }
 
@@ -51,6 +50,7 @@ a {
 /*
     Buttons styles
 */
+
 .normal-button {
     color: var(--latte);
     padding: 0.3em 0em 0.3em 0em;
@@ -64,8 +64,7 @@ a {
     font-size: 125%;
 }
 
-#login-button:hover,
-#signup-button:hover {
+#login-button:hover, #signup-button:hover {
     background-color: #36382e;
     color: white;
     transition: 1s ease;
@@ -85,8 +84,8 @@ a {
     border-left-width: 1px;
 }
 
-
 /* Back button */
+
 #back {
     margin-right: 1em;
     flex-grow: 0.6;
@@ -98,8 +97,7 @@ a {
 
 /* Authentication */
 
-#login,
-#signup {
+#login, #signup {
     max-width: 30em;
     background-color: white;
     box-shadow: whitesmoke 2px;
@@ -110,7 +108,6 @@ a {
     height: auto;
     margin: 0 auto;
 }
-
 
 .auth_form {
     display: flex;
@@ -127,26 +124,10 @@ a {
 #username {
     margin: 0;
 }
- 
-.downvote{
-  margin-top:5px;
-  width: 80px;
-  height: 80px;
-  background-color: black;
-  background-size: cover;
-  clip-path: polygon(45% 0,55% 0%, 55% 15%,60% 15%,50% 27%,40% 15%,45% 15%);
-}
-.upvote{
-    width: 80px;
-    height: 80px;
-    background-color: black;
-    background-size: cover;
-    clip-path: polygon(45% 0,55% 0%, 55% 15%,60% 15%,50% 27%,40% 15%,45% 15%);
-    transform: rotate(180deg);
-  }
+
+/* ------------------------------- */
 
 .overview-post {
-    display: block;
     min-width: 30em;
     max-width: 60em;
     margin: 1em auto;
@@ -155,7 +136,7 @@ a {
     border-radius: 5px 5px 5px 5px;
 }
 
-.overview-post > h1{
+.overview-post h1 {
     padding: 0.3em 1em;
     margin: 0;
     font-size: x-large;
@@ -173,35 +154,85 @@ a {
     display: flex;
 }
 
-.overview-post .username{
+.overview-post .username {
     display: block;
     font-size: small;
 }
 
-.overview-post .creationDate{
+.overview-post .creationDate {
     font-size: small;
     display: block;
     margin: 1em;
 }
 
-.overview-post .votes{
-    display: block;
-    font-size: small;
-    padding: 0 1em 0 0;
-}
-
-.overview-post .comments{
+.overview-post .comments {
     font-size: small;
     display: block;
+    margin-bottom: 0;
 }
 
-.overview-post .creationDate::before{
+.overview-post .creationDate::before {
     content: 'Posted ';
 }
 
-.overview-post .creationDate::after{
+.overview-post .creationDate::after {
     content: ' ago.';
 }
-#posts{
+.overview-post a{
+    color: var(--text);
+}
+#posts {
+    display: block;
     padding: 1em;
+}
+
+/* Voting buttons and sections */
+
+.downvote {
+    margin: 0 auto 20px auto;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    background-size: cover;
+    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
+}
+
+.votes {
+    text-align: center;
+    font-size: small;
+    padding: 0;
+}
+
+.upvote {
+    margin: 20px auto 0 auto;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    background-size: cover;
+    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
+    transform: rotate(180deg);
+}
+
+.overview-post {
+    display: flex;
+}
+
+.voting_section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    /* border-right: 1px solid black; */
+}
+
+.partial_line {
+   margin:auto 15px;
+   width:0.05em;
+   height:100px;
+   background-color:var(--text);
+}
+
+.post {
+    flex-grow: 20;
 }
