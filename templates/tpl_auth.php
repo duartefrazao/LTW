@@ -5,10 +5,10 @@
             <h1> Log In </h1>
         </header>
 
-        <form method="post" action="../actions/action_login.php">
+        <form class="auth_form" method="post" action="../actions/action_login.php">
             <input type="text" name="username" placeholder="username" required>
             <input type="password" name="password" placeholder="password" required>
-            <input type="submit" value="Login">
+            <input class="submit_button" type="submit" value="Login">
         </form>
 
         <footer>
@@ -27,12 +27,12 @@
             <h1> Sign Up </h1>
         </header>
 
-        <form method="post" action="../actions/action_signup.php">
+        <form class="auth_form" method="post" action="../actions/action_signup.php">
             <input type="text" name="username" placeholder="username" required>
             <input type="text" name="mail" placeholder="mail" required>
             <input type="password" name="password" placeholder="password" required>
             <input type="text" name="description" placeholder="Brief description of yourself">
-            <input type="submit" value="Signup">
+            <input class="submit_button" type="submit" value="Signup">
         </form>
 
         <footer>

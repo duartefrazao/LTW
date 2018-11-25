@@ -5,7 +5,7 @@
     <html>
         <head>
              <style>
-            @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+                 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
             </style>
             <meta charset="utf-8">
             <link rel="stylesheet" href="../css/style.css">
@@ -38,6 +38,9 @@
     <!DOCTYPE html>
     <html>
         <head>
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+            </style>
             <meta charset="utf-8">
             <link rel="stylesheet" href="../css/style.css">
         </head>
@@ -45,13 +48,14 @@
         <body>
 
             <header>
-                <h1> 
-                    <a href="posts.php"> Mate </a>
-                </h1>
-                <h1> 
-                    <a href="posts.php"> 
-                        Back
+                <h1 > 
+                    <a id="logo" href="posts.php"> 
+                        Mate
                     </a>
+                </h1>
+                <a class="normal-button" id="back"  href="posts.php"> 
+                    Back
+                </a>
             </header>
 <?php } ?> 
 

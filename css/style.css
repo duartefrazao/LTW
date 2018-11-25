@@ -1,94 +1,124 @@
 :root {
-    --nav-bg-color: #F4F3EF;
-    --background: #C6C0B8;
+    --nav-bg-color: rgb(246, 245, 240);
+    --background: rgba(198, 192, 184, 0.582);
     --button_bg: #252422;
     --latte: #DDBC95;
     --coffe: #B38867;
     --text: #1C2127;
+    --lighter-button-bg:rgb(73, 71, 70);
 }
 
 body {
     margin: 0; 
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
-    padding: 0; 
     background-color: var(--background);
 }
 
+/* Navbar */
 body > header { 
     background-color: var(--nav-bg-color);
     color: var(--text);
     display: flex;
-    margin: 0; 
-    padding: 0;
+    margin: 0em 0em 1.5em 0em; 
     align-items: center;
 }
 
+/* Text in navbar style */
 body > header h1{
+    margin:0.1em;
     flex-grow: 10;
 }
+
 
 #logo{
     font-weight: bolder;
-    font-size: 200%;
-    padding: 0 0 0 2em;
-    margin: 1em 0;
+    color:var(--text);
+    font-size: 150%;
+
     flex-grow: 10;
+
+    margin:0em 0em 0em 0.1em;
 }
-
-
 
 a{
     text-decoration: none;
-    color: var(--text);
 }
 
+/*
+    Buttons styles
+*/
 .normal-button{
-    padding: 1em;
-    margin: 1em;
-    background-color: white;
-    color: var(--button_bg);
+    color: var(--latte);
+    padding: 0.3em 0em 0.3em 0em;
+    background-color: var(--lighter-button-bg);
     text-align: center;
-    border-color: black;
+    border-color: var(--lighter-button-bg);
     border-width: 2px;
     border-style: solid;
+    font-size:125%;
 }
 
 #login-button:hover , #signup-button:hover{
-    background-color: var(--background);
-    transition: 1s ease;
+    background-color: var(--text);
+    transition: 0.7s ease;
 }
 
 #login-button{
-    flex-grow: 1;
-    border-radius: 5px 5px 5px 5px;
+    margin-right: 0.5em;
+    flex-grow:1.5;
+    border-radius: 4px;
     border-right-width: 1px;
 }
 
 #signup-button {
-    flex-grow: 1;
+    flex-grow: 1.5;
     border-radius: 5px 5px 5px 5px;
-    margin: 0 10em 0 0;
+    margin: 0 1em 0 0;
     border-left-width: 1px;
 }
 
 
+/* Back button */
+#back{
+    margin-right: 1em;
+    flex-grow: 0.6;
+    border-radius: 4px;
+    border-right-width: 1px;
+    padding: 0.3em 0em 0.3em 0em;
+    text-align: center;
+}
+
+/* Authentication */
+
 #login, #signup{
  max-width: 30em;
  background-color: white;
- display: block;
  box-shadow: whitesmoke 2px;
- margin: 10em auto;
  text-align: center;
  display: flex;
  flex-direction: column;
  border-radius: 5px 5px 5px 5px;
-    height: 15em;
+ height: auto;
+ margin: 0 auto;
 }
 
-#login form, #signup form{
+
+.auth_form{
     display: flex;
     flex-direction: column;
-    margin: auto auto;
+    margin: 0 auto;
     width: 15em;
 }
+
+.submit_button{
+    width:30%;
+    background-color:var(--latte);
+    
+
+}
+ 
+
+
+
+

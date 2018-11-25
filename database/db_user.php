@@ -9,11 +9,8 @@
     }
 
     function insertUser($username,$password,$mail,$description,$creationDate){
-
         $db= Database::instance()->db();
         $stmt = $db->prepare('Insert into user values(?,?, ?, ?, ?, ?)');
         $stmt->execute(array(NULL,$username,sha1($password),$mail,$description,$creationDate));
-
     }
-
 ?>
