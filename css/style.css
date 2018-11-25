@@ -1,6 +1,6 @@
 :root {
     --nav-bg-color: white;
-    --background: #e7e5df ;
+    --background: #e7e5df;
     --button_bg: #252422;
     --latte: #DDBC95;
     --coffe: #B38867;
@@ -8,18 +8,18 @@
 }
 
 body {
-    margin: 0; 
+    margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     background-color: var(--background);
 }
 
 /* Navbar */
-body > header { 
+body>header {
     background-color: var(--nav-bg-color);
     color: var(--text);
     display: flex;
-    margin: 0em 0em 1.5em 0em; 
+    margin: 0em 0em 1.5em 0em;
     align-items: center;
     border-style: solid;
     border-width: 0 0 3px 0;
@@ -27,30 +27,30 @@ body > header {
 }
 
 /* Text in navbar style */
-body > header h1{
-    margin:0.1em;
+body>header h1 {
+    margin: 0.1em;
     flex-grow: 10;
 }
 
 
-#logo{
+#logo {
     font-weight: bolder;
-    color:var(--text);
+    color: var(--text);
     font-size: 150%;
 
     flex-grow: 10;
 
-    margin:0em 0em 0em 0.1em;
+    margin: 0em 0em 0em 0.1em;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
 /*
     Buttons styles
 */
-.normal-button{
+.normal-button {
     color: var(--latte);
     padding: 0.3em 0em 0.3em 0em;
     background-color: var(--lighter-button-bg);
@@ -60,18 +60,19 @@ a{
     border-color: var(--lighter-button-bg);
     border-width: 2px;
     border-style: solid;
-    font-size:125%;
+    font-size: 125%;
 }
 
-#login-button:hover , #signup-button:hover{
+#login-button:hover,
+#signup-button:hover {
     background-color: #36382e;
     color: white;
     transition: 1s ease;
 }
 
-#login-button{
+#login-button {
     margin-right: 0.5em;
-    flex-grow:1.5;
+    flex-grow: 1.5;
     border-radius: 4px;
     border-right-width: 1px;
 }
@@ -85,7 +86,7 @@ a{
 
 
 /* Back button */
-#back{
+#back {
     margin-right: 1em;
     flex-grow: 0.6;
     border-radius: 4px;
@@ -96,44 +97,93 @@ a{
 
 /* Authentication */
 
-#login, #signup{
- max-width: 30em;
- background-color: white;
- box-shadow: whitesmoke 2px;
- text-align: center;
- display: flex;
- flex-direction: column;
- border-radius: 5px 5px 5px 5px;
- height: auto;
- margin: 0 auto;
+#login,
+#signup {
+    max-width: 30em;
+    background-color: white;
+    box-shadow: whitesmoke 2px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px 5px 5px 5px;
+    height: auto;
+    margin: 0 auto;
 }
 
 
-.auth_form{
+.auth_form {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 15em;
 }
 
-.submit_button{
-    width:30%;
-    background-color:var(--latte);
+.submit_button {
+    width: 30%;
+    background-color: var(--latte);
 }
 
-#username{
-    margin:0;
+#username {
+    margin: 0;
 }
- 
-.post{
+
+.overview-post {
     display: block;
-    margin: 0 auto;
+    min-width: 30em;
+    max-width: 60em;
+    margin: 1em auto;
+    padding: 0 1em;
     background-color: white;
-    max-width: 80em;
     border-radius: 5px 5px 5px 5px;
+}
+
+.overview-post > h1{
+    padding: 0.3em 1em;
+    margin: 0;
+    font-size: x-large;
+}
+
+.overview-post header {
+    display: flex;
+}
+
+.overview-post .author {
+    display: none;
+}
+
+.overview-post footer {
+    display: flex;
+}
+
+.overview-post .username{
+    display: block;
+    font-size: small;
+}
+
+.overview-post .creationDate{
+    font-size: small;
+    display: block;
+    margin: 1em;
+}
+
+.overview-post .votes{
+    display: block;
+    font-size: small;
+    padding: 0 1em 0 0;
+}
+
+.overview-post .comments{
+    font-size: small;
+    display: block;
+}
+
+.overview-post .creationDate::before{
+    content: 'Posted ';
+}
+
+.overview-post .creationDate::after{
+    content: ' ago.';
+}
+#posts{
     padding: 1em;
 }
-
-
-
-

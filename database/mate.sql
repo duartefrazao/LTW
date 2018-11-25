@@ -21,7 +21,8 @@ create table post(
     content VARCHAR NOT NULL,
     author INTEGER NOT NULL REFERENCES user, 
     votes INTEGER NOT NULL, 
-    creationDate Integer NOT NULL
+    creationDate Integer NOT NULL,
+    numComments INTEGER NOT NULL
 );
 
 drop table if exists comment;
@@ -36,11 +37,8 @@ create table comment(
     parentcomment INTEGER
 );
 
-INSERT INTO user VALUES(NULL, 'admin', '$2y$12$1yTE1UO/FdZy2FxsUtPWk.QINPqg9kzvIp95/7BOldV8v5JKLGXY2', 'admin@password.eu',"", 1543059947514);
-INSERT INTO user VALUES(NULL, 'Jonh Doe', '$2y$12$1yTE1UO/FdZy2FxsUtPWk.QINPqg9kzvIp95/7BOldV8v5JKLGXY2', 'jonh@password.eu',"", 1543060825656);
-INSERT INTO user VALUES(NULL, 'Pedro Costa', '$2y$12$1yTE1UO/FdZy2FxsUtPWk.QINPqg9kzvIp95/7BOldV8v5JKLGXY2', 'pedro@password.eu',"", 1543060825056);
-INSERT INTO user VALUES(NULL, 'Duarte Frazão', '$2y$12$1yTE1UO/FdZy2FxsUtPWk.QINPqg9kzvIp95/7BOldV8v5JKLGXY2', 'duarte@password.eu',"", 1543020825656);
-INSERT INTO user VALUES(NULL, 'César Medeiros', '$2y$12$1yTE1UO/FdZy2FxsUtPWk.QINPqg9kzvIp95/7BOldV8v5JKLGXY2', 'cesar@password.eu',"Eu sou fixe", 1543260825656);
-INSERT INTO post VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543260825656);
-INSERT INTO comment VALUES(1,2,1,'O Mate é fixe, também gosto',1,0,NULL);
-INSERT INTO comment VALUES(2,1,1,'Concordo',0,1,1);
+INSERT INTO user VALUES(NULL, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@pedro.costa', 'no lo sey, chiquita', 1543162027 );
+INSERT INTO post VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350, 2);
+INSERT INTO post VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',1,4,1543158550,0);
+INSERT INTO comment VALUES(NULL,1,1,'O Mate é fixe, também gosto',1,0,NULL);
+INSERT INTO comment VALUES(NULL,1,1,'Concordo',0,1,1);
