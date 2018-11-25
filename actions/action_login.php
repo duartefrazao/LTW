@@ -5,7 +5,9 @@
     $username=$_POST['username'];
     $password=$_POST['password'];
 
-    if(checkUserPassword($username,$password)){
+    $user=checkUserPassword($username); 
+    print_r($user);
+    if( $user!== false && password_verify($password,$user['password'])){
         $_SESSION['username']= $username;
         header('Location: ../pages/posts.php');
     }else{

@@ -1,16 +1,18 @@
 <?php
     include_once('../includes/database.php');
 
-    function checkUserPassword($username,$password){
+    function checkUserPassword($username){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('Select * from user where username=? and password=?');
-        $stmt->execute(array($username,sha1($password)));
-        return $stmt->fetch()?true:false;
+        $stmt = $db->prepare('Select * from user where username=?');
+        $stmt->execute(array($username));
+        return $stmt->fetch();
     }
 
     function insertUser($username,$password,$mail,$description,$creationDate){
+        $options=['cost'=>12,];
         $db= Database::instance()->db();
         $stmt = $db->prepare('Insert into user values(?,?, ?, ?, ?, ?)');
-        $stmt->execute(array(NULL,$username,sha1($password),$mail,$description,$creationDate));
+        $pass = password_hash($password,PASSWORD_DEFAULT,$options);
+        $stmt->execute(array(NULL,$username,$pass,$mail,$description,$creationDate));
     }
 ?>
