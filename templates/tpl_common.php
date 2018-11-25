@@ -19,7 +19,6 @@
                         Mate
                     </a>
                 </h1>
-
                 <?php if($username == NULL){ ?>
                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>

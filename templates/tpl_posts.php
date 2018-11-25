@@ -10,7 +10,6 @@
 <?php } ?>
 
 <?php function draw_post($post){
-    print_r($post);
     ?>
     <article class="post">
         <header>
