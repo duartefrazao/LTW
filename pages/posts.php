@@ -7,5 +7,11 @@
     $posts = getPosts();
     draw_header($_SESSION['username']);
     draw_posts($posts);
+    ?>
+    <div class="vote_section">
+        <div class="upvote "></div>
+        <div class="downvote "></div>
+    </div>
+    <?php
     draw_footer();
 ?>

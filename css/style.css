@@ -3,8 +3,9 @@
     --background: #e7e5df;
     --button_bg: #252422;
     --latte: #DDBC95;
-    --coffe: #B38867;
+    --coffe: #c7140b;
     --text: #1C2127;
+    --test_color:#0384c9;
 }
 
 body {
@@ -126,6 +127,23 @@ a {
 #username {
     margin: 0;
 }
+ 
+.downvote{
+  margin-top:5px;
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  background-size: cover;
+  clip-path: polygon(45% 0,55% 0%, 55% 15%,60% 15%,50% 27%,40% 15%,45% 15%);
+}
+.upvote{
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    background-size: cover;
+    clip-path: polygon(45% 0,55% 0%, 55% 15%,60% 15%,50% 27%,40% 15%,45% 15%);
+    transform: rotate(180deg);
+  }
 
 .overview-post {
     display: block;
