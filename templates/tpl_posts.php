@@ -53,11 +53,15 @@ foreach ($posts as $post) {
 {?>
     <article class="overview-post">
         <aside class="voting_section">
-            <section class="upvote "></section>
+            <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=1" >
+                <section class="upvote "></section>
+            </a>
             <h5 class="votes">
                 <?=$post['votes']?> Votes
             </h5>
-            <section class="downvote "></section>
+            <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1" >
+                <section class="downvote" href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1"></section>
+            </a>    
         </aside>
         <span class="partial_line"></span>
         <section class="post">

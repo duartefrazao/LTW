@@ -16,7 +16,11 @@
         return $stmt->fetch();
     }
 
-
+    function vote($id,$type){
+        $db=Database::instance()->db();
+        $stmt=$db->prepare('UPDATE POST SET votes=votes + ? WHERE ?=id');
+        $stmt->execute(array($type,$id));
+    }
     
 
 ?>
