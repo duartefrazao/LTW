@@ -15,7 +15,7 @@
 
             <header>
                 <h1 > 
-                    <a id="logo" href="list.php"> 
+                    <a id="logo" href="posts.php"> 
                         Mate
                     </a>
                 </h1>
@@ -24,6 +24,9 @@
                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
                 <?php }else{ ?>
+                    <a class="normal_button" href="../actions/action_logout.php">
+                        Log Out
+                    </a> 
                     <h2 id="username"> <?=$username?> </h2>
                 <?php } ?>
             </header>
@@ -44,9 +47,10 @@
 
             <header>
                 <h1> 
-                    <a id="logo" href="list.php"> Mate </a>
+                    <a href="posts.php"> Mate </a>
                 </h1>
-                    <a href="list.php"> 
+                <h1> 
+                    <a href="posts.php"> 
                         Back
                     </a>
             </header>
