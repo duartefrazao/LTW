@@ -70,8 +70,8 @@
                 <?=$post['votes']?> Votes 
             </h5>
 
-            <h5 class="comments">
-                <?=$post['numComments']?> Comments <?= count($post['numComments']) == 1? '':'s'?>
+            <h5 class="comments"> 
+                <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comments </a> <?= count($post['numComments']) == 1? '':'s'?>
             </h5>
         </footer>
 
