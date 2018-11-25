@@ -1,4 +1,4 @@
-<?php function draw_posts($posts)
+<?php function draw_posts_guest($posts)
 {
     ?>
 
@@ -13,41 +13,6 @@ foreach ($posts as $post) {
 
     </section>
 <?php }?>
-
-<?php function draw_post($post)
-{
-    ?>
-        <article class="post">
-            <header>
-                <h3 class="author">
-                    <?=$post['author']?>
-                </h3>
-                <h3 class="creationDate">
-                    <?=$post['creationDate']?>
-                </h3>
-
-                <h3 class="username">
-                    <?=$post['username']?>
-                </h3>
-                <h2 class="title">
-                    <?=$post['title']?>
-                </h2>
-            </header>
-
-            <h2 class="content">
-                <?=$post['content']?>
-            </h2>
-
-            <h2 class="votes">
-                <?=$posts['votes']?>
-            </h2>
-
-            <h2 class="votes">
-                <?=$posts['votes']?>
-            </h2>
-        </article>
-<?php }?>
-
 
 <?php function draw_overview_post($post)
 {?>

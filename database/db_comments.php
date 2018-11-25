@@ -5,7 +5,11 @@
 
     function getCommentsByPostId($id){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT comment.*, user.username FROM comment JOIN user on comment.author = user.id WHERE post = ?');
+        $stmt = $db->prepare('
+            SELECT comment.*, user.username,entry.* 
+            FROM comment NATURAL JOIN entry JOIN user 
+            on entry.author = user.id 
+            WHERE post = ?');
         $stmt->execute(array($id));
         return $stmt->fetchAll();
     }

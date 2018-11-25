@@ -2,7 +2,14 @@
 
     include_once('../includes/database.php');
 
-    function getPosts(){
+    function getPostsGuest(){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM (POST NATURAL JOIN ENTRY) JOIN USER ON ENTRY.author = USER.id');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    function getPostsLogged($username){
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT POST.* , USER.username FROM POST JOIN USER ON POST.author = USER.id');
         $stmt->execute();

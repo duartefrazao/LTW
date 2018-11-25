@@ -2,9 +2,8 @@
     include_once('../database/db_post.php');
     include_once('../includes/session.php');
 
-    if($_SESSION['username'] === NULL){
-        header('Location: ../pages/login.php');
-    }
+    if (!isset($_SESSION['username']))
+        die(header('Location: ../pages/login.php'));
 
     $id=$_GET['id'];
     $type=$_GET['type'];
