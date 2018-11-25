@@ -1,11 +1,10 @@
 :root {
-    --nav-bg-color: rgb(246, 245, 240);
-    --background: rgba(198, 192, 184, 0.582);
+    --nav-bg-color: white;
+    --background: #e7e5df ;
     --button_bg: #252422;
     --latte: #DDBC95;
     --coffe: #B38867;
     --text: #1C2127;
-    --lighter-button-bg:rgb(73, 71, 70);
 }
 
 body {
@@ -22,6 +21,9 @@ body > header {
     display: flex;
     margin: 0em 0em 1.5em 0em; 
     align-items: center;
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    border-bottom-color: #252422;
 }
 
 /* Text in navbar style */
@@ -52,6 +54,9 @@ a{
     color: var(--latte);
     padding: 0.3em 0em 0.3em 0em;
     background-color: var(--lighter-button-bg);
+    transition: 0.5s ease;
+    background-color: white;
+    color: var(--button_bg);
     text-align: center;
     border-color: var(--lighter-button-bg);
     border-width: 2px;
@@ -60,8 +65,9 @@ a{
 }
 
 #login-button:hover , #signup-button:hover{
-    background-color: var(--text);
-    transition: 0.7s ease;
+    background-color: #36382e;
+    color: white;
+    transition: 1s ease;
 }
 
 #login-button{
