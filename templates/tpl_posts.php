@@ -10,6 +10,7 @@
 <?php } ?>
 
 <?php function draw_post($post){
+    print_r($post);
     ?>
     <article class="post">
         <header>
@@ -20,6 +21,9 @@
                 <?=$post['creationDate']?>
             </h3>
 
+            <h3 class="username">
+                <?=$post['username']?>
+            </h3>
             <h2 class="title"> 
                 <?=$post['title']?>
             </h2>
