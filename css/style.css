@@ -114,8 +114,10 @@ a{
 .submit_button{
     width:30%;
     background-color:var(--latte);
-    
+}
 
+#username{
+    margin:0;
 }
  
 
