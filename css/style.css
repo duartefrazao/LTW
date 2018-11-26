@@ -127,11 +127,12 @@ a {
 
 /* ------------------------------- */
 
+
 .overview-post {
     min-width: 30em;
     max-width: 60em;
     margin: 1em auto;
-    padding: 0 1em;
+    padding: 0.8em 2em 0.8em 0;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
 }
@@ -152,6 +153,13 @@ a {
 
 .overview-post footer {
     display: flex;
+    flex-direction: column;
+    
+}
+.overview-post footer h5{
+    margin:0;
+    flex-grow: 1;
+    justify-content: flex-start;
 }
 
 .overview-post .username {
@@ -189,7 +197,7 @@ a {
 /* Voting buttons and sections */
 
 .downvote {
-    margin: 0 auto 20px auto;
+    margin:auto;
     width: 20px;
     height: 20px;
     background-color: black;
@@ -201,10 +209,11 @@ a {
     text-align: center;
     font-size: small;
     padding: 0;
+    margin:0.4em;
 }
 
 .upvote {
-    margin: 20px auto 0 auto;
+    margin: auto;
     width: 20px;
     height: 20px;
     background-color: black;
@@ -221,15 +230,15 @@ a {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 0;
-    /* border-right: 1px solid black; */
+    margin:0 0.5em;
 }
 
 .partial_line {
-   margin:auto 15px;
+   margin:auto 0.8em auto 0;
    width:0.05em;
-   height:100px;
+   height:6.5em;
    background-color:var(--text);
 }
 
