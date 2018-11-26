@@ -57,7 +57,7 @@
                 <section class="upvote "></section>
             </a>
             <h5 class="votes">
-                <?=$post['votes']?> Votes
+                <?=$post['votes']?> 
             </h5>
             <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1" >
                 <section class="downvote" href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1"></section>
