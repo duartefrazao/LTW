@@ -5,7 +5,7 @@
     <section id="posts">
 
     <?php
-foreach ($posts as $post) {
+    foreach ($posts as $post) {
         draw_overview_post($post);
     }
 
@@ -84,7 +84,7 @@ foreach ($posts as $post) {
 
             <footer>
                 <h5 class="comments">
-                    <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comments </a> <?=count($post['numComments']) == 1 ? '' : 's'?>
+                    <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comment</a><?=$post['numComments'] == 1 ? '' : 's'?>
                 </h5>
             </footer>
         </section>
