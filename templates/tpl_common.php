@@ -24,6 +24,7 @@
                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
                 <?php }else{ ?>
+                    
                     <a class="normal_button" href="../actions/action_logout.php">
                         Log Out
                     </a> 
