@@ -64,7 +64,7 @@ a {
     font-size: 125%;
 }
 
-#login-button:hover, #signup-button:hover {
+#login-button:hover, #signup-button:hover, #back:hover{
     background-color: #36382e;
     color: white;
     transition: 1s ease;
