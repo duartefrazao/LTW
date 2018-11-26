@@ -13,32 +13,33 @@ create table user(
     creationDate INTEGER NOT NULL
 );
 
-drop table if exists post;
+drop table if exists entity;
 
-create table post(
+create table entity(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR NOT NULL, 
-    content VARCHAR NOT NULL,
+    content VARCHAR,
     author INTEGER NOT NULL REFERENCES user, 
     votes INTEGER NOT NULL, 
     creationDate Integer NOT NULL,
-    numComments INTEGER NOT NULL
+    numComments INTEGER NOT NULL,
+    parentEntity INTEGER REFERENCES entity (id)
 );
 
-drop table if exists comment;
+drop table if exists vote;
 
-create table comment(
+create table vote(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    author INTEGER NOT NULL REFERENCES user, 
-    post INTEGER NOT NULL REFERENCES post,
-    content VARCHAR NOT NULL,
-    upvotes INTEGER NOT NULL, 
-    downvotes INTEGER NOT NULL,
-    parentcomment INTEGER
+    entity INTEGER REFERENCES entity (id) NOT NULL,
+    user INTEGER REFERENCES user (id) NOT NULL,
+    up BOOLEAN NOT NULL
 );
 
 INSERT INTO user VALUES(NULL, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@pedro.costa', 'no lo sey, chiquita', 1543162027 );
-INSERT INTO post VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350, 2);
-INSERT INTO post VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',1,4,1543158550,0);
-INSERT INTO comment VALUES(NULL,1,1,'O Mate é fixe, também gosto',1,0,NULL);
-INSERT INTO comment VALUES(NULL,1,1,'Concordo',0,1,1);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,1,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',1,0,1543158550,1,NULL);
+INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543158550,0,1);
+INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543158550,0,2);
+
+
+.exit
