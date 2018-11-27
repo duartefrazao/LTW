@@ -14,7 +14,6 @@
     $comments = getCommentsByPostId($_GET['id']);
 
     draw_header($_SESSION['username']);
-    draw_post($post);
-    draw_comments($comments);
+    draw_post($post, $comments);
     draw_footer(); 
 ?>

@@ -21,7 +21,7 @@ body>header {
     background-color: var(--nav-bg-color);
     color: var(--text);
     display: flex;
-    margin: 0em 0em 1.5em 0em;
+    margin: 0;
     align-items: center;
     border-style: solid;
     border-width: 0 0 3px 0;
@@ -31,7 +31,7 @@ body>header {
 /* Text in navbar style */
 
 body>header h1 {
-    margin: 0.1em;
+    margin: 0, 0.1em;
     flex-grow: 10;
 }
 
@@ -52,9 +52,7 @@ a {
 */
 
 .normal-button {
-    color: var(--latte);
     padding: 0.3em 0em 0.3em 0em;
-    background-color: var(--lighter-button-bg);
     background-color: white;
     color: var(--button_bg);
     text-align: center;
@@ -121,78 +119,81 @@ a {
     background-color: var(--latte);
 }
 
-#username {
+.username {
     margin: 0;
+    padding: 0 1em;
 }
 
 /* ------------------------------- */
 
 
-.overview-post {
+#posts .overview-post{
+    display: flex;
     min-width: 30em;
     max-width: 60em;
+    min-height: 3em;
     margin: 1em auto;
-    padding: 0.8em 2em 0.8em 0;
+    padding: 1em;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
 }
 
-.overview-post h1 {
+#posts  .overview-post .title{
     padding: 0.3em 1em;
     margin: 0;
     font-size: x-large;
 }
 
-.overview-post header {
+#posts  .overview-post .post-content{
+    flex-grow: 20;
+}
+
+#posts .overview-post header {
     display: flex;
 }
 
-.overview-post .author {
+#posts .overview-post .author {
     display: none;
 }
 
-.overview-post footer {
-    display: flex;
-    flex-direction: column;
-    
-}
-.overview-post footer h5{
-    margin:0;
-    flex-grow: 1;
-    justify-content: flex-start;
+#posts .overview-post footer h5{
+    margin: 0;
 }
 
-.overview-post .username {
+#posts .overview-post .username {
     display: block;
     font-size: small;
 }
 
-.overview-post .creationDate {
+#posts .overview-post .creationDate {
     font-size: small;
     display: block;
-    margin: 1em;
+    margin: 0 1em;
 }
 
-.overview-post .comments {
+#posts .overview-post .comments {
     font-size: small;
     display: block;
     margin-bottom: 0;
 }
 
-.overview-post .creationDate::before {
+#posts .overview-post .creationDate::before {
     content: 'Posted ';
 }
 
-.overview-post .creationDate::after {
+#posts .overview-post .creationDate::after {
     content: ' ago.';
 }
-.overview-post a{
+
+#posts .overview-post a{
     color: var(--text);
 }
+
 #posts {
-    display: block;
     padding: 1em;
+    min-width: 35em;
 }
+
 
 /* Voting buttons and sections */
 
@@ -222,26 +223,163 @@ a {
     transform: rotate(180deg);
 }
 
-.overview-post {
-    display: flex;
-}
 
 .voting_section {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0.3em;
+    margin:0;
+}
+
+.voting_section .votes{
     padding: 0;
-    margin:0 0.5em;
 }
 
 .partial_line {
-   margin:auto 0.8em auto 0;
-   width:0.05em;
-   height:6.5em;
-   background-color:var(--text);
+    flex-grow: 1;
+    padding: 0;
+    margin:0.3em;
+    min-width: 0.05em;
+    max-width: 0.05em;
+    min-height: 1em;
+    background-color:var(--text);
 }
 
-.post {
+/*----------------------------------------------------------*/
+/*------------------------SINGLE POST-----------------------*/
+/*----------------------------------------------------------*/
+#post{
+    display: flex; 
+    flex-direction: column;
+}
+
+/*------------------Common with overview post----------------*/
+/*----------------------------------------------------------*/
+
+#post .overview-post{
+    display: flex;
+    min-width: 30em;
+    width: 40em;
+    max-width: 60em;
+    min-height: 3em;
+    margin: 1em auto;
+    margin-bottom: 0;
+    padding: 1em;
+    
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+}
+
+#post .overview-post .title{
+    padding: 0.3em 1em;
+    margin: 0;
+    font-size: x-large;
+}
+
+#post .overview-post .post-content{
     flex-grow: 20;
 }
+
+#post .overview-post header {
+    display: flex;
+}
+
+#post .overview-post .author {
+    display: none;
+}
+
+#post .overview-post footer h5{
+    margin: 0;
+}
+
+#post .overview-post .username {
+    display: block;
+    font-size: small;
+}
+
+#post .overview-post .creationDate {
+    font-size: small;
+    display: block;
+    margin: 0 1em;
+}
+
+#post .overview-post .comments {
+    font-size: small;
+    display: block;
+    margin-bottom: 0;
+}
+
+#post .overview-post .creationDate::before {
+    content: 'Posted ';
+}
+
+#post .overview-post .creationDate::after {
+    content: ' ago.';
+}
+
+#post .overview-post a{
+    color: var(--text);
+}
+
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+
+#post #comments{
+    display: flex;
+    flex-direction: column;
+    min-width: 30em;
+    width: 40em;
+    max-width: 60em;
+    min-height: 3em;
+    margin: 1em auto;
+    margin-top: 0;
+    padding: 1em;
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#post form{
+    display: flex;
+    flex-direction: column;
+    min-width: 30em;
+    width: 40em;
+    max-width: 60em;
+    min-height: 3em;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: white;
+}
+
+#post #comments .comment{
+    display:block;
+}
+
+#comments .comment header {
+    display: flex;
+}
+
+#comments .comment  .username {
+    display: block;
+    font-size: small;
+}
+
+#comments .comment  .creationDate::before {
+    content: 'Posted ';
+}
+
+#comments .comment  .creationDate::after {
+    content: ' ago.';
+}
+
+#comments .comment  .creationDate {
+    font-size: small;
+    display: block;
+    margin: 0 1em;
+}
+
+
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/

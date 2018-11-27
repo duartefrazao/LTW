@@ -1,5 +1,6 @@
-<?php function draw_comments($comments){
-    ?>
+<?php include_once("../templates/tpl_common.php"); ?>
+
+<?php function draw_comments($comments){?>
 
     <section id="comments">
 
@@ -15,18 +16,38 @@
     ?>
     <article class="comment">
         <header>
-            <h3 class="author">
-                <?=$comment['username']?>
+            <h3 class="username">
+                <i class="fas fa-user-circle"></i> <?=$comment['username']?>
             </h3>
+
+            <h3 class="creationDate">
+                <?=humanTiming($comment['creationDate']);?>
+            </h3>
+
         </header>
 
         <h2 class="content">
-            <?=$comment['content']?>
+            <?=$comment['title']?>
         </h2>
 
         <h2 class="votes">
-            <?=$comment['upvotes']?>
+            <?=$comment['votes']?>
         </h2>
 
+        
+
     </article>
+<?php } ?>
+
+
+<?php function draw_add_comment(){
+    ?>
+    <form>
+        <label>
+          <textarea name="text"></textarea>
+        </label>
+        <input type="hidden" name="id" value="1">
+        <input type="submit" value="Reply">
+    </form>
+
 <?php } ?>

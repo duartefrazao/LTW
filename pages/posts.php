@@ -5,7 +5,7 @@
     include_once("../includes/session.php");
 
     $posts = getPosts();
-    if (isset($_SESSION['name']))
+    if (isset($_SESSION['username']))
     {
         draw_header($_SESSION['username']);
     }

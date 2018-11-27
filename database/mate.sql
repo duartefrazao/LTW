@@ -36,10 +36,10 @@ create table vote(
 );
 
 INSERT INTO user VALUES(NULL, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@pedro.costa', 'no lo sey, chiquita', 1543162027 );
+INSERT INTO USER VALUES(NULL, 'miguel','$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@miguel.com', 'yo soy guapo',1543277351);
 INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,1,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',1,0,1543158550,1,NULL);
-INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543158550,0,1);
-INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543158550,0,2);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,NULL);
+INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,0,1);
+INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,2);
 
 
-.exit
