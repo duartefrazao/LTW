@@ -91,7 +91,7 @@
 {?>
     <footer>
         <h5 class="comments">
-            <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comment</a> <?=$post['numComments'] == 1 ? '' : 's'?>
+            <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comment</a><?=$post['numComments'] == 1 ? '' : 's'?>
         </h5>
     </footer>
 <?php }?>
