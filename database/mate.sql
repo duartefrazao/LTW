@@ -41,9 +41,9 @@ INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZG
 
 INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,NULL);
 INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,NULL);
-INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,5,1543164527,3,NULL);
+INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,5,1543573496,3,NULL);
 INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,1,1);
-INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,15435064510,0,1);
+INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,1);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,2);
 
 

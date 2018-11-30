@@ -1,11 +1,19 @@
 :root {
-    --nav-bg-color: white;
-    --background: #e7e5df;
+    --nav-bg-color: #171a1c;
+    --background: #afbfdc;
     --button_bg: #252422;
     --latte: #DDBC95;
     --coffe: #c7140b;
     --text: #1C2127;
     --test_color: #0384c9;
+
+    --green: #4e873d;
+    --kinda-grey: #afbfdc;
+    --kinda-black: #171a1c;
+    --yellow: #fcd42b;
+
+    --upvote-color: #eca400;
+    --downvote-color: #006992;
 }
 
 body {
@@ -37,7 +45,7 @@ body>header h1 {
 
 #logo {
     font-weight: bolder;
-    color: var(--text);
+    color: white;
     font-size: 150%;
     flex-grow: 10;
     margin: 0em 0em 0em 0.1em;
@@ -58,12 +66,13 @@ a {
     text-align: center;
     border-color: var(--lighter-button-bg);
     border-width: 2px;
+    transition: 0.3s ease;
     border-style: solid;
     font-size: 125%;
 }
 
 #login-button:hover, #signup-button:hover, #back:hover{
-    background-color: #36382e;
+    background-color: #4e873d;
     color: white;
     transition: 1s ease;
 }
@@ -198,34 +207,34 @@ a {
 
 /* Voting buttons and sections */
 
-.downvote {
+#posts .downvote {
     margin:auto;
     width: 20px;
     height: 20px;
-    background-color: black;
+    background-color: var(--downvote-color);
     background-size: cover;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
 }
 
-.votes {
+#posts .votes {
     text-align: center;
     font-size: small;
     padding: 0;
     margin:0.4em;
 }
 
-.upvote {
+#posts .upvote {
     margin: auto;
     width: 20px;
     height: 20px;
-    background-color: black;
+    background-color: var(--upvote-color);
     background-size: cover;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
     transform: rotate(180deg);
 }
 
 
-.voting_section {
+#posts .voting_section {
     flex-grow: 1;
     display: flex;
     width: 100%;
@@ -236,7 +245,7 @@ a {
     margin:0;
 }
 
-.voting_section .votes{
+#posts .voting_section .votes{
     padding: 0;
 }
 
@@ -268,14 +277,14 @@ a {
     min-height: 3em;
     margin: 1em auto;
     margin-bottom: 0;
-    padding: 1em;
+    padding: 0.3em;
     
     background-color: white;
     border-radius: 5px 5px 0px 0px;
 }
 
 #post .overview-post .title{
-    padding: 0.3em 1em;
+    padding: 0.3em 0.3em;
     margin: 0;
     font-size: x-large;
 }
@@ -287,8 +296,9 @@ a {
 #post .overview-post .content{
     flex-grow: 20;
     margin-top: 0;
-    margin-left: 1em;
+    padding: 0.3em 0.3em;
     font-size: large;
+    font-weight: lighter;
 }
 
 #post .overview-post header {
@@ -343,7 +353,7 @@ a {
     min-height: 3em;
     margin: 1em auto;
     margin-top: 0;
-    padding: 1em;
+    padding: 1em 0.3em;
     background-color: white;
     border-radius: 0px 0px 5px 5px;
 }
@@ -355,7 +365,7 @@ a {
     width: 50%;
     min-height: 3em;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1em  0.3em;
     background-color: white;
 }
 
@@ -363,6 +373,8 @@ a {
     display: block;
     width: 80%;
     min-width: 30em;
+    height: 40%;
+    min-height: 5em;
     border-style: solid;
     border-width: 1px;
     border-color: #1C2127;
@@ -419,3 +431,46 @@ a {
 /*----------------------------------------------------------*/
 /*----------------------------------------------------------*/
 /*----------------------------------------------------------*/
+
+
+
+#post .voting_section .downvote {
+    margin:0 auto;
+    border-width: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--downvote-color);
+    background-size: cover;
+    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
+}
+
+#post .voting_section .votes {
+    width: 50%;
+    text-align: center;
+    font-size: small;
+    padding: 0;
+    margin:0.4em auto;
+}
+
+#post .voting_section .upvote {
+    margin: 0 auto;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--upvote-color);
+    background-size: cover;
+    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
+    transform: rotate(180deg);
+}
+
+
+#post .voting_section {
+    display: flex;
+    width: 50%;
+    max-width: 2em;
+    flex-direction: column;
+    padding:0;
+    margin: 0; 
+    margin-top: 1em;
+}

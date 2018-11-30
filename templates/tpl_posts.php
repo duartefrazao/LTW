@@ -27,12 +27,12 @@
                         <?=$post['content']?>
                     </h2>
                 </section> 
-
         </article>
 
-        <?php draw_add_comment() ?>   
+<?php draw_add_comment() ?>   
 
-        <?php draw_comments($comments) ?>   
+<?php draw_comments($comments) ?>  
+ 
     
     </section>
 <?php }?>
