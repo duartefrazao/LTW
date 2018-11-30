@@ -29,7 +29,7 @@
                 </section> 
         </article>
 
-<?php draw_add_comment() ?>   
+<?php draw_add_comment($post) ?>   
 
 <?php draw_comments($comments) ?>  
  
