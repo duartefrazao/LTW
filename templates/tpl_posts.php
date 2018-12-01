@@ -12,29 +12,30 @@
     </section>
 <?php }?>
 
+
 <?php function draw_post($post, $comments)
 {?>
-    <section id="post" />
-            
-        <article class="overview-post">
-                <?php draw_voting_aside($post) ?>
-                <section class="post-content">
-                    <?php draw_post_header($post) ?>
-                    <h1 class="title">
-                        <?=$post['title']?>
-                    </h1>
-                    <h2 class="content">
-                        <?=$post['content']?>
-                    </h2>
-                </section> 
-        </article>
+    <article id="post">
 
-<?php draw_add_comment($post) ?>   
+        <?php draw_voting_aside($post) ?>
 
-<?php draw_comments($comments) ?>  
- 
-    
-    </section>
+        <?php draw_post_header($post) ?>
+
+        <h1 class="title">
+            <?=$post['title']?>
+        </h1>
+
+        <h2 class="content">
+            <?=$post['content']?>
+        </h2>
+
+        <?php draw_add_comment($post) ?>   
+
+        <hr/>
+
+        <?php draw_comments($comments) ?>  
+
+    </article>
 <?php }?>
 
 
@@ -42,13 +43,14 @@
 {?>
     <article class="overview-post">
         <?php draw_voting_aside($post) ?>
-        <section class="post-content">
-            <?php draw_post_header($post) ?>
-            <h1 class="title">
-                <?=$post['title']?>
-            </h1>
-            <?php draw_comment_footer($post) ?> 
-        </section>
+       
+        <?php draw_post_header($post) ?>
+       
+        <h1 class="title">
+            <?=$post['title']?>
+        </h1>
+       
+        <?php draw_comment_footer($post) ?> 
     </article>
 <?php }?>
 
@@ -80,11 +82,11 @@
             <?=$post['votes']?>
         </h5>
         <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1" >
-            <section class="downvote" href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1"></section>
+            <section class="downvote"></section>
         </a>    
     </aside>
 
-    <span class="partial_line"></span>
+    <!-- <span class="partial_line"></span> -->
 <?php }?>
 
 <?php function draw_comment_footer($post)

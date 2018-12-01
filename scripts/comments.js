@@ -8,6 +8,8 @@ commentForm.addEventListener('submit', function(event) {
 function submitComment(element) {
   let text = element.querySelector('textarea').value;
 
+  element.querySelector('textarea').value = "";
+
   let parent_id = element.querySelector('input[name=id]').value;
 
   let comment_id = document.querySelector('#post .comment') != null ?
@@ -38,15 +40,18 @@ function receiveComment(event) {
   for (let i = 0; i < comments.length; i++) {
     let comment = document.createElement('article');
     comment.classList.add('comment');
-    comment.innerHTML = '<header> <h3 data-id="' + comments[i].id +
+    comment.innerHTML = '<aside class="voting_section">' +
+    '<a href="../actions/action_vote_post.php?id=' + comments[i].id + '&type=1">' + 
+    '<section class="upvote"> </section> </a>' + 
+    '<h5 class="votes">' + comments[i].votes + '</h5>' + 
+    '<a href="../actions/action_vote_post.php?id=' + comments[i].id + '&type=-1">' + 
+    '<section class="downvote"> </section> </a> </aside>'+
+    '<span class="partial_line"> </span>'+
+    '<header> <h3 data-id="' + comments[i].id +
         '" class="username">' +
-        '<i class="fas fa-user-circle"> </i>' + comments[i].username + '</h3>' +
-        '<h3 class="creationDate">' + humanTiming(comments[i].creationDate) + '</h3>'+
-        '</header>'+ '<h2 class="content">' + comments[i].title + '</h2>' +
-        '<h2 class="votes">'+ comments[i].votes + '</h2>';
-
-    console.log(comment);
-
+        '<i class="fas fa-user-circle"></i> ' + comments[i].username + '</h3>' +
+        '<h3 class="creationDate">' + humanTiming(comments[i].creationDate) + '</h3> </header>' +
+        '<h2 class="content">' + comments[i].title + '</h2>';
     section.appendChild(comment);
   }
 }

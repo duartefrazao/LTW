@@ -10,11 +10,19 @@
         return $stmt->fetchAll();
     }
 
-    function addCommentToPost($parent_id, $user_id, $content){
+    function addComment($parent_id, $user_id, $content){
         $db = Database::instance()->db();
         $stmt = $db->prepare('INSERT INTO entity VALUES(NULL, ?, NULL, ?, 0, ?, 0, ?)');
         $stmt->execute(array($content, $user_id, time(), $parent_id));
+        incNumberOfComments($parent_id);
     }
+
+
+    function incNumberOfComments($parent_id){
+        $db = Database::instance()->db();
+        $stmt=$db->prepare('UPDATE ENTITY SET numComments = numComments + 1 WHERE id = ? ');
+        $stmt->execute(array($parent_id)); 
+     }
 
     function getCommentsAfterId($parent_id, $comment_id){
         $db = Database::instance()->db();

@@ -15,6 +15,7 @@
 <?php function draw_comment($comment){
     ?>
     <article class="comment">
+    <?php draw_voting_aside($comment) ?>
         <header>
             <h3 data-id="<?= $comment['id'] ?>" class="username">
                 <i class="fas fa-user-circle"></i> <?=$comment['username']?>
@@ -27,14 +28,7 @@
 
         <h2 class="content">
             <?=$comment['title']?>
-        </h2>
-
-        <h2 class="votes">
-            <?=$comment['votes']?>
-        </h2>
-
-        
-
+        </h2>  
     </article>
 <?php } ?>
 
@@ -42,9 +36,7 @@
 <?php function draw_add_comment($post){
     ?>
     <form>
-        <label>
-          <textarea name="text"></textarea>
-        </label>
+        <textarea name="text" required></textarea>
         <input type="hidden" name="id" value="<?=$post['id']?>">
         <input type="submit" value="Reply">
     </form>

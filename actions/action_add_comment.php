@@ -9,7 +9,7 @@
 
     $content = $_POST['text'];
     $parent_id = $_POST['parent_id'];
-    addCommentToPost($parent_id, $_SESSION['id'], $content);
+    addComment($parent_id, $_SESSION['id'], $content);
 
     $comments = getCommentsAfterId($parent_id, $_POST['comment_id']);
     echo json_encode($comments);
