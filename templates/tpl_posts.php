@@ -74,13 +74,17 @@
 {?>
     <aside class="voting_section">
         <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=1" >
-            <section class="upvote "></section>
+            <section class="upvote<?php 
+                    if($post['up']=='true'){
+                ?> upvote_triggered<?php } ?>"></section>
         </a>
         <h5 class="votes">
             <?=$post['votes']?>
         </h5>
         <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1" >
-            <section class="downvote" href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1"></section>
+            <section class="downvote<?php 
+                    if($post['up']=='false'){
+                ?> downvote_triggered<?php } ?>"></section>
         </a>    
     </aside>
 

@@ -5,7 +5,7 @@
     include_once("../database/db_user.php");
     include_once("../includes/session.php");
 
-    $posts = getPosts();
+    $posts = getPosts($_SESSION['username']);
     if (isset($_SESSION['username']))
     {
         draw_header($_SESSION['username']);
