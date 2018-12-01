@@ -2,7 +2,21 @@
 
     include_once('../includes/database.php');
 
-    function getPosts(){
+    function getPosts($username){
+        if($username !==NULL)
+            return getPostsLogged($username);
+        else 
+            return getPostsGuest();
+
+    }
+    function getPostsGuest(){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username FROM ENTITY JOIN USER ON ENTITY.author = USER.id AND ENTITY.parentEntity is NULL');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    function getPostsLogged($username){
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT ENTITY.* , USER.username FROM ENTITY JOIN USER ON ENTITY.author = USER.id AND ENTITY.parentEntity is NULL');
         $stmt->execute();
@@ -16,11 +30,6 @@
         return $stmt->fetch();
     }
 
-    function vote($id,$type){
-        $db=Database::instance()->db();
-        $stmt=$db->prepare('UPDATE ENTITY SET votes=votes + ? WHERE ?=id');
-        $stmt->execute(array($type,$id));
-    }
     
 
 ?>
