@@ -225,7 +225,6 @@ a {
     padding: 0;
     margin:0.4em;
 }
-
 #posts .upvote {
     margin: auto;
     width: 20px;
@@ -239,6 +238,7 @@ a {
 #posts .upvote_triggered{
     background-color: var(--upvote-color);
 }
+
 
 
 #posts .voting_section {
@@ -447,10 +447,15 @@ a {
     padding: 0;
     width: 20px;
     height: 20px;
-    background-color: var(--downvote-color);
+    background-color: gray;
     background-size: cover;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
 }
+
+#post .voting_section .downvote_triggered{
+    background-color: var(--downvote-color);
+}
+
 
 #post .voting_section .votes {
     width: 50%;
@@ -465,11 +470,17 @@ a {
     padding: 0;
     width: 20px;
     height: 20px;
-    background-color: var(--upvote-color);
+    background-color: gray;
     background-size: cover;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
     transform: rotate(180deg);
 }
+
+
+#post .voting_section .upvote_triggered{
+    background-color: var(--upvote-color);
+}
+
 
 
 #post .voting_section {

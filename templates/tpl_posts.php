@@ -14,7 +14,7 @@
 
 <?php function draw_post($post, $comments)
 {?>
-    <section id="post" />
+    <section id="post">
             
         <article class="overview-post">
                 <?php draw_voting_aside($post) ?>

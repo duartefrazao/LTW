@@ -9,11 +9,10 @@
     if (!isset($_GET['id']))
         header('Location: posts.php');
 
-    $post = getPostById($_GET['id']);
+    $post = getPostById($_GET['id'],$_SESSION['username']);
 
     $comments = getCommentsByPostId($_GET['id']);
-
     draw_header($_SESSION['username']);
     draw_post($post, $comments);
-    draw_footer(); 
+    draw_footer();
 ?>
