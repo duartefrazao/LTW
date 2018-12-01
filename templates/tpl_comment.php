@@ -15,11 +15,11 @@
 <?php function draw_comment($comment){
     ?>
     <article class="comment">
+    <?php draw_voting_aside($comment) ?>
         <header>
-            <h3 class="username">
+            <h3 data-id="<?= $comment['id'] ?>" class="username">
                 <i class="fas fa-user-circle"></i> <?=$comment['username']?>
             </h3>
-
             <h3 class="creationDate">
                 <?=humanTiming($comment['creationDate']);?>
             </h3>
@@ -28,25 +28,16 @@
 
         <h2 class="content">
             <?=$comment['title']?>
-        </h2>
-
-        <h2 class="votes">
-            <?=$comment['votes']?>
-        </h2>
-
-        
-
+        </h2>  
     </article>
 <?php } ?>
 
 
-<?php function draw_add_comment(){
+<?php function draw_add_comment($post){
     ?>
     <form>
-        <label>
-          <textarea name="text"></textarea>
-        </label>
-        <input type="hidden" name="id" value="1">
+        <textarea name="text" required></textarea>
+        <input type="hidden" name="id" value="<?=$post['id']?>">
         <input type="submit" value="Reply">
     </form>
 

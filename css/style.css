@@ -1,6 +1,6 @@
 :root {
     --nav-bg-color: #171a1c;
-    --background: #afbfdc;
+    --background: #c6d4eb;
     --button_bg: #252422;
     --latte: #DDBC95;
     --coffe: #c7140b;
@@ -52,6 +52,7 @@ body>header h1 {
 }
 
 a {
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -71,7 +72,9 @@ a {
     font-size: 125%;
 }
 
-#login-button:hover, #signup-button:hover, #back:hover{
+#login-button:hover,
+#signup-button:hover,
+#back:hover {
     background-color: #4e873d;
     color: white;
     transition: 1s ease;
@@ -104,7 +107,8 @@ a {
 
 /* Authentication */
 
-#login, #signup {
+#login,
+#signup {
     max-width: 30em;
     background-color: white;
     box-shadow: whitesmoke 2px;
@@ -135,80 +139,85 @@ a {
 
 /* ------------------------------- */
 
-
-#posts .overview-post{
-    display: flex;
-    min-width: 30em;
-    max-width: 60em;
-    min-height: 3em;
-    margin: 1em auto;
-    padding: 1em;
-    background-color: white;
-    border-radius: 5px 5px 5px 5px;
-}
-
-#posts  .overview-post .title{
-    padding: 0.3em 1em;
-    margin: 0;
-    font-size: x-large;
-}
-
-#posts  .overview-post .post-content{
-    flex-grow: 20;
-}
-
-#posts .overview-post header {
-    display: flex;
-}
-
-#posts .overview-post .author {
-    display: none;
-}
-
-#posts .overview-post footer h5{
-    margin: 0;
-}
-
-#posts .overview-post .username {
-    display: block;
-    font-size: small;
-}
-
-#posts .overview-post .creationDate {
-    font-size: small;
-    display: block;
-    margin: 0 1em;
-}
-
-#posts .overview-post .comments {
-    font-size: small;
-    display: block;
-    margin-bottom: 0;
-    margin-left: 1em;
-}
-
-#posts .overview-post .creationDate::before {
-    content: 'Posted ';
-}
-
-#posts .overview-post .creationDate::after {
-    content: ' ago.';
-}
-
-#posts .overview-post a{
-    color: var(--text);
-}
-
 #posts {
     padding: 1em;
     min-width: 35em;
 }
 
+#posts .overview-post{
+    display: grid;
+    grid-template-columns: 1fr 17fr;
+    grid-template-rows:auto;
+    grid-template-areas: "votes header"
+                         "votes title"
+                         "votes footer";
+    min-width: 30em;
+    max-width: 60em;
+    min-height: 3em;
+    margin: 1em auto;
+    padding: 1em 0.5em;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+}
 
-/* Voting buttons and sections */
 
-#posts .downvote {
-    margin:auto;
+.overview-post .title, #post .title {
+    padding: 0.3em;
+    margin: 0;
+    font-size: x-large;
+}
+
+.overview-post .post-content, #post title {
+    grid-area: title;
+}
+
+.overview-post header, #post header{
+    grid-area: header;
+    display: flex;
+}
+
+.overview-post header .username, #post header .username {
+    display: block;
+    font-size: small;
+    padding-left: 0;
+}
+
+.overview-post header .creationDate, #post header .creationDate {
+    font-size: small;
+    display: block;
+    margin: 0 0.5em;
+}
+
+.creationDate::before {
+    content: 'Posted ';
+}
+
+.creationDate::after {
+    content: ' ago.';
+}
+
+.overview-post .author, #post .author{
+    display: none;
+}
+
+/* ================== FOOTER ================== */
+
+.overview-post footer{
+    grid-area: footer;
+}
+
+
+.overview-post .comments {
+    font-size: small;
+    display: block;
+    margin: 0;
+    padding: 0 ;
+}
+
+
+
+.downvote {
+    margin: auto;
     width: 20px;
     height: 20px;
     background-color: gray;
@@ -219,13 +228,14 @@ a {
     background-color: var(--downvote-color);
 }
 
-#posts .votes {
+.votes {
     text-align: center;
     font-size: small;
     padding: 0;
-    margin:0.4em;
+    margin: 0.4em;
 }
-#posts .upvote {
+
+.upvote {
     margin: auto;
     width: 20px;
     height: 20px;
@@ -235,101 +245,62 @@ a {
     transform: rotate(180deg);
 }
 
-#posts .upvote_triggered{
-    background-color: var(--upvote-color);
-}
-
-
-
-#posts .voting_section {
-    flex-grow: 1;
+.voting_section {
+    grid-area: votes;
     display: flex;
-    width: 100%;
-    max-width: 3em;
     flex-direction: column;
     justify-content: center;
-    padding: 0.3em;
-    margin:0;
+    margin: 0 auto;
 }
 
-#posts .voting_section .votes{
+.voting_section .votes {
     padding: 0;
 }
 
-#posts .partial_line {
-    flex-grow: 1;
-    margin:0.3em;
-    widows: 80%;
-    min-width: 0.05em;
-    max-width: 0.05em;
-    min-height: 1em;
-    background-color:var(--text);
-}
 
 /*----------------------------------------------------------*/
 /*------------------------SINGLE POST-----------------------*/
 /*----------------------------------------------------------*/
+
 #post{
-    display: flex; 
-    flex-direction: column;
-}
-
-/*------------------Common with overview post----------------*/
-/*----------------------------------------------------------*/
-
-#post .overview-post{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 17fr;
+    grid-template-rows:auto;
+    grid-template-areas: "votes     header"
+                         "votes     title"
+                         "votes     content"
+                         "form      form"
+                         "div       div"
+                         "comments  comments";
     min-width: 30em;
-    width: 50%;
+    width: 70%;
     min-height: 3em;
     margin: 1em auto;
     margin-bottom: 0;
-    padding: 0.3em;
-    
+    padding: 1em 0.3em 0em 0.3em;
     background-color: white;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 5px 5px;
 }
 
-#post .overview-post .title{
-    padding: 0.3em 0.3em;
-    margin: 0;
-    font-size: x-large;
-}
-
-#post .overview-post .post-content{
-    flex-grow: 20;
-}
-
-#post .overview-post .content{
-    flex-grow: 20;
-    margin-top: 0;
-    padding: 0.3em 0.3em;
-    font-size: large;
-    font-weight: lighter;
-}
-
-#post .overview-post header {
-    display: flex;
-}
-
-#post .overview-post .author {
-    display: none;
-}
-
-#post .overview-post footer h5{
-    margin: 0;
-}
-
-#post .overview-post .username {
+#post hr{
+    grid-area: div;
     display: block;
-    font-size: small;
+    width: 90%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em auto;
+    padding: 0;
 }
 
-#post .overview-post .creationDate {
-    font-size: small;
-    display: block;
-    margin: 0 1em;
+#post .content {
+    grid-area: content;
+    padding: 0.3em;
+    margin: 0;
+    margin-bottom: 1em;
+    font-weight: normal;
 }
+
 
 #post .overview-post .comments {
     font-size: small;
@@ -337,164 +308,72 @@ a {
     margin-bottom: 0;
 }
 
-#post .overview-post .creationDate::before {
-    content: 'Posted ';
-}
 
-#post .overview-post .creationDate::after {
-    content: ' ago.';
-}
-
-#post .overview-post a{
-    color: var(--text);
-}
-
-/*----------------------------------------------------------*/
-/*----------------------------------------------------------*/
-
-#post #comments{
-    display: flex;
-    flex-direction: column;
-    min-width: 30em;
-    width: 50%;
-    min-height: 3em;
-    margin: 1em auto;
-    margin-top: 0;
-    padding: 1em 0.3em;
+#post form {
+    grid-area: form;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "text"
+                         "button";
     background-color: white;
-    border-radius: 0px 0px 5px 5px;
+
 }
 
-#post form{
-    display: flex;
-    flex-direction: column;
-    min-width: 30em;
-    width: 50%;
-    min-height: 3em;
-    margin: 0 auto;
-    padding: 1em  0.3em;
-    background-color: white;
-}
-
-#post form label textarea{
-    display: block;
+#post form > textarea {
+    grid-area: text;
     width: 80%;
-    min-width: 30em;
-    height: 40%;
-    min-height: 5em;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #1C2127;
-    margin: auto;
-    padding: 1em;
-}
-
-#post form input[type='hidden']{
-    display: none;
-}
-
-#post form input[type='submit']{
-    display: block;
-    margin: 1em;
-    padding: 0.3em 1em;
-    align-self: flex-end;
-
-}
-
-#post .voting_section .partial_line{
-    display: none;
-
-}
-
-
-#post #comments .comment{
-    display:block;
-}
-
-#comments .comment header {
-    display: flex;
-}
-
-#comments .comment  .username {
-    display: block;
-    font-size: small;
-}
-
-#comments .comment  .creationDate::before {
-    content: 'Posted ';
-}
-
-#comments .comment  .creationDate::after {
-    content: ' ago.';
-}
-
-#comments .comment  .creationDate {
-    font-size: small;
-    display: block;
-    margin: 0 1em;
-}
-
-
-/*----------------------------------------------------------*/
-/*----------------------------------------------------------*/
-/*----------------------------------------------------------*/
-
-
-
-#post .voting_section .downvote {
-    margin:0 auto;
-    border-width: 0;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    background-color: gray;
-    background-size: cover;
-    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
-}
-
-#post .voting_section .downvote_triggered{
-    background-color: var(--downvote-color);
-}
-
-
-#post .voting_section .votes {
-    width: 50%;
-    text-align: center;
-    font-size: small;
-    padding: 0;
-    margin:0.4em auto;
-}
-
-#post .voting_section .upvote {
     margin: 0 auto;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    background-color: gray;
-    background-size: cover;
-    clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
-    transform: rotate(180deg);
+    resize: none;
+    border-bottom-style: none;
+    padding: 1em 1em;
+    border-color: #C0C0C0;
+}
+
+#post form > input[type='hidden'] {
+    display: none;
+}
+
+#post form > input[type='submit'] {
+    grid-area: button;
+    text-align: right;
+    border-color: #C0C0C0;
+    border-style: solid;
+    border-top-style: none;
+    border-width: 1px;
+    box-sizing: unset;
+    width: 80%;
+    padding: 0.5em 1em;
+    margin: 0 auto;
+    background-color: rgb(223, 223, 223);
 }
 
 
-#post .voting_section .upvote_triggered{
-    background-color: var(--upvote-color);
-}
-
-
-
-#post .voting_section {
+#post #comments {
+    margin-top: 0.5em;
+    grid-area: comments;
     display: flex;
-    width: 50%;
-    max-width: 2em;
     flex-direction: column;
-    padding:0;
-    margin: 0; 
-    margin-top: 1em;
+}
+
+#post #comments .comment {
+    margin: 0.5em  0;
+    display: grid;
+    grid-template-columns: 1fr 14fr;
+    grid-template-rows: auto;
+    grid-template-areas: "votes header"
+                         "votes content";
+}
+
+#post #comments .comment header {
+    grid-area: header;
+    display: flex;
 }
 
 
-/* -------Testes ajax */
-.id{
-    visibility: hidden;
+#post #comments .comment .content {
+    grid-area: content;
+    font-weight: normal;
+    margin-top: 0.3em;
+    padding-left: 0.3em;
 }
