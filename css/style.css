@@ -224,7 +224,7 @@ a {
     background-size: cover;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
 }
-#posts .downvote_triggered{
+.downvote_triggered{
     background-color: var(--downvote-color);
 }
 
@@ -243,6 +243,10 @@ a {
     background-color: gray;
     clip-path: polygon(30% 0, 70% 0%, 70% 60%, 90% 60%, 50% 100%, 10% 60%, 30% 60%);
     transform: rotate(180deg);
+}
+
+.upvote_triggered{
+    background-color: var(--upvote-color);
 }
 
 .voting_section {

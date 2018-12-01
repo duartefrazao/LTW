@@ -1,4 +1,5 @@
 let commentForm = document.querySelector('#post form');
+
 commentForm.addEventListener('submit', function(event) {
   event.preventDefault();
   submitComment(this);
@@ -6,6 +7,9 @@ commentForm.addEventListener('submit', function(event) {
 
 
 function submitComment(element) {
+
+  console.log(element);
+
   let text = element.querySelector('textarea').value;
 
   element.querySelector('textarea').value = "";
@@ -77,3 +81,38 @@ function humanTiming(originalTime) {
     return numberOfUnits + ' ' + tokens[key] + ((numberOfUnits > 1) ? 's' : '');
   }
 }
+
+
+
+
+//================================VOTES=============================================
+
+
+let upvote = document.querySelector(".upvoteLink");
+
+console.log(upvote);
+
+function voteReceived(){
+
+}
+
+upvote.addEventListener('click',function(event){
+    console.log("here");
+    event.preventDefault();
+    const upType = 1;
+    const id = document.querySelector(".overview-post  ")
+    let request = new XMLHttpRequest();
+    request.addEventListener("load", voteReceived);
+    request.open("post", "database/api_vote.php", true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send(encodeForAjax({voteType: upType,entityID:id}));
+    console.log("here2");
+});
+
+
+let downvote = document.querySelector(".downvoteLink");
+console.log(downvote);
+downvote.addEventListener('click',function(event){
+    const downType = -1;
+    event.preventDefault();
+});
