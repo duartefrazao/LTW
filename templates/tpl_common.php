@@ -19,8 +19,8 @@
         <body>
 
             <header>
-                <h1 > 
-                    <a id="logo" href="posts.php"> 
+                <h1 id="logo"> 
+                    <a href="posts.php"> 
                         Mate
                     </a>
                 </h1>
@@ -28,11 +28,13 @@
                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
                 <?php }else{ ?>
-                    
-                    <a class="normal_button" href="../actions/action_logout.php">
-                        Log Out
-                    </a> 
-                    <h2 id="username"> <?=$username?> </h2>
+                    <aside class="user-actions">
+                        <h2 id="username"> <?=$username?> </h2>
+                        <ul class="dropdown">
+                            <li> <a href="#"/> Profile </a> </li>
+                            <li> <a href="../actions/action_logout.php"/> Log Out </a> </li>
+                        </ul>
+                    </aside>
                 <?php } ?>
             </header>
 
@@ -56,8 +58,8 @@
         <body>
 
             <header>
-                <h1 > 
-                    <a id="logo" href="posts.php"> 
+                <h1  id="logo" > 
+                    <a href="posts.php"> 
                         Mate
                     </a>
                 </h1>
@@ -69,6 +71,7 @@
 
 <?php function draw_footer(){
     ?>
+        <button class="add-story"> &plus; </button>
         </body>
     </html>
 <?php } ?>
