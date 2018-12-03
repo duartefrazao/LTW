@@ -4,15 +4,9 @@
     include_once("../database/db_post.php");
     include_once("../database/db_user.php");
     include_once("../includes/session.php");
+    include_once("utilities.php");
 
-    if (isset($_SESSION['username']))
-    {
-        draw_header($_SESSION['username']);
-    }
-    else
-    {
-        draw_header(null);
-    }
+    draw_header_global($_SESSION['username']);
 
     draw_add_post();
 
