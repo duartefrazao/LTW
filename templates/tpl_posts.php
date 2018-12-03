@@ -16,6 +16,7 @@
 <?php function draw_post($post, $comments)
 {?>
     <article id="post">
+        <input type="hidden" name="id" value="<?=$post['id']?>">
 
         <?php draw_voting_aside($post) ?>
 
@@ -74,17 +75,18 @@
 
 <?php function draw_voting_aside($post)
 {?>
-    <aside class="voting_section">
-        <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=1" >
-            <section class="upvote<?php 
+    <aside class="voting_section" data-id="<?=$post['id']?>">
+
+        <a >
+            <section class="vote upvote<?php 
                     if($post['up']=='true'){
                 ?> upvote_triggered<?php } ?>"></section>
         </a>
         <h5 class="votes">
             <?=$post['votes']?>
         </h5>
-        <a href="../actions/action_vote_post.php?id=<?=$post['id']?>&type=-1" >
-            <section class="downvote<?php 
+        <a  >
+            <section class="vote downvote<?php 
                     if($post['up']=='false'){
                 ?> downvote_triggered<?php } ?>"></section>
         </a>    

@@ -11,8 +11,10 @@
 
     $post = getPostById($_GET['id'],$_SESSION['username']);
 
-    $comments = getCommentsByPostId($_GET['id']);
+    $comments = getCommentsByPostId($_GET['id'],$_SESSION['id']);
     draw_header($_SESSION['username']);
+    includeScript("vote_system");
+    includeScript("comment_system");
     draw_post($post, $comments);
     draw_footer();
 ?>

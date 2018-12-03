@@ -1,19 +1,12 @@
 <?php
-    include_once('../database/db_post.php');
-    include_once('../includes/session.php');
+    include_once("../includes/session.php");
+    include_once("../database/db_vote.php");
 
-    if($_SESSION['username'] === NULL){
-        header('Location: ../pages/login.php');
-    }
-
-    $id=$_GET['id'];
-    $type=$_GET['type'];
-
-    if(abs($type) !=1)
-        return;
-
-    vote($id,$type);
-
-    header("Location: ../pages/posts.php");
-
+    $type = $_POST['voteType'];
+    $entityID = $_POST['entityID'];
+    
+    vote($entityID,$type,$_SESSION['id']);
+    $info = getVoteUser($entityID,$_SESSION['id']);
+    
+    echo json_encode($info); 
 ?>

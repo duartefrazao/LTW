@@ -14,6 +14,7 @@
     {
         draw_header(null);
     }
+    includeScript("vote_system");
     draw_posts($posts);
     draw_footer();
 ?>

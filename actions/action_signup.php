@@ -15,6 +15,7 @@
      try{
         insertUser($username,$password,$mail,$description,$creationDate);
         $_SESSION['username']=$username;
+        $_SESSION['id']=checkUserPassword($username)['id'];
         header('Location: ../pages/posts.php');
     }catch(PDOException $e){
         header('Location: ../pages/signup.php');
