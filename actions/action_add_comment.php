@@ -12,6 +12,6 @@
     addComment($parent_id, $_SESSION['id'], $content);
 
     $comments = getCommentsAfterId($parent_id, $_POST['comment_id']);
+
     echo json_encode($comments);
-    
 ?>

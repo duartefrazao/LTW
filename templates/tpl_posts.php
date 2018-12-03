@@ -15,9 +15,9 @@
 
 <?php function draw_add_post(){?>
 
-    <form>
+    <form id="new-post" action="../actions/action_add_post.php" method="post">
         <input type="text" required name="title" placeholder="Post's title" />
-        <textarea name="text" required></textarea>
+        <textarea name="text" required placeholder="Your post"></textarea>
         <input type="submit" value="Share">
     </form>
 

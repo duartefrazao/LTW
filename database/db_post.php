@@ -2,11 +2,11 @@
 
     include_once('../includes/database.php');
 
-    function getPosts($username){
+    function getPosts($username, $offset){
         if($username !==NULL)
-            return getPostsLogged($username);
+            return getPostsLogged($username, $offset,5);
         else 
-            return getPostsGuest();
+            return getPostsGuest($offset, 5);
 
     }
 
@@ -15,17 +15,19 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare('INSERT INTO ENTITY VALUES (NULL, ?, ?, ?, 0, ?, 0, NULL)');
         $stmt->execute(array($title, $content, $author, time()));
-        return $stmt->fetchAll();
     }
 
-    function getPostsGuest(){
+    function getPostsGuest($offset, $numOfElements){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.* , USER.username FROM ENTITY JOIN USER ON ENTITY.author = USER.id AND ENTITY.parentEntity is NULL');
-        $stmt->execute();
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
+                            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
+                            AND ENTITY.parentEntity is NULL 
+                            WHERE ENTITY.creationDate >= ? ORDER BY ENTITY.creationDate DESC LIMIT ?');
+        $stmt->execute(array($offset, $numOfElements));
         return $stmt->fetchAll();
     }
 
-    function getPostsLogged($username){
+    function getPostsLogged($username, $offset, $numOfElements){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up FROM 
@@ -37,9 +39,10 @@
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?
                 AND VOTE.user = USER.id) as A2
-        ON A2.entity = A1.id');
+        ON A2.entity = A1.id
+        WHERE A1.creationDate >= ? ORDER BY  A1.creationDate DESC LIMIT ?');
 
-        $stmt->execute(array($username));
+        $stmt->execute(array($username,$offset, $numOfElements));
         return $stmt->fetchAll();
     }
 

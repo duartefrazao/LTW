@@ -47,7 +47,7 @@ body>header {
     padding: 1.5em;
     font-weight: bolder;
     font-size: large;
-    position: absolute;
+    position: relative;
     bottom: 3em;
     border-radius: 50%;
     right: 3em;
@@ -243,6 +243,7 @@ body>header {
     padding: 0.3em;
     margin: 0;
     font-size: x-large;
+    font-weight: normal;
 }
 
 .overview-post .post-content, #post title {
@@ -458,4 +459,51 @@ body>header {
     font-weight: normal;
     margin-top: 0.3em;
     padding-left: 0.3em;
+}
+
+
+
+/*       ADD POST         */
+#new-post{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows:auto;
+    grid-template-areas: "title ."
+                         "content content"
+                         ". share";
+    min-width: 30%;
+    max-width: 70%;
+    margin: 1em auto;
+    padding: 1em;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#new-post input[type='text']{
+    grid-area: title;
+    height: 2em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    text-indent: 1em;
+    margin-bottom: 1em;
+}
+
+#new-post input[type='submit']{
+    display: block;
+    justify-self: end;
+    grid-area: share;
+    padding: 1em 0.5em;
+    border-radius: 5px 5px 5px 5px;
+    width: 50%;
+    border: none;
+}
+
+#new-post textarea{
+    grid-area: content;
+    margin-bottom: 1em;
+    text-indent: 0.5em;
+    height: 6em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    resize: none;
 }
