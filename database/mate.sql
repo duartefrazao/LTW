@@ -81,7 +81,7 @@ INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,15432747
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
-/* INSERT INTO VOTE VALUES(1,1,'true');
-INSERT INTO VOTE VALUES(2,1,'false'); */
+INSERT INTO VOTE VALUES(1,1,'true');
+INSERT INTO VOTE VALUES(2,1,'false');
 
 
