@@ -88,19 +88,18 @@
 {?>
     <aside class="voting_section" data-id="<?=$post['id']?>">
 
-        <a >
-            <section class="vote upvote<?php 
+        <section class="vote upvote<?php 
                     if($post['up']=='true'){
-                ?> upvote_triggered<?php } ?>"></section>
-        </a>
+        ?> upvote_triggered<?php } ?>"></section>
+        
         <h5 class="votes">
             <?=$post['votes']?>
         </h5>
-        <a  >
-            <section class="vote downvote<?php 
-                    if($post['up']=='false'){
-                ?> downvote_triggered<?php } ?>"></section>
-        </a>    
+        
+        <section class="vote downvote<?php 
+                if($post['up']=='false'){
+            ?> downvote_triggered<?php } ?>"></section>
+           
     </aside>
 
     <!-- <span class="partial_line"></span> -->

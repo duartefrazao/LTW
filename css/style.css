@@ -296,7 +296,7 @@ body>header {
 
 
 .downvote {
-    margin: auto;
+    margin: 0 auto;
     width: 20px;
     height: 20px;
     background-color: gray;
@@ -315,7 +315,7 @@ body>header {
 }
 
 .upvote {
-    margin: auto;
+    margin: 0 auto;
     width: 20px;
     height: 20px;
     background-size: cover;
@@ -336,9 +336,6 @@ body>header {
     margin: 0 auto;
 }
 
-.voting_section .votes {
-    padding: 0;
-}
 
 
 /*----------------------------------------------------------*/
