@@ -6,9 +6,13 @@
     include_once("../includes/session.php");
     include_once("utilities.php");
 
-    $posts = getPosts($_SESSION['username']);
+    $posts = getPosts($_SESSION['username'], 0);
+
     draw_header_global($_SESSION['username']);
+
     includeScript("vote_system");
+
     draw_posts($posts);
+    
     draw_footer();
 ?>

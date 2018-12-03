@@ -38,3 +38,43 @@ function encodeForAjax(data) {
         })
         .join('&')
   }
+
+  //================================SCROLL=============================================
+
+document.addEventListener('scroll', function () {
+    checkForNewPosts();
+  });
+  
+  function checkForNewPosts() {
+    let posts = document.querySelector('#posts');
+  
+    let lastPost = posts.querySelector('.overview-post:last-of-type');
+  
+    let lastCreationDate = lastPost.querySelector('.creationDate').textContent;
+  
+    console.log(lastCreationDate);
+  
+    let lastPostOffset = lastPost.offsetTop + lastPost.clientHeight;
+  
+    let pageOffset = window.pageYOffset + window.innerHeight;
+  
+    if (pageOffset > lastPostOffset - 20) {
+      /*
+          let request = new XMLHttpRequest();
+          request.addEventListener('load', receivePost);
+          request.open('post', '../actions/action_get_posts.php', true);
+          request.setRequestHeader('Content-Type',
+         'application/x-www-form-urlencoded') request.send(encodeForAjax(
+              {parent_id: parent_id, text: text, comment_id: comment_id}));
+  
+       */
+  
+       console.log('scrolling');
+  
+  /* 
+  
+      var newDiv = document.createElement('div');
+      newDiv.innerHTML = 'my awesome new div';
+      document.getElementById('posts').appendChild(newDiv); */
+    }
+  };
