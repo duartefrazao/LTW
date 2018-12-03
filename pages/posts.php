@@ -6,7 +6,7 @@
     include_once("../includes/session.php");
     include_once("utilities.php");
 
-    $posts = getPosts($_SESSION['username'], 0);
+    $posts = getPosts($_SESSION['username'], time());
 
     draw_header_global($_SESSION['username']);
 

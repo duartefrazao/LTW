@@ -31,7 +31,6 @@ function submitComment(element) {
 
 function receiveComment(event) {
   let comments = JSON.parse(this.responseText);
-  console.log(comments);
   let section = document.querySelector('#comments');
   for (let i = 0; i < comments.length; i++) {
     let comment = document.createElement('article');
