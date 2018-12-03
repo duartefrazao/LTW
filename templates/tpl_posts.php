@@ -55,13 +55,13 @@
 {?>
     <article class="overview-post">
         <?php draw_voting_aside($post) ?>
-       
+
         <?php draw_post_header($post) ?>
-       
+
         <h1 class="title">
             <?=$post['title']?>
         </h1>
-       
+        
         <?php draw_comment_footer($post) ?> 
     </article>
 <?php }?>
@@ -99,7 +99,6 @@
         <section class="vote downvote<?php 
                 if($post['up']=='false'){
             ?> downvote_triggered<?php } ?>"></section>
-           
     </aside>
 
     <!-- <span class="partial_line"></span> -->

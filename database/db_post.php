@@ -34,7 +34,7 @@
         $stmt->execute(array($offset, $numOfElements));
         return $stmt->fetchAll();
     }
-
+    
     function getPostsLogged($username, $offset, $numOfElements){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
@@ -63,12 +63,28 @@
                 ON ENTITY.author = USER.id where ENTITY.id = ? AND ENTITY.parentEntity is NULL) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
-                 VOTE JOIN USER 
-                 ON USER.username = ? 
-                 AND VOTE.user = USER.id) as A2
+                VOTE JOIN USER 
+                ON USER.username = ? 
+                AND VOTE.user = USER.id) as A2
             ON A2.entity=A1.id');
         $stmt->execute(array($id,$username));
         return $stmt->fetch();
+    }
+
+    function getPostByUser($username){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare(
+            'SELECT A1.*, A2.up FROM 
+                (SELECT ENTITY.* , USER.username 
+                FROM ENTITY JOIN USER
+                ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
+            LEFT JOIN 
+                (SELECT VOTE.* FROM
+                VOTE JOIN USER 
+                ON VOTE.user = USER.id) as A2
+            ON A2.entity=A1.id');
+        $stmt->execute(array($username));
+        return $stmt->fetchAll();
     }
 
     function getNumVotes($id){
