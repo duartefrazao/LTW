@@ -71,7 +71,7 @@
 
 <?php function draw_footer(){
     ?>
-        <button class="add-story"> &plus; </button>
+        <a href="add_post.php" class="add-story"/>
         </body>
     </html>
 <?php } ?>

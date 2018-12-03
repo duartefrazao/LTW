@@ -9,6 +9,15 @@
             return getPostsGuest();
 
     }
+
+
+    function addNewPost($title, $content, $author){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('INSERT INTO ENTITY VALUES (NULL, ?, ?, ?, 0, ?, 0, NULL)');
+        $stmt->execute(array($title, $content, $author, time()));
+        return $stmt->fetchAll();
+    }
+
     function getPostsGuest(){
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT ENTITY.* , USER.username FROM ENTITY JOIN USER ON ENTITY.author = USER.id AND ENTITY.parentEntity is NULL');
