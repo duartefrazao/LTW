@@ -47,7 +47,7 @@ body>header {
     padding: 1.5em;
     font-weight: bolder;
     font-size: large;
-    position: relative;
+    position: absolute;
     bottom: 3em;
     border-radius: 50%;
     right: 3em;
