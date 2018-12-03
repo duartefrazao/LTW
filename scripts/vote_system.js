@@ -6,20 +6,20 @@ function voteHandler(event){
     let vote=event.target;
     let upvote=(vote.classList.contains("upvote")?'true':'false');
 
-    let entityID = event.path[2].getAttribute('data-id');
+    let aside = event.path[1];
+    let entityID = aside.getAttribute('data-id');
     
     let request = new XMLHttpRequest();
     request.addEventListener("load", function(){
       let info = JSON.parse(this.responseText);
-      let aside = event.path[2];
       if(upvote==='true' && info['up']){
           vote.classList.add("upvote_triggered");
       }
       else if(upvote==='false' && info['up'] === 'false'){
           vote.classList.add("downvote_triggered")
       }else{
-        aside.children[0].children[0].classList.remove("upvote_triggered")
-        aside.children[2].children[0].classList.remove("downvote_triggered")
+        aside.children[0].classList.remove("upvote_triggered")
+        aside.children[2].classList.remove("downvote_triggered")
       }
 
       aside.children[1].innerHTML=info['votes'];
