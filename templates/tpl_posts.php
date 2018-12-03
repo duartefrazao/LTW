@@ -13,6 +13,17 @@
 <?php }?>
 
 
+<?php function draw_add_post(){?>
+
+    <form>
+        <input type="text" required name="title" placeholder="Post's title" />
+        <textarea name="text" required></textarea>
+        <input type="submit" value="Share">
+    </form>
+
+<?php } ?>
+
+
 <?php function draw_post($post, $comments)
 {?>
     <article id="post">

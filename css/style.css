@@ -16,6 +16,11 @@
     --downvote-color: #006992;
 }
 
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+
 body {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
@@ -27,46 +32,116 @@ body {
 
 body>header {
     background-color: var(--nav-bg-color);
-    color: var(--text);
+    color: white;
     display: flex;
-    margin: 0;
     align-items: center;
-    border-style: solid;
-    border-width: 0 0 3px 0;
-    border-bottom-color: #252422;
+    margin: 0;
+    padding: 0;
 }
 
+.add-story{
+    transition: 0.5s ease;
+    background-color: rgb(10, 175, 98);
+    color: white;
+    display: inline-block;
+    padding: 1.5em;
+    font-weight: bolder;
+    font-size: large;
+    position: absolute;
+    bottom: 3em;
+    border-radius: 50%;
+    right: 3em;
+}
+
+
+.add-story:hover{
+    background-color: rgb(1, 97, 52);
+    transition: 0.5s ease;
+}
 /* Text in navbar style */
 
-body>header h1 {
-    margin: 0, 0.1em;
-    flex-grow: 10;
+#logo {
+    flex-grow: 5;
+    padding: 0; 
+    margin: 0;
 }
 
-#logo {
+#logo a {
     font-weight: bolder;
     color: white;
     font-size: 150%;
-    flex-grow: 10;
-    margin: 0em 0em 0em 0.1em;
+    padding: 0; 
+    margin: 0;
+    padding-left: 1em;   
 }
 
-a {
-    color: var(--text);
-    text-decoration: none;
+
+.user-actions {
+    display: inline-block;
+    position: relative;
+    flex-grow: 1;
+    min-width: 5em;
+    max-width: 15em;;
+    text-align: center;
 }
+
+
+.dropdown {
+    margin: 0;
+    list-style: none;
+    padding: 0;   
+    display: none;
+    min-width: 100%;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+.dropdown li { 
+    width: 100%;
+    color: black;
+    padding: 0;
+    border-bottom: solid black 1px;
+}
+
+.dropdown li a{
+    margin: 0px;
+    padding: 0.5em;
+    display: block;
+}
+
+
+
+.dropdown li:hover {
+    background-color: #ddd;
+}
+
+.user-actions:hover{
+    background-color: #f9f9f9;
+    color: black;
+    transition: 1s ease;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.user-actions:hover .dropdown {
+    display: block;
+}
+
 
 /*
     Buttons styles
 */
 
 .normal-button {
+    display: inline-block;
     padding: 0.3em 0em 0.3em 0em;
     background-color: white;
-    color: var(--button_bg);
+    color: black;
+    max-width: 5em;
     text-align: center;
-    border-color: var(--lighter-button-bg);
-    border-width: 2px;
     transition: 0.3s ease;
     border-style: solid;
     font-size: 125%;
@@ -75,8 +150,7 @@ a {
 #login-button:hover,
 #signup-button:hover,
 #back:hover {
-    background-color: #4e873d;
-    color: white;
+    background-color: #ddd;
     transition: 1s ease;
 }
 
@@ -105,6 +179,8 @@ a {
     text-align: center;
 }
 
+
+
 /* Authentication */
 
 #login,
@@ -117,7 +193,7 @@ a {
     flex-direction: column;
     border-radius: 5px 5px 5px 5px;
     height: auto;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 .auth_form {
@@ -132,10 +208,7 @@ a {
     background-color: var(--latte);
 }
 
-.username {
-    margin: 0;
-    padding: 0 1em;
-}
+
 
 /* ------------------------------- */
 
@@ -160,6 +233,11 @@ a {
     border-radius: 5px 5px 5px 5px;
 }
 
+
+.overview-post .username, #post .username{
+    margin: 0;
+    padding: 0 1em;
+}
 
 .overview-post .title, #post .title {
     padding: 0.3em;
