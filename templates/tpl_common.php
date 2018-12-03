@@ -4,8 +4,8 @@
     <!DOCTYPE html>
     <html>
         <head>
-             <style>
-                 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+            <style>
+                    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
             </style>
             <meta charset="utf-8">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -21,16 +21,17 @@
                     </a>
                 </h1>
                 <?php if($username == NULL){ ?>
-                   <a class="normal-button" id="login-button" href="login.php"> Log In</a>
-                   <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
+                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
+                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
                 <?php }else{ ?>
                     <aside class="user-actions">
-                        <h2 id="username"> <?=$username?> </h2>
+                        <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
-                            <li> <a href="#"/> Profile </a> </li>
-                            <li> <a href="../actions/action_logout.php"/> Log Out </a> </li>
+                            <li> <a href="../pages/profile.php"> Profile </a> </li>
                         </ul>
-                    </aside>
+                    </aside><a class="off-button" href="../actions/action_logout.php">
+                    <i class="fas fa-power-off" ></i>
+                    </a>
                 <?php } ?>
             </header>
 
