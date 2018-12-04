@@ -47,7 +47,7 @@ body>header {
     padding: 1.5em;
     font-weight: bolder;
     font-size: large;
-    position: absolute;
+    position: fixed;
     bottom: 3em;
     border-radius: 50%;
     right: 3em;
@@ -234,6 +234,47 @@ body>header {
 
 
 /* ------------------------------- */
+
+.user_page{
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+#informacao {
+    grid-row-start: 1;
+    grid-row-end: 2;    
+    display:grid;
+    margin: 0.7em;
+    margin-top: 2em;
+    background-color: white;
+    grid-template-rows: auto auto;
+    border-radius: 5px 5px 5px 5px;
+    
+}
+
+#informacao header {
+    text-align: center;
+}
+#informacao table {
+    margin: 0.3em;
+    border-collapse: collapse;
+    border-radius: 5px 5px 5px 5px;
+}
+#informacao table th {
+    text-align: center;
+    border-right-style: solid;
+    padding: 4px;
+}
+#informacao table td {
+    text-align: center;
+    padding: 4px;
+    width : 10em;
+}
+.user_page #posts {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 2;
+}
 
 #posts {
     padding: 1em;

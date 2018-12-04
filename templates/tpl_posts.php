@@ -90,7 +90,7 @@
     <aside class="voting_section" data-id="<?=$post['id']?>">
 
         <section class="vote upvote<?php 
-                    if($post['up']=='true'){
+                    if(isset($_SESSION['id']) && $post['up']=='true'){
         ?> upvote_triggered<?php } ?>"></section>
         
         <h5 class="votes">
@@ -98,7 +98,7 @@
         </h5>
         
         <section class="vote downvote<?php 
-                if($post['up']=='false'){
+                if(isset($_SESSION['id']) && $post['up']=='false'){
             ?> downvote_triggered<?php } ?>"></section>
     </aside>
 
