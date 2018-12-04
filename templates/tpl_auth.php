@@ -7,7 +7,7 @@
 
         <form class="auth_form" method="post" action="../actions/action_login.php">
             <input type="text" name="username" placeholder="username" value="pedro" required>
-            <input type="password" name="password" placeholder="password" value="pedro" required>
+            <input type="password" name="password" placeholder="password" value="passboa" required>
             <input class="submit_button" type="submit" value="Login">
         </form>
 
