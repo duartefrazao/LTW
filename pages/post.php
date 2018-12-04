@@ -10,10 +10,12 @@
     if (!isset($_GET['id']))
         header('Location: posts.php');
 
-    $post = getPostById($_GET['id'],$_SESSION['username']);
+    $user=isset($_SESSION['id'])?$_SESSION['id']:NULL;
 
-    $comments = getCommentsByPostId($_GET['id'],$_SESSION['id']);
-    draw_header_global($_SESSION['username']);
+    $post = getPostById($_GET['id'],$user);
+
+    $comments = getCommentsByPostId($_GET['id'],$user);
+    draw_header_global($user);
     includeScript("vote_system");
     includeScript("comment_system");
     draw_post($post, $comments);
