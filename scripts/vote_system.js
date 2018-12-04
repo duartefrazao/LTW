@@ -12,17 +12,23 @@ function voteHandler(event){
     let request = new XMLHttpRequest();
     request.addEventListener("load", function(){
       let info = JSON.parse(this.responseText);
-      if(upvote==='true' && info['up']){
+      
+      if(info.result===false){
+        window.location = "../pages/login.php";
+        return;
+      }
+
+      if(upvote==='true' && info.data['up']){
           vote.classList.add("upvote_triggered");
       }
-      else if(upvote==='false' && info['up'] === 'false'){
+      else if(upvote==='false' && info.data['up'] === 'false'){
           vote.classList.add("downvote_triggered")
       }else{
         aside.children[0].classList.remove("upvote_triggered")
         aside.children[2].classList.remove("downvote_triggered")
       }
 
-      aside.children[1].innerHTML=info['votes'];
+      aside.children[1].innerHTML=info.data['votes'];
     });
     request.open("post", "../actions/action_vote_post.php", true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
