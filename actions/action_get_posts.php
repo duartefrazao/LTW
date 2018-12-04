@@ -2,9 +2,21 @@
     include_once('../includes/session.php');
     include_once('../database/db_post.php');
 
+
+    $permission = true;
+    $posts = array();
+
     $offset = getCreationDate($_POST['lastId']);
 
-    $posts = getPosts($_SESSION['username'], array_values($offset)[0]);
+
+    if(isset($_POST['username'])){
+        $posts = getPosts($_SESSION['username'], array_values($offset)[0]);
+    }
+    else{
+        $posts = getPosts(null, array_values($offset)[0]);
+    }
     
-    echo json_encode($posts);
+    $response = array('result' => $permission, 'data' => $posts);
+
+    echo json_encode($response);
 ?>

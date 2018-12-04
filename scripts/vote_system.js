@@ -72,7 +72,10 @@ document.addEventListener('scroll', function () {
   };
 
 function receivePost(event){
-  let posts = JSON.parse(this.responseText);
+  let response = JSON.parse(this.responseText);
+
+  let posts = response.data;
+
   let section = document.querySelector('#posts');
 
   for (let i = 0; i < posts.length; i++) {
