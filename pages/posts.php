@@ -8,12 +8,12 @@
 
     if(isset($_SESSION['username']))
     {
-        $posts = getPosts($_SESSION['username'], 0);
+        $posts = getPosts($_SESSION['username'], time());
         draw_header_global($_SESSION['username']);
     }
     else
     {
-        $posts = getPosts(null, 0);
+        $posts = getPosts(null, time());
         draw_header_global(null);
     }
 
