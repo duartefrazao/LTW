@@ -84,6 +84,7 @@
 <?php } ?>
 
 
+
 <?php function draw_voting_aside($post)
 {?>
     <aside class="voting_section" data-id="<?=$post['id']?>">

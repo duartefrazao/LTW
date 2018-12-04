@@ -36,6 +36,14 @@ create table vote(
 );
 
 
+drop table if exists images;
+
+create table images(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
+
+
 CREATE TRIGGER if not exists UpdateVotesOnInsert
 BEFORE INSERT ON VOTE
 BEGIN
