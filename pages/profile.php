@@ -12,10 +12,16 @@
     {
         $user = $_SESSION['username'];
         draw_header($user);
+        ?>
+        <section class = "user_page">
+        <?php
         $info = getUserInfo($user);
         draw_user_info($info);
         $posts = getPostByUser($user);
         draw_posts($posts);
+        ?>
+        </section>
+        <?php
     }
     else
     {
