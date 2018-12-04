@@ -31,7 +31,16 @@ function submitComment(element) {
 }
 
 function receiveComment(event) {
-  let comments = JSON.parse(this.responseText);
+
+  let response = JSON.parse(this.responseText);
+
+  if(response.result === false){
+    window.location = "../pages/login.php";
+    return;
+  }
+
+  let comments = response.data;
+
   let section = document.querySelector('#comments');
   for (let i = 0; i < comments.length; i++) {
     let comment = document.createElement('article');
