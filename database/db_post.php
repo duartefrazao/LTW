@@ -66,7 +66,7 @@
     function getPostByUser($username){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT A1.*, A2.up FROM 
+            'SELECT Distinct A1.*, A2.up FROM 
                 (SELECT ENTITY.* , USER.username 
                 FROM ENTITY JOIN USER
                 ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1

@@ -15,4 +15,15 @@
         $pass = password_hash($password,PASSWORD_DEFAULT,$options);
         $stmt->execute(array(NULL,$username,$pass,$mail,$description,$creationDate));
     }
+
+    function getUserInfo($username){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('
+            Select USER.mail,USER.description,USER.creationDate
+            From USER 
+            Where USER.username = ?
+        ');
+        $stmt->execute(array($username));
+        return $stmt->fetch();
+    }
 ?>
