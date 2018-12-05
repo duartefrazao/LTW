@@ -30,7 +30,7 @@
         $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
                             FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
                             AND ENTITY.parentEntity is NULL 
-                            WHERE ENTITY.creationDate < ? ORDER BY ENTITY.creationDate DESC LIMIT ?');
+                            WHERE ENTITY.id < ? ORDER BY ENTITY.id DESC LIMIT ?');
         $stmt->execute(array($offset, $numOfElements));
         return $stmt->fetchAll();
     }
@@ -48,7 +48,7 @@
                 ON USER.username = ?
                 AND VOTE.user = USER.id) as A2
         ON A2.entity = A1.id
-        WHERE A1.creationDate < ? ORDER BY  A1.creationDate DESC LIMIT ?');
+        WHERE A1.id < ? ORDER BY  A1.id DESC LIMIT ?');
 
         $stmt->execute(array($username,$offset, $numOfElements));
         return $stmt->fetchAll();

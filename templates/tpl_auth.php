@@ -27,13 +27,16 @@
             <h1> Sign Up </h1>
         </header>
 
-        <form class="auth_form" method="post" action="../actions/action_signup.php">
+        <form class="auth_form" method="post" action="../actions/action_signup.php"  enctype="multipart/form-data">
             <input type="text" name="username" placeholder="username" required>
             <input type="text" name="mail" placeholder="mail" required>
             <input type="password" name="password" placeholder="password" required>
             <input type="text" name="description" placeholder="Brief description of yourself">
+            <input type="text" name="title" placeholder="Image Title">
+            <input type="file" name="image" placeholder="Your image">
             <input class="submit_button" type="submit" value="Signup">
         </form>
+
 
         <footer>
             <p>

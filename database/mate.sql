@@ -75,13 +75,13 @@ INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZG
 /* POSTS */
 
 INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543878573,0,NULL);
-INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543878173,0,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543879073,0,NULL);
+INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543879273,0,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543958350,2,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543992827,1,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 
-                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,NULL);
+                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1544035389,0,NULL);
 
 
 /* COMMENTS */
@@ -91,5 +91,10 @@ INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');
+
+INSERT INTO IMAGES VALUES(4,'my face');
+INSERT INTO IMAGES VALUES(5, "i'm me");
+INSERT INTO IMAGES VALUES(6, "hey it's me");
+
 
 

@@ -86,36 +86,58 @@ function receivePost(event){
     '<h5 class="votes">' + posts[i].votes + '</h5>' + 
     '<section class="downvote"> </section></aside>'+
     '<header> <h3 class="username">' +
-    '<i class="fas fa-user-circle"></i> ' + posts[i].username + '</h3>' +
+    '<img src="../images/default/user_icon.png" width="16" height="16">' + posts[i].username + '</h3>' +
     '<h3 class="creationDate">' + humanTiming(posts[i].creationDate) + '</h3> </header>' +
     '<h1 class="title">' + posts[i].title + '</h1>' +
     '<footer> <h5 class="comments"> <a href="post.php?id=' +posts[i].id+ '">' + posts[i].numComments + 
     ' Comment' + ( posts[i].comments == 1 ? '' :'s' )+ '</a> </h5> </footer>';
+
+    checkIfImageExists(posts[i].author, post);
+  
     section.appendChild(post);
   }
 }
 
+function checkIfImageExists(id, post){
+  var image = new Image();
+
+  let element = post.querySelector('img');
+
+  image.onload = function() {
+      // image exists and is loaded
+      element.src = '../images/thumb_small/' + id + '.jpg';
+  }
+  image.onerror = function() {
+      // image did not load
+      console.log('on error:', post.querySelector('img'));
+  }
+
+  image.src ='../images/thumb_small/' + id + '.jpg';
+}
 
 function humanTiming(originalTime) {
+
   let time = Math.floor(Date.now() / 1000) - originalTime;
-
-
   time = (time < 1) ? 1 : time;
-  let tokens = {
-    31536000: 'year',
-    2592000: 'month',
-    604800: 'week',
-    86400: 'day',
-    3600: 'hour',
-    60: 'minute',
-    1: 'second'
-  };
 
-  for (var key in tokens) {
+  let tokens = [
+    {31536000: 'year'},
+    {2592000: 'month'},
+    {604800: 'week'},
+    {86400: 'day'},
+    {3600: 'hour'},
+    {60: 'minute'},
+    {1: 'second'}];
+
+
+   for (let pair of tokens) {
+
+    key = Object.keys(pair)[0];
+
     if (time < key) continue;
 
     let numberOfUnits = Math.floor(time / key);
 
-    return numberOfUnits + ' ' + tokens[key] + ((numberOfUnits > 1) ? 's' : '');
+    return numberOfUnits + ' ' + pair[key] + ((numberOfUnits > 1) ? 's' : '');
   }
 }

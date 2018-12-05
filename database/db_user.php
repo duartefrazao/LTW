@@ -16,6 +16,17 @@
         $stmt->execute(array(NULL,$username,$pass,$mail,$description,$creationDate));
     }
 
+    function getUserId($username){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('
+            Select USER.id 
+            From USER 
+            Where USER.username = ?
+        ');
+        $stmt->execute(array($username));
+        return $stmt->fetch();
+    }
+
     function getUserInfo($username){
         $db= Database::instance()->db();
         $stmt = $db->prepare('

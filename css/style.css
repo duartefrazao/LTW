@@ -297,8 +297,20 @@ body>header {
     border-radius: 5px 5px 5px 5px;
 }
 
+.overview-post .username img{
+    margin: 0; 
+    padding: 0;
+    vertical-align: bottom;
+    border-radius: 50%;
+}
+
+.overview-post .username span{
+    margin: 0; 
+    padding: 0;
+}
 
 .overview-post .username, #post .username{
+    display: flex;
     margin: 0;
     padding: 0 1em;
 }

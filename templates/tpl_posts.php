@@ -75,13 +75,21 @@
             <?=$post['author']?>
         </h3>
         <h3 class="username">
-            <i class="fas fa-user-circle"></i> <?=$post['username']?>
+            <?php drawUserImage($post['author']) ?><?=$post['username']?>
         </h3>
         <h3 class="creationDate">
             <?=humanTiming($post['creationDate']);?>
         </h3>
     </header>
 <?php } ?>
+
+
+<?php function drawUserImage($id){
+    if( file_exists('../images/thumb_small/' . $id . '.jpg') ){ ?>
+        <img src="../images/thumb_small/<?= $id ?>.jpg" width="16" height="16">
+    <?php } else { ?>
+        <img src="../images/default/user_icon.png" width="16" height="16">
+<?php } }?>
 
 
 

@@ -3,3 +3,8 @@ https://stackoverflow.com/questions/34166258/create-a-reddit-like-infinite-level
 https://github.com/magkopian/php-infinite-multi-level-comments
 
 https://www.reddit.com/r/learnprogramming/comments/2n6uhr/how_would_you_model_a_hierarchical_comment_system/
+
+
+
+
+images -> https://stackoverflow.com/questions/14649645/resize-image-in-php

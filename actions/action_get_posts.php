@@ -6,14 +6,14 @@
     $permission = true;
     $posts = array();
 
-    $offset = getCreationDate($_POST['lastId']);
+    $offset = $_POST['lastId'];
 
 
     if(isset($_POST['username'])){
-        $posts = getPosts($_SESSION['username'], array_values($offset)[0]);
+        $posts = getPosts($_SESSION['username'], $offset);
     }
     else{
-        $posts = getPosts(null, array_values($offset)[0]);
+        $posts = getPosts(null, $offset);
     }
     
     $response = array('result' => $permission, 'data' => $posts);
