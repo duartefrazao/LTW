@@ -21,6 +21,13 @@
 
     }
 
+    function getChildComments($parent_id){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT ENTITY.*, user.username FROM ENTITY JOIN user on ENTITY.author = user.id WHERE Entity.parentEntity = ?');
+        $stmt->execute(array($parent_id));
+        return $stmt->fetchAll();
+    }
+
     function addComment($parent_id, $user_id, $content){
         $db = Database::instance()->db();
         $stmt = $db->prepare('INSERT INTO entity VALUES(NULL, ?, NULL, ?, 0, ?, 0, ?)');

@@ -529,8 +529,27 @@ body>header {
     grid-template-columns: 1fr 14fr;
     grid-template-rows: auto;
     grid-template-areas: "votes header"
-                         "votes content";
+                         "votes content"
+                         "votes load";
+
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px 5px;
+    padding: 0.5em;
+    /* border-bottom: lightgray 1px solid; */
 }
+
+.replies{
+    grid-area: load;
+    font-weight: lighter;
+    font-size: small;
+    display: inline-block;
+    cursor:pointer;
+}
+
+.replies:hover {
+    text-decoration:underline;
+}
+
 
 #post #comments .comment header {
     grid-area: header;
@@ -540,7 +559,7 @@ body>header {
 
 #post #comments .comment .content {
     grid-area: content;
-    font-weight: normal;
+    font-weight: lighter;
     margin-top: 0.3em;
     padding-left: 0.3em;
 }

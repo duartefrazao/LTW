@@ -89,6 +89,10 @@ INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,15432747
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
+
+/* NESTED COMMENTS */
+INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,0,7);
+
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');
 
