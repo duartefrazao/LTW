@@ -45,75 +45,7 @@ function encodeForAjax(data) {
         .join('&')
   }
 
-  //================================SCROLL=============================================
 
-document.addEventListener('scroll', function () {
-    checkForNewPosts();
-  });
-  
-  function checkForNewPosts() {
-    let lastPost = posts.querySelector('#posts .overview-post:last-of-type');
-
-    let lastPostId = lastPost.querySelector('aside').getAttribute('data-id');
-  
-    let lastPostOffset = lastPost.offsetTop + lastPost.clientHeight;
-  
-    let pageOffset = window.pageYOffset + window.innerHeight;
-  
-    if (pageOffset > lastPostOffset  + 10) {
-
-      let request = new XMLHttpRequest();
-      request.addEventListener('load', receivePost);
-      request.open('post', '../actions/action_get_posts.php', true);
-      request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-      request.send(encodeForAjax({lastId: lastPostId})) 
-      
-    }
-  };
-
-function receivePost(event){
-  let response = JSON.parse(this.responseText);
-
-  let posts = response.data;
-
-  let section = document.querySelector('#posts');
-
-  for (let i = 0; i < posts.length; i++) {
-    let post = document.createElement('article');
-    post.classList.add('overview-post');
-    post.innerHTML = '<aside class="voting_section" data-id="' + posts[i].id+ '">' +
-    '<section class="vote upvote"></section>' + 
-    '<h5 class="votes">' + posts[i].votes + '</h5>' + 
-    '<section class="downvote"> </section></aside>'+
-    '<header> <h3 class="username">' +
-    '<img src="../images/default/user_icon.png" width="16" height="16">' + posts[i].username + '</h3>' +
-    '<h3 class="creationDate">' + humanTiming(posts[i].creationDate) + '</h3> </header>' +
-    '<h1 class="title">' + posts[i].title + '</h1>' +
-    '<footer> <h5 class="comments"> <a href="post.php?id=' +posts[i].id+ '">' + posts[i].numComments + 
-    ' Comment' + ( posts[i].comments == 1 ? '' :'s' )+ '</a> </h5> </footer>';
-
-    checkIfImageExists(posts[i].author, post);
-  
-    section.appendChild(post);
-  }
-}
-
-function checkIfImageExists(id, post){
-  var image = new Image();
-
-  let element = post.querySelector('img');
-
-  image.onload = function() {
-      // image exists and is loaded
-      element.src = '../images/thumb_small/' + id + '.jpg';
-  }
-  image.onerror = function() {
-      // image did not load
-      console.log('on error:', post.querySelector('img'));
-  }
-
-  image.src ='../images/thumb_small/' + id + '.jpg';
-}
 
 function humanTiming(originalTime) {
 

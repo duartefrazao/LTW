@@ -15,8 +15,10 @@
 
 <?php function draw_add_post(){?>
 
-    <form id="new-post" action="../actions/action_add_post.php" method="post">
-        <input type="text" required name="title" placeholder="Post's title" />
+    <form id="new-post" action="../actions/action_add_post.php" enctype="multipart/form-data" method="post">
+        <input type="text" required name="title" placeholder="Post's title"/>
+        <input type="text" name="description" placeholder="Image Title">
+        <input type="file" name="image" placeholder="Your image">
         <textarea name="text" required placeholder="Your post"></textarea>
         <input type="submit" value="Share">
     </form>
@@ -24,8 +26,7 @@
 <?php } ?>
 
 
-<?php function draw_post($post, $comments)
-{?>
+<?php function draw_post($post, $comments){?>
     <article id="post">
         <input type="hidden" name="id" value="<?=$post['id']?>">
 
@@ -40,6 +41,8 @@
         <h2 class="content">
             <?=$post['content']?>
         </h2>
+
+        <?php drawPostImage($post['id']) ?>
 
         <?php draw_add_comment($post) ?>   
 
@@ -61,6 +64,8 @@
         <h1 class="title">
             <?=$post['title']?>
         </h1>
+
+        <?php drawPostImage($post['id']) ?>
         
         <?php draw_comment_footer($post) ?> 
     </article>
@@ -84,34 +89,17 @@
 <?php } ?>
 
 
-<?php function drawUserImage($id){
-    if( file_exists('../images/thumb_small/' . $id . '.jpg') ){ ?>
-        <img src="../images/thumb_small/<?= $id ?>.jpg" width="16" height="16">
-    <?php } else { ?>
-        <img src="../images/default/user_icon.png" width="16" height="16">
+
+
+
+
+<?php function drawPostImage($id){
+    if( file_exists('../images/posts/thumb_medium/' . $id . '.jpg') ){ ?>
+        <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.jpg">
 <?php } }?>
 
 
 
-<?php function draw_voting_aside($post)
-{?>
-    <aside class="voting_section" data-id="<?=$post['id']?>">
-
-        <section class="vote upvote<?php 
-                    if(isset($_SESSION['id']) && $post['up']=='true'){
-        ?> upvote_triggered<?php } ?>"></section>
-        
-        <h5 class="votes">
-            <?=$post['votes']?>
-        </h5>
-        
-        <section class="vote downvote<?php 
-                if(isset($_SESSION['id']) && $post['up']=='false'){
-            ?> downvote_triggered<?php } ?>"></section>
-    </aside>
-
-    <!-- <span class="partial_line"></span> -->
-<?php }?>
 
 <?php function draw_comment_footer($post)
 {?>

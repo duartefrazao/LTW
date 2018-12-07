@@ -73,6 +73,35 @@
 <?php } ?>
 
 
+
+<?php function draw_voting_aside($element)
+{?>
+    <aside class="voting_section" data-id="<?=$element['id']?>">
+
+        <section class="vote upvote<?php 
+                    if(isset($_SESSION['id']) && $element['up']=='true'){
+        ?> upvote_triggered<?php } ?>"></section>
+        
+        <h5 class="votes">
+            <?=$element['votes']?>
+        </h5>
+        
+        <section class="vote downvote<?php 
+                if(isset($_SESSION['id']) && $element['up']=='false'){
+            ?> downvote_triggered<?php } ?>"></section>
+    </aside>
+
+    <!-- <span class="partial_line"></span> -->
+<?php }?>
+
+<?php function drawUserImage($id){
+    if( file_exists('../images/users/thumb_small/' . $id . '.jpg') ){ ?>
+        <img class="user-image" src="../images/users/thumb_small/<?= $id ?>.jpg" width="16" height="16">
+    <?php } else { ?>
+        <img src="../images/users/default/user_icon.png" width="16" height="16">
+<?php } }?>
+
+
 <?php function humanTiming($time)
 {
     // propz =  https://stackoverflow.com/questions/2915864/php-how-to-find-the-time-elapsed-since-a-date-time

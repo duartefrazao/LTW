@@ -11,6 +11,12 @@
     }
 
 
+    function getLastPostId(){
+        $db=Database::instance()->db();
+        return $db->lastInsertId();
+    }
+
+
     function getCreationDate($id){
         $db=Database::instance()->db();
         $stmt = $db->prepare('SELECT creationDate FROM ENTITY WHERE ENTITY.id = ?');

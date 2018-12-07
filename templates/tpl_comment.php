@@ -18,7 +18,7 @@
     <?php draw_voting_aside($comment) ?>
         <header>
             <h3 data-id="<?= $comment['id'] ?>" class="username">
-                <i class="fas fa-user-circle"></i> <?=$comment['username']?>
+            <?php drawUserImage($comment['author']) ?><?=$comment['username']?>
             </h3>
             <h3 class="creationDate">
                 <?=humanTiming($comment['creationDate']);?>

@@ -3,13 +3,13 @@
 include_once('../includes/session.php');
 include_once('../database/db_upload.php');
 
-function createImageResource($id, $imageTitle){
+
+function createImageResource($id, $path, $imageTitle){
     insertNewImage($id, $imageTitle);
 
     // Generate filenames for original, small and medium files
-    $originalFileName = "../images/originals/$id.jpg";
-    $smallFileName = "../images/thumb_small/$id.jpg";
-    $mediumFileName = "../images/thumb_medium/$id.jpg";
+    $originalFileName = "../images/$path/originals/$id.jpg";
+    $mediumFileName = "../images/$path/thumb_medium/$id.jpg";
 
     // Move the uploaded file to its final destination
     move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
@@ -20,13 +20,15 @@ function createImageResource($id, $imageTitle){
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
     $square = min($width, $height);  // size length of the maximum square
-/* 
+
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(16, 16);
-    imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 32, 32, $square, $square);
-     */
-    $small = resize_image($originalFileName, 16, 16);
-    imagejpeg($small, $smallFileName);
+    
+
+    if($path === 'users'){
+        $smallFileName = "../images/$path/thumb_small/$id.jpg";
+        $small = resize_image($originalFileName, 16, 16);
+        imagejpeg($small, $smallFileName);
+    }
 
     // Calculate width and height of medium sized image (max width: 400)
     $mediumwidth = $width;

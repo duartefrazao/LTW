@@ -278,7 +278,9 @@ body>header {
 
 #posts {
     padding: 1em;
+    margin: 0 auto;
     min-width: 35em;
+    max-width: 43em;
 }
 
 #posts .overview-post{
@@ -287,6 +289,7 @@ body>header {
     grid-template-rows:auto;
     grid-template-areas: "votes header"
                          "votes title"
+                         "votes image"
                          "votes footer";
     min-width: 30em;
     max-width: 60em;
@@ -297,7 +300,14 @@ body>header {
     border-radius: 5px 5px 5px 5px;
 }
 
-.overview-post .username img{
+.post-image{
+    grid-area: image;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+    align-content: center;
+}
+
+.user-image{
     margin: 0; 
     padding: 0;
     vertical-align: bottom;
@@ -324,6 +334,7 @@ body>header {
 
 .overview-post .post-content, #post title {
     grid-area: title;
+    
 }
 
 .overview-post header, #post header{
@@ -425,6 +436,7 @@ body>header {
     grid-template-areas: "votes     header"
                          "votes     title"
                          "votes     content"
+                         "image     image"
                          "form      form"
                          "div       div"
                          "comments  comments";
@@ -453,7 +465,6 @@ body>header {
     grid-area: content;
     padding: 0.3em;
     margin: 0;
-    margin-bottom: 1em;
     font-weight: normal;
 }
 
@@ -541,9 +552,10 @@ body>header {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows:auto;
-    grid-template-areas: "title ."
-                         "content content"
-                         ". share";
+    grid-template-areas: "title           ."
+                         "content         content"
+                         "description     image"
+                         ".               share";
     min-width: 30%;
     max-width: 70%;
     margin: 1em auto;
@@ -552,7 +564,21 @@ body>header {
     border-radius: 5px 5px 5px 5px;
 }
 
-#new-post input[type='text']{
+#new-post input[name="description"]{
+    grid-area: description;
+    height: 2em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    text-indent: 1em;
+    margin-bottom: 1em;
+}
+
+#new-post input[type="file"]{
+    grid-area: image;
+    margin-left: 1em;
+}
+
+#new-post input[name='title']{
     grid-area: title;
     height: 2em;
     border-radius: 5px 5px 5px 5px;

@@ -15,8 +15,7 @@
 
      try{
         insertUser($username,$password,$mail,$description,$creationDate);
-        $ids = getUserId($username);
-        createImageResource(array_values($ids)[0], $imageTitle);
+        createImageResource(getUserId($username)['id'], 'users', $imageTitle);
         $_SESSION['username']=$username;
         $_SESSION['id']=checkUserPassword($username)['id'];
         header('Location: ../pages/posts.php');
