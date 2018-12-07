@@ -9,8 +9,6 @@ commentForm.addEventListener('submit', function(event) {
 
 function submitComment(element) {
 
-  console.log(element);
-
   let text = element.querySelector('textarea').value;
 
   element.querySelector('textarea').value = "";
@@ -51,14 +49,38 @@ function receiveComment(event) {
     '<section class="vote downvote"> </section></aside>'+
     '<header> <h3 data-id="' + comments[i].id +
         '" class="username">' +
-        '<i class="fas fa-user-circle"></i> ' + comments[i].username + '</h3>' +
+        '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + comments[i].username + '</h3>' +
         '<h3 class="creationDate">' + humanTiming(comments[i].creationDate) + '</h3> </header>' +
         '<h2 class="content">' + comments[i].title + '</h2>';
+    
+    checkUserImage(comments[i].author, comment);
+    
     section.appendChild(comment);
+
+    
     const votes = section.querySelectorAll('#comments article:last-child .vote')
     votes.forEach((vote)=>vote.addEventListener('click',voteHandler));
   }
 }
+
+function checkUserImage(id, comment){
+
+  var image = new Image();
+
+  let element = comment.querySelector('.user-image');
+
+  image.onload = function() {
+      // image exists and is loaded
+      element.src = '../images/users/thumb_small/' + id + '.jpg';
+  }
+  image.onerror = function() {
+      // image did not load
+      console.log('on error:', comment.querySelector('img'));
+  }
+
+  image.src ='../images/users/thumb_small/' + id + '.jpg';
+}
+
 
 
 function humanTiming(originalTime) {

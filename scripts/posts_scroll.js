@@ -35,7 +35,7 @@ function receivePost(event){
     post.innerHTML = '<aside class="voting_section" data-id="' + posts[i].id+ '">' +
     '<section class="vote upvote"></section>' + 
     '<h5 class="votes">' + posts[i].votes + '</h5>' + 
-    '<section class="downvote"> </section></aside>'+
+    '<section class="vote downvote"> </section></aside>'+
     '<header> <h3 class="username">' +
     '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + posts[i].username + '</h3>' +
     '<h3 class="creationDate">' + humanTiming(posts[i].creationDate) + '</h3> </header>' +
@@ -48,6 +48,9 @@ function receivePost(event){
   
     section.appendChild(post);
   }
+
+    let voteForms = document.querySelectorAll(".vote");
+    voteForms.forEach((voteInstance)=>voteInstance.addEventListener('click',voteHandler));
 }
 
 function checkUserImage(id, post){
