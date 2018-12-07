@@ -6,7 +6,7 @@ commentForm.addEventListener('submit', function (event) {
 });
 
 
-let replies = document.querySelector('.replies');
+let replies = document.querySelector('.numReplies');
 replies.addEventListener('click', function (event) {
   event.preventDefault();
   loadReplies(this);
@@ -41,24 +41,37 @@ function receiveReplies(event) {
 
   if (comments.length === 0) {
     return;
-  } else {
+  }
+  else{
     let parent_id = comments[0].parentEntity;
 
     console.log(parent_id);
 
     let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
+    
+    let replies = document.createElement('span');
+    replies.classList.add('replies');
 
-    console.log(parent);
     for (let i = 0; i < comments.length; i++) {
 
       let comment = createComment(comments[i]);
 
-      parent.appendChild(comment);
+      replies.appendChild(comment);
 
 
-      const votes = parent.querySelectorAll('#comments article:last-child .vote')
+      
+      comment.querySelector('.numReplies').addEventListener('click', function (event) {
+        event.preventDefault();
+        loadReplies(this);
+      });
+
+
+      const votes = replies.querySelectorAll('article .vote')
       votes.forEach((vote) => vote.addEventListener('click', voteHandler));
     }
+
+    parent.appendChild(replies);
+
   }
 
 }
@@ -125,7 +138,7 @@ function createComment(element) {
     '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3>' +
     '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
     '<h2 class="content">' + element.title + '</h2>' +
-    '<span class="replies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span';
+    '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span';
 
   checkUserImage(element.author, comment);
 

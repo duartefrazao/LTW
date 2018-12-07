@@ -30,7 +30,7 @@
             <?=$comment['title']?>
         </h2>  
 
-        <span class="replies"> 
+        <span class="numReplies"> 
             <?=$comment['numComments']?> Repl<?= $comment['numComments'] == 1 ? 'y' : 'ies'?>
         </span>
 

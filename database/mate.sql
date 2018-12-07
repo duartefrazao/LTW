@@ -85,13 +85,15 @@ INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where t
 
 
 /* COMMENTS */
-INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,1,4);
+INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,4);
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
 
 /* NESTED COMMENTS */
-INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,0,7);
+INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,1,7);
+INSERT INTO entity VALUES(NULL,'A responder ao próprio post....',NULL,2,0,1544204906,0,7);
+INSERT INTO entity VALUES(NULL,'Não, tens problemas é ó morcão?',NULL,1,0,1544206766,0,10);
 
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');

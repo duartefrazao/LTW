@@ -419,7 +419,6 @@ body>header {
     grid-area: votes;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin: 0 auto;
 }
 
@@ -516,6 +515,8 @@ body>header {
 }
 
 
+/*         POST COMMENTS          */
+
 #post #comments {
     margin-top: 0.5em;
     grid-area: comments;
@@ -523,14 +524,15 @@ body>header {
     flex-direction: column;
 }
 
-#post #comments .comment {
+#post  .comment  {
     margin: 0.5em  0;
     display: grid;
-    grid-template-columns: 1fr 14fr;
+    grid-template-columns: 1fr 20fr;
     grid-template-rows: auto;
-    grid-template-areas: "votes header"
-                         "votes content"
-                         "votes load";
+    grid-template-areas: "votes   header"
+                         "votes   content"
+                         "votes   load"
+                         "votes   replies";
 
     background-color: rgb(230, 230, 230);
     border-radius: 5px 5px;
@@ -538,7 +540,12 @@ body>header {
     /* border-bottom: lightgray 1px solid; */
 }
 
-.replies{
+#post .replies .comment{
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+.numReplies{
     grid-area: load;
     font-weight: lighter;
     font-size: small;
@@ -546,7 +553,7 @@ body>header {
     cursor:pointer;
 }
 
-.replies:hover {
+.numReplies:hover {
     text-decoration:underline;
 }
 
