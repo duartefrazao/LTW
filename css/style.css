@@ -503,6 +503,7 @@ body>header {
 }
 
 #post form > textarea {
+    border-radius: 5px 5px 0px 0px;
     grid-area: text;
     width: 80%;
     margin: 0 auto;
@@ -543,22 +544,18 @@ body>header {
 #post  .comment  {
     margin: 0.5em  0;
     display: grid;
-    grid-template-columns: 1fr 20fr;
+    grid-template-columns: 1fr 40fr;
     grid-template-rows: auto;
-    grid-template-areas: "votes   header"
-                         "votes   content"
-                         "votes   replies"
-                         "votes   load";
+    grid-template-areas: "votes  header"
+                         "votes  content"
+                         "votes ."
+                         "load   load";
 
-    /* background-color: rgb(230, 230, 230); */
-   /*  border-radius: 5px 5px; */
-    border-left: 1px black solid;
-    padding: 0.5em;
-    /* border-bottom: lightgray 1px solid; */
+    padding: 0 0.5em;
 }
 
 #post .replies .comment{
-    margin: 0;
+    
     padding: 0.5em 0;
 }
 
@@ -566,7 +563,9 @@ body>header {
     grid-area: load;
     font-weight: lighter;
     font-size: small;
-    display: inline-block;
+    display: block;
+    padding-bottom: 0;
+    padding-top: 0.5em;
     cursor:pointer;
 }
 
@@ -574,17 +573,51 @@ body>header {
     text-decoration:underline;
 }
 
+.numReplies::before{
+    content: "\21B3";
+}
+
+
+#post #comments .downvote {
+    width: 15px;
+    height: 12px;
+}
+
+
+#post #comments .votes {
+    margin: 0.2em;
+}
+
+/* #post #comments .voting_section{
+    background-color: #F5F5F5;
+    border-radius: 5px 0 0 5px;
+    margin: 0 ;
+} */
+
+#post #comments .upvote {
+    margin: 0 auto;
+    width: 15px;
+    height: 12px;
+}
+
+
 
 #post #comments .comment header {
     grid-area: header;
+    padding-left: 0.5em;
+    border-radius: 5px 5px 0 0 ;
+    background-color: #F5F5F5;
     display: flex;
 }
 
 
 #post #comments .comment .content {
+    background-color: #F5F5F5;
+    border-radius: 0 0 5px 5px ;
     grid-area: content;
+    padding-left: 0.5em;
     font-weight: lighter;
-    margin-top: 0.3em;
+    font-size: medium;
     padding-left: 0.3em;
 }
 
