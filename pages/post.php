@@ -14,7 +14,7 @@
 
     $post = getPostById($_GET['id'],$user);
 
-    $comments = getCommentsByPostId($_GET['id'],$user);
+    $comments = getCommentsByPostId($_GET['id'],$user, PHP_INT_MAX);
     draw_header_global($user);
     includeScript("vote_system");
     includeScript("comment_system");

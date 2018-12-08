@@ -28,10 +28,9 @@
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
                             <li> <a href="../pages/profile.php"> Profile </a> </li>
+                            <li> <a href="../actions/action_logout.php"> Log Button </a> </li>
                         </ul>
-                    </aside><a class="off-button" href="../actions/action_logout.php">
-                    <i class="fas fa-power-off" ></i>
-                    </a>
+                    </aside>
                 <?php } ?>
             </header>
 
@@ -47,7 +46,6 @@
                 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
             </style>
             <meta charset="utf-8">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
             <link rel="stylesheet" href="../css/style.css">
         </head>
 

@@ -29,6 +29,11 @@
         <h2 class="content">
             <?=$comment['title']?>
         </h2>  
+
+        <span class="numReplies"> 
+            <?=$comment['numComments']?> Repl<?= $comment['numComments'] == 1 ? 'y' : 'ies'?>
+        </span>
+
     </article>
 <?php } ?>
 
