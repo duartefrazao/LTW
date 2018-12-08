@@ -20,6 +20,7 @@
         <input type="text" name="description" placeholder="Image Title">
         <input type="file" name="image" placeholder="Your image">
         <textarea name="text" required placeholder="Your post"></textarea>
+        
         <input type="submit" value="Share">
     </form>
 

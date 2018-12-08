@@ -58,6 +58,12 @@ body>header {
     background-color: rgb(1, 97, 52);
     transition: 0.5s ease;
 }
+
+ul#css3menu1 ul.scroll{
+    max-height: 135px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 /* Text in navbar style */
 
 #logo {

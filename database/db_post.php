@@ -25,10 +25,10 @@
     }
 
 
-    function addNewPost($title, $content, $author){
+    function addNewPost($title, $content, $author,$channel){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('INSERT INTO ENTITY VALUES (NULL, ?, ?, ?, 0, ?, 0, NULL)');
-        $stmt->execute(array($title, $content, $author, time()));
+        $stmt = $db->prepare('INSERT INTO ENTITY VALUES (NULL, ?, ?, ?, 0, ?, 0,?, NULL)');
+        $stmt->execute(array($title, $content, $author, time(),$channel));
     }
 
     function getPostsGuest($offset, $numOfElements){
