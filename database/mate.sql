@@ -87,13 +87,38 @@ INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where t
 /* COMMENTS */
 INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,4);
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,4);
+INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,0,1543506451,0,4);
+/* INSERT INTO entity VALUES(NULL,"What the fuck did you just fucking say about me, you little bitch? 
+                                I'll have you know I graduated top of my class in the Navy Seals, 
+                                and I've been involved in numerous secret raids on Al-Quaeda, and I
+                                have over 300 confirmed kills. I am trained in gorilla warfare and 
+                                I'm the top sniper in the entire US armed forces. You are nothing 
+                                to me but just another target. I will wipe you the fuck out with 
+                                precision the likes of which has never been seen before on this Earth,
+                                mark my fucking words. You think you can get away with saying that 
+                                shit to me over the Internet? Think again, fucker. As we speak I am 
+                                contacting my secret network of spies across the USA and your IP is 
+                                being traced right now so you better prepare for the storm, maggot. 
+                                The storm that wipes out the pathetic little thing you call your life.
+                                You're fucking dead, kid. I can be anywhere, anytime, and I can kill 
+                                you in over seven hundred ways, and that's just with my bare hands.
+                                Not only am I extensively trained in unarmed combat, but I have 
+                                access to the entire arsenal of the United States Marine Corps and 
+                                I will use it to its full extent to wipe your miserable ass off the 
+                                face of the continent, you little shit. If only you could have known
+                                what unholy retribution your little 'clever' comment was about to bring
+                                down upon you, maybe you would have held your fucking tongue. But you 
+                                couldn't, you didn't, and now you're paying the price, you goddamn 
+                                idiot. I will shit fury all over you and you will drown in it. 
+                                You're fucking dead, kiddo.",NULL,2,0,1543509751,0,4); */
+INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,3,0,1543506451,0,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
 
 /* NESTED COMMENTS */
 INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,1,7);
 INSERT INTO entity VALUES(NULL,'A responder ao próprio post....',NULL,2,0,1544204906,0,7);
-INSERT INTO entity VALUES(NULL,'Não, tens problemas é ó morcão?',NULL,1,0,1544206766,0,10);
+INSERT INTO entity VALUES(NULL,'Não, tens problemas é ó morcão?',NULL,1,0,1544206766,0,12);
 
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');

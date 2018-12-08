@@ -1,33 +1,68 @@
-let commentForm = document.querySelector('#post form');
 
+// =============== EVENT LISTENERS =================== //
+
+let commentForm = document.querySelector('#post form');
 commentForm.addEventListener('submit', function (event) {
   event.preventDefault();
   submitComment(this);
 });
 
 
-let replies = document.querySelector('.numReplies');
-replies.addEventListener('click', function (event) {
+let replies = document.querySelectorAll('.numReplies');
+replies.forEach(function(elem){
+  elem.addEventListener('click', function(event){
+    event.preventDefault();
+    loadChildren(this);
+  })
+});
+
+let loading = document.querySelector('.load-more');
+loading.addEventListener('click', function (event) {
   event.preventDefault();
   loadReplies(this);
 });
 
+function addVoteListeners(element) {
+  let votes = element.querySelectorAll('.vote');
+  votes.forEach((vote) => vote.addEventListener('click', voteHandler));
+}
 
-function loadReplies(element) {
+function addRepliesListener(element) {
+  let replies = element.querySelector('.numReplies');
+  replies.addEventListener('click', function (event) {
+    event.preventDefault();
+    loadChildren(this);
+  });
+}
+
+
+
+//==============================================================//
+
+
+//============================MULTILEVEL=======================//
+
+
+function loadChildren(element) {
 
   let parent_id = element.parentNode.querySelector('.voting_section').getAttribute('data-id');
+
+  let lastReply = element.parentNode.querySelector('.replies .comment:last-of-type');
+
+  let lastReplyId = lastReply === null ? Number.MAX_SAFE_INTEGER : lastReply.querySelector('aside').getAttribute('data-id');
 
   let request = new XMLHttpRequest();
   request.addEventListener('load', receiveReplies);
   request.open('post', '../actions/action_get_replies.php', true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   request.send(encodeForAjax({
-    parent_id: parent_id
+    parent_id: parent_id,
+    last_id: lastReplyId
   }));
 }
 
-function receiveReplies(event) {
 
+function receiveReplies(event) {
 
   let response = JSON.parse(this.responseText);
 
@@ -38,17 +73,12 @@ function receiveReplies(event) {
 
   let comments = response.data;
 
-
   if (comments.length === 0) {
     return;
-  }
-  else{
+  } else {
     let parent_id = comments[0].parentEntity;
 
-    console.log(parent_id);
-
     let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
-    
     let replies = document.createElement('span');
     replies.classList.add('replies');
 
@@ -56,50 +86,40 @@ function receiveReplies(event) {
 
       let comment = createComment(comments[i]);
 
+      addVoteListeners(comment);
+
+      addRepliesListener(comment);
+
       replies.appendChild(comment);
 
-
-      
-      comment.querySelector('.numReplies').addEventListener('click', function (event) {
-        event.preventDefault();
-        loadReplies(this);
-      });
-
-
-      const votes = replies.querySelectorAll('article .vote')
-      votes.forEach((vote) => vote.addEventListener('click', voteHandler));
     }
 
     parent.appendChild(replies);
-
   }
-
 }
 
+//=========================================================================//
 
-function submitComment(element) {
+//==========================='INFINITE SCROLLING'===========================//
 
-  let text = element.querySelector('textarea').value;
 
-  element.querySelector('textarea').value = "";
+function loadReplies(element) {
 
-  let parent_id = element.querySelector('input[name=id]').value;
+  let parent_id = (element.parentNode).querySelector('input[name=id]').value;
 
-  let comment_id = document.querySelector('#post .comment') != null ?
-    document.querySelector('#post .comment:last-of-type header h3')
-    .getAttribute('data-id') :
-    -1;
+  let lastComment = document.querySelector('#post .comment:last-of-type');
+
+  let last_id = lastComment.querySelector('aside').getAttribute('data-id');
 
   let request = new XMLHttpRequest();
   request.addEventListener('load', receiveComment);
-  request.open('post', '../actions/action_add_comment.php', true);
+  request.open('post', '../actions/action_get_replies.php', true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   request.send(encodeForAjax({
     parent_id: parent_id,
-    text: text,
-    comment_id: comment_id
+    last_id: last_id
   }));
-}
+};
 
 function receiveComment(event) {
 
@@ -117,14 +137,76 @@ function receiveComment(event) {
 
     let comment = createComment(comments[i]);
 
+    addVoteListeners(comment);
+
+    addRepliesListener(comment);
+
     section.appendChild(comment);
-
-
-    const votes = section.querySelectorAll('#comments article:last-child .vote')
-    votes.forEach((vote) => vote.addEventListener('click', voteHandler));
   }
 }
 
+
+//======================================================================//
+
+
+
+//==============================ADD COMMENT=============================//
+
+
+function submitComment(element) {
+
+  let text = element.querySelector('textarea').value;
+
+  element.querySelector('textarea').value = "";
+
+  let parent_id = element.querySelector('input[name=id]').value;
+
+  let comment_id = document.querySelector('#post .comment') != null ?
+    document.querySelector('#post .comment:first-of-type aside')
+    .getAttribute('data-id') :
+    -1;
+
+  let request = new XMLHttpRequest();
+  request.addEventListener('load', addComment);
+  request.open('post', '../actions/action_add_comment.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  request.send(encodeForAjax({
+    parent_id: parent_id,
+    text: text,
+    comment_id: comment_id
+  }));
+}
+
+function addComment(event) {
+
+  let response = JSON.parse(this.responseText);
+
+  if (response.result === false) {
+    window.location = "../pages/login.php";
+    return;
+  }
+
+  let comments = response.data;
+
+  let section = document.querySelector('#comments');
+  for (let i = 0; i < comments.length; i++) {
+
+    let comment = createComment(comments[i]);
+
+    addVoteListeners(comment);
+
+    addRepliesListener(comment);
+
+    section.insertBefore(comment, section.querySelector('#comments .comment:first-of-type'));
+  }
+}
+
+
+
+//======================================================================//
+
+
+//============================UTILITIES==========================//
 
 function createComment(element) {
   let comment = document.createElement('article');
@@ -146,17 +228,6 @@ function createComment(element) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 function checkUserImage(id, comment) {
 
   var image = new Image();
@@ -169,13 +240,11 @@ function checkUserImage(id, comment) {
   }
   image.onerror = function () {
     // image did not load
-    console.log('on error:', comment.querySelector('img'));
+    console.warn('on error:', comment.querySelector('img'));
   }
 
   image.src = '../images/users/thumb_small/' + id + '.jpg';
 }
-
-
 
 function humanTiming(originalTime) {
 
@@ -217,9 +286,6 @@ function humanTiming(originalTime) {
     return numberOfUnits + ' ' + pair[key] + ((numberOfUnits > 1) ? 's' : '');
   }
 }
-
-
-
 
 function encodeForAjax(data) {
   return Object.keys(data)

@@ -8,9 +8,9 @@
     if(!isset($_SESSION['username'])){
         $permission = false;
     }else{
-
-    $parent_id = $_POST['parent_id'];
-    $comments = getChildComments($parent_id);
+        $parent_id = $_POST['parent_id'];
+        $last_id = $_POST['last_id'];
+        $comments = getCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
     }
 
     $response = array('result' => $permission, 'data' => $comments);

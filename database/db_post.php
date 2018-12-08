@@ -4,9 +4,9 @@
 
     function getPosts($username, $offset){
         if($username !==NULL)
-            return getPostsLogged($username, $offset,5);
+            return getPostsLogged($username, $offset,6);
         else 
-            return getPostsGuest($offset, 5);
+            return getPostsGuest($offset, 6);
 
     }
 

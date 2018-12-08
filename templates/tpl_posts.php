@@ -50,6 +50,8 @@
 
         <?php draw_comments($comments) ?>  
 
+        <span class="load-more"> Load More </span>
+
     </article>
 <?php }?>
 

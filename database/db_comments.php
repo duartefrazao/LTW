@@ -3,7 +3,7 @@
     include_once('../includes/database.php');
 
 
-    function getCommentsByPostId($id,$user_id){
+    function getCommentsByPostId($id,$user_id, $offset){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT A1.*, A2.up FROM 
@@ -15,17 +15,11 @@
                 VOTE JOIN USER 
                 ON USER.id = ? 
                 AND VOTE.user = USER.id) as A2
-            ON A2.entity=A1.id');
-        $stmt->execute(array($id,$user_id));
+            ON A2.entity=A1.id
+            WHERE A1.id < ? ORDER BY A1.id DESC LIMIT 2');
+        $stmt->execute(array($id,$user_id, $offset));
         return $stmt->fetchAll();
 
-    }
-
-    function getChildComments($parent_id){
-        $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.*, user.username FROM ENTITY JOIN user on ENTITY.author = user.id WHERE Entity.parentEntity = ?');
-        $stmt->execute(array($parent_id));
-        return $stmt->fetchAll();
     }
 
     function addComment($parent_id, $user_id, $content){
