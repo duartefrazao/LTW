@@ -35,6 +35,7 @@
                 <?php } ?>
             </header>
 
+
 <?php } ?>
 
 
@@ -127,6 +128,14 @@
     }
 }
 
+function draw_search(){?>
+    <section>
+        <form id = "search-channel" action="../actions/action_goto_channel.php" enctype="multipart/form-data" method="post">
+        <input type="text" name="channel" placeholder="Channel Name" required/>
+        <input type="submit" value="Search">
+        </form>
+    </section>
+<?php }
 
 function includeScript($script){ ?>
     <script src="../scripts/<?=$script?>.js" defer></script>
