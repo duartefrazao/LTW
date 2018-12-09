@@ -30,9 +30,7 @@
             <?=$comment['title']?>
         </h2>  
 
-        <span class="numReplies"> 
-            <?=$comment['numComments']?> Repl<?= $comment['numComments'] == 1 ? 'y' : 'ies'?>
-        </span>
+        <?php draw_comment_footer($comment) ?>
 
     </article>
 <?php } ?>
@@ -47,3 +45,14 @@
     </form>
 
 <?php } ?>
+
+<?php function draw_comment_footer($comment){ ?>
+    <footer>
+        <span class="numReplies"> 
+                <?=$comment['numComments']?> Repl<?= $comment['numComments'] == 1 ? 'y' : 'ies'?>
+        </span>
+        <span class="reply">
+            Reply
+        </span>
+    </footer>
+<?php }?>

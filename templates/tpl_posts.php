@@ -69,7 +69,7 @@
 
         <?php drawPostImage($post['id']) ?>
         
-        <?php draw_comment_footer($post) ?> 
+        <?php draw_post_footer($post) ?> 
     </article>
 <?php }?>
 
@@ -103,7 +103,7 @@
 
 
 
-<?php function draw_comment_footer($post)
+<?php function draw_post_footer($post)
 {?>
     <footer>
         <h5 class="comments">

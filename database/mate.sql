@@ -111,7 +111,7 @@ INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,0,1543506451,0,4);
                                 couldn't, you didn't, and now you're paying the price, you goddamn 
                                 idiot. I will shit fury all over you and you will drown in it. 
                                 You're fucking dead, kiddo.",NULL,2,0,1543509751,0,4); */
-INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,3,0,1543506451,0,4);
+INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,3,0,1543506451,3,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 
 
@@ -119,6 +119,9 @@ INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,5);
 INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,1,7);
 INSERT INTO entity VALUES(NULL,'A responder ao próprio post....',NULL,2,0,1544204906,0,7);
 INSERT INTO entity VALUES(NULL,'Não, tens problemas é ó morcão?',NULL,1,0,1544206766,0,12);
+INSERT INTO entity VALUES(NULL,'duvido',NULL,1,0,1543506451,0,10);
+INSERT INTO entity VALUES(NULL,'Para bom entendedor...',NULL,2,0,1543506451,0,10);
+INSERT INTO entity VALUES(NULL,'Para quê?',NULL,3,0,1543506451,0,10);
 
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');

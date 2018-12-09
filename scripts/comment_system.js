@@ -1,3 +1,15 @@
+let tx = document.getElementsByTagName('textarea');
+for (let i = 0; i < tx.length; i++) {
+  tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+  tx[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+}
+
+
 
 // =============== EVENT LISTENERS =================== //
 
@@ -16,11 +28,34 @@ replies.forEach(function(elem){
   })
 });
 
+let levelReply = document.querySelectorAll('.reply');
+levelReply.forEach(function(elem){
+  elem.addEventListener('click', function(event){
+    event.preventDefault(); 
+    createReplyForm(this);
+  });
+});
+
 let loading = document.querySelector('.load-more');
 loading.addEventListener('click', function (event) {
   event.preventDefault();
   loadReplies(this);
 });
+
+
+function addCreateReplyForm(element){
+  element.querySelector('.reply').addEventListener('click', function(event){
+    event.preventDefault(); 
+    createReplyForm(this);
+  });
+};
+
+function addMultiLevelListener(element){
+  element.addEventListener('submit', function (event) {
+    event.preventDefault();
+    submitLeveledComment(this);
+});
+}
 
 function addVoteListeners(element) {
   let votes = element.querySelectorAll('.vote');
@@ -45,9 +80,9 @@ function addRepliesListener(element) {
 
 function loadChildren(element) {
 
-  let parent_id = element.parentNode.querySelector('.voting_section').getAttribute('data-id');
+  let parent_id = element.parentNode.parentNode.querySelector('.voting_section').getAttribute('data-id');
 
-  let lastReply = element.parentNode.querySelector('.replies .comment:last-of-type');
+  let lastReply = element.parentNode.parentNode.querySelector('.replies .comment:last-of-type');
 
   let lastReplyId = lastReply === null ? Number.MAX_SAFE_INTEGER : lastReply.querySelector('aside').getAttribute('data-id');
 
@@ -75,27 +110,85 @@ function receiveReplies(event) {
 
   if (comments.length === 0) {
     return;
-  } else {
-    let parent_id = comments[0].parentEntity;
+  } 
+  
+  let parent_id = comments[0].parentEntity;
+  let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
 
-    let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
-    let replies = document.createElement('span');
+  let replies = parent.querySelector('.replies');
+
+  if( replies === null){
+    replies = document.createElement('span');
     replies.classList.add('replies');
+    parent.appendChild(replies);
+  }
 
     for (let i = 0; i < comments.length; i++) {
 
       let comment = createComment(comments[i]);
 
-      addVoteListeners(comment);
-
-      addRepliesListener(comment);
-
       replies.appendChild(comment);
 
     }
 
-    parent.appendChild(replies);
+   
+}
+
+
+
+function createReplyForm(element){
+
+  let comment = element.parentNode.parentNode;
+
+  let comment_id = comment.querySelector('aside').getAttribute('data-id');
+
+  let form = document.createElement('form');
+
+  form.innerHTML = '<textarea name="text" required></textarea>' +
+                   '<input type="hidden" name="id" value="' + comment_id + '">' +
+                   '<input type="submit" value="Reply">';
+
+  addMultiLevelListener(form);
+
+  comment.appendChild(form);
+
+}
+
+function submitLeveledComment(element){
+
+  let parent = element.parentNode;
+
+  let text = element.querySelector('textarea').value;
+  
+  element.querySelector('textarea').value = "";
+  
+  let parent_id = getCommentId(parent);
+  
+  parent.removeChild(element);
+  
+  let request = new XMLHttpRequest();
+  request.addEventListener('load', addedLevelComment);
+  request.addEventListener('load', function(event){
+    loadChildren(parent.querySelector('.numReplies'));
+  })
+  request.open('post', '../actions/action_simple_add_comment.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  request.send(encodeForAjax({
+    parent_id: parent_id,
+    text: text
+  }));
+
+}
+
+function addedLevelComment(event){
+
+  let response = JSON.parse(this.responseText);
+
+  if (response.result === false) {
+    window.location = "../pages/login.php";
+    return;
   }
+
 }
 
 //=========================================================================//
@@ -107,7 +200,7 @@ function loadReplies(element) {
 
   let parent_id = (element.parentNode).querySelector('input[name=id]').value;
 
-  let lastComment = document.querySelector('#post .comment:last-of-type');
+  let lastComment = document.querySelector('#comments > .comment:last-of-type');
 
   let last_id = lastComment.querySelector('aside').getAttribute('data-id');
 
@@ -136,10 +229,6 @@ function receiveComment(event) {
   for (let i = 0; i < comments.length; i++) {
 
     let comment = createComment(comments[i]);
-
-    addVoteListeners(comment);
-
-    addRepliesListener(comment);
 
     section.appendChild(comment);
   }
@@ -193,10 +282,6 @@ function addComment(event) {
 
     let comment = createComment(comments[i]);
 
-    addVoteListeners(comment);
-
-    addRepliesListener(comment);
-
     section.insertBefore(comment, section.querySelector('#comments .comment:first-of-type'));
   }
 }
@@ -207,6 +292,11 @@ function addComment(event) {
 
 
 //============================UTILITIES==========================//
+
+function getCommentId(element){
+  return element.querySelector('aside').getAttribute('data-id');
+}
+
 
 function createComment(element) {
   let comment = document.createElement('article');
@@ -219,10 +309,17 @@ function createComment(element) {
     '" class="username">' +
     '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3>' +
     '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
-    '<h2 class="content">' + element.title + '</h2>' +
-    '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span';
+    '<h2 class="content">' + element.title + '</h2> <footer>' +
+    '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +
+    '<span class="reply"> Reply </span> </footer>';
 
   checkUserImage(element.author, comment);
+
+  addCreateReplyForm(comment);
+
+  addVoteListeners(comment);
+
+  addRepliesListener(comment);
 
   return comment;
 }
