@@ -86,14 +86,7 @@ function loadChildren(element) {
 
   let lastReplyId = lastReply === null ? Number.MAX_SAFE_INTEGER : lastReply.querySelector('aside').getAttribute('data-id');
 
-  let request = new XMLHttpRequest();
-  request.addEventListener('load', receiveReplies);
-  request.open('post', '../actions/action_get_replies.php', true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  request.send(encodeForAjax({
-    parent_id: parent_id,
-    last_id: lastReplyId
-  }));
+  createRequest(receiveReplies, '../actions/action_get_replies.php',{parent_id: parent_id,last_id: lastReplyId});
 }
 
 
@@ -165,18 +158,25 @@ function submitLeveledComment(element){
   let parent_id = getCommentId(parent);
   
   parent.removeChild(element);
-  
-  let request = new XMLHttpRequest();
-  request.addEventListener('load', addedLevelComment);
-  request.addEventListener('load', function(event){
-    loadChildren(parent.querySelector('.numReplies'));
-  })
-  request.open('post', '../actions/action_simple_add_comment.php', true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  request.send(encodeForAjax({
-    parent_id: parent_id,
-    text: text
-  }));
+
+  let replies = parent.querySelector('.replies');
+
+  if(replies === null){
+
+    createRequest(addedLevelComment,'../actions/action_simple_add_comment.php', {parent_id: parent_id,text: text})
+    .addEventListener('load', function(event){
+      loadChildren(parent.querySelector('.numReplies'));
+    });
+  }
+  else{
+
+    let first_comment = replies.querySelector('.comment :first-of-type');
+
+    let comment_id = getCommentId(first_comment);
+
+    createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
+
+  }
 
 }
 
@@ -191,9 +191,39 @@ function addedLevelComment(event){
 
 }
 
+function addExpandedComment(event){
+
+  let response = JSON.parse(this.responseText);
+
+  if (response.result === false) {
+    window.location = "../pages/login.php";
+    return;
+  }
+
+  let comments = response.data;
+
+  if (comments.length === 0) {
+    return;
+  } 
+  
+  let parent_id = comments[0].parentEntity;
+  let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
+
+  let replies = parent.querySelector('.replies');
+
+  for (let i = 0; i < comments.length; i++) {
+
+    let comment = createComment(comments[i]);
+
+    replies.insertBefore(comment, replies.querySelector('.comment:first-of-type'));
+  }
+}
+
 //=========================================================================//
 
 //==========================='INFINITE SCROLLING'===========================//
+
+
 
 
 function loadReplies(element) {
@@ -204,14 +234,7 @@ function loadReplies(element) {
 
   let last_id = lastComment.querySelector('aside').getAttribute('data-id');
 
-  let request = new XMLHttpRequest();
-  request.addEventListener('load', receiveComment);
-  request.open('post', '../actions/action_get_replies.php', true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  request.send(encodeForAjax({
-    parent_id: parent_id,
-    last_id: last_id
-  }));
+  createRequest(receiveComment,'../actions/action_get_replies.php', {parent_id: parent_id,last_id: last_id});
 };
 
 function receiveComment(event) {
@@ -255,15 +278,8 @@ function submitComment(element) {
     .getAttribute('data-id') :
     -1;
 
-  let request = new XMLHttpRequest();
-  request.addEventListener('load', addComment);
-  request.open('post', '../actions/action_add_comment.php', true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  request.send(encodeForAjax({
-    parent_id: parent_id,
-    text: text,
-    comment_id: comment_id
-  }));
+  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id});
+
 }
 
 function addComment(event) {
@@ -382,6 +398,17 @@ function humanTiming(originalTime) {
 
     return numberOfUnits + ' ' + pair[key] + ((numberOfUnits > 1) ? 's' : '');
   }
+}
+
+
+function createRequest(handler, url, data){
+  let request = new XMLHttpRequest();
+  request.addEventListener('load', handler);
+  request.open('post', url, true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax(data));
+
+  return request;
 }
 
 function encodeForAjax(data) {
