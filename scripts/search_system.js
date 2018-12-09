@@ -149,18 +149,16 @@ function encodeForAjax(data) {
         .join('&')
   }
 form.addEventListener("click",function(e){
-    resetFocus();
-    search.focus();
+    console.log(e.target.nodeName=="LI")
+    if(e.target.nodeName =="LI"){
+        form.submit();}
 })
-function resetFocus(){
-    lastInput = name;
-    currentFocus=0;
-}
 search.addEventListener("keyup",function(){
     console.log("keyup");
     let name= search.value;
     if(lastInput != name){
-        resetFocus();
+        lastInput = name;
+        currentFocus=0;
     }
     else 
         return ;

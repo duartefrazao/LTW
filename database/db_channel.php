@@ -22,7 +22,22 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT title FROM CHANNEL WHERE title LIKE ? LIMIT 5');
         $stmt->execute(array($param));
-        return $stmt->fetchAll();
+        $res =  $stmt->fetchAll();
+
+        if($res < 5){
+            $stmt = $db->prepare('SELECT title FROM CHANNEL');
+            $stmt->execute();
+            $res = $stmt->fetchAll();
+            $final = array();
+
+            foreach($res as $r){
+                if(levenshtein($r,$subs)>2)
+                    array_push($final,$r);
+            }
+            $res = $final;
+        }
+
+        return $res;
     }
     function getPostsFromChannelGuest($offset, $numOfElements,$channel){
         $db = Database::instance()->db();
