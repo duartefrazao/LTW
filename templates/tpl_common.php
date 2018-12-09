@@ -9,6 +9,7 @@
             </style>
             <meta charset="utf-8">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+            
             <link rel="stylesheet" href="../css/style.css">
         </head>
 
@@ -129,10 +130,12 @@
 }
 
 function draw_search(){?>
-    <section>
-        <form id = "search-channel" action="../actions/action_goto_channel.php" enctype="multipart/form-data" method="post">
-        <input type="text" name="channel" placeholder="Channel Name" required/>
-        <input type="submit" value="Search">
+    <section id="search-bar" >
+        <form autocomplete="off" id = "search-channel" action="../actions/action_goto_channel.php" enctype="multipart/form-data" method="post">
+      <!--   <div class="autocomplete" > <input id="searchInput" type="text" name="channel" placeholder="Channel Name" required/> </div> -->
+        <input id="searchInput" type="text" name="channel" placeholder="Channel Name" required/>
+        <div id="displaySuggestions"> </div>
+        <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </section>
 <?php }

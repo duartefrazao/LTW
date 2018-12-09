@@ -16,6 +16,14 @@
         $stmt->execute(array($channelId));
         return $stmt->fetch();
     }
+
+    function getChannelSuggestionsBySubstring($subs){
+        $param = "%{$subs}%";
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT title FROM CHANNEL WHERE title LIKE ? LIMIT 5');
+        $stmt->execute(array($param));
+        return $stmt->fetchAll();
+    }
     function getPostsFromChannelGuest($offset, $numOfElements,$channel){
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
