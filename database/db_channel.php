@@ -24,17 +24,25 @@
         $stmt->execute(array($param));
         $res =  $stmt->fetchAll();
 
-        if($res < 5){
-            $stmt = $db->prepare('SELECT title FROM CHANNEL');
+        if(count($res) < 5){
+            $stmt = $db->prepare('SELECT title,NULL as distance FROM CHANNEL');
             $stmt->execute();
-            $res = $stmt->fetchAll();
+            $res= $stmt->fetchAll();
             $final = array();
 
-            foreach($res as $r){
-                if(levenshtein($r,$subs)>2)
-                    array_push($final,$r);
+            foreach($res as $key=>$r){
+                $res[$key]['distance'] = levenshtein($r['title'],$subs);
             }
-            $res = $final;
+            foreach ($res as $key => $row) {
+                $title[$key]  = $row['title'];
+                $distance[$key] = $row['distance'];
+            }
+
+            $title  = array_column($res, 'title');
+            $distance = array_column($res, 'distance');  
+
+            array_multisort($distance, SORT_ASC,$title,SORT_ASC, $res);
+            
         }
 
         return $res;
