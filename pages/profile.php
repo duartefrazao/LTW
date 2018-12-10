@@ -7,25 +7,13 @@
     include_once("../database/db_user.php");
     include_once("../includes/session.php");
 
+    $user = $_GET['user'];
+    $posts = getPostByUser($user);
+    $info = getUserInfo($user);
 
-    if(isset($_SESSION['username']))
-    {
-        $user = $_SESSION['username'];
-        draw_header($user);
-        ?>
-        <section class = "user_page">
-        <?php
-        $info = getUserInfo($user);
-        draw_user_info($info);
-        $posts = getPostByUser($user);
-        draw_posts($posts);
-        ?>
-        </section>
-        <?php
-    }
-    else
-    {
-        header('Location: posts.php');
-    }
-    
+    includeScript("vote_system");
+    includeScript("posts_scroll"); 
+    draw_header($_SESSION['username']);
+    draw_profile($user,$info,$posts);
+    draw_footer(); 
 ?>

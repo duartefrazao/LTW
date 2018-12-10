@@ -18,6 +18,7 @@
     draw_header_global($user);
     includeScript("vote_system");
     includeScript("comment_system");
+    
     draw_post($post, $comments);
     draw_footer();
 ?>
