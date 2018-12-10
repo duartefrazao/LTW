@@ -246,21 +246,25 @@ ul#css3menu1 ul.scroll{
 /* ------------------------------- */
 
 .user_page{
-    display:grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
+    display: flex;
 }
 #information {
-    grid-row-start: 1;
-    grid-row-end: 2;    
-    display:grid;
+    flex-grow: 1;
+
     padding:1em;
-    margin: 0em auto;
-    margin-top: 2em;
+    margin: 3.2em auto auto 0;
+    
+    
+    margin-left:1em;
     background-color: white;
-    grid-template-rows: auto auto;
     border-radius: 5px 5px 5px 5px;
     
+}
+
+#profile_right{
+    flex-grow: 1.5;
+    display:flex;
+    flex-direction: column;
 }
 
 #information header h1{
@@ -283,10 +287,14 @@ ul#css3menu1 ul.scroll{
     padding: 4px;
     width : 10em;
 }
-.user_page #posts {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 2;
+
+.user_page #ordering{
+    margin:1em auto 0em auto;
+
+}
+
+#profile_right #posts{
+    padding-top:0em;
 }
 
 #posts {
@@ -764,12 +772,11 @@ ul#css3menu1 ul.scroll{
 }
 
 #channel_info{
-    margin: 0em 0em; 
-    min-width: 5em;
-    max-width:5em;
+    margin: 0em 0em;
     min-height: 1em;
     padding: 0.5em 0.5em;
-    background-color: white;
+    color:var(--kinda-black);
+    background-color:var(--background);;
     display:flex;
 }
 
@@ -780,6 +787,7 @@ ul#css3menu1 ul.scroll{
 
 #channel_info #title::before{
     content:"c/";
+    padding: 0 0 0.5em 0;
 }
 
 #channel_info #description{
@@ -821,7 +829,4 @@ ul#css3menu1 ul.scroll{
 #search_results #posts{
     padding-top:0;
 }
-
-
-
 

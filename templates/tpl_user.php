@@ -1,5 +1,6 @@
 <?php 
     include_once("../templates/tpl_posts.php");
+    include_once("../templates/tpl_common.php");
     function draw_user_info($info) { ?>
 
         <section id="information">
@@ -28,7 +29,10 @@
         <section class = "user_page">
             <?php 
                 draw_user_info($info);
-                draw_posts($posts);
+                ?> <section id="profile_right"> <?php
+                    draw_ordering();
+                    draw_posts($posts);
+                ?> </section><?php
             ?>
         </section>
 <?php }  ?>
