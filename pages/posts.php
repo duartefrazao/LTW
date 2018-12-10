@@ -7,14 +7,16 @@
     include_once("../includes/session.php");
     include_once("utilities.php");
 
+    $criteria = 'mostrecent'; 
+
     if(isset($_SESSION['username']))
     {
-        $posts = getPosts($_SESSION['username'], PHP_INT_MAX);
+        $posts = getPosts($_SESSION['username'], -1, PHP_INT_MAX,  $criteria);
         draw_header_global($_SESSION['username']);
     }
     else
     {
-        $posts = getPosts(null, PHP_INT_MAX);
+        $posts = getPosts(null, PHP_INT_MAX, $criteria);
         draw_header_global(null);
     }
 
@@ -22,6 +24,8 @@
 
     includeScript("vote_system");
     includeScript("posts_scroll");
+
+    draw_ordering();
 
     draw_posts($posts);
     

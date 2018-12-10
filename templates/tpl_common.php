@@ -28,7 +28,7 @@
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
                             <li> <a href="../pages/profile.php"> Profile </a> </li>
-                            <li> <a href="../actions/action_logout.php"> Log Button </a> </li>
+                            <li> <a href="../actions/action_logout.php"> Log Out </a> </li>
                         </ul>
                     </aside>
                 <?php } ?>
@@ -91,6 +91,16 @@
 
     <!-- <span class="partial_line"></span> -->
 <?php }?>
+
+
+<?php function draw_ordering() { ?>
+    <span id="ordering" >
+        <select class="select">
+            <option value="mostrecent"  selected>  Most Recent </option>
+            <option value="mostvoted-month">  Most Voted </option>
+        </select>
+    </span>
+<?php } ?>
 
 <?php function drawUserImage($id){
     if( file_exists('../images/users/thumb_small/' . $id . '.jpg') ){ ?>

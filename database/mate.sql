@@ -74,20 +74,25 @@ INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZG
 
 /* POSTS */
 
-INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543879073,0,NULL);
+INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,2142,1543878773,0,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,-242,1543879073,0,NULL);
 INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543879273,0,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543958350,2,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543992827,1,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,10090,1543958350,2,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,23123,1543992827,1,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 
-                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1544035389,0,NULL);
+                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,-232,1544035389,0,NULL);
+INSERT INTO entity VALUES(NULL,'Estou muito feliz','Será',2,0,1544412393,0,NULL);
+INSERT INTO entity VALUES(NULL,'Isto é um post test','Nao sei que queres',1,0,1544423393,0,NULL);
+INSERT INTO entity VALUES(NULL,'Vai embora','anda ca ',3,0,1544434393,0,NULL);
+INSERT INTO entity VALUES(NULL,'Eu vou e venho','Nao sei',1,0,1544456393,0,NULL);
+
 
 
 /* COMMENTS */
-INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,4);
-INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,4);
-INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,0,1543506451,0,4);
+INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,6,1543274764,2,4);
+INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,213,1543506451,0,4);
+INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,233,1543506451,0,4);
 /* INSERT INTO entity VALUES(NULL,"What the fuck did you just fucking say about me, you little bitch? 
                                 I'll have you know I graduated top of my class in the Navy Seals, 
                                 and I've been involved in numerous secret raids on Al-Quaeda, and I
