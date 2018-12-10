@@ -19,13 +19,17 @@
             WHERE A1.id < ? ORDER BY A1.id DESC LIMIT 2');
         $stmt->execute(array($id,$user_id, $offset));
         return $stmt->fetchAll();
-
     }
 
     function addComment($parent_id, $user_id, $content){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('INSERT INTO entity VALUES(NULL, ?, NULL, ?, 0, ?, 0, ?)');
-        $stmt->execute(array($content, $user_id, time(), $parent_id));
+
+        $stmt = $db->prepare('SELECT channel FROM ENTITY WHERE id=?');
+        $stmt->execute(array($parent_id));
+        $channel = $stmt->fetch();
+
+        $stmt = $db->prepare('INSERT INTO entity VALUES(NULL, ?, NULL, ?, 0, ?, 0,?, ?)');
+        $stmt->execute(array($content, $user_id, time(),$channel, $parent_id));
         incNumberOfComments($parent_id);
     }
 

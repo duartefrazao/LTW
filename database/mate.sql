@@ -23,7 +23,16 @@ create table entity(
     votes INTEGER NOT NULL, 
     creationDate Integer NOT NULL,
     numComments INTEGER NOT NULL,
+    channel INTEGER NOT NULL REFERENCES channel,
     parentEntity INTEGER REFERENCES entity (id)
+);
+
+drop table if exists channgel;
+
+create table channel(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR NOT NULL,
+    description VARCHAR NOT NULL
 );
 
 drop table if exists vote;
@@ -74,14 +83,18 @@ INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZG
 
 /* POSTS */
 
-INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543879073,0,NULL);
-INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543879273,0,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543958350,2,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543992827,1,NULL);
+INSERT INTO channel VALUES(NULL,"fun","Videos de gatinhos e bebés a rir");
+INSERT INTO channel VALUES(NULL,"odly satisfying","Odly things in life");
+INSERT INTO channel VALUES(NULL,"ltw","Informações de LTW");
+INSERT INTO channel VALUES(NULL,"science","Interesting science information");
+INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,3,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543878573,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543878173,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,3,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,2,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 
-                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1544035389,0,NULL);
+                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,4,NULL);
 
 
 /* COMMENTS */

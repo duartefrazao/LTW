@@ -16,6 +16,18 @@
         $stmt->execute(array(NULL,$username,$pass,$mail,$description,$creationDate));
     }
 
+    function getSimilarUsers($subs){
+        $param = "%{$subs}%";
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('
+            Select id,username
+            From USER 
+            Where username LIKE ? LIMIT 3
+        ');
+        $stmt->execute(array($param));
+        return $stmt->fetchAll();
+    }
+
     function getUserId($username){
         $db= Database::instance()->db();
         $stmt = $db->prepare('
