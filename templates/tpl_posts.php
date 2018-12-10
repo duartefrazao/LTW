@@ -80,9 +80,11 @@
         <h3 class="author">
             <?=$post['author']?>
         </h3>
-        <h3 class="username">
-            <?php drawUserImage($post['author']) ?><?=$post['username']?>
-        </h3>
+        <a href="../pages/profile.php?user=<?=$post['username']?>">
+            <h3 class="username">
+                <?php drawUserImage($post['author']) ?><?=$post['username']?>
+            </h3>
+        </a>
         <h3 class="creationDate">
             <?=humanTiming($post['creationDate']);?>
         </h3>

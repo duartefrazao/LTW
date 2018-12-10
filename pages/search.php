@@ -23,13 +23,9 @@
     draw_header_global($_SESSION['username']);
    
 
-    $images = getAllImages();
-
     includeScript("vote_system");
     includeScript("posts_scroll"); 
-    draw_channels_search($channels);
-    draw_users_search($users);
-    draw_posts_search($posts);
+    draw_search_results($channels,$users,$posts);
     
     draw_footer();
 ?>

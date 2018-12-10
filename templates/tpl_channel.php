@@ -1,9 +1,9 @@
 <?php
     function drawChannelInfo($channel){?>
 
-    <section>
-        <h1><?=$channel['title']?></h1>
-        <h2><?=$channel['description']?></h2>
+    <section id="channel_info">
+        <h1 id="title"><?=$channel['title']?></h1>
+        <!-- <h2 id="description"><?=$channel['description']?></h2> -->
     </section>
 
     <?php }

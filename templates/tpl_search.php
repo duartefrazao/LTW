@@ -1,5 +1,17 @@
 <?php
 
+    function draw_search_results($channels,$users,$posts){
+        if(count($channels) + count($users) + count($posts) == 0){
+            ?> 
+                <a id="go_back_search" href="posts.php">No results found, click to go back</a>
+            <?php
+        }else{
+            draw_channels_search($channels);
+            draw_users_search($users);
+            draw_posts_search($posts);
+        }
+    }
+
     function draw_channels_search($channels){ 
         if(count($channels)>0){?>
         <h1> Channels </h1>
@@ -16,7 +28,9 @@
         <h1> Users </h1>
         <?php 
         foreach($users as $user){ ?>
-            <h2><?=$user['username']?></h2>
+            <a href="../pages/profile.php?user=<?=$user['username']?>">
+                <?=$user['username']?>
+            </a>
         <?php }}
     }
 
