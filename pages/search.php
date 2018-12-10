@@ -19,11 +19,10 @@
     $posts = getSimilarPosts($user,$search);
     $channels = getSimilarChannels($search);
     $users = getSimilarUsers($search);
-    draw_header_global($_SESSION['username']);
+    draw_header_global($user);
    
 
-    includeScript("vote_system");
-    includeScript("posts_scroll"); 
+    includeScript("vote_system"); 
     draw_search_results($channels,$users,$posts);
     
     draw_footer();

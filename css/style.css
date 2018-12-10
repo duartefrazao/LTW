@@ -171,11 +171,11 @@ ul#css3menu1 ul.scroll{
     display: inline-block;
     padding: 0.3em 0em 0.3em 0em;
     background-color: white;
-    color: black;
+    color:var(--kinda-black);
     max-width: 5em;
     text-align: center;
     transition: 0.3s ease;
-    border-style: solid;
+    border-style: none;
     font-size: 125%;
     transition: 0.3s ease;
 }
@@ -788,5 +788,40 @@ ul#css3menu1 ul.scroll{
     font-weight:normal;
 }
 
+#channels_search{
+    display:flex;
+    flex-direction: column;
+}
 
-  
+#channels_search a::before{
+    content:"c/";
+}
+
+.search_title {
+    margin:0.5em auto;
+    font-size: 140%;
+    text-align: center;
+}
+
+.box{
+    margin:0.3em 1em;
+    padding: 1em;
+    padding: 1em 0.5em;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#users_search{
+    max-width: 70em;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+}
+
+#search_results #posts{
+    padding-top:0;
+}
+
+
+
+

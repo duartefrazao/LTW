@@ -16,7 +16,7 @@
     }
     else
     {
-        $posts = getPosts(null, PHP_INT_MAX, $criteria);
+        $posts = getPosts(null, -1,PHP_INT_MAX, $criteria);
         draw_header_global(null);
     }
 
