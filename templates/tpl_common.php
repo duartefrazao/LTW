@@ -131,9 +131,8 @@
 
 function draw_search(){?>
     <section id="search-bar" >
-        <form autocomplete="off" id = "search-channel" action="../actions/action_goto_channel.php" enctype="multipart/form-data" method="post">
-      <!--   <div class="autocomplete" > <input id="searchInput" type="text" name="channel" placeholder="Channel Name" required/> </div> -->
-        <input id="searchInput" type="text" name="channel" placeholder="Channel Name" required/>
+        <form autocomplete="off" id = "search" action="../pages/search.php" enctype="multipart/form-data" method="post">
+        <input id="searchInput" type="text" name="search" placeholder="Search" required/>
         <div id="displaySuggestions"> </div>
         <button type="submit"><i class="fas fa-search"></i></button>
         </form>

@@ -24,6 +24,25 @@
         return $stmt->fetch();
     }
 
+    function getSimilarPosts($user,$subs){
+        $param = "%{$subs}%";
+        $db = Database::instance()->db();
+        $stmt = $db->prepare(
+        'SELECT A1.*, A2.up FROM 
+           (SELECT ENTITY.* , USER.username
+            FROM ENTITY JOIN USER  
+                ON ENTITY.author = USER.id 
+                AND ENTITY.parentEntity is NULL
+                WHERE ENTITY.title LIKE ?) as A1
+        LEFT JOIN 
+            (SELECT VOTE.* FROM VOTE JOIN USER 
+                ON USER.username = ?
+                AND VOTE.user = USER.id) as A2
+        ON A2.entity = A1.id
+        ORDER BY  A1.id DESC LIMIT 3');
+        $stmt->execute(array($param,$user));
+        return $stmt->fetchAll();
+    }
 
     function addNewPost($title, $content, $author,$channel){
         $db = Database::instance()->db();

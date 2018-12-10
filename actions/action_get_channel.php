@@ -16,7 +16,6 @@
     }
 
     $channel2 = getChannel($channel);
-
     $_SESSION['posts'] = $posts;
     $_SESSION['channel'] = $channel2;
     

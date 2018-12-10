@@ -4,7 +4,7 @@
 
     if(isset($_POST['search']) && $_POST['search'] != ""){
         $name= $_POST['search'];
-        $suggestions = getChannelSuggestionsBySubstring($name);
+        $suggestions = getSimilarChannels($name);
         echo '<ul>';
         foreach($suggestions as $s){ 
             ?><li onclick='fill("<?php

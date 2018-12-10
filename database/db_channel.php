@@ -12,19 +12,19 @@
     function getChannel($channelId){
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT *  
-                            FROM CHANNEL WHERE CHANNEL.title = ?');
+                            FROM CHANNEL WHERE CHANNEL.id = ?');
         $stmt->execute(array($channelId));
         return $stmt->fetch();
     }
 
-    function getChannelSuggestionsBySubstring($subs){
+    function getSimilarChannels($subs){
         $param = "%{$subs}%";
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT title FROM CHANNEL WHERE title LIKE ? LIMIT 5');
+        $stmt = $db->prepare('SELECT id, title FROM CHANNEL WHERE title LIKE ? LIMIT 3');
         $stmt->execute(array($param));
         $res =  $stmt->fetchAll();
 
-        if(count($res) < 5){
+        /* if(count($res) < 2){
             $stmt = $db->prepare('SELECT title,NULL as distance FROM CHANNEL');
             $stmt->execute();
             $res= $stmt->fetchAll();
@@ -43,7 +43,7 @@
 
             array_multisort($distance, SORT_ASC,$title,SORT_ASC, $res);
             
-        }
+        } */
 
         return $res;
     }
@@ -53,7 +53,7 @@
                             FROM ENTITY JOIN USER JOIN CHANNEL ON ENTITY.author = USER.id 
                             AND ENTITY.channel=CHANNEL.id
                             AND ENTITY.parentEntity is NULL 
-                            WHERE ENTITY.id < ? AND CHANNEL.title=? ORDER BY ENTITY.id DESC LIMIT ?');
+                            WHERE ENTITY.id < ? AND CHANNEL.id=? ORDER BY ENTITY.id DESC LIMIT ?');
         $stmt->execute(array($offset,$channel, $numOfElements));
         return $stmt->fetchAll();
     }
@@ -66,7 +66,7 @@
             FROM ENTITY JOIN USER JOIN CHANNEL 
                 ON ENTITY.author = USER.id AND ENTITY.channel=CHANNEL.id
                 AND ENTITY.parentEntity is NULL
-                WHERE CHANNEL.title=?) as A1
+                WHERE CHANNEL.id=?) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?
