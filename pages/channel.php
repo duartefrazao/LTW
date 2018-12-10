@@ -9,16 +9,21 @@
     include_once("../includes/session.php");
     include_once("utilities.php");
 
+
+    $user =null;
+
+    if(isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+    }
+
     $channel = $_GET['channel'];
     $channelInfo = getChannel($channel);
     $channelPosts = getPostsFromChannel($_SESSION['username'],PHP_INT_MAX,$channel);
 
-    draw_header_global($_SESSION['username']);
-
-    $images = getAllImages();
-
     includeScript("vote_system");
     includeScript("posts_scroll");  
+
+    draw_header_global($user);
     drawChannelInfo($channelInfo);
     draw_posts($channelPosts);
     
