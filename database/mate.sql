@@ -97,6 +97,7 @@ INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where t
                                 becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,4,NULL);
 
 
+
 /* COMMENTS */
 INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,1,4);
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,1,4);

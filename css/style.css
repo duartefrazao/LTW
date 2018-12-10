@@ -133,10 +133,13 @@ ul#css3menu1 ul.scroll{
     z-index: 1;
 }
 
-.user-actions:hover .dropdown {
+.user-actions:hover .dropdown{
     display: block;
 }
 
+#ordering::before{
+    content: "Sort by:";
+}
 
 /*
     Buttons styles
@@ -309,6 +312,8 @@ ul#css3menu1 ul.scroll{
     background-color: white;
     border-radius: 5px 5px 5px 5px;
 }
+
+
 
 .post-image{
     grid-area: image;
