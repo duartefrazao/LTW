@@ -19,7 +19,6 @@
     $posts = getSimilarPosts($user,$search);
     $channels = getSimilarChannels($search);
     $users = getSimilarUsers($search);
-    
     draw_header_global($_SESSION['username']);
    
 
