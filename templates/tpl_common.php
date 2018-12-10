@@ -28,7 +28,7 @@
                     <aside class="user-actions">
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
-                            <li> <a href="../pages/profile.php"> Profile </a> </li>
+                            <li> <a href="../pages/profile.php?user=<?= $_SESSION['username'] ?>"> Profile </a> </li>
                             <li> <a href="../actions/action_logout.php"> Log Out </a> </li>
                         </ul>
                     </aside>
@@ -97,9 +97,10 @@
 
 <?php function draw_ordering() { ?>
     <span id="ordering" >
-        <select class="select">
+        <select class="order">
             <option value="mostrecent"  selected>  Most Recent </option>
-            <option value="mostvoted-month">  Most Voted </option>
+            <option value="mostvoted">  Most Voted </option>
+            <option value="mostcommented">  Most Comments </option>
         </select>
     </span>
 <?php } ?>

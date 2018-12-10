@@ -7,4 +7,15 @@
     </section>
 
     <?php }
+
+
+    function drawChannelsDropdown($channels){ ?>
+        <select class="drp_channels" name="channel">
+
+        <?php foreach($channels as $channel){ ?>
+            <option value="<?= $channel['id'] ?>" > <?= $channel['title'] ?> </option>
+        <?php } ?>
+
+        </select>
+    <?php } ?>
 ?>

@@ -7,7 +7,6 @@
         die(header('Location: ../pages/login.php'));
     }
 
-
     addNewPost($_POST['title'], $_POST['text'], $_SESSION['id'],$_POST['channel']);
     createImageResource(getLastPostId(), 'posts', $_POST['title']);
     header('Location: ../pages/posts.php');

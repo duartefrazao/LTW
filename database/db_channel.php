@@ -17,6 +17,13 @@
         return $stmt->fetch();
     }
 
+    function getChannels(){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM CHANNEL');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     function getSimilarChannels($subs){
         $param = "%{$subs}%";
         $db = Database::instance()->db();

@@ -6,17 +6,15 @@
     $permission = true;
     $posts = array();
 
-    $lastId = $_POST['lastId'];
-
     $offset = $_POST['offset'];
 
     $criteria = $_POST['criteria'];
 
     if(isset($_POST['username'])){
-        $posts = getPosts($_SESSION['username'], $lastId, $offset, $criteria);
+        $posts = getPosts($_SESSION['username'], $offset, $criteria);
     }
     else{
-        $posts = getPosts(null, $lastId, $offset, $criteria);
+        $posts = getPosts(null,  $offset, $criteria);
     }
     
     $response = array('result' => $permission, 'data' => $posts);

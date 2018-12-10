@@ -28,6 +28,8 @@ body {
     background-color: var(--background);
 }
 
+
+
 /* Navbar */
 
 body>header {
@@ -39,32 +41,23 @@ body>header {
     padding: 0;
 }
 
-.add-story{
-    transition: 0.5s ease;
-    background-color: rgb(10, 175, 98);
-    color: white;
-    display: inline-block;
-    padding: 1.5em;
-    font-weight: bolder;
-    font-size: large;
-    position: fixed;
-    bottom: 3em;
-    border-radius: 50%;
-    right: 3em;
+#posts {
+    padding: 1em;
+    margin: 0 auto;
+    min-width: 35em;
+    max-width: 60em;
 }
 
 
-.add-story:hover{
-    background-color: rgb(1, 97, 52);
-    transition: 0.5s ease;
-}
 
 ul#css3menu1 ul.scroll{
     max-height: 135px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-/* Text in navbar style */
+/*----------------------------------------------------------*/
+/*--------------------------NAV BAR-------------------------*/
+/*----------------------------------------------------------*/
 
 #logo {
     flex-grow: 5;
@@ -91,6 +84,9 @@ ul#css3menu1 ul.scroll{
     text-align: center;
 }
 
+/*----------------------------------------------------------*/
+/*-----------------------DROPDOWN MENU----------------------*/
+/*----------------------------------------------------------*/
 
 .dropdown {
     margin: 0;
@@ -141,10 +137,9 @@ ul#css3menu1 ul.scroll{
     content: "Sort by:";
 }
 
-/*
-    Buttons styles
-*/
-
+/*----------------------------------------------------------*/
+/*----------------------BUTTON STYLES-----------------------*/
+/*----------------------------------------------------------*/
 .off-button {
     display: inline-block;
     padding: 0.3em 0.5em 0.3em 0.5em;
@@ -214,7 +209,9 @@ ul#css3menu1 ul.scroll{
 
 
 
-/* Authentication */
+/*----------------------------------------------------------*/
+/*----------------------AUTHENTICATION-----------------------*/
+/*----------------------------------------------------------*/
 
 #login,
 #signup {
@@ -243,7 +240,9 @@ ul#css3menu1 ul.scroll{
 
 
 
-/* ------------------------------- */
+/*----------------------------------------------------------*/
+/*------------------------USER PAGE-------------------------*/
+/*----------------------------------------------------------*/
 
 .user_page{
     display: flex;
@@ -297,12 +296,11 @@ ul#css3menu1 ul.scroll{
     padding-top:0em;
 }
 
-#posts {
-    padding: 1em;
-    margin: 0 auto;
-    min-width: 35em;
-    max-width: 60em;
-}
+
+
+/*----------------------------------------------------------*/
+/*-----------------------OVERVIEW POST----------------------*/
+/*----------------------------------------------------------*/
 
 #posts .overview-post{
     display: grid;
@@ -390,7 +388,10 @@ ul#css3menu1 ul.scroll{
     display: none;
 }
 
-/* ================== FOOTER ================== */
+
+/*----------------------------------------------------------*/
+/*--------------------OVERVIEW POST FOOTER-------------------*/
+/*----------------------------------------------------------*/
 
 .overview-post footer{
     grid-area: footer;
@@ -404,6 +405,11 @@ ul#css3menu1 ul.scroll{
     padding: 0 ;
 }
 
+
+
+/*----------------------------------------------------------*/
+/*-----------------------VOTING SECTION----------------------*/
+/*----------------------------------------------------------*/
 
 
 .downvote {
@@ -554,7 +560,10 @@ ul#css3menu1 ul.scroll{
 }
 
 
-/*         POST COMMENTS          */
+
+/*----------------------------------------------------------*/
+/*-----------------------POST COMMENTS----------------------*/
+/*----------------------------------------------------------*/
 
 #post #comments {
     margin-top: 0.5em;
@@ -650,12 +659,15 @@ ul#css3menu1 ul.scroll{
 
 
 
-/*       ADD POST         */
+
+/*----------------------------------------------------------*/
+/*--------------------------ADD POST------------------------*/
+/*----------------------------------------------------------*/
 #new-post{
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows:auto;
-    grid-template-areas: "title           ."
+    grid-template-areas: "title           channels"
                          "content         content"
                          "description     image"
                          ".               share";
@@ -665,6 +677,17 @@ ul#css3menu1 ul.scroll{
     padding: 1em;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
+}
+
+#new-post .drp_channels{
+    grid-area: channels;
+    height: 2em;
+    background-color: white;
+    margin-left: 1em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    text-indent: 1em;
+    margin-bottom: 1em;
 }
 
 #new-post input[name="description"]{
@@ -712,12 +735,10 @@ ul#css3menu1 ul.scroll{
 
 
 
-/*
------------------------
- Search Bar 
------------------------
-*/
 
+/*----------------------------------------------------------*/
+/*-------------------------SEARCH BAR-----------------------*/
+/*----------------------------------------------------------*/
 #search-bar{
     display:flex;
     justify-content: center;
@@ -764,6 +785,15 @@ ul#css3menu1 ul.scroll{
 .autocomplete-selection{
     background-color: var(--kinda-grey);
 }
+
+#search_results #posts{
+    padding-top:0;
+}
+
+
+/*----------------------------------------------------------*/
+/*--------------------------CHANNEL-------------------------*/
+/*----------------------------------------------------------*/
 
 #go_back_search{
     margin-top:5em;
@@ -826,7 +856,28 @@ ul#css3menu1 ul.scroll{
     flex-direction: column;
 }
 
-#search_results #posts{
-    padding-top:0;
+
+/*----------------------------------------------------------*/
+/*--------------------------ADD STORY-------------------------*/
+/*----------------------------------------------------------*/
+
+.add-story{
+    transition: 0.5s ease;
+    background-color: rgb(10, 175, 98);
+    color: white;
+    display: inline-block;
+    padding: 1.5em;
+    font-weight: bolder;
+    font-size: large;
+    position: fixed;
+    bottom: 3em;
+    border-radius: 50%;
+    right: 3em;
+}
+
+
+.add-story:hover{
+    background-color: rgb(1, 97, 52);
+    transition: 0.5s ease;
 }
 

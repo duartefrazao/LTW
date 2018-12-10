@@ -1,4 +1,5 @@
 <?php include_once("../templates/tpl_common.php"); ?>
+<?php include_once("../templates/tpl_channel.php"); ?>
 
 
 <?php function draw_posts($posts)
@@ -13,14 +14,14 @@
 <?php }?>
 
 
-<?php function draw_add_post(){?>
+<?php function draw_add_post($channels){?>
 
     <form id="new-post" action="../actions/action_add_post.php" enctype="multipart/form-data" method="post">
         <input type="text" required name="title" placeholder="Post's title"/>
+        <textarea name="text" required placeholder="Your post"></textarea>
         <input type="text" name="description" placeholder="Image Title">
         <input type="file" name="image" placeholder="Your image">
-        <textarea name="text" required placeholder="Your post"></textarea>
-        
+        <?php drawChannelsDropdown($channels) ?>
         <input type="submit" value="Share">
     </form>
 

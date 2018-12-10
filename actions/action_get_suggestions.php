@@ -8,7 +8,7 @@
         echo '<ul>';
         foreach($suggestions as $s){ 
             ?><li onclick='fill("<?php
-             echo $s['title']; ?>")'><a><?php
+             echo $s['title'];?>")'><a><?php
              echo ($s['title']); ?></li></a><?php
         }
     }

@@ -27,7 +27,7 @@ create table entity(
     parentEntity INTEGER REFERENCES entity (id)
 );
 
-drop table if exists channgel;
+drop table if exists channel;
 
 create table channel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -83,10 +83,12 @@ INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZG
 
 /* POSTS */
 
+INSERT INTO channel VALUES(NULL, "all", "all the content you want");
 INSERT INTO channel VALUES(NULL,"fun","Videos de gatinhos e bebés a rir");
 INSERT INTO channel VALUES(NULL,"odly satisfying","Odly things in life");
 INSERT INTO channel VALUES(NULL,"ltw","Informações de LTW");
 INSERT INTO channel VALUES(NULL,"science","Interesting science information");
+
 INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,3,NULL);
 INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543878573,0,1,NULL);
 INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543878173,0,1,NULL);
