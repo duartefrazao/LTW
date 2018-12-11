@@ -307,7 +307,7 @@
                 ON USER.username = ?
                 AND VOTE.user = USER.id) as A2
         ON A2.entity = A1.id
-        WHERE A1.creationDate - ? < ? AND
+        WHERE ? - ? < A1.creationDate  AND
         A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
 
         $stmt->execute(array($username, time(), $timeOffset,  $offset, $numOfElements));
@@ -326,7 +326,7 @@
                 VOTE JOIN USER 
                 ON VOTE.user = USER.id AND USER.username = ?) as A2
             ON A2.entity=A1.id
-            WHERE A1.creationDate - ? < ? AND A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
+            WHERE ? - ? < A1.creationDate AND A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
         $stmt->execute(array($username,$user, time(), $timeOffset,  $offset, $numOfElements));
         return $stmt->fetchAll();
     }
@@ -372,7 +372,7 @@
                 ON USER.username = ?
                 AND VOTE.user = USER.id) as A2
         ON A2.entity = A1.id
-        WHERE A1.creationDate - ? < ? AND
+        WHERE ? - ? < A1.creationDate AND
         A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
 
         $stmt->execute(array($username, time(), $timeOffset, $offset, $numOfElements));
@@ -391,7 +391,7 @@
                 FROM VOTE JOIN USER 
                 ON USER.username = ? AND VOTE.user = USER.id) as A2
             ON A2.entity=A1.id
-            WHERE A1.creationDate - ? < ? AND  A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
+            WHERE ? - ? < A1.creationDate AND  A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
         $stmt->execute(array($username,$user, time(), $timeOffset,  $offset, $numOfElements));
         return $stmt->fetchAll();
     }
