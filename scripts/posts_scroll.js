@@ -107,7 +107,6 @@ function checkForNewPosts() {
 };
 
 function receivePost(event) {
-    console.log(this.responseText);
     let response = JSON.parse(this.responseText);
 
     let posts = response.data;
