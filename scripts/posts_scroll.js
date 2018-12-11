@@ -34,7 +34,9 @@ function changePostsOrder(elem) {
 
     let offset = Number.MAX_SAFE_INTEGER;
 
-    if ((elem.value === 'mostvoted' || elem.value === 'mostcommented') && document.querySelector('.timeSpan') === null) {
+    let timeSpan = document.querySelector('.timeSpan');
+
+    if ((elem.value === 'mostvoted' || elem.value === 'mostcommented') && timeSpan === null) {
 
         let timeSpan = document.createElement('select');
 
@@ -60,6 +62,11 @@ function changePostsOrder(elem) {
 
     //DEFAULT
     let ordering = order + '-today';
+
+    
+    if( timeSpan !== null)
+        ordering = order + '-' + timeSpan.value;
+
 
     document.querySelector('#posts').innerHTML = "";
 
