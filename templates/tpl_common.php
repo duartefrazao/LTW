@@ -1,6 +1,5 @@
 
-<?php function draw_header($username){
-    ?>
+<?php function draw_header($username){?>
     <!DOCTYPE html>
     <html>
         <head>
@@ -14,7 +13,6 @@
         </head>
 
         <body>
-
             <header>
                 <h1 id="logo"> 
                     <a href="posts.php"> 
@@ -136,9 +134,8 @@
         $numberOfUnits = floor($time / $unit);
         return $numberOfUnits . ' ' . $text . (($numberOfUnits > 1) ? 's' : '');
     }
-}
-
-function draw_search(){?>
+}?>
+<?php function draw_search(){?>
     <section id="search-bar" >
         <form autocomplete="off" id = "search" action="../pages/search.php" enctype="multipart/form-data" method="post">
         <input id="searchInput" type="text" name="search" placeholder="Search" required/>
@@ -146,9 +143,10 @@ function draw_search(){?>
         <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </section>
-<?php }
+<?php } ?>
 
-function includeScript($script){ ?>
+<?php function includeScript($script){ ?>
     <script src="../scripts/<?=$script?>.js" defer></script>
 <?php } 
 ?>
+

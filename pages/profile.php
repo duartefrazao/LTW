@@ -1,5 +1,6 @@
 <?php
     
+    
     include_once("../templates/tpl_common.php");
     include_once("../templates/tpl_posts.php");
     include_once("../templates/tpl_user.php");
