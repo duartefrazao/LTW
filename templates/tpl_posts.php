@@ -29,14 +29,14 @@
 
 
 <?php function draw_post($post, $comments){?>
+
     <article id="post">
         <input type="hidden" name="id" value="<?=$post['id']?>">
 
         <?php draw_voting_aside($post) ?>
 
         <?php draw_post_header($post) ?>
-
-        <h1 class="title">
+        <h1 class="title" >
             <?=$post['title']?>
         </h1>
 
@@ -65,9 +65,11 @@
 
         <?php draw_post_header($post) ?>
 
-        <h1 class="title">
-            <?=$post['title']?>
-        </h1>
+        <a href="../pages/post.php?id=<?= $post['id']?>">
+            <h1 class="title" >
+                <?=$post['title']?>
+            </h1>
+        </a>
 
         <?php drawPostImage($post['id']) ?>
         
