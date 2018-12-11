@@ -10,11 +10,25 @@
 
     $criteria = $_POST['criteria'];
 
-    if(isset($_POST['username'])){
-        $posts = getPosts($_SESSION['username'], $offset, $criteria);
+
+
+    if($_POST['name']!="null")
+    {
+        if(isset($_SESSION['username'])){
+            $posts = getPostsOfUser($_POST['name'],$_SESSION['username'], $offset, $criteria);
+        }
+        else{
+            $posts = getPostsOfUser($_POST['name'],null,  $offset, $criteria);
+        }
     }
-    else{
-        $posts = getPosts(null,  $offset, $criteria);
+    else
+    {
+        if(isset($_SESSION['username'])){
+            $posts = getPosts($_SESSION['username'], $offset, $criteria);
+        }
+        else{
+            $posts = getPosts(null,  $offset, $criteria);
+        }
     }
     
     $response = array('result' => $permission, 'data' => $posts);

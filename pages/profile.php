@@ -7,15 +7,18 @@
     include_once("../database/db_post.php");
     include_once("../database/db_user.php");
     include_once("../includes/session.php");
-
+    $criteria = 'mostrecent'; 
     $user =null;
+    $username = $_GET['user'];
 
     if(isset($_SESSION['username'])){
         $user = $_SESSION['username'];
+        $posts = getPostsOfUser($username,$_SESSION['username'], PHP_INT_MAX, $criteria);
     }
-
-    $username = $_GET['user'];
-    $posts = getPostByUser($username);
+    else
+    {
+        $posts = getPostsOfUser($username,null,  PHP_INT_MAX, $criteria);
+    }
     $info = getUserInfo($username);
 
 
