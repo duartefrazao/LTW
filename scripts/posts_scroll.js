@@ -130,17 +130,58 @@ function receivePost(event) {
 
         let post = document.createElement('article');
         post.classList.add('overview-post');
-        post.innerHTML = '<aside class="voting_section" data-id="' + posts[i].id + '">' +
-            '<section class="vote upvote"></section>' +
-            '<h5 class="votes">' + posts[i].votes + '</h5>' +
-            '<section class="vote downvote"> </section></aside>' +
-            '<header> <h3 class="username">' +
-            '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16"> ' + posts[i].username + '</h3>' +
-            '<h3 class="creationDate">' + humanTiming(posts[i].creationDate) + '</h3> </header>' +
-            '<a href="../pages/post.php?id='+posts[i].id+'">' +
-            '<h1 class="title">' + posts[i].title + '</h1> </a>' +
-            '<footer> <h5 class="comments"> <a href="post.php?id=' + posts[i].id + '">' + posts[i].numComments +
-            ' Comment' + (posts[i].comments == 1 ? '' : 's') + '</a> </h5> </footer>';
+        let aside =document.createElement("aside");
+        aside.setAttribute("class","voting_section");
+        aside.setAttribute("data-id",posts[i].id);
+        let section1 = document.createElement("section");
+        if(response.id != null && posts[i].up == "true")
+            section1.setAttribute("class","vote upvote upvote_triggered");
+        else 
+            section1.setAttribute("class","vote upvote");
+        let h5 = document.createElement("h5");
+        h5.setAttribute("class","votes")
+        h5.innerText =  posts[i].votes;
+        let section2 = document.createElement("section");
+        if(response.id != null && posts[i].up == "false")
+            section2.setAttribute("class","vote downvote downvote_triggered");
+        else 
+            section2.setAttribute("class","vote downvote");
+        aside.appendChild(section1);
+        aside.appendChild(h5);
+        aside.appendChild(section2);
+        let header = document.createElement("header");
+        let h3 = document.createElement("h3");
+        h3.setAttribute("class","username");
+        let img = document.createElement("img");
+        img.setAttribute("class","user-image");
+        img.setAttribute("src","../images/users/default/user_icon.png");  
+        img.setAttribute("width","16");
+        img.setAttribute("height","16");
+        h3.innerText=" "+posts[i].username;
+        h3.insertBefore(img,h3.childNodes[0]);
+        let h3_1 = document.createElement("h3");
+        h3_1.setAttribute("class","creationDate");
+        h3_1.innerText=humanTiming(posts[i].creationDate);
+        header.appendChild(h3);
+        header.appendChild(h3_1);
+        let a = document.createElement("a");
+        a.setAttribute("href","../pages/post.php?id="+posts[i].id);
+        let h1 = document.createElement("h1");
+        h1.setAttribute("class","title");
+        h1.innerText=posts[i].title;
+        a.appendChild(h1);
+        let footer = document.createElement("footer");
+        let h5_1 = document.createElement("h5");
+        h5_1.setAttribute("class","comments");
+        let a_1 = document.createElement("a");
+        a_1.setAttribute("href","post.php?id="+ posts[i].id);
+        a_1.innerText=posts[i].numComments + " Comment" + (posts[i].comments == 1 ? '' : 's');
+        h5_1.appendChild(a_1);
+        footer.appendChild(h5_1);
+        post.appendChild(aside);
+        post.appendChild(header);
+        post.appendChild(a);
+        post.appendChild(footer);
 
         checkUserImage(posts[i].author, post);
         checkPostImage(posts[i].id, post);

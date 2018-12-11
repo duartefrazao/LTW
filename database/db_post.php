@@ -326,7 +326,7 @@
                 VOTE JOIN USER 
                 ON VOTE.user = USER.id AND USER.username = ?) as A2
             ON A2.entity=A1.id
-            WHERE A1.creationDate - ? < ? AND A1.id < ? ORDER BY  A1.votes DESC LIMIT ?');
+            WHERE A1.creationDate - ? < ? AND A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
         $stmt->execute(array($username,$user, time(), $timeOffset,  $offset, $numOfElements));
         return $stmt->fetchAll();
     }

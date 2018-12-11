@@ -30,8 +30,7 @@
             $posts = getPosts(null,  $offset, $criteria);
         }
     }
-    
-    $response = array('result' => $permission, 'data' => $posts);
+    $response = array('result' => $permission, 'data' => $posts , 'id' => $_SESSION['id']);
 
     echo json_encode($response);
 ?>
