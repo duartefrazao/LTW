@@ -2,7 +2,7 @@ document.addEventListener('scroll', function () {
     checkForNewPosts();
   });
 
-  document.querySelector('.order').addEventListener('click', function(event){
+  document.querySelector('.order').addEventListener('change', function(event){
     changePostsOrder(this);
   });
 
@@ -35,7 +35,7 @@ document.addEventListener('scroll', function () {
           timeSpan.add(option);
       });
 
-      timeSpan.addEventListener('click', changeSpanValue);
+      timeSpan.addEventListener('change', changeSpanValue);
 
       elem.parentNode.appendChild(timeSpan);
 
