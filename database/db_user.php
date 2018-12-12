@@ -8,12 +8,72 @@
         return $stmt->fetch();
     }
 
+
     function insertUser($username,$password,$mail,$description,$creationDate){
         $options=['cost'=>12,];
         $db= Database::instance()->db();
         $stmt = $db->prepare('Insert into user values(?,?, ?, ?, ?, ?)');
         $pass = password_hash($password,PASSWORD_DEFAULT,$options);
         $stmt->execute(array(NULL,$username,$pass,$mail,$description,$creationDate));
+    }
+
+
+    function getUser($id){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM USER WHERE id = ?');
+        $stmt->execute(array($id));
+        return $stmt->fetch();
+    }
+
+    function updateUser($id,$changes){
+
+        if($changes['username'] != NULL)
+            updateUsername($id,$changes['username']);
+
+        if($changes['password'] != NULL)
+            updatePassword($id,$changes['password']);
+
+        if($changes['mail'] != NULL)
+            updateMail($id,$changes['mail']);
+
+        if($changes['description'] != NULL)
+            updateDescription($id,$changes['description']);
+        
+    }
+    
+    function updateUsername($id,$username){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('UPDATE USER 
+            SET username = ?
+            WHERE id = ?');
+        $stmt->execute(array($username,$id));
+    }
+
+    function updateMail($id,$mail){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('UPDATE USER 
+            SET mail = ?
+            WHERE id = ?');
+        $stmt->execute(array($mail,$id));
+    }
+
+    function updateDescription($id,$description){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('UPDATE USER 
+            SET description = ?
+            WHERE id = ?');
+        $stmt->execute(array($description,$id));
+    }
+
+    function updatePassword($id,$password){
+        $options=['cost'=>12,];
+        $password = password_hash($password,PASSWORD_DEFAULT,$options);
+
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('UPDATE USER 
+            SET password = ?
+            WHERE id = ?');
+        $stmt->execute(array($password,$id));
     }
 
     function getSimilarUsers($subs){

@@ -9,6 +9,7 @@
 
     $criteria = 'mostrecent'; 
 
+
     if(isset($_SESSION['username']))
     {
         $posts = getPosts($_SESSION['username'], PHP_INT_MAX,  $criteria);
