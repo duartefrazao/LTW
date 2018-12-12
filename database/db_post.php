@@ -167,7 +167,7 @@
     function addNewPost($title, $content, $author,$channel){
         $db = Database::instance()->db();
         $stmt = $db->prepare('INSERT INTO ENTITY VALUES (NULL, ?, ?, ?, 0, ?, 0,?, NULL)');
-        $stmt->execute(array($title, $content, $author, time(),$channel));
+        return $stmt->execute(array($title, $content, $author, time(),$channel));
     }
 
 

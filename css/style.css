@@ -778,10 +778,6 @@ ul#css3menu1 ul.scroll{
   display: block;
 }
 
- #displaySuggestions {
-    display: block;
-  }
-
 .autocomplete-selection{
     background-color: var(--kinda-grey);
 }
