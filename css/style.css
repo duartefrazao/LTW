@@ -264,8 +264,16 @@ ul#css3menu1 ul.scroll{
     flex-direction: column;
 }
 
+#information header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 1em;
+
+}
+
 #information header h1{
-    margin-top:0;
     text-align: center;
 }
 #information table {

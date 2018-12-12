@@ -25,6 +25,7 @@
 
     includeScript("vote_system");
     includeScript("posts_scroll"); 
+    includeScript("search_system");
     draw_header($user);
     draw_profile($username,$info,$posts);
     draw_footer(); 

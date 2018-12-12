@@ -102,7 +102,7 @@
     function getUserInfo($username){
         $db= Database::instance()->db();
         $stmt = $db->prepare('
-            Select USER.mail,USER.description,USER.creationDate
+            Select USER.mail,USER.description,USER.creationDate,USER.id,USER.username
             From USER 
             Where USER.username = ?
         ');

@@ -4,10 +4,12 @@
     function draw_user_info($info) { ?>
 
         <section id="information">
-                <header>
-                    <h1>User Information</h1>
-                </header>
 
+                <header>
+                    <a href="settings.php"><i class="fas fa-user-edit"></i></a>
+                    <?php drawUserImageMedium($info['id']); ?>
+                    <h1><?=ucfirst($info['username']);?></h1>
+                </header>
                 <table>
                     <tr>
                         <th>E-Mail</th>

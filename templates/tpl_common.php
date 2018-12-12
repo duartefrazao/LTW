@@ -28,6 +28,7 @@
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
                             <li> <a href="../pages/profile.php?user=<?= $_SESSION['username'] ?>"> Profile </a> </li>
+                            <li> <a href="../pages/settings.php"> Settings </a> </li>
                             <li> <a href="../actions/action_logout.php"> Log Out </a> </li>
                         </ul>
                     </aside>
@@ -58,12 +59,13 @@
                         Mate
                     </a>
                 </h1>
-                <?php draw_search() ?>
-                <a class="normal-button" id="back"  href="posts.php"> 
+                <a class="normal-button" id="back"  href="javascript:history.back()"> 
                     Back
                 </a>
             </header>
 <?php } ?> 
+
+
 
 <?php function draw_footer(){
     ?>
@@ -108,6 +110,13 @@
 <?php function drawUserImage($id){
     if( file_exists('../images/users/thumb_small/' . $id . '.jpg') ){ ?>
         <img class="user-image" src="../images/users/thumb_small/<?= $id ?>.jpg" width="16" height="16">
+    <?php } else { ?>
+        <img src="../images/users/default/user_icon.png" width="16" height="16">
+<?php } }?>
+
+<?php function drawUserImageMedium($id){
+    if( file_exists('../images/users/thumb_medium/' . $id . '.jpg') ){ ?>
+        <img class="user-image" src="../images/users/thumb_medium/<?= $id ?>.jpg" width="46" height="46">
     <?php } else { ?>
         <img src="../images/users/default/user_icon.png" width="16" height="16">
 <?php } }?>
