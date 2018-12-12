@@ -51,11 +51,14 @@ function encodeForAjax(data) {
         })
         .join('&')
 }
-form.addEventListener("click", function (e) {
-    if (e.target.nodeName == "LI") {
+document.querySelector('#displaySuggestions').addEventListener("click", function (e) {
         form.submit();
-    }
 })
+
+document.addEventListener('click', function(e){
+    display.innerHTML = "";
+} )
+
 search.addEventListener("keyup", function () {
     let name = search.value;
     if (lastInput != name) {

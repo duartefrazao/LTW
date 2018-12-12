@@ -133,9 +133,7 @@ ul#css3menu1 ul.scroll{
     display: block;
 }
 
-#ordering::before{
-    content: "Sort by:";
-}
+
 
 /*----------------------------------------------------------*/
 /*----------------------BUTTON STYLES-----------------------*/
@@ -314,6 +312,7 @@ ul#css3menu1 ul.scroll{
     max-width: 60em;
     min-height: 3em;
     margin: 1em auto;
+    margin-top: 0;
     padding: 1em 0.5em;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
@@ -399,9 +398,10 @@ ul#css3menu1 ul.scroll{
 
 
 .overview-post .comments {
-    font-size: medium;
+    font-size: small;
     display: block;
     margin: 0;
+    font-weight: bold;
     padding: 0 ;
 }
 
@@ -665,32 +665,36 @@ ul#css3menu1 ul.scroll{
 /*----------------------------------------------------------*/
 #new-post{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows:auto;
     grid-template-areas: "title           channels"
                          "content         content"
                          "description     image"
                          ".               share";
-    min-width: 30%;
-    max-width: 70%;
+    min-width: 20em;
+    max-width: 40em;
     margin: 1em auto;
     padding: 1em;
     background-color: white;
+    justify-items: center;
     border-radius: 5px 5px 5px 5px;
 }
 
+
 #new-post .drp_channels{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     grid-area: channels;
     height: 2em;
     background-color: white;
-    margin-left: 1em;
     border-radius: 5px 5px 5px 5px;
     border: solid rgb(172, 172, 172) 1px;
-    text-indent: 1em;
     margin-bottom: 1em;
 }
 
 #new-post input[name="description"]{
+    width: 100%;
     grid-area: description;
     height: 2em;
     border-radius: 5px 5px 5px 5px;
@@ -700,11 +704,13 @@ ul#css3menu1 ul.scroll{
 }
 
 #new-post input[type="file"]{
+    width: 100%;
     grid-area: image;
     margin-left: 1em;
 }
 
 #new-post input[name='title']{
+    width: 100%;
     grid-area: title;
     height: 2em;
     border-radius: 5px 5px 5px 5px;
@@ -714,6 +720,7 @@ ul#css3menu1 ul.scroll{
 }
 
 #new-post input[type='submit']{
+    
     display: block;
     justify-self: end;
     grid-area: share;
@@ -724,6 +731,7 @@ ul#css3menu1 ul.scroll{
 }
 
 #new-post textarea{
+    width: 100%;
     grid-area: content;
     margin-bottom: 1em;
     text-indent: 0.5em;
@@ -740,50 +748,79 @@ ul#css3menu1 ul.scroll{
 /*-------------------------SEARCH BAR-----------------------*/
 /*----------------------------------------------------------*/
 #search-bar{
-    display:flex;
-    justify-content: center;
-    margin-top:1.5em;
+    display: inline-block;
+    position: relative;
+    flex-grow: 1;
+    min-width: 10em;
+    max-width: 10em;
+    margin: 0 1em;
+    background-color: var(--nav-bg-color);
 }
 
-#search-bar button{
-    background-color:var(--background);
-    border: none;
-}
-
-#search-bar li:hover {
+#searchInput{
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 10px;
+	border-radius: 10em;
+    transition: all .5s;
+    width: 15px;
+	color: transparent;
     cursor: pointer;
- 
-    background-color: var(--kinda-grey);
 }
 
+
+#searchInput:focus {
+    width: 100%;
+    max-width: 100%;
+    padding: 9px 0;
+	text-indent: 2.5em;
+	color: #000;
+	cursor: auto;
+    outline: none;
+	background-color: #fff;
+	box-shadow: 0 0 5px black;
+}
+
+#searchInput:hover {
+    background-color: #fff;
+}
+
+#displaySuggestions ul li:hover{
+    background-color: var(--background);
+}
 
 #displaySuggestions{
     padding:0;
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    margin: 0.3em 0;
+    display: block;
+    background-color: #fff;
+    min-width: 100%;
+    max-width: 100%;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 #displaySuggestions ul{
+    min-width: 100%;
+    max-width: 100%;
     padding:0;
     margin:0;
+    border-radius: 5px;
 }
 
 #displaySuggestions  li{
+    padding: 9px 10px 9px 10px;
     color: black;
-  padding: 5px 16px;
-  text-decoration: none;
-  display: block;
+    width: 100%;
+    border-radius: 10em solid;
+    text-decoration: none;
+    display: block;   
 }
 
- #displaySuggestions {
+#displaySuggestions li a{
+    margin: 0px;
     display: block;
-  }
-
-.autocomplete-selection{
-    background-color: var(--kinda-grey);
 }
 
 #search_results #posts{
@@ -857,9 +894,9 @@ ul#css3menu1 ul.scroll{
 }
 
 
-/*----------------------------------------------------------*/
+/*------------------------------------------------------------*/
 /*--------------------------ADD STORY-------------------------*/
-/*----------------------------------------------------------*/
+/*------------------------------------------------------------*/
 
 .add-story{
     transition: 0.5s ease;
@@ -879,5 +916,41 @@ ul#css3menu1 ul.scroll{
 .add-story:hover{
     background-color: rgb(1, 97, 52);
     transition: 0.5s ease;
+}
+
+
+/*------------------------------------------------------------*/
+/*--------------------------ORDERING-------------------------*/
+/*------------------------------------------------------------*/
+
+#ordering {
+ 
+    display: flex; 
+    justify-content: center;
+    align-items: baseline;
+
+}
+
+#ordering::before{
+    content: "Sort by:";
+    font-size: medium;
+    font-weight: normal;
+
+}
+ .order, .timeSpan{
+    padding-top: 1em;
+    margin: 1em;
+    padding: 0;
+    background: none;
+}
+
+.order:focus, .timeSpan:focus{
+    outline: none;
+}
+
+.order, .order option, .timeSpan{
+    border: none;
+    border-bottom: #000 solid 1px;
+    transition: all 0.5s;
 }
 

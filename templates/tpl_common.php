@@ -19,6 +19,7 @@
                         Mate
                     </a>
                 </h1>
+                <?php draw_search() ?>
                 <?php if($username == NULL){ ?>
                     <a class="normal-button" id="login-button" href="login.php"> Log In</a>
                     <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
@@ -57,6 +58,7 @@
                         Mate
                     </a>
                 </h1>
+                <?php draw_search() ?>
                 <a class="normal-button" id="back"  href="posts.php"> 
                     Back
                 </a>
@@ -138,10 +140,9 @@
 <?php function draw_search(){?>
     <section id="search-bar" >
         <form autocomplete="off" id = "search" action="../pages/search.php" enctype="multipart/form-data" method="post">
-        <input id="searchInput" type="text" name="search" placeholder="Search" required/>
-        <div id="displaySuggestions"> </div>
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <input id="searchInput" type="text" name="search" />
         </form>
+        <div id="displaySuggestions"> </div>
     </section>
 <?php } ?>
 

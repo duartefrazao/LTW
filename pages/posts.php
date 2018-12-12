@@ -26,8 +26,6 @@
     includeScript("posts_scroll");
     includeScript("search_system");
 
-    draw_search();
-
     draw_ordering();
 
     draw_posts($posts);
