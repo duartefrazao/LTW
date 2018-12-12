@@ -13,7 +13,8 @@
 
     $method = $_SERVER['REQUEST_METHOD'];
 
-    $response = array();
+    $response=null;
+    $code = 404;
 
     switch($method){
         case ("PUT"):
@@ -23,25 +24,24 @@
                 $channel = $_GET["channel"];
                 $author = $_SESSION['id'];
                 if(addNewPost($title, $content,$author,$channel)==true)
-                    $response['code'] = 200;
-                else 
-                    $response['code'] = 500;
+                    $code = 200;
             }
             break;
         case ('GET'):
            $posts = getPosts($user, PHP_INT_MAX,  $criteria);
            
-           if($posts != null)
-                $response['code'] = 200;
-            else 
-                $response['code'] = 404;
+           if($posts != null){
+                $response = $posts;
+                $code = 200;
+           }
 
-           $response['posts'] = $posts;
            break;
         default:
-            $response['code'] = 404;
     }
 
-    echo json_encode($response);
+    if($response !=null)
+        echo json_encode($response);
+        
+    http_response_code($code);
 
 ?>
