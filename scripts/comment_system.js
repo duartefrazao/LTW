@@ -317,17 +317,26 @@ function getCommentId(element){
 function createComment(element) {
   let comment = document.createElement('article');
   comment.classList.add('comment');
-  comment.innerHTML = '<aside class="voting_section" data-id="' + element.id + '">' +
-    '<section class="vote upvote"> </section>' +
-    '<h5 class="votes">' + element.votes + '</h5>' +
-    '<section class="vote downvote"> </section></aside>' +
-    '<header> <h3 data-id="' + element.id +
-    '" class="username">' +
-    '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3>' +
-    '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
-    '<h2 class="content">' + element.title + '</h2> <footer>' +
-    '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +
-    '<span class="reply"> Reply </span> </footer>';
+
+  let aside = document.createElement('aside');
+  aside.classList.add('voting_section');
+  aside.setAttribute('data-id', element.id);
+
+  aside.innerHTML += '<section class="vote upvote' + (element.up == "true" ? ' upvote_triggered"' : '"') + '> </section>';
+
+  aside.innerHTML += '<h5 class="votes">' + element.votes + '</h5>';
+
+  aside.innerHTML += '<section class="vote downvote' + (element.up == "false" ? ' downvote_triggered"' : '"') +'</section>';
+  
+  comment.appendChild(aside);
+
+  comment.innerHTML += '<header> <h3 data-id="' + element.id +
+  '" class="username">' +
+  '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3>' +
+  '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
+  '<h2 class="content">' + element.title + '</h2> <footer>' +
+  '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +
+  '<span class="reply"> Reply </span> </footer>';
 
   checkUserImage(element.author, comment);
 
