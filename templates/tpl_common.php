@@ -69,11 +69,15 @@
 
 <?php function draw_footer(){
     ?>
-        <a href="add_post.php" class="add-story"/>
+        <a href="add_post.php" class="add-story"><i class="fas fa-plus" ></i></a>
         </body>
     </html>
 <?php } ?>
-
+<?php function draw_simple_footer(){
+    ?>
+        </body>
+    </html>
+<?php } ?>
 
 
 <?php function draw_voting_aside($element)

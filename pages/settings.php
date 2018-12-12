@@ -20,6 +20,6 @@
 
     draw_simple_header();
     draw_settings($user,$info);
-    draw_footer(); 
+    draw_simple_footer(); 
 
 ?>
