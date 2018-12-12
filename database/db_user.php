@@ -109,4 +109,15 @@
         $stmt->execute(array($username));
         return $stmt->fetch();
     }
+
+    function getUserInfoById($id){
+        $db= Database::instance()->db();
+        $stmt = $db->prepare('
+            Select USER.mail,USER.description,USER.creationDate,USER.id,USER.username
+            From USER 
+            Where USER.id = ?
+        ');
+        $stmt->execute(array($id));
+        return $stmt->fetch();
+    }
 ?>
