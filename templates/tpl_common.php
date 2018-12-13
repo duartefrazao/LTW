@@ -20,7 +20,10 @@
                     </a>
                 </h1>
                 <?php draw_search() ?>
-                <?php if($username == NULL){ ?>
+                <?php if($username == NULL){ 
+                        includeScript('auth');
+                    ?>
+                    
                     <a class="normal-button" id="login-button"> Log In</a>
                     <a class="normal-button" id="signup-button"> Sign Up </a>
                 <?php }else{ ?>

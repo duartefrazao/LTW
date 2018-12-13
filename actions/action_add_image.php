@@ -5,6 +5,10 @@ include_once('../database/db_upload.php');
 
 
 function createImageResource($id, $path, $imageTitle){
+
+    if(!fileUploaded())
+        return;
+        
     insertNewImage($id, $imageTitle);
 
     // Generate filenames for original, small and medium files
@@ -71,6 +75,19 @@ function createImageResource($id, $path, $imageTitle){
   imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
   return $dst;
+}
+
+
+function fileUploaded()
+{
+    if(empty($_FILES)) {
+        return false;       
+    } 
+
+    if(!file_exists($_FILES['image']['tmp_name']) || !is_uploaded_file($_FILES['image']['tmp_name'])){
+        return false;
+    }   
+    return true;
 }
 
 ?>

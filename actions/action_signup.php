@@ -7,20 +7,20 @@
     include_once('../actions/action_verify_input.php');
 
 
-    $username= $_POST['username'];
-    $password=$_POST['password'];
-    $mail=$_POST['mail'];
-    $description=$_POST['description'];
-    $imageTitle = $_POST['title'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $mail = $_POST['mail'];
+    $description= $_POST['description'];
+    $imageTitle = isset($_POST['title']) ? $_POST['title'] : NULL;
 
-    $message =null;
+    $message = array('type' => true, 'content' => 'Signed up successfully');
 
-    print_r($username);
+
     if(!verifyString($username)){
         $message=array('type'=>'error_username','content'=>'Characters <>*/\'\" are not allowed');
     }else if(!verifyString($password)){
         $message=array('type'=>'error_password','content'=>'Characters <>*/\'\" are not allowed');
-    }else if(!verifyString($mail)){
+    }else if(!verifyEmail($mail)){
         $message=array('type'=>'error_mail','content'=>'Insert a valid mail');
     }else if(!verifyString($description)){
         $message=array('type'=>'error_description','content'=>'Characters <>*/\'\" are not allowed');
@@ -31,12 +31,17 @@
 
         try{
            insertUser($username,$password,$mail,$description,$creationDate);
-           createImageResource(getUserId($username)['id'], 'users', $imageTitle);
+           
+           $id = intval(getUserId($username)['id']);
+
+           createImageResource($id, 'users', $imageTitle);
+
            $_SESSION['username']=$username;
-           $_SESSION['id']=checkUserPassword($username)['id'];
-           header('Location: ../pages/posts.php');
+
+           $_SESSION['id'] = $id;
+
        }catch(PDOException $e){
-           header('Location: ../pages/signup.php');
+            $message=array('type'=>'error_username','content'=>'Username already taken, please choose another one!');
        }
     }
 

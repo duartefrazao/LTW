@@ -5,24 +5,22 @@
     include_once('../actions/action_verify_input.php');
 
     $permission = true;
-    $comments = array();
+    $message = array();
 
-    $username=$_POST['username'];
-    $password=$_POST['password'];
+    $username= test_input($_POST['username']);
+    $password= test_input($_POST['password']);
 
     $user=checkUserPassword($username);
 
     if( $user!== false && password_verify($password,$user['password'])){
         $_SESSION['username']= $username;
         $_SESSION['id'] = $user['id'];
-        $_SESSION['messages'] = array('type'=>'sucess','content'=>'Logged in sucessful');
+        $message = array('type' => true, 'content' => 'Logged in successfully!');
 
-        header('Location: ../pages/posts.php');
     }else{
-        $_SESSION['messages'] = array('type'=>'error','content'=>'Logged in sucessful');
+        $message = array('type' => false, 'content' => 'Invalid username and/or password!');
 
-        header('Location: ../pages/login.php');
     }
 
-    
+    echo json_encode($message);
 ?>

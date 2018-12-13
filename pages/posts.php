@@ -23,7 +23,6 @@
 
     $images = getAllImages();
 
-    includeScript("login");
     includeScript("vote_system");
     includeScript("posts_scroll");
     includeScript("search_system");
