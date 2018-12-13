@@ -11,6 +11,9 @@
     $user =null;
     $username = $_GET['user'];
 
+    if(!isset($username))
+        header('Location: posts.php');
+
     if(isset($_SESSION['username'])){
         $user = $_SESSION['username'];
         $posts = getPostsOfUser($username,$_SESSION['username'], PHP_INT_MAX, $criteria);
@@ -26,6 +29,7 @@
     includeScript("vote_system");
     includeScript("posts_scroll"); 
     includeScript("search_system");
+    includeScript("settings");
     draw_header($user);
     draw_profile($username,$info,$posts);
     draw_footer(); 

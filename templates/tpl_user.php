@@ -6,7 +6,9 @@
         <section id="information">
 
                 <header>
-                    <a href="settings.php"><i class="fas fa-user-edit"></i></a>
+                    <?php if($_SESSION['username'] == $info['username']){?>
+                    <a id="settings_button" ><i class="fas fa-user-edit"></i></a>
+                    <?php }?>
                     <?php drawUserImageMedium($info['id']); ?>
                     <h1><?=ucfirst($info['username']);?></h1>
                 </header>
