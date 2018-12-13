@@ -11,11 +11,16 @@
     $password=$_POST['password'];
 
     $user=checkUserPassword($username);
+
     if( $user!== false && password_verify($password,$user['password'])){
         $_SESSION['username']= $username;
         $_SESSION['id'] = $user['id'];
+        $_SESSION['messages'] = array('type'=>'sucess','content'=>'Logged in sucessful');
+
         header('Location: ../pages/posts.php');
     }else{
+        $_SESSION['messages'] = array('type'=>'error','content'=>'Logged in sucessful');
+
         header('Location: ../pages/login.php');
     }
 
