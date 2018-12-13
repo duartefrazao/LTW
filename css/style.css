@@ -22,6 +22,8 @@ a {
 }
 
 body {
+    width: 100%;
+    height: 100%;
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
@@ -211,29 +213,66 @@ ul#css3menu1 ul.scroll{
 /*----------------------AUTHENTICATION-----------------------*/
 /*----------------------------------------------------------*/
 
-#login,
-#signup {
-    max-width: 30em;
+
+#mask {
+    
+    background: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 999;
+}
+
+#login, #signup{
+    display: flex;
     background-color: white;
     box-shadow: whitesmoke 2px;
     text-align: center;
-    display: flex;
     flex-direction: column;
     border-radius: 5px 5px 5px 5px;
-    height: auto;
     margin: 1em auto;
+    padding: 1em;
+    position: fixed;
+    top: 10%;
+    transform: translateY(-50%);    
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 30em;
+    height: fit-content;
+    transition: 0.2s ease-in-out; 
 }
 
 .auth_form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    justify-content: center;
     margin: 0 auto;
     width: 15em;
 }
 
-.submit_button {
+.auth_form input:focus{
+    outline: none;
+    background: var(--background);
+}
+
+.auth_form input{
+    border-radius: 10em;
+    margin: 1em 0;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.auth_form .submit_button {
+    margin: 0 auto;
+    background-color: var(--nav-bg-color);
+    color: white;
+    font-weight: bold;
     width: 30%;
-    background-color: var(--latte);
 }
 
 
@@ -954,3 +993,14 @@ ul#css3menu1 ul.scroll{
     transition: all 0.5s;
 }
 
+
+#blur{
+    position: fixed;
+    z-index: 8;
+    min-width: 100vh;
+    min-height: 100vh;
+    background-color: #1C2127;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+}

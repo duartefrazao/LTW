@@ -18,4 +18,6 @@
     }else{
         header('Location: ../pages/login.php');
     }
+
+    
 ?>

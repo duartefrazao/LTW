@@ -21,8 +21,8 @@
                 </h1>
                 <?php draw_search() ?>
                 <?php if($username == NULL){ ?>
-                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
-                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
+                    <a class="normal-button" id="login-button"> Log In</a>
+                    <a class="normal-button" id="signup-button"> Sign Up </a>
                 <?php }else{ ?>
                     <aside class="user-actions">
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
