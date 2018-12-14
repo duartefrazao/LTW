@@ -74,7 +74,6 @@
 
 <?php function draw_footer(){
     ?>
-        <a href="add_post.php" class="add-story">&#43;</i></a>
         </body>
     </html>
 <?php } ?>
@@ -90,16 +89,17 @@
     <aside class="voting_section" data-id="<?=$element['id']?>">
 
         <section class="vote upvote<?php 
-                    if(isset($_SESSION['id'])&& isset($element['up']) && $element['up']=='true'){
-        ?> upvote_triggered" <?php } else { ?> " <?php } ?>"></section>
+                if(isset($_SESSION['id']) && isset($element['up']) && $element['up']=='true'){
+        ?> upvote_triggered<?php } ?>"></section>
         
         <h5 class="votes">
             <?=$element['votes']?>
         </h5>
         
         <section class="vote downvote<?php 
-                if(isset($_SESSION['id'])&& isset($element['up']) && $element['up']=='false'){
-            ?> downvote_triggered<?php } ?>"></section>
+                if(isset($_SESSION['id']) && isset($element['up']) && $element['up']=='false'){
+        ?> downvote_triggered<?php } ?>"></section>
+
     </aside>
 
     <!-- <span class="partial_line"></span> -->

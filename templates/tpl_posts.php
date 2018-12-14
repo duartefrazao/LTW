@@ -11,6 +11,9 @@
             }
         ?>
     </section>
+
+
+    <a href="add_post.php" class="add-story">&#43;</i></a>
 <?php }?>
 
 
