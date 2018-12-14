@@ -178,18 +178,13 @@ function createReplyForm(element){
   addMultiLevelListener(form);
 
   form.querySelector('button').addEventListener('click', function(event) {
-    deleteTextArea(this);
+    removeTextArea(this.parentNode.parentNode);
   });
 
   comment.appendChild(form);
 
 }
 
-function deleteTextArea(element) {
-
-  removeTextArea(element.parentNode.parentNode);
-  
-}
 
 function submitLeveledComment(element){
 
@@ -258,8 +253,6 @@ function addExpandedComment(event){
 //=========================================================================//
 
 //==========================='INFINITE SCROLLING'===========================//
-
-
 
 
 function loadReplies(element) {
