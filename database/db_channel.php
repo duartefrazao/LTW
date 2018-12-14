@@ -68,7 +68,7 @@
     function getPostsFromChannelLogged($username, $offset, $numOfElements,$channel){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-        'SELECT A1.*, A2.up FROM 
+        'SELECT A1.*, A2.up as up FROM 
            (SELECT ENTITY.* , USER.username
             FROM ENTITY JOIN USER JOIN CHANNEL 
                 ON ENTITY.author = USER.id AND ENTITY.channel=CHANNEL.id

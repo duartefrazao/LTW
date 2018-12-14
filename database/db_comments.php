@@ -6,7 +6,7 @@
     function getCommentsByPostId($id,$user_id, $offset){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT A1.*, A2.up FROM 
+            'SELECT A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username 
                     FROM ENTITY JOIN USER
                     ON ENTITY.author = USER.id where ENTITY.parentEntity = ?) as A1

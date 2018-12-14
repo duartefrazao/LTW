@@ -148,7 +148,7 @@
         $param = "%{$subs}%";
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-        'SELECT A1.*, A2.up FROM 
+        'SELECT A1.*, A2.up as up FROM 
            (SELECT ENTITY.* , USER.username
             FROM ENTITY JOIN USER  
                 ON ENTITY.author = USER.id 
@@ -175,7 +175,7 @@
     function getPostById($id,$username){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT A1.*, A2.up FROM 
+            'SELECT A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username 
                 FROM ENTITY JOIN USER
                 ON ENTITY.author = USER.id where ENTITY.id = ? AND ENTITY.parentEntity is NULL) as A1
@@ -234,7 +234,7 @@
     function getPostsLogged_id($username, $offset, $numOfElements){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-        'SELECT A1.*, A2.up FROM 
+        'SELECT A1.*, A2.up as up FROM 
            (SELECT ENTITY.* , USER.username
             FROM ENTITY JOIN USER  
                 ON ENTITY.author = USER.id 
@@ -253,7 +253,7 @@
     function getPostByUser_id($username,$user, $offset, $numOfElements){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT Distinct A1.*, A2.up FROM 
+            'SELECT Distinct A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username 
                 FROM ENTITY JOIN USER
                 ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
@@ -297,7 +297,7 @@
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
-        'SELECT A1.*, A2.up FROM 
+        'SELECT A1.*, A2.up as up FROM 
            (SELECT ENTITY.* , USER.username
             FROM ENTITY JOIN USER  
                 ON ENTITY.author = USER.id 
@@ -317,7 +317,7 @@
     function getPostByUser_votes($username,$user, $offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT Distinct A1.*, A2.up FROM 
+            'SELECT Distinct A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username 
                 FROM ENTITY JOIN USER
                 ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
@@ -362,7 +362,7 @@
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
-        'SELECT A1.*, A2.up FROM 
+        'SELECT A1.*, A2.up as up FROM 
            (SELECT ENTITY.* , USER.username
             FROM ENTITY JOIN USER  
                 ON ENTITY.author = USER.id 
@@ -382,7 +382,7 @@
     function getPostByUser_comments($username,$user,$offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT Distinct A1.*, A2.up FROM 
+            'SELECT Distinct A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username 
                 FROM ENTITY JOIN USER
                 ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
