@@ -1012,12 +1012,14 @@ input[type='hidden'] {
     transition: 0.5s ease;
     background-color: rgb(10, 175, 98);
     color: white;
-    display: inline-block;
-    padding: 0.75em;
-    font-weight: bolder;
-    font-size: large;
+    padding: 1em;
+    width:20px;
+    height:20px;
     position: fixed;
+    text-align: center;
+    display:inline-block;
     bottom: 3em;
+    transition: 0.5s ease;
     border-radius: 50%;
     right: 3em;
 }
@@ -1025,7 +1027,8 @@ input[type='hidden'] {
 
 .add-story:hover{
     background-color: rgb(1, 97, 52);
-    transition: 0.5s ease;
+    transform: scale(1.2);
+    box-shadow:2px 3px 5px #999;
 }
 
 

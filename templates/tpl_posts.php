@@ -50,7 +50,7 @@
 
         <hr/>
 
-        <?php draw_comments($comments) ?>  
+        <section id="comments"> </section>
 
         <span class="load-more"> Load More </span>
 
