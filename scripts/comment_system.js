@@ -107,9 +107,11 @@ function addRepliesListener(element) {
 
 function loadChildren(element) {
 
-  let parent_id = element.parentNode.parentNode.querySelector('.voting_section').getAttribute('data-id');
+  let parent = element.parentNode.parentNode;
 
-  let lastReply = element.parentNode.parentNode.querySelector('.replies .comment:last-of-type');
+  let parent_id = getCommentId(parent);
+
+  let lastReply = parent.querySelector('[data-id="' + parent_id + '"] ~ .replies > .comment:last-of-type');
 
   let lastReplyId = lastReply === null ? Number.MAX_SAFE_INTEGER : lastReply.querySelector('aside').getAttribute('data-id');
 

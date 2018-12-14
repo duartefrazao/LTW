@@ -711,6 +711,7 @@ input[type='hidden'] {
 
 .numReplies::before{
     content: "\21B3";
+    margin-left: 0.42em;
 }
 
 
