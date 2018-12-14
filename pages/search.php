@@ -7,9 +7,10 @@
     include_once("../database/db_upload.php");
     include_once("../database/db_channel.php");
     include_once("../includes/session.php");
+    include_once('../actions/action_verify_input.php');
     include_once("utilities.php");
 
-    $search=$_POST['search'];
+    $search= test_input($_POST['search']);
     $user =null;
 
     if(isset($_SESSION['username'])){

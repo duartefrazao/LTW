@@ -10,22 +10,16 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $mail = $_POST['mail'];
-    $description= $_POST['description'];
-    $imageTitle = isset($_POST['title']) ? $_POST['title'] : NULL;
+    $description= test_input($_POST['description']);
+    $imageTitle = isset($_POST['title']) ? test_input($_POST['title']) : NULL;
 
     $message = array('type' => true, 'content' => 'Signed up successfully');
 
 
     if(!verifyString($username)){
         $message=array('type'=>'error_username','content'=>'Characters <>*/\'\" are not allowed');
-    }else if(!verifyString($password)){
-        $message=array('type'=>'error_password','content'=>'Characters <>*/\'\" are not allowed');
     }else if(!verifyEmail($mail)){
         $message=array('type'=>'error_mail','content'=>'Insert a valid mail');
-    }else if(!verifyString($description)){
-        $message=array('type'=>'error_description','content'=>'Characters <>*/\'\" are not allowed');
-    }else if(!verifyString($imageTitle)){
-        $message=array('type'=>'error_imageTitle','content'=>'Characters <>*/\'\" are not allowed');
     }else{
         $creationDate=time();
 

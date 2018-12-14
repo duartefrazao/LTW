@@ -1,6 +1,7 @@
 <?php
     include_once("../includes/session.php");
     include_once("../database/db_vote.php");
+    include_once('../actions/action_verify_input.php');
 
     $permission = true;
     $entities = array();
@@ -8,8 +9,8 @@
     if(!isset($_SESSION['username'])){
         $permission = false;
     }else{
-        $type = $_POST['voteType'];
-        $entityID = $_POST['entityID'];
+        $type = test_input($_POST['voteType']);
+        $entityID = test_input($_POST['entityID']);
         
         vote($entityID,$type,$_SESSION['id']);
         $entities = getVoteUser($entityID,$_SESSION['id']);

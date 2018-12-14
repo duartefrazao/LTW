@@ -1,24 +1,26 @@
 <?php
     include_once('../includes/session.php');
     include_once('../database/db_post.php');
-
+    include_once('../actions/action_verify_input.php');
 
     $permission = true;
     $posts = array();
 
-    $offset = $_POST['offset'];
+    $offset = test_input($_POST['offset']);
 
-    $criteria = $_POST['criteria'];
+    $criteria = test_input($_POST['criteria']);
+
+    $name = test_input($_POST['name']);
 
 
 
-    if($_POST['name']!="null")
+    if($name !="null")
     {
         if(isset($_SESSION['username'])){
-            $posts = getPostsOfUser($_POST['name'],$_SESSION['username'], $offset, $criteria);
+            $posts = getPostsOfUser($name ,$_SESSION['username'], $offset, $criteria);
         }
         else{
-            $posts = getPostsOfUser($_POST['name'],null,  $offset, $criteria);
+            $posts = getPostsOfUser($name ,null,  $offset, $criteria);
         }
     }
     else

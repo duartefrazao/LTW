@@ -175,7 +175,7 @@ function receivePost(event) {
         a.setAttribute("href","../pages/post.php?id="+posts[i].id);
         let h1 = document.createElement("h1");
         h1.setAttribute("class","title");
-        h1.innerText=posts[i].title;
+        h1.innerHTML =posts[i].title;
         a.appendChild(h1);
         let footer = document.createElement("footer");
         let h5_1 = document.createElement("h5");

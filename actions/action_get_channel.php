@@ -1,12 +1,13 @@
 <?php
     include_once('../includes/session.php');
     include_once('../database/db_channel.php');
+    include_once('../actions/action_verify_input.php');
 
 
     $permission = true;
     $posts = array();
 
-    $channel=$_POST['channel'];
+    $channel= test_input(['channel']);
 
     if(isset($_POST['username'])){
         $posts = getPostsFromChannel($_SESSION['username'], PHP_INT_MAX,$channel);
