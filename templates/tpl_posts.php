@@ -11,6 +11,9 @@
             }
         ?>
     </section>
+
+
+    <a href="add_post.php" class="add-story">&#43;</i></a>
 <?php }?>
 
 
@@ -28,7 +31,7 @@
 <?php } ?>
 
 
-<?php function draw_post($post, $comments){?>
+<?php function draw_post($post){?>
 
     <article id="post">
         <input type="hidden" name="id" value="<?=$post['id']?>">
@@ -50,7 +53,7 @@
 
         <hr/>
 
-        <?php draw_comments($comments) ?>  
+        <section id="comments"> </section>
 
         <span class="load-more"> Load More </span>
 

@@ -28,9 +28,9 @@ function addCollapseListener(element){
   .addEventListener('click', function(event){
       collapseChildren(this);});
 
-      element.querySelector('.content')
-      .addEventListener('click', function(event){
-          collapseChildren(this);});
+  element.querySelector('.content')
+  .addEventListener('click', function(event){
+      collapseChildren(this);});
 }
 
 function collapseChildren(element){
@@ -41,12 +41,7 @@ function collapseChildren(element){
   if( replies != null){
     parent.removeChild(replies);
   }
-
-  let textArea = parent.querySelector('.reply-text-area');
-  if( textArea != null){
-    parent.removeChild(textArea);
-  }
-
+  removeTextArea(parent);
 }
 
 function removeTextArea(parent){
@@ -60,29 +55,13 @@ function removeTextArea(parent){
 
 // =============== EVENT LISTENERS =================== //
 
+window.onload = loadReplies(document.querySelector('.load-more'));
+
 let commentForm = document.querySelector('#post > form');
 commentForm.addEventListener('submit', function (event) {
   event.preventDefault();
   submitComment(this);
 });
-
-
-let replies = document.querySelectorAll('.numReplies');
-replies.forEach(function(elem){
-  elem.addEventListener('click', function(event){
-    event.preventDefault();
-    loadChildren(this);
-  })
-});
-
-let levelReply = document.querySelectorAll('.reply');
-levelReply.forEach(function(elem){
-  elem.addEventListener('click', function(event){
-    event.preventDefault(); 
-    createReplyForm(this);
-  });
-});
-
 
 let loading = document.querySelector('.load-more');
 loading.addEventListener('click', function (event) {
@@ -142,11 +121,6 @@ function receiveReplies(event) {
 
   let response = JSON.parse(this.responseText);
 
-  if (response.result === false) {
-    login();
-    return;
-  }
-
   let comments = response.data;
 
   if (comments.length === 0) {
@@ -199,18 +173,13 @@ function createReplyForm(element){
   addMultiLevelListener(form);
 
   form.querySelector('button').addEventListener('click', function(event) {
-    deleteTextArea(this);
+    removeTextArea(this.parentNode.parentNode);
   });
 
   comment.appendChild(form);
 
 }
 
-function deleteTextArea(element) {
-
-  removeTextArea(element.parentNode.parentNode);
-  
-}
 
 function submitLeveledComment(element){
 
@@ -281,15 +250,16 @@ function addExpandedComment(event){
 //==========================='INFINITE SCROLLING'===========================//
 
 
-
-
 function loadReplies(element) {
 
   let parent_id = (element.parentNode).querySelector('input[name=id]').value;
 
+  let last_id = Number.MAX_SAFE_INTEGER;
+
   let lastComment = document.querySelector('#comments > .comment:last-of-type');
 
-  let last_id = lastComment.querySelector('aside').getAttribute('data-id');
+  if(lastComment != null)
+    last_id = lastComment.querySelector('aside').getAttribute('data-id');
 
   createRequest(receiveComment,'../actions/action_get_replies.php', {parent_id: parent_id,last_id: last_id});
 };
@@ -298,14 +268,10 @@ function receiveComment(event) {
 
   let response = JSON.parse(this.responseText);
 
-  if (response.result === false) {
-    login();
-    return;
-  }
-
   let comments = response.data;
 
   let section = document.querySelector('#comments');
+
   for (let i = 0; i < comments.length; i++) {
 
     let comment = createComment(comments[i]);

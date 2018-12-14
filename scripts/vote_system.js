@@ -14,7 +14,7 @@ function voteHandler(event){
       let info = JSON.parse(this.responseText);
       
       if(info.result===false){
-        window.location = "../pages/login.php";
+        login();
         return;
       }
 
