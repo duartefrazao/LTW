@@ -11,8 +11,21 @@ if (!isset($_SESSION['username'])) {
 
     $content = $_POST['text'];
     $parent_id = $_POST['parent_id'];
+    $last_id = $_POST['comment_id'];
+    
     addComment($parent_id, $_SESSION['id'], $content);
-    $comments = getCommentsAfterId($parent_id, $_POST['comment_id']);
+
+    //user did not open the replies so we don't know which was the
+    //last (most recent) reply to that comment
+    if($last_id === "-1"){
+        $last_id = intval(getLastCommentId()) + 1;
+
+        $comments = getCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
+        $comments = array_reverse($comments);
+    }else{
+    
+        $comments = getCommentsAfterId($parent_id, $last_id);
+    }
 }
 
 $response = array('result' => $permission, 'data' => $comments);

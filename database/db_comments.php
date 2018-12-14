@@ -21,6 +21,11 @@
         return $stmt->fetchAll();
     }
 
+    function getLastCommentId(){
+        $db=Database::instance()->db();
+        return $db->lastInsertId();
+    }
+
     function addComment($parent_id, $user_id, $content){
 
         $db = Database::instance()->db();

@@ -9,11 +9,58 @@ function OnInput() {
   this.style.height = (this.scrollHeight) + 'px';
 }
 
+//=============== COLLAPSE COMMENTS ================= //
+
+let com_headers = document.querySelectorAll('.comment header');
+com_headers.forEach(function(elem){
+  elem.addEventListener('click', function(event){
+    collapseChildren(this);});
+});
+  
+let com_content = document.querySelectorAll('.comment .content');
+com_content.forEach(function(elem){
+  elem.addEventListener('click', function(event){
+    collapseChildren(this);});
+});
+
+function addCollapseListener(element){
+  element.querySelector('header')
+  .addEventListener('click', function(event){
+      collapseChildren(this);});
+
+      element.querySelector('.content')
+      .addEventListener('click', function(event){
+          collapseChildren(this);});
+}
+
+function collapseChildren(element){
+  let parent = element.parentNode;
+
+  let replies = parent.querySelector('.replies');
+
+  if( replies != null){
+    parent.removeChild(replies);
+  }
+
+  let textArea = parent.querySelector('.reply-text-area');
+  if( textArea != null){
+    parent.removeChild(textArea);
+  }
+
+}
+
+function removeTextArea(parent){
+  let textArea = parent.querySelector('.reply-text-area');
+  if( textArea != null){
+    parent.removeChild(textArea);
+  }
+}
+
 
 
 // =============== EVENT LISTENERS =================== //
 
-let commentForm = document.querySelector('#post form');
+let commentForm = document.querySelector('#post > form');
 commentForm.addEventListener('submit', function (event) {
   event.preventDefault();
   submitComment(this);
@@ -35,6 +82,7 @@ levelReply.forEach(function(elem){
     createReplyForm(this);
   });
 });
+
 
 let loading = document.querySelector('.load-more');
 loading.addEventListener('click', function (event) {
@@ -95,7 +143,7 @@ function receiveReplies(event) {
   let response = JSON.parse(this.responseText);
 
   if (response.result === false) {
-    window.location = "../pages/login.php";
+    login();
     return;
   }
 
@@ -136,15 +184,32 @@ function createReplyForm(element){
   let comment_id = comment.querySelector('aside').getAttribute('data-id');
 
   let form = document.createElement('form');
+  form.classList.add('reply-text-area');
 
   form.innerHTML = '<textarea name="text" required></textarea>' +
-                   '<input type="hidden" name="id" value="' + comment_id + '">' +
-                   '<input type="submit" value="Reply">';
+                   '<input type="hidden" name="id" value="' + comment_id + '">';
+
+ let button = document.createElement('button');
+ button.setAttribute('type', 'button');
+ button.textContent = "Close";
+  form.appendChild(button);
+                   
+  form.innerHTML += '<input type="submit" value="Reply">';
 
   addMultiLevelListener(form);
 
+  form.querySelector('button').addEventListener('click', function(event) {
+    deleteTextArea(this);
+  });
+
   comment.appendChild(form);
 
+}
+
+function deleteTextArea(element) {
+
+  removeTextArea(element.parentNode.parentNode);
+  
 }
 
 function submitLeveledComment(element){
@@ -161,33 +226,17 @@ function submitLeveledComment(element){
 
   let replies = parent.querySelector('.replies');
 
-  if(replies === null){
+  let comment_id = -1;
 
-    createRequest(addedLevelComment,'../actions/action_simple_add_comment.php', {parent_id: parent_id,text: text})
-    .addEventListener('load', function(event){
-      loadChildren(parent.querySelector('.numReplies'));
-    });
+  if(replies != null){
+
+  let first_comment = replies.querySelector('.comment :first-of-type');
+   
+  comment_id = getCommentId(first_comment);
   }
-  else{
+  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
 
-    let first_comment = replies.querySelector('.comment :first-of-type');
-
-    let comment_id = getCommentId(first_comment);
-
-    createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
-
-  }
-
-}
-
-function addedLevelComment(event){
-
-  let response = JSON.parse(this.responseText);
-
-  if (response.result === false) {
-    window.location = "../pages/login.php";
-    return;
-  }
+  
 
 }
 
@@ -196,7 +245,7 @@ function addExpandedComment(event){
   let response = JSON.parse(this.responseText);
 
   if (response.result === false) {
-    window.location = "../pages/login.php";
+    login();
     return;
   }
 
@@ -214,6 +263,14 @@ function addExpandedComment(event){
   for (let i = 0; i < comments.length; i++) {
 
     let comment = createComment(comments[i]);
+
+      if( replies === null){
+        replies = document.createElement('span');
+        replies.classList.add('replies');
+        parent.appendChild(replies);
+      }
+
+    parent.querySelector('.numReplies').textContent
 
     replies.insertBefore(comment, replies.querySelector('.comment:first-of-type'));
   }
@@ -242,7 +299,7 @@ function receiveComment(event) {
   let response = JSON.parse(this.responseText);
 
   if (response.result === false) {
-    window.location = "../pages/login.php";
+    login();
     return;
   }
 
@@ -287,7 +344,7 @@ function addComment(event) {
   let response = JSON.parse(this.responseText);
 
   if (response.result === false) {
-    window.location = "../pages/login.php";
+    login();
     return;
   }
 
@@ -330,10 +387,10 @@ function createComment(element) {
   
   comment.appendChild(aside);
 
-  comment.innerHTML += '<header> <h3 data-id="' + element.id +
+  comment.innerHTML += ' <header> <a href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
   '" class="username">' +
-  '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3>' +
-  '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
+  '<img class="user-image" src="../images/users/default/user_icon.png" width="16" height="16">' + element.username + '</h3></a>' +
+  '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header> <div class="vr"></div>' +
   '<h2 class="content">' + element.title + '</h2> <footer>' +
   '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +
   '<span class="reply"> Reply </span> </footer>';
@@ -345,6 +402,8 @@ function createComment(element) {
   addVoteListeners(comment);
 
   addRepliesListener(comment);
+  
+  addCollapseListener(comment);
 
   return comment;
 }

@@ -17,14 +17,17 @@
     <article class="comment">
     <?php draw_voting_aside($comment) ?>
         <header>
+            <a href="../pages/profile.php?user=<?=$comment['username']?>">
             <h3 data-id="<?= $comment['id'] ?>" class="username">
             <?php drawUserImage($comment['author']) ?><?=$comment['username']?>
             </h3>
+            </a>
             <h3 class="creationDate">
                 <?=humanTiming($comment['creationDate']);?>
             </h3>
-
         </header>
+
+        <div class="vr"></div>
 
         <h2 class="content">
             <?=$comment['title']?>
@@ -38,7 +41,7 @@
 
 <?php function draw_add_comment($post){
     ?>
-    <form>
+    <form class="comment-text-area">
         <textarea name="text" required></textarea>
         <input type="hidden" name="id" value="<?=$post['id']?>">
         <input type="submit" value="Reply">

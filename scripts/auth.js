@@ -108,7 +108,7 @@ function draw_signup() {
         '<input type="password" name="password" placeholder="password" required>' +
         '<input type="text" name="description" placeholder="Brief description of yourself">' +
         '<input type="text" name="title" placeholder="Image Title">' +
-        '<input type="file" name="image" placeholder="Your image">' +
+        '<input type="file" title=" " name="image" placeholder="Your image">' +
         '<input class="submit_button" type="submit" value="Signup">' +
         '</form>';
     let footer = document.createElement('footer');

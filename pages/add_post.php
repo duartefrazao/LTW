@@ -8,7 +8,7 @@
     include_once("utilities.php");
 
     if(!isset($_SESSION['username']))
-        die(header('Location: login.php'));
+        die(header('Location: posts.php'));
 
     draw_header_global($_SESSION['username']);
 
