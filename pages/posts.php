@@ -26,7 +26,6 @@
     includeScript("vote_system");
     includeScript("posts_scroll");
     includeScript("search_system");
-
     draw_ordering();
 
     draw_posts($posts);

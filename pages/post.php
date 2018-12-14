@@ -6,19 +6,16 @@
     include_once("../database/db_comments.php");
     include_once("../includes/session.php");
     include_once("utilities.php");
-
     if (!isset($_GET['id']))
-        header('Location: posts.php');
+        header('Location: posts.php'); 
 
     $user=isset($_SESSION['id'])?$_SESSION['id']:NULL;
 
     $post = getPostById($_GET['id'],$user);
-
-    draw_header_global($user);
-    
+    print_r($post);
+    draw_header_global($user); 
     includeScript("vote_system");
-    includeScript("comment_system");
-    
+    includeScript("comment_system"); 
     draw_post($post);
     draw_footer();
 ?>

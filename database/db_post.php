@@ -182,7 +182,7 @@
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
-                ON USER.username = ? 
+                ON USER.id = ? 
                 AND VOTE.user = USER.id) as A2
             ON A2.entity=A1.id');
         $stmt->execute(array($id,$username));
