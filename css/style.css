@@ -22,12 +22,10 @@ a {
 }
 
 
-
 body {
 
-    min-width: 100%;
-    min-height: 100%;
-    margin: 0;
+    width:100%;
+    margin: 0 auto;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
@@ -45,15 +43,17 @@ body>header {
     display: flex;
     position: fixed;
     margin: 0;
+    width:100%;
     z-index: 1;
     align-items: center;
     justify-content: safe;
-    width: 100%;
-    max-width: 100%;
+    min-width: 100px;
     top: 0;
+    overflow: hidden;
 }
 
 #posts {
+    
     padding: 1em;
     margin: 2em auto;
     width: auto;
@@ -76,9 +76,10 @@ body>header {
     font-size: 150%;
     color: white;
     padding: 0; 
-    margin: 0;
-    padding-left: 1em;   
+    margin: 0; 
+    margin:3%;
 }
+
 
 
 .user-actions {
@@ -88,6 +89,7 @@ body>header {
     max-width: 10em;
     text-align: center;
 }
+
 
 /*----------------------------------------------------------*/
 /*-----------------------DROPDOWN MENU----------------------*/
@@ -379,6 +381,14 @@ body>header {
     margin: 0 auto;
     margin-bottom: 0.5em;
     align-content: center;
+}
+
+@media(min-width:100px){
+    .post-image{
+        width:80%;
+        height:auto;
+    }
+
 }
 
 .user-image{
@@ -856,6 +866,7 @@ input[type='hidden'] {
     margin: 0 1em;
 }
 
+
 #search-bar{
     display: inline-block;
     position: relative;
@@ -865,6 +876,7 @@ input[type='hidden'] {
     max-width: 10em;
     background-color: var(--nav-bg-color);
 }
+
 
 #searchInput{
 	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
