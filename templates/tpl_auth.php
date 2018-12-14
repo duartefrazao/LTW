@@ -1,4 +1,4 @@
-<?php function draw_login(){
+<!-- <?php function draw_login(){
     ?>
     <section id="login">
         <header>
@@ -45,4 +45,4 @@
         </footer>
     
     </section>
-<?php } ?>
+<?php } ?> -->

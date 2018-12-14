@@ -3,6 +3,7 @@
     <!DOCTYPE html>
     <html>
         <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
                     @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
             </style>
@@ -20,9 +21,12 @@
                     </a>
                 </h1>
                 <?php draw_search() ?>
-                <?php if($username == NULL){ ?>
-                    <a class="normal-button" id="login-button" href="login.php"> Log In</a>
-                    <a class="normal-button" id="signup-button" href="signup.php"> Sign Up </a>
+                <?php if($username == NULL){ 
+                        includeScript('auth');
+                    ?>
+                    
+                    <a class="normal-button" id="login-button"> Log In</a>
+                    <a class="normal-button" id="signup-button"> Sign Up </a>
                 <?php }else{ ?>
                     <aside class="user-actions">
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
@@ -44,6 +48,7 @@
     <!DOCTYPE html>
     <html>
         <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
                 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
             </style>

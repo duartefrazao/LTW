@@ -21,7 +21,7 @@
         <?php drawChannelsDropdown($channels) ?>
         <textarea name="text" required placeholder="Your post"></textarea>
         <input type="text" name="description" placeholder="Image Title">
-        <input type="file" name="image" placeholder="Your image">
+        <input type="file" title=" " name="image" placeholder="Your image">
         <input type="submit" value="Share">
     </form>
 

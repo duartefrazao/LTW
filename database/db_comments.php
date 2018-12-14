@@ -21,12 +21,18 @@
         return $stmt->fetchAll();
     }
 
+    function getLastCommentId(){
+        $db=Database::instance()->db();
+        return $db->lastInsertId();
+    }
+
     function addComment($parent_id, $user_id, $content){
+
         $db = Database::instance()->db();
 
         $stmt = $db->prepare('SELECT channel FROM ENTITY WHERE id=?');
         $stmt->execute(array($parent_id));
-        $channel = $stmt->fetch();
+        $channel = $stmt->fetch()['channel'];
 
         $stmt = $db->prepare('INSERT INTO entity VALUES(NULL, ?, NULL, ?, 0, ?, 0,?, ?)');
         $stmt->execute(array($content, $user_id, time(),$channel, $parent_id));
