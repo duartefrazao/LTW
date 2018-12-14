@@ -12,7 +12,6 @@
     $user=isset($_SESSION['id'])?$_SESSION['id']:NULL;
 
     $post = getPostById($_GET['id'],$user);
-    print_r($post);
     draw_header_global($user); 
     includeScript("vote_system");
     includeScript("comment_system"); 
