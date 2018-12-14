@@ -91,7 +91,7 @@
 
         <section class="vote upvote<?php 
                     if(isset($_SESSION['id'])&& isset($element['up']) && $element['up']=='true'){
-        ?> upvote_triggered<?php } ?>"></section>
+        ?> upvote_triggered" <?php } else { ?> " <?php } ?>"></section>
         
         <h5 class="votes">
             <?=$element['votes']?>

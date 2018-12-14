@@ -28,7 +28,7 @@
 <?php } ?>
 
 
-<?php function draw_post($post, $comments){?>
+<?php function draw_post($post){?>
 
     <article id="post">
         <input type="hidden" name="id" value="<?=$post['id']?>">
