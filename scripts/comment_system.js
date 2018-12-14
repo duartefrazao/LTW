@@ -121,11 +121,6 @@ function receiveReplies(event) {
 
   let response = JSON.parse(this.responseText);
 
-  if (response.result === false) {
-    login();
-    return;
-  }
-
   let comments = response.data;
 
   if (comments.length === 0) {
@@ -272,11 +267,6 @@ function loadReplies(element) {
 function receiveComment(event) {
 
   let response = JSON.parse(this.responseText);
-
-  if (response.result === false) {
-    login();
-    return;
-  }
 
   let comments = response.data;
 

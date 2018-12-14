@@ -6,13 +6,20 @@
     $permission = true;
     $comments = array();
     
-    if(!isset($_SESSION['username'])){
+/*     if(!isset($_SESSION['username'])){
         $permission = false;
-    }else{
+    }else{ */
+
+
         $parent_id = test_input($_POST['parent_id']);
         $last_id = test_input($_POST['last_id']);
-        $comments = getCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
-    }
+
+        if(isset($_SESSION['id']))
+            $comments = getUserCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
+        else
+            $comments = getCommentsByPostId($parent_id, $last_id);
+
+/*     } */
 
     $response = array('result' => $permission, 'data' => $comments);
 

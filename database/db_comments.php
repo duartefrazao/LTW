@@ -3,7 +3,7 @@
     include_once('../includes/database.php');
 
 
-    function getCommentsByPostId($id,$user_id, $offset){
+    function getUserCommentsByPostId($id,$user_id, $offset){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT A1.*, A2.up FROM 
@@ -18,6 +18,17 @@
             ON A2.entity=A1.id
             WHERE A1.id < ? ORDER BY A1.id DESC LIMIT 2');
         $stmt->execute(array($id,$user_id, $offset));
+        return $stmt->fetchAll();
+    }
+
+    function getCommentsByPostId($id, $offset){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare(
+            'SELECT ENTITY.* , USER.username 
+            FROM ENTITY JOIN USER ON ENTITY.author = USER.id
+            WHERE ENTITY.parentEntity = ? AND
+            Entity.id < ? ORDER BY Entity.id DESC LIMIT 2');
+        $stmt->execute(array($id, $offset));
         return $stmt->fetchAll();
     }
 
