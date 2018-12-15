@@ -11,10 +11,11 @@
 
     $title = test_input($_POST['title']);
     $description = test_input($_POST['description']);
+    $imageDescription = test_input($_POST['imageDescription']);
 
     insertNewChannel($title, $description);
 
-    createImageResource(getLastChannelId(), 'channels', $title);
+    createImageResource(getLastChannelId(), 'channels', $imageDescription);
 
     header('Location: ../pages/posts.php');
 ?>

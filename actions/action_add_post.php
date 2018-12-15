@@ -11,9 +11,10 @@
     $title = test_input($_POST['title']);
     $text = test_input($_POST['text']);
     $channel = test_input($_POST['channel']);
+    $imageDescription = test_input($_POST['description']);
 
 
     addNewPost($title, $text, $_SESSION['id'], $channel);
-    createImageResource(getLastPostId(), 'posts', $title);
+    createImageResource(getLastPostId(), 'posts', $imageDescription);
     header('Location: ../pages/posts.php');
 ?>

@@ -30,7 +30,11 @@
     <form id="new-channel" action="../actions/action_add_channel.php" enctype="multipart/form-data" method="post">
         <input type="text" required name="title" placeholder="Channel Title"/>
         <input type="text" required name="description" placeholder="Channel Description">
-        <input type="file"  name="image" placeholder="Channel Banner">
+        <input type="text" name="imageDescription" placeholder="Image Title">
+        <label class="fileContainer" >
+            File
+            <input type="file" title=" " name="image" placeholder="Channel Banner">
+        </label>
         <input type="submit" value="Create">
     </form>
 <?php } ?>

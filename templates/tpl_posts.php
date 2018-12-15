@@ -12,8 +12,8 @@
         ?>
     </section>
 
+    <?php draw_add_button(); ?>
 
-    <a href="add_post.php" class="add-story">&#43;</i></a>
 <?php }?>
 
 
@@ -57,6 +57,8 @@
         <section id="comments"> </section>
 
         <span class="load-more"> Load More </span>
+
+        <?php draw_add_button(); ?>
 
     </article>
 <?php }?>
