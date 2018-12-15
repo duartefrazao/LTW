@@ -4,10 +4,11 @@
 
     function insertNewImage($id, $title, $path){
         $db=Database::instance()->db();
-        if($path === 'users')
+        if($path === 'users' || $path === 'posts')
             $stmt = $db->prepare("INSERT INTO images VALUES(?, ?)");
         else if($path === 'channels')
             $stmt = $db->prepare("INSERT INTO channelImages VALUES(?, ?)");
+
         $stmt->execute(array($id, $title));
     }
 
