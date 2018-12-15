@@ -72,7 +72,14 @@
 <?php } ?> 
 
 
+<?php function draw_add_button(){ 
+    if(isset($_SESSION['username'])) {?>
+    <a href="add_post.php" class="add-story">&#43;</i></a>
+    <?php } ?>
 
+<?php } ?>
+
+ 
 <?php function draw_footer(){
     ?>
         </body>
