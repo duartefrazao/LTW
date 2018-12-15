@@ -808,6 +808,8 @@ input[type='hidden'] {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     grid-area: channels;
+    width:12em;
+    margin-left:1em;
     height: 2em;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
@@ -838,10 +840,11 @@ input[type='hidden'] {
 }
 
 #new-post input[type='submit']{
-    
+    background-color:#4abdac9d;
     display: block;
     justify-self: end;
     grid-area: share;
+    font-weight: bold;
     padding: 1em 0.5em;
     border-radius: 5px 5px 5px 5px;
     width: 50%;
@@ -849,7 +852,6 @@ input[type='hidden'] {
 }
 
 #new-post textarea{
-    width: 100%;
     grid-area: content;
     margin-bottom: 1em;
     text-indent: 0.5em;
@@ -863,25 +865,21 @@ input[type='hidden'] {
 #new-post .fileContainer {
     cursor: inherit;
     white-space: nowrap;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     width:10em;
-
-}
-
-/* Example stylistic flourishes */
-
-#new-post .fileContainer {
     text-align: center;
     background:var(--background);
     border-radius: .5em;
     overflow: hidden;
     font-weight: normal;
-    margin: 0.3em 0em 0.6em 0.5em;
+    margin: 0.3em 0 0.6em auto;
     padding-top:0.3em;
     padding-bottom: 0.3em;
     height:1.5em;
 }
+
 
 #new-post .fileContainer [type=file] {
     
@@ -1258,21 +1256,16 @@ input[type='hidden'] {
                              "image"
                              "share";
 
+    }
+
+    #new-post .fileContainer{
+        margin-right:auto;
+    }
+    #new-post input{
+        margin-right: auto;
+        margin-left:auto;
+    }
+
+
 }
 
-
-#new-post input[type='submit']{
-    
-    justify-self: center;
-    margin: 1em auto;
-}
-
-#new-post input[type="file"]{
-    width: 100%;
-    grid-area: image;
-    align-self: center;
-
-    margin: 1em auto;
-}
-
-}
