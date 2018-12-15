@@ -71,8 +71,20 @@ search.addEventListener("keyup", function () {
     } else {
         let request = new XMLHttpRequest();
         request.addEventListener("load", function () {
-            let info = this.response;
-            display.innerHTML = info
+            let info = JSON.parse(this.response);
+            let inner = "<ul>";
+
+            info.channels.forEach(function(s){
+                inner+="<li onclick=fill(\""+s.title + "\") ><a>c/"+ s.title+"</a></li>";
+            })
+
+            info.users.forEach(function(s){
+                inner+="<li onclick=fill(\""+s.username + "\") ><a >u/"+ s.username+"</a></li>";
+            });
+
+            inner += "<ul>";
+
+            display.innerHTML=inner;
         })
 
         request.open("post", "../actions/action_get_suggestions.php", true);
