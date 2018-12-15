@@ -160,10 +160,8 @@ function receivePost(event) {
         let h3 = document.createElement("h3");
         h3.setAttribute("class","username");
         let img = document.createElement("img");
-        img.setAttribute("class","user-image");
+        img.setAttribute("class","small-image");
         img.setAttribute("src","../images/users/default/user_icon.png");  
-        img.setAttribute("width","16");
-        img.setAttribute("height","16");
         h3.innerText=" "+posts[i].username;
         h3.insertBefore(img,h3.childNodes[0]);
         let h3_1 = document.createElement("h3");
@@ -238,7 +236,7 @@ function getOffsetToOrder(lastPost) {
 function checkUserImage(id, post) {
     var image = new Image();
 
-    let element = post.querySelector('.user-image');
+    let element = post.querySelector('.small-image');
 
     image.onload = function () {
         // image exists and is loaded
