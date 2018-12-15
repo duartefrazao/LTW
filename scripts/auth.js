@@ -10,6 +10,20 @@ signupbutton.addEventListener('click', function (event) {
     signup(this);
 });
 
+let span = document.createElement('span');
+span.classList.add('warning');
+
+function removeWarningOnKeyPress(form, element){
+
+    element.addEventListener('keypress',function(e){
+
+        if(form.querySelector('.warning') != null)
+            form.removeChild(form.querySelector('.warning'));
+    
+        if(element.classList.contains('shake'))
+            element.classList.remove('shake');
+    });
+}
 
 function signup(event) {
     draw_signup();
@@ -25,7 +39,6 @@ function login(event) {
 function send_input(type) {
 
     let form = document.querySelector('.auth_form');
-
 
     form.addEventListener('submit', function (event) {
 
@@ -56,19 +69,73 @@ function signUpValidation(event) {
     
     let response = JSON.parse(this.responseText);
 
+    let form = document.querySelector('.auth_form');
+
     if(response.type === true){
         removeSignUp();
         location.reload();
+        return;
     }
+    // if there already is an error showing
+    else if(form.querySelector('.warning') != null)
+        return;
+
+    let username = form.querySelector('input[name="username"]');
+
+    removeWarningOnKeyPress(form, username);
+
+    let mail = form.querySelector('input[name="mail"]');
+
+    removeWarningOnKeyPress(form, mail);
+
+    let password = form.querySelector('input[name="password"]');
+
+    span.textContent = response.content;;
+
+    switch(response.type){
+        case 'error_username':
+            form.insertBefore(span, mail);
+            username.classList.add('shake');
+            break;
+        case 'error_mail':
+            form.insertBefore(span, password);
+            mail.classList.add('shake');
+            break;
+    }
+
+    return;
+
+    
 }
 
 function loginValidation(event){
     let response = JSON.parse(this.responseText);
 
+    let form = document.querySelector('.auth_form');    
+
     if(response.type === true){
         removeLogin();
         location.reload();
     }
+    // if there already is an error showing
+    else if(form.querySelector('.warning') != null)
+        return;
+
+    let username = form.querySelector('input[name="username"]');
+
+    removeWarningOnKeyPress(form, username);
+
+    let password = form.querySelector('input[name="password"]');
+
+    removeWarningOnKeyPress(form, password);
+
+    span.textContent = response.content;
+
+    form.insertBefore(span, form.querySelector('.submit-button'));
+    username.classList.add('shake');
+    password.classList.add('shake');
+
+    return;
 }
 
 function draw_mask(remove) {
