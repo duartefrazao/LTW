@@ -90,7 +90,7 @@ INSERT INTO user VALUES(NULL, 'maria', '$2y$12$Iw7TS8/y9UGEkaDlFaAyY.TRWyNRUy1VG
 INSERT INTO user VALUES(NULL, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Então, tudo bem?', 1544831225);
 
 
-/* POSTS */
+/* CHANNELS */
 
 INSERT INTO channel VALUES(NULL, "all",          "All the content you want");
 INSERT INTO channel VALUES(NULL, "fun",          "Your daily dose of funny things!");
@@ -98,14 +98,17 @@ INSERT INTO channel VALUES(NULL, "student life", "We all been there!");
 INSERT INTO channel VALUES(NULL, "ltw",          "Let Trump Work");
 INSERT INTO channel VALUES(NULL, "science",      "Interesting science information");
 
-INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,3,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',4,0,1543878573,0,1,NULL);
+
+/* POSTS */
+
+INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de julho, mas porquê?',4,0,1543878573,0,2,NULL);
 INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',5,0,1543878173,0,1,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,3,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,2,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,1,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,1,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 
-                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,4,NULL);
+                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,3,NULL);
 
 
 

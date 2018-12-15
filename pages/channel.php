@@ -24,8 +24,8 @@
     includeScript("posts_scroll");  
 
     draw_header_global($user);
-    drawChannelInfo($channelInfo);
-    draw_posts($channelPosts);
+
+    drawChannelPage($channelInfo, $channelPosts);
     
     draw_footer();
 ?>

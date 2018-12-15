@@ -968,9 +968,41 @@ input[type='hidden'] {
     justify-content: center;
 }
 
+#channel{
+    margin: 5em auto;
+    display: flex;  
+}
 
+#channel .info{
+    background-color: white;
+    position: fixed;
+    top: 10em;
+    left: 15em;
+    background-color: white;
+    justify-items: center;
+    border-radius: 5px 5px 5px 5px; 
+}
+
+#channel img{
+    border-radius: 5px 5px 0px 0px;
+}
+
+#channel .info h1{
+    text-align: center;
+}
+
+#channel .info  span{
+    clear:left;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#channel #posts{
+    position: relative;
+    margin-left: 40%;
+}
  
-.channel{
+.channel-info{
     display: flex;
     justify-content: flex-start;
     margin: 0;
@@ -979,11 +1011,11 @@ input[type='hidden'] {
     align-items: center;
 }
 
-.channel img{
+.channel-info img{
     vertical-align: middle;
 }
 
-.channel a{
+.channel-info a{
     margin: 0;
     margin-left: 1em;
     flex-grow: 1;
@@ -992,12 +1024,12 @@ input[type='hidden'] {
     vertical-align: middle;
 }
 
-.channel a::before{
+.channel-info a::before{
     content: 'c/';
     color: grey;
 }
 
-.channel span{
+.channel-info span{
     flex-grow: 4;
     padding-left: 1em;
     text-align: left;
@@ -1005,7 +1037,7 @@ input[type='hidden'] {
     font-style: italic;
 }
 
-.channel span::before{
+.channel-info span::before{
     content: "-";
 }
 

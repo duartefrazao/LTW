@@ -32,7 +32,7 @@ function createImageResource($id, $path, $imageTitle){
 
     $mediumSize = getMediumSize($path); 
 
-    if($path === 'posts')
+    if($path === 'posts' || $path === 'channels')
         $medium = resize_image($originalFileName, $mediumSize, $mediumSize);
     else
         $medium = cropImage($original, $mediumSize);
@@ -58,7 +58,7 @@ function createImageResource($id, $path, $imageTitle){
         case 'users':
             return 70;
         case 'channels':
-             return 250;
+             return 400;
         case 'posts':
             return 600;
         default:
