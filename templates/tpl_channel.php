@@ -27,7 +27,7 @@
 
 
 <?php function drawAddChannel() { ?>
-    <form id="new-channel" action="../actions/action_add_channel.php" enctype="multipart/form-data" method="post">
+    <form id="new-channel" action="../actions/action_add_channel.php?csrf=<?=$_SESSION['csrf']?>" enctype="multipart/form-data" method="post">
         <input type="text" required name="title" placeholder="Channel Title"/>
         <input type="text" required name="description" placeholder="Channel Description">
         <input type="text" name="imageDescription" placeholder="Image Title">

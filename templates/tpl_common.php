@@ -32,7 +32,7 @@
                         <h2 id="username"> <?= ucfirst($username);?> </h2>
                         <ul class="dropdown">
                             <li> <a href="../pages/profile.php?user=<?= $_SESSION['username'] ?>"> Profile </a> </li>
-                            <li> <a href="../pages/add_channel.php"> Create a new Channel! </a> </li>
+                            <li> <a href="../pages/add_channel.php?csrf=<?=$_SESSION['csrf']?>"> Create a new Channel! </a> </li>
                             <li> <a href="../actions/action_logout.php"> Log Out </a> </li>
                         </ul>
                     </aside>

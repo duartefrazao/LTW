@@ -28,4 +28,6 @@
     drawChannelPage($channelInfo, $channelPosts);
     
     draw_footer();
+
+    storeToken();
 ?>

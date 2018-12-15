@@ -32,7 +32,7 @@ function voteHandler(event){
     });
     request.open("post", "../actions/action_vote_post.php", true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(encodeForAjax({voteType: upvote,entityID:entityID}));
+    request.send(encodeForAjax({voteType: upvote,entityID:entityID,csrf:localStorage.getItem('csrf')}));
 }
 
 

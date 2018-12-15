@@ -32,4 +32,6 @@
     includeScript("settings");
     draw_profile($username,$info,$posts);
     draw_footer(); 
+
+    storeToken();
 ?>
