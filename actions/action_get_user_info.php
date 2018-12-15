@@ -10,12 +10,16 @@
     $info = getUserInfo($username);
     $image_exists=false;
 
-    if(file_exists('../images/users/thumb_medium/' . $info['id'] .'.jpg'))
+    $ext=array_map("pathinfo",glob('../images/users/thumb_medium/' . $info['id'] . '.*'));
+    if(count($ext) != 0 && file_exists('../images/users/thumb_medium/' . $info['id'] .'.'.$ext[0]['extension']))
     {
         $image_exists=true;
     }
+    if(count($ext) != 0)
+        $response = array('info' => $info,'image'=>$image_exists ,'extension' =>$ext[0]['extension']);
+    else
+        $response = array('info' => $info,'image'=>$image_exists ,'extension' =>null);
 
-    $response = array('info' => $info,'image'=>$image_exists);
     echo json_encode($response);
 
 
