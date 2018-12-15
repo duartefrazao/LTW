@@ -8,7 +8,7 @@ function createImageResource($id, $path, $imageTitle){
 
     if(!fileUploaded())
         return;
-        
+
     insertNewImage($id, $imageTitle);
 
     // Generate filenames for original, small and medium files
@@ -20,21 +20,18 @@ function createImageResource($id, $path, $imageTitle){
 
     // Crete an image representation of the original image
     $original = imagecreatefromjpeg($originalFileName);
-
-    $width = imagesx($original);     // width of the original image
-    $height = imagesy($original);    // height of the original image
-    $square = min($width, $height);  // size length of the maximum square
-
-    // Create and save a small square thumbnail
     
 
-    if($path === 'users'){
+    if($path === 'users' || $path === 'channels'){
+
+        $size = getSmallSize($path);
+
         $smallFileName = "../images/$path/thumb_small/$id.jpg";
-        $small = resize_image($originalFileName, 16, 16);
+        $small = cropImage($original, $size);
         imagejpeg($small, $smallFileName);
     }
 
-    // Calculate width and height of medium sized image (max width: 400)
+/*     // Calculate width and height of medium sized image (max width: 400)
     $mediumwidth = $width;
     $mediumheight = $height;
 
@@ -46,11 +43,67 @@ function createImageResource($id, $path, $imageTitle){
     // Create and save a medium image
     $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
+    imagejpeg($medium, $mediumFileName);  */
+
+
+    $mediumSize = getMediumSize($path); 
+
+    if($path === 'posts')
+        $medium = resize_image($originalFileName, $mediumSize, $mediumSize);
+    else
+        $medium = cropImage($original, $mediumSize);
+
     imagejpeg($medium, $mediumFileName);
+
+
  }
 
+  function getSmallSize($path){
+      switch($path){
+        case 'users':
+            return 40;
+        case 'channels':
+            return 40;
+        default:
+          return 16;
+      }
+  }
 
- function resize_image($file, $w, $h, $crop=FALSE) {
+  function getMediumSize($path){
+    switch($path){
+        case 'users':
+            return 70;
+        case 'channels':
+             return 250;
+        case 'posts':
+            return 600;
+        default:
+          return 46;
+    }
+}
+
+function cropImage($original, $thumbSize){
+
+    $width = imagesx($original);     
+    $height = imagesy($original);  
+    // calculating the part of the image to use for thumbnail
+    if ($width > $height) {
+    $y = 0;
+    $x = ($width - $height) / 2;
+    $smallestSide = $height;
+    } else {
+    $x = 0;
+    $y = ($height - $width) / 2;
+    $smallestSide = $width;
+    }
+
+    $thumb = imagecreatetruecolor($thumbSize, $thumbSize);
+    imagecopyresampled($thumb, $original, 0, 0, $x, $y, $thumbSize, $thumbSize, $smallestSide, $smallestSide);
+    
+    return $thumb;
+}
+
+function resize_image($file, $w, $h, $crop=FALSE) {
   list($width, $height) = getimagesize($file);
   $r = $width / $height;
   if ($crop) {
@@ -76,7 +129,6 @@ function createImageResource($id, $path, $imageTitle){
 
   return $dst;
 }
-
 
 function fileUploaded()
 {

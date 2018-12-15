@@ -390,10 +390,10 @@ body>header {
 
 }
 
-.user-image{
+.small-image{
     margin: 0; 
     padding: 0;
-    vertical-align: bottom;
+    vertical-align: middle;
     border-radius: 50%;
 }
 
@@ -405,7 +405,7 @@ body>header {
 .overview-post .username, #post .username{
     display: flex;
     margin: 0;
-    padding: 0 1em;
+    padding: 0 1em;  
 }
 
 .overview-post .title, #post .title {
@@ -423,7 +423,8 @@ body>header {
 .overview-post header, #post header{
     grid-area: header;
     display: flex;
-    align-items: baseline;
+    align-items:center;
+    vertical-align:middle;
 }
 
 .overview-post header .username, #post header .username {
@@ -434,8 +435,9 @@ body>header {
 
 .overview-post header .creationDate, #post header .creationDate {
     font-size: small;
-    display: block;
+    vertical-align:middle;
     margin: 0 0.5em;
+    align-self: center;
 }
 
 .creationDate::before {
@@ -985,36 +987,6 @@ input[type='hidden'] {
     font-weight:normal;
 }
 
-#channels_search{
-    display:flex;
-    flex-direction: column;
-}
-
-#channels_search a::before{
-    content:"c/";
-}
-
-.search_title {
-    margin:0.5em auto;
-    font-size: small;
-    text-align: center;
-}
-
-.box{
-    margin:0.3em 1em;
-    padding: 1em;
-    padding: 1em 0.5em;
-    background-color: white;
-    border-radius: 5px 5px 5px 5px;
-}
-
-#users_search{
-    max-width: 70em;
-    margin: 0 auto;
-    display:flex;
-    flex-direction: column;
-}
-
 
 /*------------------------------------------------------------*/
 /*--------------------------ADD STORY-------------------------*/
@@ -1079,6 +1051,90 @@ input[type='hidden'] {
     border: none;
     border-bottom: #000 solid 1px;
     transition: all 0.5s;
+}
+
+/*------------------------------------------------------------*/
+/*-----------------------SEARCH RESULTS------------------------*/
+/*------------------------------------------------------------*/
+
+#search_results{
+    margin: 5em auto;
+    max-width: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+
+
+#channels_search{
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+     
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    max-width: 100%;
+    padding: 1em;
+    margin: 0 1em;
+}
+
+#channels_search a::before{
+    content:"c/";
+}
+ 
+.channel{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    margin-top: 1em;
+}
+
+.channel a{
+    flex-grow: 1;
+}
+
+.channel span{
+    flex-grow: 3;
+    text-align: left;
+    color: rgb(54, 54, 54);
+    font-style: italic;
+}
+
+.channel span::before{
+    content: "-";
+}
+
+.search_title {
+    color: black;
+    margin: 0;
+    margin-bottom: 0.5;
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: #171a1c solid 1px;
+}
+
+
+.box{
+    margin:0.3em 1em;
+    padding: 1em 0.5em;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    max-width: 100%;
+}
+
+#users_search{
+    display:flex;
+    flex-direction: column;
+}
+
+.sexy_line { 
+    margin: 25px 0;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
 }
 
 

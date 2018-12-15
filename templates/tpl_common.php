@@ -116,18 +116,18 @@
     </span>
 <?php } ?>
 
-<?php function drawUserImage($id){
-    if( file_exists('../images/users/thumb_small/' . $id . '.jpg') ){ ?>
-        <img class="user-image" src="../images/users/thumb_small/<?= $id ?>.jpg" width="16" height="16">
+<?php function drawSmallImage($path, $id){
+    if( file_exists('../images/'. $path. '/thumb_small/' . $id . '.jpg') ){ ?>
+        <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.jpg">
     <?php } else { ?>
-        <img src="../images/users/default/user_icon.png" width="16" height="16">
+        <img class="small-image"  src="../images/<?=$path?>/default/user_icon.png">
 <?php } }?>
 
-<?php function drawUserImageMedium($id){
-    if( file_exists('../images/users/thumb_medium/' . $id . '.jpg') ){ ?>
-        <img class="user-image" src="../images/users/thumb_medium/<?= $id ?>.jpg" width="46" height="46">
+<?php function drawMediumImage($path, $id){
+    if( file_exists('../images/' . $path . '/thumb_medium/' . $id . '.jpg') ){ ?>
+        <img class="user-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.jpg">
     <?php } else { ?>
-        <img src="../images/users/default/user_icon.png" width="16" height="16">
+        <img class="small-image" src="../images/<?=$path?>/default/user_icon.png" >
 <?php } }?>
 
 

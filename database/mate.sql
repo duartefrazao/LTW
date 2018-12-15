@@ -35,6 +35,13 @@ create table channel(
     description VARCHAR NOT NULL
 );
 
+drop table if exists channelImages;
+
+create table channelImages(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
+
 drop table if exists vote;
 
 create table vote(
@@ -76,9 +83,11 @@ BEGIN
 END;
     
 
-INSERT INTO user VALUES(NULL, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@pedro.costa', 'no lo sey, chiquita', 1543162027 );
-INSERT INTO user VALUES(NULL, 'miguel','$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@miguel.com', 'yo soy guapo',1543277351);
-INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZGoD7YDt0nM3RKqymuP6', 'joao@joao', 'muy rico yoyo',1543506410);
+INSERT INTO user VALUES(NULL, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@hotmail.com', 'no lo sey, chiquita', 1543162027 );
+INSERT INTO user VALUES(NULL, 'miguel','$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@hotmail.com', 'yo soy guapo',1543277351);
+INSERT INTO user VALUES(NULL, 'joao','$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZGoD7YDt0nM3RKqymuP6', 'joao@hotmail.com', 'muy rico yoyo',1543506410);
+INSERT INTO user VALUES(NULL, 'maria', '$2y$12$Iw7TS8/y9UGEkaDlFaAyY.TRWyNRUy1VGZ0sHS7QP/ehHabi8gOIW', 'maria@hotmail.com', 'Ola, eu sou a Maria!', 1544831117);
+INSERT INTO user VALUES(NULL, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Então, tudo bem?', 1544831225);
 
 
 /* POSTS */
@@ -90,8 +99,8 @@ INSERT INTO channel VALUES(NULL,"ltw","Informações de LTW");
 INSERT INTO channel VALUES(NULL,"science","Interesting science information");
 
 INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,3,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',2,0,1543878573,0,1,NULL);
-INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',1,0,1543878173,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',4,0,1543878573,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',5,0,1543878173,0,1,NULL);
 INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,3,NULL);
 INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,2,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
@@ -103,7 +112,7 @@ INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where t
 /* COMMENTS */
 INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,1,4);
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,1,4);
-INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,0,1543506451,0,1,4);
+INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,4,0,1543506451,0,1,4);
 /* INSERT INTO entity VALUES(NULL,"What the fuck did you just fucking say about me, you little bitch? 
                                 I'll have you know I graduated top of my class in the Navy Seals, 
                                 and I've been involved in numerous secret raids on Al-Quaeda, and I
@@ -127,24 +136,25 @@ INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,1,0,1543506451,0,1,4);
                                 couldn't, you didn't, and now you're paying the price, you goddamn 
                                 idiot. I will shit fury all over you and you will drown in it. 
                                 You're fucking dead, kiddo.",NULL,2,0,1543509751,0,4); */
-INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,3,0,1543506451,3,1,4);
-INSERT INTO entity VALUES(NULL,'Concordo',NULL,1,0,1543162627,0,2,5);
+INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,5,0,1543506451,3,1,4);
+INSERT INTO entity VALUES(NULL,'Concordo',NULL,2,0,1543162627,0,2,5);
 
 
 /* NESTED COMMENTS */
 INSERT INTO entity VALUES(NULL,'Esqueceste-te de trocar de contas?',NULL,3,0,1544204766,1,1,7);
-INSERT INTO entity VALUES(NULL,'A responder ao próprio post....',NULL,2,0,1544204906,0,1,7);
+INSERT INTO entity VALUES(NULL,'A responder ao próprio post....',NULL,4,0,1544204906,0,1,7);
 INSERT INTO entity VALUES(NULL,'Não, tens problemas é ó morcão?',NULL,1,0,1544206766,0,1,12);
 INSERT INTO entity VALUES(NULL,'duvido',NULL,1,0,1543506451,0,1,10);
-INSERT INTO entity VALUES(NULL,'Para bom entendedor...',NULL,2,0,1543506451,0,1,10);
+INSERT INTO entity VALUES(NULL,'Para bom entendedor...',NULL,5,0,1543506451,0,1,10);
 INSERT INTO entity VALUES(NULL,'Para quê?',NULL,3,0,1543506451,0,1,10);
 
 INSERT INTO VOTE VALUES(1,1,'true');
 INSERT INTO VOTE VALUES(2,1,'false');
 
-INSERT INTO IMAGES VALUES(4,'my face');
-INSERT INTO IMAGES VALUES(5, "i'm me");
-INSERT INTO IMAGES VALUES(6, "hey it's me");
-
+INSERT INTO IMAGES VALUES(1,'my face');
+INSERT INTO IMAGES VALUES(2, "i'm me");
+INSERT INTO IMAGES VALUES(3, "hey it's me");
+INSERT INTO IMAGES VALUES(4, "Oy oy oy!");
+ 
 
 

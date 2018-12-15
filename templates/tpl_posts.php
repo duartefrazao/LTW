@@ -90,7 +90,7 @@
         </h3>
         <a href="../pages/profile.php?user=<?=$post['username']?>">
             <h3 class="username">
-                <?php drawUserImage($post['author']) ?><?=$post['username']?>
+                <?php drawSmallImage('users', $post['author']) ?><?=$post['username']?>
             </h3>
         </a>
         <h3 class="creationDate">

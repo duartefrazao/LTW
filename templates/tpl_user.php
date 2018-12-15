@@ -9,7 +9,7 @@
                     <?php if($_SESSION['username'] == $info['username']){?>
                     <a id="settings_button" ><i class="fas fa-user-edit"></i></a>
                     <?php }?>
-                    <?php drawUserImageMedium($info['id']); ?>
+                    <?php drawMediumImage('users', $info['id']); ?>
                     <h1><?=ucfirst($info['username']);?></h1>
                 </header>
                 <table>
@@ -51,7 +51,7 @@
             <table>
                 <tr>
                     <th>Image:</th>
-                    <td><?php drawUserImageMedium($info['id']) ?></td>
+                    <td><?php drawMediumImage('users', $info['id']) ?></td>
                     <td><input type="file" name="image" placeholder="Your image"></td>   
                 </tr>
                 <tr>

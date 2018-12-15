@@ -33,14 +33,12 @@ function send_input(type) {
 
         switch (type) {
             case '#signup':
-                createRequest(signUpValidation, '../actions/action_signup.php', {
-                    username: form.elements['username'].value, 
-                    mail: form.elements['mail'].value,
-                    password: form.elements['password'].value,
-                    description: form.elements['description'].value,
-                    title: form.elements['title'].value,
-                    image: form.elements['image'].value
-                });
+
+                let request = new XMLHttpRequest();
+                request.addEventListener('load', signUpValidation);
+                request.open('post', '../actions/action_signup.php', true);
+                let formData = new FormData(document.querySelector('.auth_form'));
+                request.send(formData);
                 break;
             case '#login':
                 createRequest(loginValidation, '../actions/action_login.php', {
@@ -102,7 +100,7 @@ function draw_signup() {
     let section = document.createElement('section');
     section.setAttribute('id', 'signup');
     section.innerHTML += '<header> <h1> Sign Up </h1> </header>' +
-        '<form class="auth_form">' +
+        '<form class="auth_form" enctype= multipart/form-data>' +
         '<input type="text" name="username" placeholder="username" required>' +
         '<input type="text" name="mail" placeholder="mail" required>' +
         '<input type="password" name="password" placeholder="password" required>' +

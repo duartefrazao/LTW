@@ -27,7 +27,7 @@
     function getSimilarChannels($subs){
         $param = "%{$subs}%";
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT id, title FROM CHANNEL WHERE title LIKE ? LIMIT 3');
+        $stmt = $db->prepare('SELECT *  FROM CHANNEL WHERE title LIKE ? LIMIT 3');
         $stmt->execute(array($param));
         $res =  $stmt->fetchAll();
 
