@@ -2,6 +2,19 @@
 
     include_once('../includes/database.php');
 
+    function insertNewChannel($title, $description){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('INSERT INTO CHANNEL VALUES(NULL, ?, ?)');
+        $stmt->execute(array($title, $description));
+    }
+
+
+    function getLastChannelId(){
+        $db=Database::instance()->db();
+        return $db->lastInsertId();
+    }
+
+
     function getPostsFromChannel($username, $offset,$channel){
         if($username !==NULL)
             return getPostsFromChannelLogged($username, $offset,5,$channel);

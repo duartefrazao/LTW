@@ -2,9 +2,12 @@
 
     include_once('../includes/database.php');
 
-    function insertNewImage($id, $title){
+    function insertNewImage($id, $title, $path){
         $db=Database::instance()->db();
-        $stmt = $db->prepare("INSERT INTO images VALUES(?, ?)");
+        if($path === 'users')
+            $stmt = $db->prepare("INSERT INTO images VALUES(?, ?)");
+        else if($path === 'channels')
+            $stmt = $db->prepare("INSERT INTO channelImages VALUES(?, ?)");
         $stmt->execute(array($id, $title));
     }
 

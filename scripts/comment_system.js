@@ -367,7 +367,7 @@ function createComment(element) {
 
   comment.innerHTML += ' <header> <a href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
   '" class="username">' +
-  '<img class="small-image"  src="../images/users/default/user_icon.png" >' + element.username + '</h3></a>' +
+  '<img class="small-image"  src="../images/users/default/default.png" >' + element.username + '</h3></a>' +
   '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header> <div class="vr"></div>' +
   '<h2 class="content">' + element.title + '</h2> <footer>' +
   '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +

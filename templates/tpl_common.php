@@ -33,6 +33,7 @@
                         <ul class="dropdown">
                             <li> <a href="../pages/profile.php?user=<?= $_SESSION['username'] ?>"> Profile </a> </li>
                             <li> <a href="../pages/settings.php"> Settings </a> </li>
+                            <li> <a href="../pages/add_channel.php"> Create a new Channel! </a> </li>
                             <li> <a href="../actions/action_logout.php"> Log Out </a> </li>
                         </ul>
                     </aside>
@@ -120,14 +121,14 @@
     if( file_exists('../images/'. $path. '/thumb_small/' . $id . '.jpg') ){ ?>
         <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.jpg">
     <?php } else { ?>
-        <img class="small-image"  src="../images/<?=$path?>/default/user_icon.png">
+        <img class="small-image"  src="../images/<?=$path?>/default/default.png">
 <?php } }?>
 
 <?php function drawMediumImage($path, $id){
     if( file_exists('../images/' . $path . '/thumb_medium/' . $id . '.jpg') ){ ?>
         <img class="user-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.jpg">
     <?php } else { ?>
-        <img class="small-image" src="../images/<?=$path?>/default/user_icon.png" >
+        <img class="small-image" src="../images/<?=$path?>/default/default.png" >
 <?php } }?>
 
 

@@ -9,7 +9,7 @@ function createImageResource($id, $path, $imageTitle){
     if(!fileUploaded())
         return;
 
-    insertNewImage($id, $imageTitle);
+    insertNewImage($id, $imageTitle, $path);
 
     // Generate filenames for original, small and medium files
     $originalFileName = "../images/$path/originals/$id.jpg";

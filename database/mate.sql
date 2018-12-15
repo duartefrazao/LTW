@@ -92,11 +92,11 @@ INSERT INTO user VALUES(NULL, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/Qt
 
 /* POSTS */
 
-INSERT INTO channel VALUES(NULL, "all", "all the content you want");
-INSERT INTO channel VALUES(NULL,"fun","Videos de gatinhos e bebés a rir");
-INSERT INTO channel VALUES(NULL,"odly satisfying","Odly things in life");
-INSERT INTO channel VALUES(NULL,"ltw","Informações de LTW");
-INSERT INTO channel VALUES(NULL,"science","Interesting science information");
+INSERT INTO channel VALUES(NULL, "all",          "All the content you want");
+INSERT INTO channel VALUES(NULL, "fun",          "Your daily dose of funny things!");
+INSERT INTO channel VALUES(NULL, "student life", "We all been there!");
+INSERT INTO channel VALUES(NULL, "ltw",          "Let Trump Work");
+INSERT INTO channel VALUES(NULL, "science",      "Interesting science information");
 
 INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,3,NULL);
 INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de agosto, mas porquê?',4,0,1543878573,0,1,NULL);
@@ -155,6 +155,13 @@ INSERT INTO IMAGES VALUES(1,'my face');
 INSERT INTO IMAGES VALUES(2, "i'm me");
 INSERT INTO IMAGES VALUES(3, "hey it's me");
 INSERT INTO IMAGES VALUES(4, "Oy oy oy!");
+
+
+INSERT INTO channelImages VALUES(2,'fun');
+INSERT INTO channelImages VALUES(3, "life");
+INSERT INTO channelImages VALUES(4, "trump");
+INSERT INTO channelImages VALUES(5, "science");
+ 
  
 
 

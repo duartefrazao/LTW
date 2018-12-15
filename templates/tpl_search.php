@@ -1,5 +1,6 @@
 <?php
     include_once("../templates/tpl_common.php");
+    include_once("../templates/tpl_channel.php");
 
     function draw_search_results($channels,$users,$posts){
         if(count($channels) + count($users) + count($posts) == 0){
@@ -21,16 +22,9 @@
         <section id="channels_search">
             <h1 class="search_title"> <i class="fas fa-tv"></i>  Channels </h1>
             <?php 
-            foreach($channels as $channel){ ?>
-                <article class="channel">
-                    <a  href="../pages/channel.php?channel=<?=$channel['id']?>">
-                        <?=$channel['title']?>
-                    </a>
-                    <span>
-                        <?=$channel['description'] ?>
-                    </span>
-                </article>
-            <?php } ?>
+            foreach($channels as $channel){
+                drawChannelInfo($channel);
+            } ?>
         </section> <?php }
     }
 

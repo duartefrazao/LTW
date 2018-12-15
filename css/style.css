@@ -968,30 +968,47 @@ input[type='hidden'] {
     justify-content: center;
 }
 
-#channel_info{
-    margin: 0em 0em;
-    min-height: 1em;
-    padding: 0.5em 0.5em;
-    color:var(--kinda-black);
-    background-color:var(--background);;
-    display:flex;
+
+ 
+.channel{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    margin-top: 1em;
+    vertical-align: middle;
+    align-items: center;
 }
 
-#channel_info #title{
-    flex-grow:1;
-    margin:0;
+.channel img{
+    vertical-align: middle;
 }
 
-#channel_info #title::before{
-    content:"c/";
-    padding: 0 0 0.5em 0;
+.channel a{
+    margin: 0;
+    margin-left: 1em;
+    flex-grow: 1;
+    max-width: fit-content;
+    text-align: left;   
+    vertical-align: middle;
 }
 
-#channel_info #description{
-    flex-grow:2;
-    font-size: 140%;
-    font-weight:normal;
+.channel a::before{
+    content: 'c/';
+    color: grey;
 }
+
+.channel span{
+    flex-grow: 4;
+    padding-left: 1em;
+    text-align: left;
+    color: rgb(54, 54, 54);
+    font-style: italic;
+}
+
+.channel span::before{
+    content: "-";
+}
+
 
 
 /*------------------------------------------------------------*/
@@ -1059,6 +1076,77 @@ input[type='hidden'] {
     transition: all 0.5s;
 }
 
+
+/*----------------------------------------------------------*/
+/*--------------------------ADD CHANNEL-----------------------*/
+/*----------------------------------------------------------*/
+
+#new-channel{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows:auto;
+    grid-template-areas: "title           ."
+                         "description     description"
+                         "image           share";
+    max-width: 40em;
+    margin: 7em auto;
+    padding: 1em;
+    background-color: white;
+    justify-items: center;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+#new-channel input[name="description"]{
+    width: 100%;
+    grid-area: description;
+    height: 2em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    text-indent: 1em;
+    margin-bottom: 1em;
+}
+
+#new-channel input[type="file"]{
+    width: 100%;
+    grid-area: image;
+    margin-left: 1em;
+}
+
+#new-channel input[name='title']{
+    width: 100%;
+    grid-area: title;
+    height: 2em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    text-indent: 1em;
+    margin-bottom: 1em;
+}
+
+#new-channel input[type='submit']{
+    
+    display: block;
+    justify-self: end;
+    grid-area: share;
+    padding: 1em 0.5em;
+    border-radius: 5px 5px 5px 5px;
+    width: 50%;
+    border: none;
+}
+
+#new-post textarea{
+    width: 100%;
+    grid-area: content;
+    margin-bottom: 1em;
+    text-indent: 0.5em;
+    height: 6em;
+    border-radius: 5px 5px 5px 5px;
+    border: solid rgb(172, 172, 172) 1px;
+    resize: none;
+}
+
+
+
 /*------------------------------------------------------------*/
 /*-----------------------SEARCH RESULTS------------------------*/
 /*------------------------------------------------------------*/
@@ -1071,13 +1159,10 @@ input[type='hidden'] {
     align-items: left;
 }
 
-
-
-#channels_search{
+#channels_search , #users_search{
     text-align: center;
     display:flex;
     flex-direction: column;
-     
     background-color: white;
     border-radius: 5px 5px 5px 5px;
     max-width: 100%;
@@ -1085,30 +1170,10 @@ input[type='hidden'] {
     margin: 0 1em;
 }
 
-#channels_search a::before{
-    content:"c/";
-}
- 
-.channel{
-    display: flex;
-    justify-content: flex-start;
-    margin: 0;
-    margin-top: 1em;
-}
-
-.channel a{
-    flex-grow: 1;
-}
-
-.channel span{
-    flex-grow: 3;
-    text-align: left;
-    color: rgb(54, 54, 54);
-    font-style: italic;
-}
-
-.channel span::before{
-    content: "-";
+#posts_search{
+    margin-top: 2em;
+    display:flex;
+    flex-direction: column;
 }
 
 .search_title {
@@ -1120,27 +1185,6 @@ input[type='hidden'] {
     font-weight: bold;
     text-align: left;
     border-bottom: #171a1c solid 1px;
-}
-
-
-.box{
-    margin:0.3em 1em;
-    padding: 1em 0.5em;
-    background-color: white;
-    border-radius: 5px 5px 5px 5px;
-    max-width: 100%;
-}
-
-#users_search{
-    display:flex;
-    flex-direction: column;
-}
-
-.sexy_line { 
-    margin: 25px 0;
-    height: 1px;
-    background: black;
-    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
 }
 
 

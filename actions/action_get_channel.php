@@ -7,7 +7,7 @@
     $permission = true;
     $posts = array();
 
-    $channel= test_input(['channel']);
+    $channel= test_input($_POST['channel']);
 
     if(isset($_POST['username'])){
         $posts = getPostsFromChannel($_SESSION['username'], PHP_INT_MAX,$channel);
