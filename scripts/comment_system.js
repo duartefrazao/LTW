@@ -366,7 +366,7 @@ function createComment(element) {
   
   comment.appendChild(aside);
 
-  comment.innerHTML += ' <header> <a href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
+  comment.innerHTML += ' <header> <a class="user-info" href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
   '" class="username">' +
   '<img class="small-image"  src="../images/users/default/default.png" >' + element.username + '</h3></a>' +
   '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header> <div class="vr"></div>' +
