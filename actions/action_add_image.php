@@ -21,7 +21,6 @@ function createImageResource($id, $path, $imageTitle){
     // Crete an image representation of the original image
     $original = imagecreatefromjpeg($originalFileName);
     
-
     if($path === 'users' || $path === 'channels'){
 
         $size = getSmallSize($path);
@@ -30,21 +29,6 @@ function createImageResource($id, $path, $imageTitle){
         $small = cropImage($original, $size);
         imagejpeg($small, $smallFileName);
     }
-
-/*     // Calculate width and height of medium sized image (max width: 400)
-    $mediumwidth = $width;
-    $mediumheight = $height;
-
-    if ($mediumwidth > 400) {
-      $mediumwidth = 400;
-      $mediumheight = $mediumheight * ( $mediumwidth / $width );
-    }
-
-    // Create and save a medium image
-    $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
-    imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
-    imagejpeg($medium, $mediumFileName);  */
-
 
     $mediumSize = getMediumSize($path); 
 

@@ -104,6 +104,190 @@ function addRepliesListener(element) {
 
 //============================MULTILEVEL=======================//
 
+//======================================================================//
+
+
+
+//==============================ADD COMMENT=============================//
+
+
+function submitComment(element) {
+
+  let text = element.querySelector('textarea').value;
+
+  element.querySelector('textarea').value = "";
+
+  let parent_id = element.querySelector('input[name=id]').value;
+
+  let comment_id = document.querySelector('#post .comment') != null ?
+    document.querySelector('#post .comment:first-of-type aside')
+    .getAttribute('data-id') :
+    -1;
+
+  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id});
+
+}
+
+
+function submitLeveledComment(element){
+
+  let parent = element.parentNode;
+
+  let text = element.querySelector('textarea').value;
+  
+  element.querySelector('textarea').value = "";
+  
+  let parent_id = getCommentId(parent);
+  
+  parent.removeChild(element);
+
+  let replies = parent.querySelector('.replies');
+
+  let comment_id = -1;
+
+  if(replies != null){
+
+  let first_comment = replies.querySelector('.comment :first-of-type');
+   
+  comment_id = getCommentId(first_comment);
+  }
+  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
+
+  
+
+}
+
+
+
+function addComment(event) {
+
+  let response = JSON.parse(this.responseText);
+
+  if (response.result === false) {
+    login();
+    return;
+  }
+
+  let comments = response.data;
+
+  let section = document.querySelector('#comments');
+  for (let i = 0; i < comments.length; i++) {
+
+    let comment = createComment(comments[i]);
+
+    section.insertBefore(comment, section.querySelector('#comments .comment:first-of-type'));
+  }
+}
+
+
+
+
+function addExpandedComment(event){
+
+  let response = JSON.parse(this.responseText);
+
+  if (response.result === false) {
+    login();
+    return;
+  }
+
+  let comments = response.data;
+
+  if (comments.length === 0) {
+    return;
+  } 
+  
+  let parent_id = comments[0].parentEntity;
+  let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
+
+  let replies = parent.querySelector('.replies');
+
+  for (let i = 0; i < comments.length; i++) {
+
+    let comment = createComment(comments[i]);
+
+      if( replies === null){
+        replies = document.createElement('span');
+        replies.classList.add('replies');
+        parent.appendChild(replies);
+      }
+
+    parent.querySelector('.numReplies').textContent
+
+    replies.insertBefore(comment, replies.querySelector('.comment:first-of-type'));
+  }
+}
+
+
+
+
+
+function createReplyForm(element){
+
+  let comment = element.parentNode.parentNode;
+
+  let comment_id = comment.querySelector('aside').getAttribute('data-id');
+
+  let form = document.createElement('form');
+  form.classList.add('reply-text-area');
+
+  form.innerHTML = '<textarea name="text" required></textarea>' +
+                   '<input type="hidden" name="id" value="' + comment_id + '">';
+
+ let button = document.createElement('button');
+ button.setAttribute('type', 'button');
+ button.textContent = "Close";
+  form.appendChild(button);
+                   
+  form.innerHTML += '<input type="submit" value="Reply">';
+
+  addMultiLevelListener(form);
+
+  form.querySelector('button').addEventListener('click', function(event) {
+    removeTextArea(this.parentNode.parentNode);
+  });
+
+  comment.appendChild(form);
+
+}
+
+
+//=========================================================================//
+
+//==========================='INFINITE SCROLLING'===========================//
+
+
+function loadReplies(element) {
+
+  let parent_id = (element.parentNode).querySelector('input[name=id]').value;
+
+  let last_id = Number.MAX_SAFE_INTEGER;
+
+  let lastComment = document.querySelector('#comments > .comment:last-of-type');
+
+  if(lastComment != null)
+    last_id = lastComment.querySelector('aside').getAttribute('data-id');
+
+  createRequest(receiveComment,'../actions/action_get_replies.php', {parent_id: parent_id,last_id: last_id});
+};
+
+function receiveComment(event) {
+
+  let response = JSON.parse(this.responseText);
+
+  let comments = response.data;
+
+  let section = document.querySelector('#comments');
+
+  for (let i = 0; i < comments.length; i++) {
+
+    let comment = createComment(comments[i]);
+
+    section.appendChild(comment);
+  }
+}
+
+
 
 function loadChildren(element) {
 
@@ -152,180 +336,6 @@ function receiveReplies(event) {
 }
 
 
-
-function createReplyForm(element){
-
-  let comment = element.parentNode.parentNode;
-
-  let comment_id = comment.querySelector('aside').getAttribute('data-id');
-
-  let form = document.createElement('form');
-  form.classList.add('reply-text-area');
-
-  form.innerHTML = '<textarea name="text" required></textarea>' +
-                   '<input type="hidden" name="id" value="' + comment_id + '">';
-
- let button = document.createElement('button');
- button.setAttribute('type', 'button');
- button.textContent = "Close";
-  form.appendChild(button);
-                   
-  form.innerHTML += '<input type="submit" value="Reply">';
-
-  addMultiLevelListener(form);
-
-  form.querySelector('button').addEventListener('click', function(event) {
-    removeTextArea(this.parentNode.parentNode);
-  });
-
-  comment.appendChild(form);
-
-}
-
-
-function submitLeveledComment(element){
-
-  let parent = element.parentNode;
-
-  let text = element.querySelector('textarea').value;
-  
-  element.querySelector('textarea').value = "";
-  
-  let parent_id = getCommentId(parent);
-  
-  parent.removeChild(element);
-
-  let replies = parent.querySelector('.replies');
-
-  let comment_id = -1;
-
-  if(replies != null){
-
-  let first_comment = replies.querySelector('.comment :first-of-type');
-   
-  comment_id = getCommentId(first_comment);
-  }
-  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
-
-  
-
-}
-
-function addExpandedComment(event){
-
-  let response = JSON.parse(this.responseText);
-
-  if (response.result === false) {
-    login();
-    return;
-  }
-
-  let comments = response.data;
-
-  if (comments.length === 0) {
-    return;
-  } 
-  
-  let parent_id = comments[0].parentEntity;
-  let parent = document.querySelector('[data-id="' + parent_id + '"]').parentNode;
-
-  let replies = parent.querySelector('.replies');
-
-  for (let i = 0; i < comments.length; i++) {
-
-    let comment = createComment(comments[i]);
-
-      if( replies === null){
-        replies = document.createElement('span');
-        replies.classList.add('replies');
-        parent.appendChild(replies);
-      }
-
-    parent.querySelector('.numReplies').textContent
-
-    replies.insertBefore(comment, replies.querySelector('.comment:first-of-type'));
-  }
-}
-
-//=========================================================================//
-
-//==========================='INFINITE SCROLLING'===========================//
-
-
-function loadReplies(element) {
-
-  let parent_id = (element.parentNode).querySelector('input[name=id]').value;
-
-  let last_id = Number.MAX_SAFE_INTEGER;
-
-  let lastComment = document.querySelector('#comments > .comment:last-of-type');
-
-  if(lastComment != null)
-    last_id = lastComment.querySelector('aside').getAttribute('data-id');
-
-  createRequest(receiveComment,'../actions/action_get_replies.php', {parent_id: parent_id,last_id: last_id});
-};
-
-function receiveComment(event) {
-
-  let response = JSON.parse(this.responseText);
-
-  let comments = response.data;
-
-  let section = document.querySelector('#comments');
-
-  for (let i = 0; i < comments.length; i++) {
-
-    let comment = createComment(comments[i]);
-
-    section.appendChild(comment);
-  }
-}
-
-
-//======================================================================//
-
-
-
-//==============================ADD COMMENT=============================//
-
-
-function submitComment(element) {
-
-  let text = element.querySelector('textarea').value;
-
-  element.querySelector('textarea').value = "";
-
-  let parent_id = element.querySelector('input[name=id]').value;
-
-  let comment_id = document.querySelector('#post .comment') != null ?
-    document.querySelector('#post .comment:first-of-type aside')
-    .getAttribute('data-id') :
-    -1;
-
-  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id});
-
-}
-
-function addComment(event) {
-
-  let response = JSON.parse(this.responseText);
-
-  if (response.result === false) {
-    login();
-    return;
-  }
-
-  let comments = response.data;
-
-  let section = document.querySelector('#comments');
-  for (let i = 0; i < comments.length; i++) {
-
-    let comment = createComment(comments[i]);
-
-    section.insertBefore(comment, section.querySelector('#comments .comment:first-of-type'));
-  }
-}
 
 
 

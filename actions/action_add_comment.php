@@ -15,8 +15,7 @@ if (!isset($_SESSION['username'])) {
     $last_id = test_input($_POST['comment_id']);
     
     addComment($parent_id, $_SESSION['id'], $content);
-
-
+    
     //user did not open the replies so we don't know which was the
     //last (most recent) reply to that comment
     if($last_id === "-1"){
@@ -26,7 +25,7 @@ if (!isset($_SESSION['username'])) {
         $comments = array_reverse($comments);
     }else{
     
-        $comments = getUserCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
+        $comments = getCommentsAfterId($parent_id, $last_id);
     }
 }
 
