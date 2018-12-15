@@ -18,7 +18,7 @@
 
 
 <?php function draw_add_post($channels){?>
-    <form id="new-post" action="../actions/action_add_post.php" enctype="multipart/form-data" method="post">
+    <form id="new-post" action="../actions/action_add_post.php?csrf=<?=$_SESSION['csrf']?>" enctype="multipart/form-data" method="post">
         <input type="text" required name="title" placeholder="Post's title"/>
         <?php drawChannelsDropdown($channels) ?>
         <textarea name="text" required placeholder="Your post"></textarea>

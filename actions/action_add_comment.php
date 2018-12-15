@@ -6,7 +6,7 @@ include_once('../actions/action_verify_input.php');
 $permission = true;
 $comments = array();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) ||  $_SESSION['csrf'] != $_POST['csrf']) {
     $permission = false;
 } else {
 

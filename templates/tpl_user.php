@@ -46,7 +46,7 @@
         <header>
             <h1>Settings</h1>
         </header>
-        <form class="setting" method="post" action="../actions/action_update_data.php" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <form class="setting" method="post" action="../actions/action_update_data.php?csrf=<?=$_SESSION['csrf']?>" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <input type="hidden" name="id" value="<?=$info['id'];?>">
             <table>
                 <tr>

@@ -34,6 +34,7 @@
 
            $_SESSION['id'] = $id;
 
+
        }catch(PDOException $e){
             $message=array('type'=>'error_username','content'=>'Username already taken, please choose another one!');
        }

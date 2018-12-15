@@ -4,7 +4,7 @@
     include_once('../actions/action_add_image.php');
     include_once('../actions/action_verify_input.php');
 
-    if(!isset($_SESSION['username'])){
+    if(!isset($_SESSION['username']) || $_SESSION['csrf'] != $_GET['csrf']){
         die(header('Location: ../pages/posts.php'));
     }
 

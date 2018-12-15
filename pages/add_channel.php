@@ -5,8 +5,9 @@
     include_once("../database/db_channel.php");
     include_once("../includes/session.php");
     include_once("utilities.php");
+    include_once("../actions/action_store_token.php");
 
-    if(!isset($_SESSION['username']))
+    if(!isset($_SESSION['username']) || $_SESSION['csrf'] != $_GET['csrf'])
         die(header('Location: posts.php'));
 
     includeScript("file_upload_button");
@@ -16,4 +17,6 @@
     drawAddChannel();
 
     draw_footer();
+
+    storeToken();
 ?>

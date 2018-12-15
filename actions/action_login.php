@@ -16,7 +16,6 @@
         $_SESSION['username']= $username;
         $_SESSION['id'] = $user['id'];
         $message = array('type' => true, 'content' => 'Logged in successfully!');
-
     }else{
         $message = array('type' => false, 'content' => 'Invalid username and/or password!');
 
