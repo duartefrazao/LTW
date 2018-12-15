@@ -10,6 +10,7 @@
     if(!isset($_SESSION['username']))
         die(header('Location: posts.php'));
 
+    includeScript("file_upload_button");
     draw_header_global($_SESSION['username']);
 
     draw_add_post(getChannels());

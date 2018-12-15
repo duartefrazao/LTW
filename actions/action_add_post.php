@@ -12,6 +12,7 @@
     $text = test_input($_POST['text']);
     $channel = test_input($_POST['channel']);
 
+
     addNewPost($title, $text, $_SESSION['id'], $channel);
     createImageResource(getLastPostId(), 'posts', $title);
     header('Location: ../pages/posts.php');

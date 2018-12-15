@@ -18,16 +18,17 @@
 
 
 <?php function draw_add_post($channels){?>
-
     <form id="new-post" action="../actions/action_add_post.php" enctype="multipart/form-data" method="post">
         <input type="text" required name="title" placeholder="Post's title"/>
         <?php drawChannelsDropdown($channels) ?>
         <textarea name="text" required placeholder="Your post"></textarea>
         <input type="text" name="description" placeholder="Image Title">
-        <input type="file" title=" " name="image" placeholder="Your image">
+        <label class="fileContainer" >
+            File
+            <input type="file" title=" " name="image" placeholder="Your image">
+        </label>
         <input type="submit" value="Share">
     </form>
-
 <?php } ?>
 
 
