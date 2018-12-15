@@ -150,7 +150,7 @@ function submitLeveledComment(element){
    
   comment_id = getCommentId(first_comment);
   }
-  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id});
+  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
 
   
 
