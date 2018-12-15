@@ -5,6 +5,8 @@
     include_once("../database/db_user.php");
     include_once("../database/db_upload.php");
     include_once("../includes/session.php");
+    include_once("../actions/action_store_token.php");
+
     include_once("utilities.php");
 
     $criteria = 'mostrecent'; 
@@ -15,7 +17,8 @@
         $posts = getPosts($user, PHP_INT_MAX,  $criteria);
 
     draw_header($user);
-    
+
+
     $images = getAllImages();
 
     includeScript("posts_scroll");
@@ -27,4 +30,6 @@
     draw_posts($posts);
     
     draw_footer();
+
+    storeToken();
 ?>

@@ -21,5 +21,6 @@
     draw_simple_header();
     draw_settings($user,$info);
     draw_simple_footer(); 
+    storeToken();
 
 ?>

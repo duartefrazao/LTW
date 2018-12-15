@@ -16,4 +16,6 @@
     draw_add_post(getChannels());
 
     draw_footer();
+
+    storeToken();
 ?>

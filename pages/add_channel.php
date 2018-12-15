@@ -6,7 +6,7 @@
     include_once("../includes/session.php");
     include_once("utilities.php");
 
-    if(!isset($_SESSION['username']))
+    if(!isset($_SESSION['username']) || $_SESSION['csrf'] != $_GET['csrf'])
         die(header('Location: posts.php'));
 
     draw_header_global($_SESSION['username']);
@@ -14,4 +14,6 @@
     drawAddChannel();
 
     draw_footer();
+
+    storeToken();
 ?>

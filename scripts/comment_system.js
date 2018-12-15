@@ -116,7 +116,6 @@ function submitComment(element) {
   let text = element.querySelector('textarea').value;
 
   element.querySelector('textarea').value = "";
-
   let parent_id = element.querySelector('input[name=id]').value;
 
   let comment_id = document.querySelector('#post .comment') != null ?
@@ -124,7 +123,7 @@ function submitComment(element) {
     .getAttribute('data-id') :
     -1;
 
-  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id});
+  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
 
 }
 

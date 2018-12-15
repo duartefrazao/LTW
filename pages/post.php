@@ -17,4 +17,6 @@
     includeScript("comment_system"); 
     draw_post($post);
     draw_footer();
+
+    storeToken();
 ?>
