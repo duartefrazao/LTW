@@ -8,24 +8,20 @@
     include_once("utilities.php");
 
     $criteria = 'mostrecent'; 
+    $user = null;
 
+    if(isset($_SESSION['username']))    
+        $user = $_SESSION['username'];
+        $posts = getPosts($user, PHP_INT_MAX,  $criteria);
 
-    if(isset($_SESSION['username']))
-    {
-        $posts = getPosts($_SESSION['username'], PHP_INT_MAX,  $criteria);
-        draw_header_global($_SESSION['username']);
-    }
-    else
-    {
-        $posts = getPosts(null, PHP_INT_MAX, $criteria);
-        draw_header_global(null);
-    }
-
+    draw_header($user);
+    
     $images = getAllImages();
 
-    includeScript("vote_system");
     includeScript("posts_scroll");
+    includeScript("vote_system");
     includeScript("search_system");
+
     draw_ordering();
 
     draw_posts($posts);

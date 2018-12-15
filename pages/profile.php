@@ -25,12 +25,11 @@
     $info = getUserInfo($username);
 
 
-
+    draw_header($user);
     includeScript("vote_system");
     includeScript("posts_scroll"); 
     includeScript("search_system");
     includeScript("settings");
-    draw_header($user);
     draw_profile($username,$info,$posts);
     draw_footer(); 
 ?>

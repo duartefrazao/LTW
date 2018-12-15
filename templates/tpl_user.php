@@ -6,7 +6,7 @@
         <section id="information">
 
                 <header>
-                    <?php if($_SESSION['username'] == $info['username']){?>
+                    <?php if(isset($_SESSION['username']) && $_SESSION['username'] == $info['username']){?>
                     <a id="settings_button" ><i class="fas fa-user-edit"></i></a>
                     <?php }?>
                     <?php drawMediumImage('users', $info['id']); ?>
