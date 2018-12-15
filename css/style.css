@@ -282,6 +282,10 @@ body>header {
 /*------------------------USER PAGE-------------------------*/
 /*----------------------------------------------------------*/
 
+#info{
+    color: red;
+}
+
 #settings_button:hover{
     cursor: pointer;
 }
@@ -290,7 +294,7 @@ body>header {
     margin-top: 5em;
     display: flex;
 }
-#information {
+#information , #settings {
     flex-grow: 1;
 
     padding:1em;
@@ -321,21 +325,25 @@ body>header {
 #information header h1{
     text-align: center;
 }
-#information table {
+#information table, #settings table{
     margin: 0em;
     border-collapse: collapse;
     border-radius: 5px 5px 5px 5px;
 }
-#information table th {
+#information table th ,#settings table th {
     text-align: center;
     border-right-style: solid;
     padding: 4px;
     padding-right:20px;
 }
+
+#settings table td {
+    text-align: center;
+    padding: 4px;
+}
 #information table td {
     text-align: center;
     padding: 4px;
-    width : 10em;
 }
 
 .user_page #ordering{
