@@ -412,16 +412,6 @@ body>header {
     border-radius: 50%;
 }
 
-.overview-post .username span{
-    margin: 0; 
-    padding: 0;
-}
-
-.overview-post .username, #post .username{
-    display: flex;
-    margin: 0;
-    padding: 0 1em;  
-}
 
 .overview-post .title, #post .title {
     padding: 0.3em;
@@ -438,21 +428,42 @@ body>header {
 .overview-post header, #post header{
     grid-area: header;
     display: flex;
-    align-items:center;
-    vertical-align:middle;
+    align-content: center;
+    align-items: baseline;
 }
 
-.overview-post header .username, #post header .username {
+
+.overview-post .user-info, #post .user-info{
+    display: flex;
+    margin: 0;
+    padding:0;
+    align-content: center;
+    align-items: baseline;
+}
+
+.user-info h3 {
     display: block;
     font-size: medium;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 0.3em;
 }
 
-.overview-post header .creationDate, #post header .creationDate {
+
+.overview-post header .creationDate, #post header .creationDate{
     font-size: small;
-    vertical-align:middle;
+    color: rgb(78, 78, 78);
     margin: 0 0.5em;
-    align-self: center;
+}
+
+#posts .channel-link, #post .channel-link{
+    margin: 0 0 0 1em;
+    color: rgb(78, 78, 78);
+    font-size: small;   
+}
+
+#posts .channel-link::before, #post .channel-link::before{
+    content: "-c/";
 }
 
 .creationDate::before {
@@ -591,13 +602,6 @@ body>header {
     padding: 0.3em;
     margin: 0;
     font-weight: lighter;
-}
-
-
-#post .overview-post .comments {
-    font-size: small;
-    display: block;
-    margin-bottom: 0;
 }
 
 
@@ -767,10 +771,11 @@ input[type='hidden'] {
 
 #post #comments .comment header {
     grid-area: header;
-    padding: 0.3em;
+    padding: 0.3em 0 0 0.3em;
     border-radius: 5px 5px 0 0 ;
     background-color: #F5F5F5;
     display: flex;
+    vertical-align: middle;
 }
 
 
@@ -779,6 +784,8 @@ input[type='hidden'] {
     border-radius: 0 0 5px 5px ;
     grid-area: content;
     padding-left: 0.5em;
+    word-wrap: break-word;
+    max-width: 100%;    
     font-weight: lighter;
     font-size: medium;
     padding-left: 0.3em;
@@ -1056,7 +1063,7 @@ input[type='hidden'] {
     vertical-align: middle;
 }
 
-.channel-info a{
+.channel-link a{
     margin: 0;
     margin-left: 1em;
     flex-grow: 1;
@@ -1065,7 +1072,7 @@ input[type='hidden'] {
     vertical-align: middle;
 }
 
-.channel-info a::before{
+.channel-link::before{
     content: 'c/';
     color: grey;
 }

@@ -5,7 +5,7 @@
     function drawChannelInfo($channel){?>
         <article class="channel-info">
             <?php drawSmallImage('channels', $channel['id']) ?>
-            <a  href="../pages/channel.php?channel=<?=$channel['id']?>">
+            <a  class="channel-link" href="../pages/channel.php?channel=<?=$channel['id']?>">
                 <?=$channel['title']?>
             </a>
             <span>
