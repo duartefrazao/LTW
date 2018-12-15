@@ -13,6 +13,7 @@ if (!isset($_SESSION['username']) ||  $_SESSION['csrf'] != $_POST['csrf']) {
     $content = test_input($_POST['text']);
     $parent_id = test_input($_POST['parent_id']);
     $last_id = test_input($_POST['comment_id']);
+    $post_id = test_input($_POST['post_id']);
     
     addComment($parent_id, $_SESSION['id'], $content);
     
@@ -27,6 +28,10 @@ if (!isset($_SESSION['username']) ||  $_SESSION['csrf'] != $_POST['csrf']) {
     
         $comments = getCommentsAfterId($parent_id, $last_id);
     }
+
+    if($post_id !== $parent_id)
+        incNumberOfComments($post_id);
+    
 }
 
 $response = array('result' => $permission, 'data' => $comments);

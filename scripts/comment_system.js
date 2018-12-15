@@ -123,7 +123,7 @@ function submitComment(element) {
     .getAttribute('data-id') :
     -1;
 
-  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
+  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf'), post_id: parent_id});
 
 }
 
@@ -131,6 +131,8 @@ function submitComment(element) {
 function submitLeveledComment(element){
 
   let parent = element.parentNode;
+
+  let post_id = document.querySelector('#post input[name="id"]').value;
 
   let text = element.querySelector('textarea').value;
   
@@ -150,7 +152,7 @@ function submitLeveledComment(element){
    
   comment_id = getCommentId(first_comment);
   }
-  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
+  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf'), post_id : post_id});
 
   
 
