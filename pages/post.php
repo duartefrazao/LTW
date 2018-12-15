@@ -15,8 +15,11 @@
 
     $post = getPostById($_GET['id'],$user);
     draw_header_global($user); 
+
     includeScript("vote_system");
     includeScript("comment_system"); 
+    includeScript("search_system");
+
     draw_post($post);
     draw_footer();
 

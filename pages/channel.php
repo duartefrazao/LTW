@@ -21,10 +21,11 @@
     $channelInfo = getChannel($channel);
     $channelPosts = getPostsFromChannel($_SESSION['username'],PHP_INT_MAX,$channel);
 
-    includeScript("vote_system");
-    includeScript("posts_scroll");  
-
     draw_header_global($user);
+
+    includeScript("vote_system");
+    includeScript("posts_scroll"); 
+    includeScript("search_system"); 
 
     drawChannelPage($channelInfo, $channelPosts);
     

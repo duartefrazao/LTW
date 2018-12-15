@@ -16,14 +16,11 @@
     if(!isset($username))
         header('Location: posts.php');
 
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['username']))
         $user = $_SESSION['username'];
-        $posts = getPostsOfUser($username,$_SESSION['username'], PHP_INT_MAX, $criteria);
-    }
-    else
-    {
-        $posts = getPostsOfUser($username,null,  PHP_INT_MAX, $criteria);
-    }
+    
+    $posts = getPostsOfUser($username,$user, PHP_INT_MAX, $criteria);
+    
     $info = getUserInfo($username);
 
 

@@ -24,7 +24,10 @@
    
 
     includeScript("vote_system"); 
+    includeScript("search_system");
     draw_search_results($channels,$users,$posts);
     
     draw_footer();
+
+    storeToken();
 ?>

@@ -10,9 +10,10 @@
     if(!isset($_SESSION['username']) || $_SESSION['csrf'] != $_GET['csrf'])
         die(header('Location: posts.php'));
 
-    includeScript("file_upload_button");
-
     draw_header_global($_SESSION['username']);
+
+    includeScript("file_upload_button");
+    includeScript("search_system");
 
     drawAddChannel();
 
