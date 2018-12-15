@@ -4,6 +4,7 @@
     include_once("../templates/tpl_common.php");
     include_once("../templates/tpl_user.php");
     include_once("../database/db_user.php");
+    include_once("../actions/action_store_token.php");
 
 
 

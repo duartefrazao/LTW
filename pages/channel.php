@@ -8,6 +8,7 @@
     include_once("../database/db_channel.php");
     include_once("../includes/session.php");
     include_once("utilities.php");
+    include_once("../actions/action_store_token.php");
 
 
     $user =null;

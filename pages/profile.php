@@ -7,6 +7,8 @@
     include_once("../database/db_post.php");
     include_once("../database/db_user.php");
     include_once("../includes/session.php");
+    include_once("../actions/action_store_token.php");
+    
     $criteria = 'mostrecent'; 
     $user =null;
     $username = $_GET['user'];

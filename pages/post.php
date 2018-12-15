@@ -6,6 +6,8 @@
     include_once("../database/db_comments.php");
     include_once("../includes/session.php");
     include_once("utilities.php");
+    include_once("../actions/action_store_token.php");
+    
     if (!isset($_GET['id']))
         header('Location: posts.php'); 
 
