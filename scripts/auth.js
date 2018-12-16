@@ -25,8 +25,17 @@ function removeWarningOnKeyPress(form, element){
     });
 }
 
+
+
 function signup(event) {
     draw_signup();
+
+    let file = document.querySelector("input[type=file]");
+    let fileDisplay = document.querySelector(".fileContainer");
+    file.addEventListener("change",function(e){
+        fileDisplay.firstChild.data = file.files[0].name;
+    });
+
     send_input('#signup');
 }
 
@@ -173,7 +182,9 @@ function draw_signup() {
         '<input type="password" name="password" placeholder="password" required>' +
         '<input type="text" name="description" placeholder="Brief description of yourself">' +
         '<input type="text" name="title" placeholder="Image Title">' +
+        '<label class="fileContainer"> Image' + 
         '<input type="file" title=" " name="image" placeholder="Your image">' +
+        '</label>'+
         '<input class="submit_button" type="submit" value="Signup">' +
         '</form>';
     let footer = document.createElement('footer');
