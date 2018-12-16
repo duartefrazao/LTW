@@ -439,6 +439,34 @@ header #username{
 
 }
 
+@media(max-width:723px){
+
+    #information, #channel .info , #settings{
+        margin:4em auto 1em auto;
+        position: relative;
+    }
+    #settings{
+        min-width: auto;
+        max-width: 100%;
+    }
+    .user_page, #channel{
+        flex-direction: column;
+    }
+    .user_page #ordering, #channel #ordering{
+        margin:0 auto;
+    }
+
+    .user_page .overview-post, #channel .overview-post{
+        min-width: 17em;
+    }
+
+    #profile_right, #channel_right{
+        margin:0 1em;
+        padding-left:0;
+    }
+
+}
+
 @media(max-width:450px){
    .user_page #profile_right #channel #channel_right{
         margin-left:1em;

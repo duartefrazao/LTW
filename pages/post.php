@@ -20,7 +20,7 @@
     includeScript("comment_system"); 
     includeScript("search_system");
 
-    draw_post($post);
+    draw_post_definition($post);
     draw_footer();
 
     storeToken();

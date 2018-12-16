@@ -56,6 +56,37 @@
     </article>
 <?php }?>
 
+<?php function draw_post_definition($post){?>
+
+<article id="post">
+    <input type="hidden" name="id" value="<?=$post['id']?>">
+
+    <?php draw_voting_aside($post) ?>
+
+    <?php draw_post_header($post) ?>
+    <h1 class="title" >
+        <?=$post['title']?>
+    </h1>
+
+    <h2 class="content">
+        <?=$post['content']?>
+    </h2>
+
+    <?php drawPostImageDefinition($post['id']) ?>
+
+    <?php draw_add_comment($post) ?>   
+
+    <hr/>
+
+    <section id="comments"> </section>
+
+    <span class="load-more"> Load More </span>
+
+    <?php draw_add_button(); ?>
+
+</article>
+<?php }?>
+
 
 <?php function draw_post_header($post)
 {?>
@@ -91,4 +122,9 @@
      { ?>
         <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
 <?php } }?>
-
+<?php function drawPostImageDefinition($id){
+    $ext=array_map("pathinfo",glob('../images/posts/originals/' . $id . '.*'));
+    $cArray = count($ext);
+    if($cArray != 0 && file_exists('../images/posts/originals/' .$id. '.' .$ext[0]['extension']) ){ ?>
+        <img class="post-image" src="../images/posts/originals/<?= $id ?>.<?= $ext[0]['extension']?>">
+    <?php }  }?>
