@@ -118,6 +118,9 @@ function receivePost(event) {
 
     let posts = response.data;
 
+    let extensions = response.extension;
+    let extensionsUsers = response.extensionUser;
+
     let section = document.querySelector('#posts');
 
     for (let i = 0; i < posts.length; i++) {
@@ -161,7 +164,7 @@ function receivePost(event) {
         h3.setAttribute("class","username");
         let img = document.createElement("img");
         img.setAttribute("class","small-image");
-        img.setAttribute("src","../images/users/default/user_icon.png");  
+        img.setAttribute("src","../images/users/default/default.png");  
         h3.innerText=" "+posts[i].username;
         h3.insertBefore(img,h3.childNodes[0]);
         let h3_1 = document.createElement("h3");
@@ -187,9 +190,10 @@ function receivePost(event) {
         post.appendChild(header);
         post.appendChild(a);
         post.appendChild(footer);
-
-        checkUserImage(posts[i].author, post);
-        checkPostImage(posts[i].id, post);
+        if(extensionsUsers[i]!=null)
+            checkUserImage(posts[i].author, post,extensionsUsers[i]);
+        if(extensions[i]!=null)
+            checkPostImage(posts[i].id, post,extensions[i]);
 
         section.appendChild(post);
     }
@@ -233,20 +237,22 @@ function getOffsetToOrder(lastPost) {
 
 
 
-function checkUserImage(id, post) {
+function checkUserImage(id, post,extension) {
     var image = new Image();
 
     let element = post.querySelector('.small-image');
 
     image.onload = function () {
         // image exists and is loaded
-        element.src = '../images/users/thumb_small/' + id + '.jpg';
+        element.setAttribute("width","40");
+        element.setAttribute("height","40");
+        element.src = '../images/users/originals/' + id + '.' + extension;
     }
     image.onerror = function () {
         // image did not load
     }
 
-    image.src = '../images/users/thumb_small/' + id + '.jpg';
+    image.src = '../images/users/originals/' + id + '.' + extension;
 }
 
 function createRequest(handler, url, data) {
@@ -261,7 +267,7 @@ function createRequest(handler, url, data) {
 
 
 
-function checkPostImage(id, post) {
+function checkPostImage(id, post,extension) {
 
     var image = new Image();
 
@@ -269,14 +275,14 @@ function checkPostImage(id, post) {
         // image exists and is loaded
         let imageElement = document.createElement('img');
         imageElement.classList.add('post-image');
-        imageElement.src = '../images/posts/thumb_medium/' + id + '.jpg';
+        imageElement.src = '../images/posts/thumb_medium/' + id + '.' + extension;
         post.insertBefore(imageElement, post.querySelector('footer'));
     }
     image.onerror = function () {
         // image did not load
     }
 
-    image.src = '../images/posts/thumb_medium/' + id + '.jpg';
+    image.src = '../images/posts/thumb_medium/' + id + '.' + extension;
 }
 
 

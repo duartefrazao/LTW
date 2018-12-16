@@ -12,7 +12,7 @@
 
     $name = test_input($_POST['name']);
 
-
+    
 
     if($name !="null")
     {
@@ -36,7 +36,24 @@
         $id=$_SESSION['id'];
     else 
         $id = null;
-    $response = array('result' => $permission, 'data' => $posts , 'id' => $id);
+    $extensions = array();
+    $extensionsUser = array();
+    foreach($posts as $post)
+    {
+        $ext=array_map("pathinfo",glob('../images/posts/originals/' . $post['id'] . '.*'));
+        $ext2=array_map("pathinfo",glob('../images/users/originals/' . $post['author'] . '.*'));
+        if(count($ext) == 0 )
+        {
+            $ext = null;
+        }
+        if(count($ext2) == 0 )
+        {
+            $ext2 = null;
+        }
+        array_push($extensions,$ext[0]['extension']);
+        array_push($extensionsUser,$ext2[0]['extension']);
+    }
+    $response = array('result' => $permission, 'data' => $posts , 'id' => $id,'extension'=>$extensions,'extensionUser'=>$extensionsUser);
 
     echo json_encode($response);
 ?>

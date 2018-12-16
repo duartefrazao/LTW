@@ -3,6 +3,75 @@
 include_once('../includes/session.php');
 include_once('../database/db_upload.php');
 
+function updateImageResource($id, $path, $imageTitle){
+
+    if(!fileUploaded())
+        return;
+
+
+    updateImage($id, $imageTitle, $path);
+
+    ini_set ('gd.jpeg_ignore_warning', 1);
+    
+    $image_url = "../images/$path/originals/".$_FILES["image"]["name"];
+    $imageFileType = strtolower(pathinfo($image_url,PATHINFO_EXTENSION));
+
+    $originalURL = "../images/$path/originals/$id";
+    $originalURLMedium = "../images/$path/thumb_medium/$id";
+    $originalURLSmall = "../images/$path/thumb_small/$id";
+    // Generate filenames for original, small and medium files
+    $originalFileName = $originalURL .".". $imageFileType;
+    $mediumFileName = $originalURLMedium .".". $imageFileType;
+    array_map("unlink",glob($originalURL.".*"));
+    array_map("unlink",glob($originalURLMedium.".*"));
+
+    // Move the uploaded file to its final destination
+    move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
+
+    // Crete an image representation of the original image
+    $original = createFrom($originalFileName,$imageFileType);
+    
+    if($path === 'users' || $path === 'channels'){
+
+        $size = getSmallSize($path);
+
+        $smallFileName = "../images/$path/thumb_small/$id.$imageFileType";
+        array_map("unlink",glob($originalURLSmall.".*"));
+        $small = cropImage($original, $size);
+        outImage($small, $smallFileName,$imageFileType);
+    }
+
+    $mediumSize = getMediumSize($path); 
+
+    if($path === 'posts' || $path === 'channels')
+        $medium = resize_image($originalFileName, $mediumSize, $mediumSize,$imageFileType);
+    else
+        $medium = cropImage($original, $mediumSize);
+
+    outImage($medium, $mediumFileName,$imageFileType);
+ }
+
+function createFrom($path,$type){
+    if($type == "jpg" || $type == "jpeg")
+        return imagecreatefromjpeg($path);
+    else if($type == "png" )
+        return imagecreatefrompng($path);
+    else if($type == "gif")
+        return imagecreatefromgif($path);
+}   
+
+function outImage($image,$path,$type)
+{
+    if($type == "jpg" || $type == "jpeg"){
+        imagejpeg($image, $path);
+    }
+    else if($type == "png" ){
+        imagepng($image, $path);
+    }
+    else if($type == "gif"){
+        imagegif($image, $path);
+    }
+}
 
 function createImageResource($id, $path, $imageTitle){
 
@@ -11,33 +80,36 @@ function createImageResource($id, $path, $imageTitle){
 
     insertNewImage($id, $imageTitle, $path);
 
+    $image_url = "../images/$path/originals/".$_FILES["image"]["name"];
+    $imageFileType = strtolower(pathinfo($image_url,PATHINFO_EXTENSION));
+
     // Generate filenames for original, small and medium files
-    $originalFileName = "../images/$path/originals/$id.jpg";
-    $mediumFileName = "../images/$path/thumb_medium/$id.jpg";
+    $originalFileName = "../images/$path/originals/$id.$imageFileType";
+    $mediumFileName = "../images/$path/thumb_medium/$id.$imageFileType";
 
     // Move the uploaded file to its final destination
     move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
     // Crete an image representation of the original image
-    $original = imagecreatefromjpeg($originalFileName);
+    $original = createFrom($originalFileName,$imageFileType);
     
     if($path === 'users' || $path === 'channels'){
 
         $size = getSmallSize($path);
 
-        $smallFileName = "../images/$path/thumb_small/$id.jpg";
+        $smallFileName = "../images/$path/thumb_small/$id.$imageFileType";
         $small = cropImage($original, $size);
-        imagejpeg($small, $smallFileName);
+        outImage($small, $smallFileName,$imageFileType);
     }
 
     $mediumSize = getMediumSize($path); 
 
     if($path === 'posts' || $path === 'channels')
-        $medium = resize_image($originalFileName, $mediumSize, $mediumSize);
+        $medium = resize_image($originalFileName, $mediumSize, $mediumSize,$imageFileType);
     else
         $medium = cropImage($original, $mediumSize);
 
-    imagejpeg($medium, $mediumFileName);
+    outImage($medium, $mediumFileName,$imageFileType);
 
 
  }
@@ -83,11 +155,10 @@ function cropImage($original, $thumbSize){
 
     $thumb = imagecreatetruecolor($thumbSize, $thumbSize);
     imagecopyresampled($thumb, $original, 0, 0, $x, $y, $thumbSize, $thumbSize, $smallestSide, $smallestSide);
-    
     return $thumb;
 }
 
-function resize_image($file, $w, $h, $crop=FALSE) {
+function resize_image($file, $w, $h,$type, $crop=FALSE) {
   list($width, $height) = getimagesize($file);
   $r = $width / $height;
   if ($crop) {
@@ -107,7 +178,7 @@ function resize_image($file, $w, $h, $crop=FALSE) {
           $newwidth = $w;
       }
   }
-  $src = imagecreatefromjpeg($file);
+  $src = createFrom($file,$type);
   $dst = imagecreatetruecolor($newwidth, $newheight);
   imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 

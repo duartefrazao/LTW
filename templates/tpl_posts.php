@@ -1,5 +1,6 @@
 <?php include_once("../templates/tpl_common.php"); ?>
 <?php include_once("../templates/tpl_channel.php"); ?>
+<?php include_once("../database/db_channel.php"); ?>
 
 
 <?php function draw_posts($posts)
@@ -91,10 +92,16 @@
         <h3 class="author">
             <?=$post['author']?>
         </h3>
-        <a href="../pages/profile.php?user=<?=$post['username']?>">
-            <h3 class="username">
-                <?php drawSmallImage('users', $post['author']) ?><?=$post['username']?>
+        <a class="user-info" href="../pages/profile.php?user=<?=$post['username']?>">
+            <div>
+            <?php drawSmallImage('users', $post['author']) ?>
+            </div>
+            <h3>
+                <?=$post['username']?>
             </h3>
+        </a>
+        <a class="channel-link" href="../pages/channel.php?channel=<?=$post['channel']?>">
+            <?= getChannel($post['channel'])['title'] ?>
         </a>
         <h3 class="creationDate">
             <?=humanTiming($post['creationDate']);?>
@@ -108,8 +115,9 @@
 
 
 <?php function drawPostImage($id){
-    if( file_exists('../images/posts/thumb_medium/' . $id . '.jpg') ){ ?>
-        <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.jpg">
+    $ext=array_map("pathinfo",glob('../images/posts/thumb_medium/' . $id . '.*'));
+    if(count($ext) != 0 && file_exists('../images/posts/thumb_medium/' . $id . '.' . $ext[0]['extension']) ){ ?>
+        <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
 <?php } }?>
 
 

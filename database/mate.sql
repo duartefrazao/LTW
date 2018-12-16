@@ -104,7 +104,7 @@ INSERT INTO channel VALUES(NULL, "science",      "Interesting science informatio
 INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,1,NULL);
 INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de julho, mas porquê?',4,0,1543878573,0,2,NULL);
 INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',5,0,1543878173,0,1,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,2,1,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,10,1,NULL);
 INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,1,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 

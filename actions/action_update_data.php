@@ -2,6 +2,7 @@
     include_once('../includes/session.php');
     include_once('../database/db_user.php');
     include_once('../actions/action_verify_input.php');
+    include_once('../actions/action_add_image.php');
 
     if(isset($_SESSION['username']))
     {
@@ -31,6 +32,7 @@
         {
             updatePassword($id,$pass);
         }
+        updateImageResource($id,'users',$description);
         if($logoff == true)
             session_destroy();
     }

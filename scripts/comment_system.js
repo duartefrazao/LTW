@@ -123,7 +123,7 @@ function submitComment(element) {
     .getAttribute('data-id') :
     -1;
 
-  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
+  createRequest(addComment, '../actions/action_add_comment.php', {parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf'), post_id: parent_id});
 
 }
 
@@ -131,6 +131,8 @@ function submitComment(element) {
 function submitLeveledComment(element){
 
   let parent = element.parentNode;
+
+  let post_id = document.querySelector('#post input[name="id"]').value;
 
   let text = element.querySelector('textarea').value;
   
@@ -150,7 +152,7 @@ function submitLeveledComment(element){
    
   comment_id = getCommentId(first_comment);
   }
-  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf')});
+  createRequest(addExpandedComment, '../actions/action_add_comment.php',{parent_id: parent_id,text: text,comment_id: comment_id,csrf:localStorage.getItem('csrf'), post_id : post_id});
 
   
 
@@ -364,7 +366,7 @@ function createComment(element) {
   
   comment.appendChild(aside);
 
-  comment.innerHTML += ' <header> <a href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
+  comment.innerHTML += ' <header> <a class="user-info" href="../pages/profile.php?user=' + element.username + '"> <h3 data-id="' + element.id +
   '" class="username">' +
   '<img class="small-image"  src="../images/users/default/default.png" >' + element.username + '</h3></a>' +
   '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header> <div class="vr"></div>' +

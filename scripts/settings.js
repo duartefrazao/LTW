@@ -1,7 +1,12 @@
+const MAX_IMAGE_SIZE = 10000000;
+
 let botao_settings = document.getElementById("settings_button");
 let informacao = document.getElementById("information");
 botao_settings.addEventListener("click",onSettingsClick);
 let last_html=informacao.innerHTML;
+let image_not_valid=false;
+
+
 function onSettingsClick(e)
 {
     informacao.innerHTML="";
@@ -23,11 +28,12 @@ function change_to_settings()
     form.setAttribute("autocorrect","off");
     form.setAttribute("autocapitalize","off");
     form.setAttribute("spellcheck","false");
+    form.setAttribute("enctype","multipart/form-data");
     form.innerHTML +='<input type="hidden" name="id" value="'+info.id+'">';
     let table = document.createElement("table");
-    
-    table.innerHTML +='<table id="settings_table"><tr> <th>Image:</th><td>'+ draw_Image(image_exists,info.id)+'</td></tr>'
-    table.innerHTML +='<tr><th></th></th><td><input src="" type="file" id="image_input" name="image" placeholder="Your image"></td></tr>';
+
+    table.innerHTML +='<table id="settings_table"><tr> <th>Image:</th><td>'+ draw_Image(image_exists,info.id,response.extension)+'</td></tr>'
+    table.innerHTML +='<tr><th></th></th><td><input src="" type="file" id="image_input" name="image" placeholder="Your image" multiple accept="image/jpeg,image/jpg,image/gif,image/png"></td></tr>';
     table.innerHTML +='<tr><th>Username:</th><td><input type="text" name="username" placeholder="New username" value="'+info.username+'" required></td></tr>';
     table.innerHTML +='<tr><th>E-mail:</th><td><input type="text" name="mail" placeholder="New e-mail" value="'+info.mail+'" required></td></tr>';
     table.innerHTML +='<tr><th>Description:</th><td><input type="text" name="description" placeholder="New description" value="'+info.description+'"></td></tr>';
@@ -45,6 +51,7 @@ function change_to_settings()
     botao.addEventListener("click",checkInfo);
 }
 function cancel(e){
+    e.preventDefault();
     informacao.setAttribute("id","information");
     informacao.innerHTML=last_html;
     let change_settings = document.getElementById("settings_button");
@@ -60,20 +67,52 @@ function checkInfo(e){
         info.innerHTML="Password does not match";
         e.preventDefault();
     }
+    if(image_not_valid)
+    {
+        info.innerHTML="Image is too big";
+        e.preventDefault();
+    }
 }
 
 function change_Image(){
     let image = document.querySelector(".user-image");
     let image_load = document.getElementById("image_input");
     let reader = new FileReader();
+    let info = document.getElementById("info");
+    if(image_load.files[0].size > MAX_IMAGE_SIZE){
+        image_not_valid=true;
+        info.innerHTML="Image is too big";
+    }
+    else
+    {
+        image_not_valid=false;
+        if(info.innerHTML=="Image is too big")
+        {
+            info.innerHTML="";
+        }
+    }
+    let type = image_load.files[0].type.split("/")[1];
+    if(type == "gif" || type == "jpeg" || type == "jpg" || type == "png")
+    {
+        image_not_valid=false;
+        if(info.innerHTML=="Uploaded image format not valid")
+        {
+            info.innerHTML="";
+        }
+    }
+    else
+    {
+        image_not_valid=true;
+        info.innerHTML="Uploaded image format not valid";
+    }
     reader.readAsDataURL(image_load.files[0]);
     reader.onload = function(e) {
         image.setAttribute("src",e.target.result);
     };
 }
 
-function draw_Image(image,id){
-    let image_url = "../images/users/thumb_medium/" + id + ".jpg";
+function draw_Image(image,id,extension){
+    let image_url = "../images/users/originals/" + id + "." +extension;
     if(image == true)
         return '<img class="user-image" src="'+ image_url +'" width="100" height="100">';
     else
