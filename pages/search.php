@@ -11,7 +11,6 @@
     include_once("utilities.php");
     include_once("../actions/action_store_token.php");
     
-
     $search= test_input($_POST['search']);
     $user =null;
 

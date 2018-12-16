@@ -1,7 +1,6 @@
 function fill(Value) {
     let search = document.getElementById("searchInput");
     let display = document.getElementById("displaySuggestions");
-
     search.value = Value;
     display.innerHTML = "";
 }
@@ -35,8 +34,8 @@ search.addEventListener("keydown", function (e) {
             return;
         } else {
             e.preventDefault();
-            let searchValue = document.querySelector("#displaySuggestions ul li:nth-child(" + currentFocus + ") a").text;
-            search.value = searchValue;
+            let searchValue = document.querySelector("#displaySuggestions ul li:nth-child(" + currentFocus + ")");
+            searchValue.click();
             form.submit();
         }
     }
@@ -54,7 +53,7 @@ function encodeForAjax(data) {
         .join('&')
 }
 document.querySelector('#displaySuggestions').addEventListener("click", function (e) {
-        form.submit();
+    //form.submit();
 })
 
 document.addEventListener('click', function(e){
@@ -75,7 +74,6 @@ search.addEventListener("keyup", function () {
         request.addEventListener("load", function () {
             let info = JSON.parse(this.response);
             let inner = "<ul>";
-
             info.channels.forEach(function(s){
                 inner+="<li onclick=fill(\""+s.title + "\") ><a>c/"+ s.title+"</a></li>";
             })
