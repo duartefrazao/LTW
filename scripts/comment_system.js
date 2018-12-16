@@ -170,11 +170,12 @@ function addComment(event) {
   }
 
   let comments = response.data;
+  let extensions = response.extensions;
 
   let section = document.querySelector('#comments');
   for (let i = 0; i < comments.length; i++) {
 
-    let comment = createComment(comments[i]);
+    let comment = createComment(comments[i],extensions[i]);
 
     section.insertBefore(comment, section.querySelector('#comments .comment:first-of-type'));
   }
@@ -193,6 +194,7 @@ function addExpandedComment(event){
   }
 
   let comments = response.data;
+  let extensions = response.extensions;
 
   if (comments.length === 0) {
     return;
@@ -205,7 +207,7 @@ function addExpandedComment(event){
 
   for (let i = 0; i < comments.length; i++) {
 
-    let comment = createComment(comments[i]);
+    let comment = createComment(comments[i],extensions[i]);
 
       if( replies === null){
         replies = document.createElement('span');
@@ -277,12 +279,13 @@ function receiveComment(event) {
   let response = JSON.parse(this.responseText);
 
   let comments = response.data;
+  let extensions = response.extensions;
 
   let section = document.querySelector('#comments');
 
   for (let i = 0; i < comments.length; i++) {
 
-    let comment = createComment(comments[i]);
+    let comment = createComment(comments[i],extensions[i]);
 
     section.appendChild(comment);
   }
@@ -309,6 +312,7 @@ function receiveReplies(event) {
   let response = JSON.parse(this.responseText);
 
   let comments = response.data;
+  let extensions = response.extensions;
 
   if (comments.length === 0) {
     return;
@@ -327,7 +331,7 @@ function receiveReplies(event) {
 
     for (let i = 0; i < comments.length; i++) {
 
-      let comment = createComment(comments[i]);
+      let comment = createComment(comments[i],extensions[i]);
 
       replies.appendChild(comment);
 
@@ -350,7 +354,7 @@ function getCommentId(element){
 }
 
 
-function createComment(element) {
+function createComment(element,extension) {
   let comment = document.createElement('article');
   comment.classList.add('comment');
 
@@ -374,7 +378,7 @@ function createComment(element) {
   '<span class="numReplies">' + element.numComments + ' Repl' + (element.numComments == 1 ? 'y' : 'ies') + '</span>' +
   '<span class="reply"> Reply </span> </footer>';
 
-  checkUserImage(element.author, comment);
+  checkUserImage(element.author, comment,extension);
 
   addCreateReplyForm(comment);
 
@@ -388,7 +392,7 @@ function createComment(element) {
 }
 
 
-function checkUserImage(id, comment) {
+function checkUserImage(id, comment,extension) {
 
   var image = new Image();
 
@@ -396,14 +400,31 @@ function checkUserImage(id, comment) {
 
   image.onload = function () {
     // image exists and is loaded
-    element.src = '../images/users/thumb_small/' + id + '.jpg';
+    
+    if(extension == "gif")
+    {
+      element.src = '../images/users/originals/' + id + '.' + extension;
+      element.width=40;
+      element.height=40;
+      element.setAttribute("class","gif_small");
+    }
+    else
+      element.src = '../images/users/thumb_small/' + id + '.' + extension;
   }
   image.onerror = function () {
     // image did not load
     console.warn('on error:', comment.querySelector('img'));
   }
-
-  image.src = '../images/users/thumb_small/' + id + '.jpg';
+  
+  if(extension == "gif")
+  {
+    image.src = '../images/users/originals/' + id + '.' + extension;
+    image.width=40;
+    image.height=40;
+    image.setAttribute("class","gif_small");
+  }
+  else
+    image.src = '../images/users/thumb_medium/' + id + '.' + extension;
 }
 
 function humanTiming(originalTime) {

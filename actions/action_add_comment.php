@@ -34,7 +34,18 @@ if (!isset($_SESSION['username']) ||  $_SESSION['csrf'] != $_POST['csrf']) {
     
 }
 
-$response = array('result' => $permission, 'data' => $comments);
+$extensionsUser = array();
+    foreach($comments as $comment)
+    {
+        $ext=array_map("pathinfo",glob('../images/users/originals/' . $comment['author'] . '.*'));
+        if(count($ext) == 0 )
+        {
+            $ext = null;
+        }
+        array_push($extensionsUser,$ext[0]['extension']);
+    }
+
+$response = array('result' => $permission, 'data' => $comments, 'extensions' => $extensionsUser);
 
 echo json_encode($response);
 ?>
