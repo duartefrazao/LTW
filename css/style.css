@@ -101,7 +101,7 @@ body>header {
 }
 
 header #username{
-    margin:0.5em 0em;
+    margin:0.5em 0.5em 0.5em 0;
 }
 
 
@@ -137,6 +137,8 @@ header #username{
     transition: 1s ease;
     padding: 0;
     border-bottom: solid black 1px;
+
+    margin-right:0.5em;
 }
 
 .dropdown li a{
@@ -170,6 +172,7 @@ header #username{
 /*----------------------------------------------------------*/
 
 .normal-button {
+    font-weight:bold;
     display: inline-block;
     padding: 0.3em 0em 0.3em 0em;
     background-color: white;
@@ -178,9 +181,11 @@ header #username{
     text-align: center;
     transition: 0.3s ease;
     border-style: none;
-    font-size: 125%;
+    font-size: 100%;
+    min-width: 68px;
     transition: 0.3s ease;
     cursor: pointer;
+    opacity: 0.9;
 }
 
 #login-button:hover,
@@ -188,6 +193,7 @@ header #username{
 #back:hover {
     background-color: #ddd;
     transition: 1s ease;
+    cursor: pointer;
 }
 
 #login-button {
@@ -294,43 +300,60 @@ header #username{
     cursor: pointer;
 }
 
-.user_page{
+.user_page, #channel{
     margin-top: 3em;
     display: flex;
 }
-#information , #settings {
+
+#information{
+    padding:1em;
+}
+
+#information , #settings, #channel .info {
     flex-grow: 1;
 
-    padding:1em;
     margin: 3.2em auto auto 0;
     max-width: 30em;
     
     margin-left:1em;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
-    
 }
 #settings{
     margin-top:6.8em;
     margin-left:1em;
     max-width: 21em;
     position: fixed;
-
 }
-#information{
+
+#information, #channel .info{
     margin-top:6.8em;
     margin-left:3em;
     position: fixed;
 
 }
 
-#profile_right{
+#channel .info{
+    margin:5em 4em 0 3em;
+    width:20em;
+    margin-top:6.8em;
+    margin-right:4em;
+}
+
+#channel .info .small-image{
+    width: 20em;
+    max-width: 100%;
+}
+
+
+#profile_right,  #channel_right{
     margin-right:3em;
     padding-left:25em;
     flex-grow: 1.5;
     display:flex;
     flex-direction: column;
 }
+
 
 #information header{
     display: flex;
@@ -374,35 +397,35 @@ header #username{
     padding: 10px;
 }
 
-.user_page #ordering{ 
+.user_page #ordering, #channel #ordering{ 
     margin:2em auto 0 auto;
  
 }
 
-#profile_right #posts{
+#profile_right #posts,  #channel_right #posts{
     padding:0;
     width:100%;
 }
 
+
 @media(max-width:900px){
 
-    #information, #settings{
-        max-width: 100%;
+    #information, #channel .info{
         margin:4em auto 1em auto;
         position: relative;
     }
-    .user_page{
+    .user_page, #channel{
         flex-direction: column;
     }
-    .user_page #ordering{
+    .user_page #ordering, #channel #ordering{
         margin:0 auto;
     }
 
-    .user_page .overview-post{
+    .user_page .overview-post, #channel .overview-post{
         min-width: 17em;
     }
 
-    #profile_right{
+    #profile_right, #channel_right{
         margin:0 1em;
         padding-left:0;
     }
@@ -410,7 +433,7 @@ header #username{
 }
 
 @media(max-width:450px){
-   .user_page #profile_right{
+   .user_page #profile_right #channel #channel_right{
         margin-left:1em;
         margin-right:1em;
     }
@@ -522,7 +545,7 @@ header #username{
 }
 
 #posts .channel-link::before, #post .channel-link::before{
-    content: "-c/";
+    content: "c/";
 }
 
 .creationDate::before {
@@ -600,7 +623,7 @@ header #username{
     grid-area: votes;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 2em 0 0.8em;
 }
 
 
@@ -814,11 +837,6 @@ input[type='hidden'] {
     margin: 0.2em;
 }
 
-/* #post #comments .voting_section{
-    background-color: #F5F5F5;
-    border-radius: 5px 0 0 5px;
-    margin: 0 ;
-} */
 
 #post #comments .upvote {
     margin: 0 auto;
@@ -881,6 +899,7 @@ input[type='hidden'] {
     justify-items: center;
     border-radius: 5px 5px 5px 5px;
 }
+
 
 
 
@@ -956,7 +975,7 @@ input[type='hidden'] {
 /*----------------------------------------------------------*/
 
 #new-channel{
-    grid-template-areas: "title           ."
+    grid-template-areas: "title           title"
                          "description     description"
                          "imageDesc       image"
                          ".               share";
@@ -1007,7 +1026,7 @@ input[type='hidden'] {
         margin-right:auto;
         margin-left:auto;
         justify-self: center;
-        min-width: 6em;
+        min-width: 160px;
         max-width: 12em;
     }
 
@@ -1143,44 +1162,33 @@ input[type='hidden'] {
     justify-content: center;
 }
 
-#channel{
-    margin: 5em auto;
-    display: flex;  
-}
 
-#channel .info{
-    background-color: white;
-    position: fixed;
-    top: 10em;
-    left: 15em;
-    background-color: white;
-    justify-items: center;
-    border-radius: 5px 5px 5px 5px; 
-}
 
 #channel img{
     border-radius: 5px 5px 0px 0px;
 }
+#channel .info h1::before{
+    content:"c/";
+}
 
 #channel .info h1{
+    margin:0.5em auto;
     text-align: center;
 }
 
 #channel .info  span{
-    clear:left;
-    margin: 0 auto;
     text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
 }
 
 #channel #posts{
     position: relative;
-    margin-left: 40%;
 }
  
 .channel-info{
     display: flex;
-    justify-content: flex-start;
-    margin: 0;
     margin-top: 1em;
     vertical-align: middle;
     align-items: center;

@@ -52,7 +52,14 @@
                     <?=$channelInfo['description'] ?>
                 </span>
             </section>
+<<<<<<< HEAD
 
             <?php draw_posts(); ?>
+=======
+            <section id="channel_right"> <?php
+            draw_ordering();
+            draw_posts($posts); ?>
+            </section>
+>>>>>>> mobile
         </article>
 <?php } ?>

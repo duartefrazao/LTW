@@ -19,6 +19,10 @@
 
     $channel = $_GET['channel'];
     $channelInfo = getChannel($channel);
+<<<<<<< HEAD
+=======
+    $channelPosts = getPostsFromChannel($user,PHP_INT_MAX,$channel);
+>>>>>>> mobile
 
     draw_header_global($user);
     
