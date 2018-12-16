@@ -82,10 +82,16 @@ function createImageResource($id, $path, $imageTitle){
 
     $image_url = "../images/$path/originals/".$_FILES["image"]["name"];
     $imageFileType = strtolower(pathinfo($image_url,PATHINFO_EXTENSION));
-
+    
+    $originalURL = "../images/$path/originals/$id";
+    $originalURLMedium = "../images/$path/thumb_medium/$id";
+    $originalURLSmall = "../images/$path/thumb_small/$id";
     // Generate filenames for original, small and medium files
     $originalFileName = "../images/$path/originals/$id.$imageFileType";
     $mediumFileName = "../images/$path/thumb_medium/$id.$imageFileType";
+
+    array_map("unlink",glob($originalURL.".*"));
+    array_map("unlink",glob($originalURLMedium.".*"));
 
     // Move the uploaded file to its final destination
     move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
@@ -98,6 +104,7 @@ function createImageResource($id, $path, $imageTitle){
         $size = getSmallSize($path);
 
         $smallFileName = "../images/$path/thumb_small/$id.$imageFileType";
+        array_map("unlink",glob($originalURLSmall.".*"));
         $small = cropImage($original, $size);
         outImage($small, $smallFileName,$imageFileType);
     }

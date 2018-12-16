@@ -33,7 +33,7 @@
         <input type="text" name="imageDescription" placeholder="Image Title">
         <label class="fileContainer" >
             File
-            <input type="file" title=" " name="image" placeholder="Channel Banner">
+            <input src="" type="file" id="image_input" name="image" placeholder="Channel Banner" multiple accept="image/jpeg,image/jpg,image/gif,image/png">
         </label>
         <input type="submit" value="Create">
     </form>
