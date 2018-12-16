@@ -180,6 +180,7 @@ header #username{
     border-style: none;
     font-size: 125%;
     transition: 0.3s ease;
+    cursor: pointer;
 }
 
 #login-button:hover,
