@@ -79,19 +79,19 @@ function change_Image(){
     let image_load = document.getElementById("image_input");
     let reader = new FileReader();
     let info = document.getElementById("info");
-    if(image_load.files[0].size > MAX_IMAGE_SIZE){
+    let type = image_load.files[0].type.split("/")[1];
+    if(image_load.files[0].size > MAX_IMAGE_SIZE && type == "gif"){
         image_not_valid=true;
-        info.innerHTML="Image is too big";
+        info.innerHTML="GIF is too big";
     }
     else
     {
         image_not_valid=false;
-        if(info.innerHTML=="Image is too big")
+        if(info.innerHTML=="GIF is too big")
         {
             info.innerHTML="";
         }
     }
-    let type = image_load.files[0].type.split("/")[1];
     if(type == "gif" || type == "jpeg" || type == "jpg" || type == "png")
     {
         image_not_valid=false;
