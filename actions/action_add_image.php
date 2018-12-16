@@ -8,7 +8,6 @@ function updateImageResource($id, $path, $imageTitle){
     if(!fileUploaded())
         return;
 
-
     updateImage($id, $imageTitle, $path);
 
     ini_set ('gd.jpeg_ignore_warning', 1);
@@ -77,6 +76,7 @@ function createImageResource($id, $path, $imageTitle){
 
     if(!fileUploaded())
         return;
+
 
     insertNewImage($id, $imageTitle, $path);
 

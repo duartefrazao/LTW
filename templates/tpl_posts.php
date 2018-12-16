@@ -18,7 +18,7 @@
         <input type="text" name="description" placeholder="Image Title">
         <label class="fileContainer" >
             File
-            <input type="file" title=" " name="image" placeholder="Your image">
+            <input src="" type="file" id="image_input" name="image" placeholder="Your image" multiple accept="image/jpeg,image/jpg,image/gif,image/png">
         </label>
         <input type="submit" value="Share">
     </form>
