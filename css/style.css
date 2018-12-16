@@ -101,7 +101,7 @@ body>header {
 }
 
 header #username{
-    margin:0.5em 0em;
+    margin:0.5em 0.5em 0.5em 0;
 }
 
 
@@ -137,6 +137,8 @@ header #username{
     transition: 1s ease;
     padding: 0;
     border-bottom: solid black 1px;
+
+    margin-right:0.5em;
 }
 
 .dropdown li a{
@@ -865,6 +867,7 @@ input[type='hidden'] {
 
 
 
+
 #new-post .drp_channels{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -937,7 +940,7 @@ input[type='hidden'] {
 /*----------------------------------------------------------*/
 
 #new-channel{
-    grid-template-areas: "title           ."
+    grid-template-areas: "title           title"
                          "description     description"
                          "imageDesc       image"
                          ".               share";
@@ -988,7 +991,7 @@ input[type='hidden'] {
         margin-right:auto;
         margin-left:auto;
         justify-self: center;
-        min-width: 6em;
+        min-width: 160px;
         max-width: 12em;
     }
 
