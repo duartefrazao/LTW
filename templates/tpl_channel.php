@@ -59,8 +59,13 @@
                 </span>
             </section>
             <section id="channel_right"> <?php
-            draw_ordering();
-            draw_posts($channelPosts); ?>
+            if(count($channelPosts) >0){
+                draw_ordering();
+                draw_posts($channelPosts);
+            }else{ 
+                ?> 
+                     <a id="go_back_search" href="posts.php">No results found, click to go back</a>
+               <?php }?>
             </section>
         </article>
 <?php } ?>
