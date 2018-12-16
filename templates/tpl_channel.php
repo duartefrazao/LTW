@@ -40,11 +40,12 @@
 <?php } ?>
 
 
-<?php function drawChannelPage($channelInfo, $posts){ ?>
+<?php function drawChannelPage($channelInfo){ ?>
     
         <article id="channel">
 
             <section class='info'>
+                <input type="hidden" value="<?= $channelInfo['id']?>" > 
                 <?php drawMediumImage('channels', $channelInfo['id']) ?>
                 <h1> <?= $channelInfo['title'] ?> </h1>
                 <span>
@@ -52,6 +53,6 @@
                 </span>
             </section>
 
-            <?php draw_posts($posts); ?>
+            <?php draw_posts(); ?>
         </article>
 <?php } ?>

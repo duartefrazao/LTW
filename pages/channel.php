@@ -22,10 +22,13 @@
     $channelPosts = getPostsFromChannel($_SESSION['username'],PHP_INT_MAX,$channel);
 
     draw_header_global($user);
+    
 
     includeScript("vote_system");
     includeScript("posts_scroll"); 
     includeScript("search_system"); 
+
+    draw_ordering();
 
     drawChannelPage($channelInfo, $channelPosts);
     
