@@ -265,9 +265,10 @@
             'SELECT Distinct A1.*, A2.up as up FROM 
                 (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
                     FROM ENTITY 
-                    JOIN USER ON ENTITY.author = USER.id
+                    JOIN USER ON ENTITY.author = USER.id 
                     JOIN CHANNEL on CHANNEL.id = ENTITY.channel
-                    WHERE ENTITY.parentEntity is NULL) as A1
+                    WHERE ENTITY.parentEntity is NULL
+                    AND USER.username = ? ) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
@@ -338,7 +339,8 @@
                  FROM ENTITY 
                  JOIN USER ON ENTITY.author = USER.id
                  JOIN CHANNEL on CHANNEL.id = ENTITY.channel
-            WHERE ENTITY.parentEntity is NULL) as A1
+                 WHERE ENTITY.parentEntity is NULL
+                 AND USER.username = ?) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
@@ -410,7 +412,8 @@
                  FROM ENTITY 
                  JOIN USER ON ENTITY.author = USER.id
                  JOIN CHANNEL on CHANNEL.id = ENTITY.channel
-                 WHERE ENTITY.parentEntity is NULL) as A1
+                 WHERE ENTITY.parentEntity is NULL
+                 AND USER.username = ?) as A1
             LEFT JOIN 
                 (SELECT VOTE.* 
                 FROM VOTE JOIN USER 
