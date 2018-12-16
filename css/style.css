@@ -74,7 +74,7 @@ body>header {
     z-index: 1;
     align-items: center;
     justify-content: safe;
-    min-width: 100px;
+    min-width: 320px;
     top: 0;
 }
 
@@ -294,7 +294,7 @@ header #username{
 }
 
 .user_page{
-    margin-top: 5em;
+    margin-top: 3em;
     display: flex;
 }
 #information , #settings {
@@ -302,7 +302,7 @@ header #username{
 
     padding:1em;
     margin: 3.2em auto auto 0;
-    
+    max-width: 30em;
     
     margin-left:1em;
     background-color: white;
@@ -310,7 +310,16 @@ header #username{
     
 }
 
+#information{
+    margin-top:6.8em;
+    margin-left:3em;
+    position: fixed;
+
+}
+
 #profile_right{
+    margin-right:3em;
+    padding-left:25em;
     flex-grow: 1.5;
     display:flex;
     flex-direction: column;
@@ -349,16 +358,46 @@ header #username{
     padding: 4px;
 }
 
-.user_page #ordering{
-    margin:1em auto 0em auto;
-
+.user_page #ordering{ 
+    margin:2em auto 0 auto;
+ 
 }
 
 #profile_right #posts{
-    padding-top:0em;
+    padding:0;
+    width:100%;
 }
 
+@media(max-width:900px){
 
+    #information{
+        margin:4em auto 1em auto;
+        position: relative;
+    }
+    .user_page{
+        flex-direction: column;
+    }
+    .user_page #ordering{
+        margin:0 auto;
+    }
+
+    .user_page .overview-post{
+        min-width: 17em;
+    }
+
+    #profile_right{
+        margin:0 1em;
+        padding-left:0;
+    }
+
+}
+
+@media(max-width:450px){
+   .user_page #profile_right{
+        margin-left:1em;
+        margin-right:1em;
+    }
+}
 
 /*----------------------------------------------------------*/
 /*-----------------------OVERVIEW POST----------------------*/
@@ -1239,24 +1278,30 @@ input[type='hidden'] {
     max-width: 50em;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
 }
 
 #channels_search , #users_search{
-    text-align: center;
+    min-width: 20em;
     display:flex;
     flex-direction: column;
-    background-color: white;
+    background-color: white; 
     border-radius: 5px 5px 5px 5px;
-    max-width: 100%;
+    max-width: 50%;
     padding: 1em;
-    margin: 0 1em;
+    margin: 0 1em 1em 1em;
 }
+
 
 #posts_search{
     margin-top: 2em;
     display:flex;
     flex-direction: column;
+    padding:0;
+}
+
+#posts_search .overview-post{
+    
 }
 
 .search_title {
