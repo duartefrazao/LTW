@@ -3,18 +3,10 @@
 <?php include_once("../database/db_channel.php"); ?>
 
 
-<?php function draw_posts($posts)
+<?php function draw_posts()
 {?>
     <section id="posts">
-        <?php
-            foreach ($posts as $post) {
-                draw_overview_post($post);
-            }
-        ?>
     </section>
-
-    <?php draw_add_button(); ?>
-
 <?php }?>
 
 
@@ -65,27 +57,6 @@
 <?php }?>
 
 
-<?php function draw_overview_post($post)
-{?>
-    <article class="overview-post">
-        <?php draw_voting_aside($post) ?>
-
-        <?php draw_post_header($post) ?>
-
-        <a href="../pages/post.php?id=<?= $post['id']?>">
-            <h1 class="title" >
-                <?=$post['title']?>
-            </h1>
-        </a>
-
-        <?php drawPostImage($post['id']) ?>
-        
-        <?php draw_post_footer($post) ?> 
-    </article>
-<?php }?>
-
-
-
 <?php function draw_post_header($post)
 {?>
     <header>
@@ -101,17 +72,13 @@
             </h3>
         </a>
         <a class="channel-link" href="../pages/channel.php?channel=<?=$post['channel']?>">
-            <?= getChannel($post['channel'])['title'] ?>
+            <?= $post['channelTitle'] ?>
         </a>
         <h3 class="creationDate">
             <?=humanTiming($post['creationDate']);?>
         </h3>
     </header>
 <?php } ?>
-
-
-
-
 
 
 <?php function drawPostImage($id){
@@ -123,18 +90,5 @@
     else if($cArray != 0 &&  file_exists('../images/posts/thumb_medium/' . $id . '.' .$ext[0]['extension']) )
      { ?>
         <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
-     <?php } }?>
-
-
-
-
-<?php function draw_post_footer($post)
-{?>
-    <footer>
-        <h5 class="comments">
-            <a href= "post.php?id=<?=$post['id']?>" ><?=$post['numComments']?> Comment</a><?=$post['numComments'] == 1 ? '' : 's'?>
-        </h5>
-    </footer>
-<?php }?>
-
+<?php } }?>
 

@@ -6,20 +6,11 @@
     include_once("../database/db_upload.php");
     include_once("../includes/session.php");
     include_once("../actions/action_store_token.php");
-
     include_once("utilities.php");
 
-    $criteria = 'mostrecent'; 
-    $user = null;
+    $user=isset($_SESSION['id'])?$_SESSION['id']:NULL;
 
-    if(isset($_SESSION['username']))    
-        $user = $_SESSION['username'];
-        $posts = getPosts($user, PHP_INT_MAX,  $criteria);
-
-    draw_header($user);
-
-
-    $images = getAllImages();
+    draw_header_global($user);
 
     includeScript("posts_scroll");
     includeScript("vote_system");
@@ -27,7 +18,9 @@
 
     draw_ordering();
 
-    draw_posts($posts);
+    draw_posts();
+
+    draw_add_button();
     
     draw_footer();
 

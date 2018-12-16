@@ -124,7 +124,9 @@
             case 'week':
                 return 604800;
             case 'year':
-                return 31556952; 
+                return 31556952;
+            case 'all':
+                return time();
             default:
                 return 86400;
         }
@@ -176,9 +178,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT A1.*, A2.up as up FROM 
-                (SELECT ENTITY.* , USER.username 
-                FROM ENTITY JOIN USER
-                ON ENTITY.author = USER.id where ENTITY.id = ? AND ENTITY.parentEntity is NULL) as A1
+                (SELECT ENTITY.* , USER.username, CHANNEL.title
+                 FROM ENTITY 
+                 JOIN USER ON ENTITY.author = USER.id
+                 JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+                 WHERE ENTITY.parentEntity is NULL) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
@@ -213,20 +217,24 @@
     //============== ID ORDERING =====================
     function getPostsGuest_id($offset, $numOfElements){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
-                            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
-                            AND ENTITY.parentEntity is NULL 
-                            WHERE ENTITY.id < ? ORDER BY ENTITY.id DESC LIMIT ?');
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                            FROM ENTITY 
+                            JOIN USER ON ENTITY.author = USER.id 
+                            JOIN CHANNEL ON ENTITY.channel = CHANNEL.id
+                            WHERE ENTITY.parentEntity is NULL 
+                            AND ENTITY.id < ? ORDER BY ENTITY.id DESC LIMIT ?');
         $stmt->execute(array($offset, $numOfElements));
         return $stmt->fetchAll();
     }
 
     function getPostByUserGuest_id($username,$offset, $numOfElements){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
-                            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
-                            AND ENTITY.parentEntity is NULL 
-                            WHERE USER.username = ? AND ENTITY.id < ? ORDER BY ENTITY.id DESC LIMIT ?');
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                            FROM ENTITY 
+                            JOIN USER ON ENTITY.author = USER.id 
+                            JOIN CHANNEL ON CHANNEL.id = ENTITY.id
+                            WHERE ENTITY.parentEntity is NULL 
+                            AND USER.username = ? AND ENTITY.id < ? ORDER BY ENTITY.id DESC LIMIT ?');
         $stmt->execute(array($username,$offset, $numOfElements));
         return $stmt->fetchAll();
     }
@@ -235,10 +243,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up as up FROM 
-           (SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER  
-                ON ENTITY.author = USER.id 
-                AND ENTITY.parentEntity is NULL) as A1
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?
@@ -254,9 +263,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT Distinct A1.*, A2.up as up FROM 
-                (SELECT ENTITY.* , USER.username 
-                FROM ENTITY JOIN USER
-                ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
+                (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                    FROM ENTITY 
+                    JOIN USER ON ENTITY.author = USER.id
+                    JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+                    WHERE ENTITY.parentEntity is NULL) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
@@ -272,8 +283,10 @@
 
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
+            'SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id 
+            JOIN CHANNEL ON ENTITY.channel = CHANNEL.id
             WHERE ENTITY.parentEntity is NULL 
             AND (? - ? < ENTITY.creationDate) AND
             ENTITY.votes <= ? ORDER BY ENTITY.votes DESC LIMIT ?');
@@ -284,10 +297,12 @@
 
     function getPostByUserGuest_votes($username,$offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
-                            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
-                            AND ENTITY.parentEntity is NULL 
-                            WHERE USER.username = ? AND (? - ? < ENTITY.creationDate) AND ENTITY.id < ? 
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                            FROM ENTITY 
+                            JOIN USER ON ENTITY.author = USER.id 
+                            JOIN CHANNEL ON CHANNEL.id = ENTITY.id
+                            WHERE ENTITY.parentEntity is NULL 
+                            AND USER.username = ? AND (? - ? < ENTITY.creationDate) AND ENTITY.id < ? 
                             ORDER BY ENTITY.votes ASC LIMIT ?');
         $stmt->execute(array($username,time(), $timeOffset,$offset, $numOfElements));
         return $stmt->fetchAll();
@@ -298,10 +313,11 @@
 
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up as up FROM 
-           (SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER  
-                ON ENTITY.author = USER.id 
-                AND ENTITY.parentEntity is NULL) as A1
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?
@@ -318,9 +334,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT Distinct A1.*, A2.up as up FROM 
-                (SELECT ENTITY.* , USER.username 
-                FROM ENTITY JOIN USER
-                ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
+                (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                 FROM ENTITY 
+                 JOIN USER ON ENTITY.author = USER.id
+                 JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            WHERE ENTITY.parentEntity is NULL) as A1
             LEFT JOIN 
                 (SELECT VOTE.* FROM
                 VOTE JOIN USER 
@@ -337,8 +355,10 @@
 
         $db = Database::instance()->db();
         $stmt = $db->prepare(
-            'SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
+            'SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id 
+            JOIN CHANNEL ON ENTITY.channel = CHANNEL.id
             WHERE ENTITY.parentEntity is NULL 
             AND (? - ? < ENTITY.creationDate) AND
             ENTITY.numComments <= ? ORDER BY ENTITY.numComments DESC LIMIT ?');
@@ -349,10 +369,12 @@
     
     function getPostByUserGuest_comments($username,$offset, $numOfElements){
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT ENTITY.* , USER.username 
-                            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
-                            AND ENTITY.parentEntity is NULL 
-                            WHERE USER.username = ? AND (? - ? < ENTITY.creationDate) AND ENTITY.id < ? 
+        $stmt = $db->prepare('SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                            FROM ENTITY 
+                            JOIN USER ON ENTITY.author = USER.id 
+                            JOIN CHANNEL ON CHANNEL.id = ENTITY.id
+                            WHERE ENTITY.parentEntity is NULL 
+                            AND USER.username = ? AND (? - ? < ENTITY.creationDate) AND ENTITY.id < ? 
                             ORDER BY ENTITY.numComments DESC LIMIT ?');
         $stmt->execute(array($username,time(), $timeOffset,$offset, $numOfElements));
         return $stmt->fetchAll();
@@ -363,10 +385,11 @@
 
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up as up FROM 
-           (SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER  
-                ON ENTITY.author = USER.id 
-                AND ENTITY.parentEntity is NULL) as A1
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?
@@ -383,9 +406,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT Distinct A1.*, A2.up as up FROM 
-                (SELECT ENTITY.* , USER.username 
-                FROM ENTITY JOIN USER
-                ON ENTITY.author = USER.id where USER.username = ? AND ENTITY.parentEntity is NULL) as A1
+                (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+                 FROM ENTITY 
+                 JOIN USER ON ENTITY.author = USER.id
+                 JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+                 WHERE ENTITY.parentEntity is NULL) as A1
             LEFT JOIN 
                 (SELECT VOTE.* 
                 FROM VOTE JOIN USER 
