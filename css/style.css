@@ -369,6 +369,7 @@ header #username{
 }
 #information,#settings{
     min-width: 20%;
+    max-width: 40%;
 }
 
 #information header,#information table,#settings header,#settings form{
@@ -377,6 +378,7 @@ header #username{
     justify-content: space-evenly;
     align-items: center;
     padding-bottom: 1em;
+    max-width: 100%;
 
 }
 

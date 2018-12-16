@@ -7,6 +7,22 @@ let last_html=informacao.innerHTML;
 let image_not_valid=false;
 
 
+let warning = document.createElement('tbody');
+warning.innerHTML = '<tr><th> </th><td class="msg"> </td> </tr>';
+warning.classList.add('warning');
+
+function removeWarningOnKeyPress(table, element){
+
+    element.addEventListener('input',function(e){
+
+        if(table.querySelector('.warning') != null)
+            table.removeChild(table.querySelector('.warning'));
+    
+        if(element.classList.contains('shake'))
+            element.classList.remove('shake');
+    });
+}
+
 function onSettingsClick(e)
 {
     informacao.innerHTML="";
@@ -21,7 +37,7 @@ function change_to_settings()
     informacao.setAttribute("id","settings");
     informacao.innerHTML = '<header><h1>Settings</h1></header> ';
     let form = document.createElement('form');
-    form.setAttribute("class","setting");
+    form.setAttribute("class","settings");
     form.setAttribute("method","post");
     form.setAttribute("action","../actions/action_update_data.php");
     form.setAttribute("autocomplete","off");
@@ -49,7 +65,89 @@ function change_to_settings()
     botao_cancel.addEventListener("click",cancel);
     let botao = document.getElementById("setting_button");
     botao.addEventListener("click",checkInfo);
+
+    send_input(form);
 }
+
+
+function send_input(form){
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    let request = new XMLHttpRequest();
+    request.addEventListener('load', validateChanges);
+    request.open('post', "../actions/action_update_data.php", true);
+    let formData = new FormData(form);
+    request.send(formData);});
+
+}
+
+function validateChanges(event){
+    let response = JSON.parse(this.responseText);
+
+    let form = document.querySelector('.settings');
+
+
+    if(response.type === true){
+        location.href = '../pages/posts.php';
+        return;
+    }
+
+    // if there already is an error showing
+    else if(form.querySelector('.warning') != null)
+        return;
+
+    let table = form.querySelector('table');
+
+    let username = form.querySelector('input[name="username"]');
+    let username_row = getRow(username);
+    
+    let mail = form.querySelector('input[name="mail"]');
+    let mail_row = getRow(mail);
+    
+    let pass = form.querySelector('input[name="pass"]')
+    let pass_row = getRow(pass);
+
+    let re_pass = form.querySelector('input[name="repass"]');
+    let re_pass_row = getRow(re_pass);
+
+    let description_row = getRow(form.querySelector('input[name="description"]'));
+    
+    warning.querySelector('.msg').textContent = response.content;
+
+    removeWarningOnKeyPress(table, username);
+
+    removeWarningOnKeyPress(table, mail);
+
+    removeWarningOnKeyPress(table, pass);
+
+    removeWarningOnKeyPress(table, re_pass);
+
+
+    switch(response.type){
+        case 'error_username':
+            table.insertBefore(warning, mail_row);
+            username.classList.add('shake');
+            break;
+        case 'error_mail':
+            table.insertBefore(warning, description_row);
+            mail.classList.add('shake');
+            break;
+        case 'error_password':
+            table.insertBefore(warning, re_pass_row);
+            pass.classList.add('shake');
+            break;
+    }
+
+    return;
+
+
+}
+
+function getRow(element){
+    return element.parentNode.parentNode.parentNode;
+}
+
 function cancel(e){
     e.preventDefault();
     informacao.setAttribute("id","information");
@@ -59,14 +157,7 @@ function cancel(e){
 }
 
 function checkInfo(e){
-    let new_pass = document.getElementById("new_pass");
-    let new_repass = document.getElementById("new_repass");
-    let info = document.getElementById("info");
-    if(new_pass.value != new_repass.value)
-    {
-        info.innerHTML="Password does not match";
-        e.preventDefault();
-    }
+
     if(image_not_valid)
     {
         info.innerHTML="Image is too big";
