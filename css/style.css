@@ -343,6 +343,7 @@ header #username{
 
 #channel .info .small-image{
     width: 20em;
+    height: 100%;
     max-width: 100%;
 }
 
