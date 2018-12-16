@@ -1,7 +1,10 @@
 <?php
     include_once('../includes/session.php');
     include_once('../database/db_post.php');
+    include_once('../database/db_channel.php');
     include_once('../actions/action_verify_input.php');
+
+    $sessionUsername = isset($_SESSION['username']) ? $_SESSION['username'] : null;
 
     $permission = true;
     $posts = array();
@@ -12,26 +15,24 @@
 
     $name = test_input($_POST['name']);
 
+    $channel = test_input($_POST['channel']);
+
+    if($channel === "null"){
+        if($name !="null")
+            $posts = getPostsOfUser($name ,$sessionUsername,  $offset, $criteria);
+        else
+            $posts = getPosts($sessionUsername,  $offset, $criteria);
+    }else{
+        $posts = getPostsFromChannel($sessionUsername, $offset, $criteria, $channel);
+    }
     
 
-    if($name !="null")
-    {
-        if(isset($_SESSION['username'])){
-            $posts = getPostsOfUser($name ,$_SESSION['username'], $offset, $criteria);
-        }
-        else{
-            $posts = getPostsOfUser($name ,null,  $offset, $criteria);
-        }
-    }
-    else
-    {
-        if(isset($_SESSION['username'])){
-            $posts = getPosts($_SESSION['username'], $offset, $criteria);
-        }
-        else{
-            $posts = getPosts(null,  $offset, $criteria);
-        }
-    }
+
+
+
+    //IMAGES EXTENSIONS
+
+
     if(isset($_SESSION['id']))
         $id=$_SESSION['id'];
     else 
@@ -53,7 +54,15 @@
         array_push($extensions,$ext[0]['extension']);
         array_push($extensionsUser,$ext2[0]['extension']);
     }
+
+
+
     $response = array('result' => $permission, 'data' => $posts , 'id' => $id,'extension'=>$extensions,'extensionUser'=>$extensionsUser);
 
     echo json_encode($response);
+
+
 ?>
+
+
+

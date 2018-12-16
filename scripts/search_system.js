@@ -1,5 +1,4 @@
 function fill(Value) {
-    console.log("here")
     let search = document.getElementById("searchInput");
     let display = document.getElementById("displaySuggestions");
 

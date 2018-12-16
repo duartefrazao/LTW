@@ -1,13 +1,15 @@
 <?php 
 
+    include_once("../actions/utils.php");
     include_once('../includes/database.php');
+
 
     function getPosts($username, $offset, $criteria){
 
         if($username !==NULL)
             return getPostsLogged($username, $offset,6, $criteria);
         else 
-            return getPostsGuest( $offset, 6, $criteria);
+            return getPostsGuest($offset, 6, $criteria);
 
     }
 
@@ -113,25 +115,6 @@
                 return getPostByUserGuest_id($username, $offset, $numOfElements);
         }
     }
-
-
-    function getTimeOffset($time){
-        switch ($time) {
-            case 'day':
-                return 86400;
-            case 'month':
-                return 2628000;
-            case 'week':
-                return 604800;
-            case 'year':
-                return 31556952;
-            case 'all':
-                return time();
-            default:
-                return 86400;
-        }
-    }
-
 
     function getLastPostId(){
         $db=Database::instance()->db();

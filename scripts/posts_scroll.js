@@ -87,11 +87,15 @@ function getOffsetToOrder(lastPost) {
                 break;
         }
 
+    let input = document.querySelector('#channel .info input[type="hidden"]');
+
+    let channel_id = input != null ? input.value : null;    
 
     return {
         offset: value,
         criteria: ordering,
-        name: pageWhereIam()
+        name: pageWhereIam(),
+        channel : channel_id
     };
 
 }
@@ -159,10 +163,6 @@ const spanTimes = [{
 
 function changePostsOrder(elem) {
 
-    let order = elem.value;
-
-    let offset = Number.MAX_SAFE_INTEGER;
-
     let timeSpan = document.querySelector('.timeSpan');
 
     if ((elem.value === 'mostvoted' || elem.value === 'mostcommented') && timeSpan === null) {
@@ -189,43 +189,17 @@ function changePostsOrder(elem) {
             elem.parentNode.removeChild(elem.parentNode.childNodes[3]);
     }
 
-    //DEFAULT
-    let ordering = order + '-today';
-
-
-    if (timeSpan !== null)
-        ordering = order + '-' + timeSpan.value;
-
-
     document.querySelector('#posts').innerHTML = "";
 
-
-    createRequest(receivePost, '../actions/action_get_posts.php', {
-        offset: offset,
-        criteria: ordering,
-        name: pageWhereIam()
-    });
+    createRequest(receivePost, '../actions/action_get_posts.php', getOffsetToOrder(null));
 }
 
 
 function changeSpanValue(elem) {
 
-    let order = document.querySelector('.order').value;
-
-    let timeSpan = document.querySelector('.timeSpan').value;
-
-    let ordering = order + "-" + timeSpan;
-
-    let offset = Number.MAX_SAFE_INTEGER;
-
-
     document.querySelector('#posts').innerHTML = "";
 
-    createRequest(receivePost, '../actions/action_get_posts.php', {
-        offset: offset,
-        criteria: ordering,
-        name: pageWhereIam()
-    });
+    createRequest(receivePost, '../actions/action_get_posts.php',getOffsetToOrder(null));
 
 }
 

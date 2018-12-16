@@ -19,7 +19,6 @@
 
     $channel = $_GET['channel'];
     $channelInfo = getChannel($channel);
-    $channelPosts = getPostsFromChannel($_SESSION['username'],PHP_INT_MAX,$channel);
 
     draw_header_global($user);
     
@@ -30,7 +29,7 @@
 
     draw_ordering();
 
-    drawChannelPage($channelInfo, $channelPosts);
+    drawChannelPage($channelInfo);
     
     draw_footer();
 
