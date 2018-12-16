@@ -425,6 +425,18 @@ header #username{
     width:100%;
 }
 
+#settings{
+    width: 22em;
+}
+#settings th{
+    min-width: 8em;
+}
+
+.msg{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 @media(max-width:900px){
 
