@@ -247,13 +247,20 @@ function checkUserImage(id, post,extension) {
         // image exists and is loaded
         element.setAttribute("width","40");
         element.setAttribute("height","40");
-        element.src = '../images/users/originals/' + id + '.' + extension;
+        if(extension == "gif")
+            element.src = '../images/users/originals/' + id + '.' + extension;
+        else
+            element.src = '../images/users/thumb_medium/' + id + '.' + extension;
+
     }
     image.onerror = function () {
         // image did not load
     }
 
-    image.src = '../images/users/originals/' + id + '.' + extension;
+    if(extension == "gif")
+        image.src = '../images/users/originals/' + id + '.' + extension;
+    else
+        image.src = '../images/users/thumb_medium/' + id + '.' + extension;
 }
 
 function createRequest(handler, url, data) {
@@ -276,14 +283,21 @@ function checkPostImage(id, post,extension) {
         // image exists and is loaded
         let imageElement = document.createElement('img');
         imageElement.classList.add('post-image');
-        imageElement.src = '../images/posts/thumb_medium/' + id + '.' + extension;
+        
+        if(extension == "gif")
+            imageElement.src = '../images/posts/originals/' + id + '.' + extension;
+        else
+            imageElement.src = '../images/posts/thumb_medium/' + id + '.' + extension;
         post.insertBefore(imageElement, post.querySelector('footer'));
     }
     image.onerror = function () {
         // image did not load
     }
 
-    image.src = '../images/posts/thumb_medium/' + id + '.' + extension;
+    if(extension == "gif")
+        image.src = '../images/posts/originals/' + id + '.' + extension;
+    else
+        image.src = '../images/posts/thumb_medium/' + id + '.' + extension;
 }
 
 

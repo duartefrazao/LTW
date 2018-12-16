@@ -130,7 +130,7 @@
 <?php } 
     else if($cArray != 0 &&  file_exists('../images/'. $path. '/thumb_small/' . $id . '.' .$ext[0]['extension']) )
      { ?>
-        <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
+        <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.<?= $ext[0]['extension']?>">
 <?php }
     else{  ?>
         <img class="small-image"  src="../images/<?=$path?>/default/default.png">
@@ -144,7 +144,7 @@
     <?php } 
     else if($cArray != 0 &&  file_exists('../images/'. $path. '/thumb_medium/' . $id . '.' .$ext[0]['extension']) )
      { ?>
-        <img class="small-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
+        <img class="small-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
      <?php }
      else {?>
         <img class="small-image" src="../images/<?=$path?>/default/default.png" >
