@@ -404,8 +404,8 @@ function checkUserImage(id, comment,extension) {
     if(extension == "gif")
     {
       element.src = '../images/users/originals/' + id + '.' + extension;
-      element.width=40;
-      element.height=40;
+      element.width=28;
+      element.height=28;
       element.setAttribute("class","gif_small");
     }
     else
@@ -419,8 +419,8 @@ function checkUserImage(id, comment,extension) {
   if(extension == "gif")
   {
     image.src = '../images/users/originals/' + id + '.' + extension;
-    image.width=40;
-    image.height=40;
+    image.width=28;
+    image.height=28;
     image.setAttribute("class","gif_small");
   }
   else

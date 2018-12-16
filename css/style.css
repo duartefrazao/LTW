@@ -278,21 +278,6 @@ header #username{
     color: white;
     font-weight: bold;
     width: 30%;
-    cursor: pointer;
-}
-
-.auth_form .fileContainer{
-    margin: 1em auto;
-}
-
-#login footer, #signup footer{
-    margin: 2em auto;
-    cursor: pointer;
-}
-
-#login footer a:hover, #signup footer a:hover{
-    text-decoration: underline;
-
 }
 
 
@@ -325,7 +310,13 @@ header #username{
     border-radius: 5px 5px 5px 5px;
     
 }
+#settings{
+    margin-top:6.8em;
+    margin-left:1em;
+    max-width: 21em;
+    position: fixed;
 
+}
 #information{
     margin-top:6.8em;
     margin-left:3em;
@@ -353,6 +344,15 @@ header #username{
 #information header h1{
     text-align: center;
 }
+#settings table button{
+    margin-left: 1em;
+}
+#settings table input,#settings table button{
+    padding: 0.5em;
+    border-radius: 10em;
+    text-align: center;
+
+}
 #information table, #settings table{
     margin: 0em;
     border-collapse: collapse;
@@ -367,11 +367,11 @@ header #username{
 
 #settings table td {
     text-align: center;
-    padding: 4px;
+    padding: 6px;
 }
 #information table td {
     text-align: center;
-    padding: 4px;
+    padding: 10px;
 }
 
 .user_page #ordering{ 
@@ -386,7 +386,8 @@ header #username{
 
 @media(max-width:900px){
 
-    #information{
+    #information, #settings{
+        max-width: 100%;
         margin:4em auto 1em auto;
         position: relative;
     }

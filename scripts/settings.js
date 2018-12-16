@@ -33,7 +33,7 @@ function change_to_settings()
     let table = document.createElement("table");
 
     table.innerHTML +='<table id="settings_table"><tr> <th>Image:</th><td>'+ draw_Image(image_exists,info.id,response.extension)+'</td></tr>'
-    table.innerHTML +='<tr><th></th></th><td><input src="" type="file" id="image_input" name="image" placeholder="Your image" multiple accept="image/jpeg,image/jpg,image/gif,image/png"></td></tr>';
+    table.innerHTML +='<tr><th></th></th><td><label class="fileContainer">Image<input src="" type="file" id="image_input" name="image" placeholder="Your image" multiple accept="image/jpeg,image/jpg,image/gif,image/png"></label></td></tr>';
     table.innerHTML +='<tr><th>Username:</th><td><input type="text" name="username" placeholder="New username" value="'+info.username+'" required></td></tr>';
     table.innerHTML +='<tr><th>E-mail:</th><td><input type="text" name="mail" placeholder="New e-mail" value="'+info.mail+'" required></td></tr>';
     table.innerHTML +='<tr><th>Description:</th><td><input type="text" name="description" placeholder="New description" value="'+info.description+'"></td></tr>';
