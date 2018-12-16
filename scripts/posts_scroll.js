@@ -1,3 +1,4 @@
+let page=null;
 //retrieve the initial comments
 window.onload = createRequest(receivePost, '../actions/action_get_posts.php', getOffsetToOrder(null));
 
@@ -32,7 +33,6 @@ function checkForNewPosts() {
 
 function receivePost(event) {
     let response = JSON.parse(this.responseText);
-
     let posts = response.data;
 
     let extensions = response.extension;
@@ -90,8 +90,10 @@ function getOffsetToOrder(lastPost) {
     let input = document.querySelector('#channel .info input[type="hidden"]');
 
     let channel_id = input != null ? input.value : null;    
-    let page = localStorage.page;
-    localStorage.removeItem("page");
+    if(page==null){
+        page = localStorage.page;
+        localStorage.removeItem("page");
+    }
 
     return {
         offset: value,

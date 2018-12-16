@@ -264,7 +264,7 @@
     }
 
 
-    function getPostsFromUserSubscriptions_id($username,$offset,$numOfElements){
+    function getPostsFromUserSubscriptions_id($username,$userId,$offset,$numOfElements){
         $db = Database::instance()->db();
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up as up FROM 
@@ -273,7 +273,7 @@
             JOIN USER ON ENTITY.author = USER.id
             JOIN CHANNEL on CHANNEL.id = ENTITY.channel
             JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
-                AND SUBSCRIPTION.user = USER.id
+                AND SUBSCRIPTION.user = ?
             WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
@@ -282,7 +282,7 @@
         ON A2.entity = A1.id
         WHERE A1.id < ? ORDER BY  A1.id DESC LIMIT ?');
 
-        $stmt->execute(array($username,$offset, $numOfElements));
+        $stmt->execute(array($userId,$username,$offset, $numOfElements));
         return $stmt->fetchAll();
     }
 
@@ -361,7 +361,7 @@
     }
 
 
-    function getPostsFromUserSubscriptions_votes($username,  $offset, $numOfElements, $timeOffset){
+    function getPostsFromUserSubscriptions_votes($username,$userId,  $offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
@@ -371,7 +371,7 @@
             JOIN USER ON ENTITY.author = USER.id
             JOIN CHANNEL on CHANNEL.id = ENTITY.channel
             JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
-                AND SUBSCRIPTION.user = USER.id
+                AND SUBSCRIPTION.user = ?
             WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
@@ -381,7 +381,7 @@
         WHERE ? - ? < A1.creationDate  AND
         A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
 
-        $stmt->execute(array($username, time(), $timeOffset,  $offset, $numOfElements));
+        $stmt->execute(array($userId,$username, time(), $timeOffset,  $offset, $numOfElements));
         return $stmt->fetchAll();
     }
 
@@ -459,7 +459,7 @@
         return $stmt->fetchAll();
     }
 
-    function getPostsFromUserSubscriptions_comments($username,$offset, $numOfElements, $timeOffset){
+    function getPostsFromUserSubscriptions_comments($username,$userId,$offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
@@ -469,7 +469,7 @@
             JOIN USER ON ENTITY.author = USER.id
             JOIN CHANNEL on CHANNEL.id = ENTITY.channel
             JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
-                AND SUBSCRIPTION.user = USER.id
+                AND SUBSCRIPTION.user = ?
             WHERE ENTITY.parentEntity is NULL) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
@@ -479,12 +479,12 @@
         WHERE ? - ? < A1.creationDate AND
         A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
 
-        $stmt->execute(array($username, time(), $timeOffset, $offset, $numOfElements));
+        $stmt->execute(array($userId,$username, time(), $timeOffset, $offset, $numOfElements));
         return $stmt->fetchAll();
     }
 
     /***Subscriptions *****/
-    function getPostsFromUserSubscriptions($username,$offset, $criteria){
+    function getPostsFromUserSubscriptions($username,$userId,$offset, $criteria){
 
         $numOfElements=6;
 
@@ -499,13 +499,13 @@
 
         switch($order){
             case 'mostrecent':
-                return getPostsFromUserSubscriptions_id($username, $offset, $numOfElements);
+                return getPostsFromUserSubscriptions_id($username,$userId, $offset, $numOfElements);
             case 'mostvoted':
-                return getPostsFromUserSubscriptions_votes($username, $offset, $numOfElements, $timeOffset);
+                return getPostsFromUserSubscriptions_votes($username,$userId, $offset, $numOfElements, $timeOffset);
             case 'mostcommented':
-                return getPostsFromUserSubscriptions_comments($username, $offset, $numOfElements, $timeOffset);
+                return getPostsFromUserSubscriptions_comments($username,$userId, $offset, $numOfElements, $timeOffset);
             default:
-                return getPostsFromUserSubscriptions_id($username, $offset, $numOfElements);
+                return getPostsFromUserSubscriptions_id($username,$userId, $offset, $numOfElements);
         }
 
     }

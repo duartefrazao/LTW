@@ -9,9 +9,6 @@ include_once '../includes/database.php';
         $stmt->execute(array($channel, $userId));
         
         $subscription = $stmt->fetch();
-        
-      /*   if($alreadySubscribed && $subscription==NULL || !$alreadySubscribed && $subscription!=NULL)
-            return ; */
 
         if ($subscription != null) {
             $stmt = $db->prepare(

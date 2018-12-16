@@ -5,7 +5,7 @@
     include_once('../actions/action_verify_input.php');
 
     $sessionUsername = isset($_SESSION['username']) ? $_SESSION['username'] : null;
-
+    
     $permission = true;
     $posts = array();
 
@@ -18,8 +18,8 @@
     $channel = test_input($_POST['channel']);
 
     $page = test_input($_POST['page']);
-    if($page === 'subs'){
-        $posts = getPostsFromUserSubscriptions($sessionUsername,$offset,$criteria);
+    if($page === 'subs' && isset($_SESSION['id'])){
+        $posts = getPostsFromUserSubscriptions($sessionUsername,$_SESSION['id'],$offset,$criteria);
     }
     else if($channel === "null"){
         if($name !="null")
