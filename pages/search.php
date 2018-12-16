@@ -12,12 +12,8 @@
     include_once("../actions/action_store_token.php");
     
 
-    $search= test_input($_POST['search']);
-    $user =null;
-
-    if(isset($_SESSION['username'])){
-        $user = $_SESSION['username'];
-    }
+    $search= test_input($_GET['search']);
+    $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
 
     $posts = getSimilarPosts($user,$search);
     $channels = getSimilarChannels($search);
@@ -27,7 +23,8 @@
 
     includeScript("vote_system"); 
     includeScript("search_system");
-    draw_search_results($channels,$users,$posts);
+    includeScript("suggestion_posts");
+    draw_search_results($channels,$users, $posts);
     
     draw_footer();
 

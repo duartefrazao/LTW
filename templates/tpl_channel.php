@@ -40,7 +40,7 @@
 <?php } ?>
 
 
-<?php function drawChannelPage($channelInfo,$channelPosts){ ?>
+<?php function drawChannelPage($channelInfo){ ?>
     
         <article id="channel">
 
@@ -54,7 +54,7 @@
             </section>
             <section id="channel_right"> <?php
             draw_ordering();
-            draw_posts($channelPosts); ?>
+            draw_posts(); ?>
             </section>
         </article>
 <?php } ?>

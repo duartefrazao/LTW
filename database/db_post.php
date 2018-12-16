@@ -134,11 +134,11 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
         'SELECT A1.*, A2.up as up FROM 
-           (SELECT ENTITY.* , USER.username
-            FROM ENTITY JOIN USER  
-                ON ENTITY.author = USER.id 
-                AND ENTITY.parentEntity is NULL
-                WHERE ENTITY.title LIKE ?) as A1
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY JOIN USER ON ENTITY.author = USER.id 
+            JOIN CHANNEL ON CHANNEL.id = ENTITY.channel
+                WHERE ENTITY.parentEntity is NULL
+                AND ENTITY.title LIKE ?) as A1
         LEFT JOIN 
             (SELECT VOTE.* FROM VOTE JOIN USER 
                 ON USER.username = ?

@@ -11,16 +11,10 @@
     include_once("../actions/action_store_token.php");
 
 
-    $user =null;
-
-    if(isset($_SESSION['username'])){
-        $user = $_SESSION['username'];
-    }
+    $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
 
     $channel = $_GET['channel'];
     $channelInfo = getChannel($channel);
-    $channelPosts = getPostsFromChannel($user,PHP_INT_MAX,'-mostrecent',$channel);
-
     draw_header_global($user);
     
 
@@ -28,7 +22,7 @@
     includeScript("posts_scroll"); 
     includeScript("search_system"); 
 
-    drawChannelPage($channelInfo,$channelPosts);
+    drawChannelPage($channelInfo);
     
     draw_footer();
 
