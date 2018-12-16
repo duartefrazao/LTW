@@ -51,7 +51,9 @@
                     <?=$channelInfo['description'] ?>
                 </span>
             </section>
-
-            <?php draw_posts($posts); ?>
+            <section id="channel_right"> <?php
+            draw_ordering();
+            draw_posts($posts); ?>
+            </section>
         </article>
 <?php } ?>

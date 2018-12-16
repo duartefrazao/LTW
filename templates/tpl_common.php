@@ -108,7 +108,6 @@
 
     </aside>
 
-    <!-- <span class="partial_line"></span> -->
 <?php }?>
 
 
