@@ -178,7 +178,7 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT A1.*, A2.up as up FROM 
-                (SELECT ENTITY.* , USER.username, CHANNEL.title
+                (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
                  FROM ENTITY 
                  JOIN USER ON ENTITY.author = USER.id 
                  JOIN CHANNEL on CHANNEL.id = ENTITY.channel
