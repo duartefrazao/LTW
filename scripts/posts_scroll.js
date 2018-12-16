@@ -90,8 +90,8 @@ function getOffsetToOrder(lastPost) {
     let input = document.querySelector('#channel .info input[type="hidden"]');
 
     let channel_id = input != null ? input.value : null;    
-    
     let page = localStorage.page;
+    localStorage.removeItem("page");
 
     return {
         offset: value,

@@ -48,8 +48,14 @@
                 <input type="hidden" value="<?= $channelInfo['id']?>" > 
                 <?php drawMediumImage('channels', $channelInfo['id']) ?>
                 <h1> <?= $channelInfo['title'] ?> </h1>
-                <span>
+                <span id="channel-description">
                     <?=$channelInfo['description'] ?>
+                </span>
+                <span class="sub-button<?php 
+                if(isset($channelInfo['user'])){?> subbed">
+                    Subscribed 
+                <?php }else{ ?>
+                    ">Subscribe! <?php } ?>
                 </span>
             </section>
             <section id="channel_right"> <?php

@@ -10,4 +10,20 @@
     function removePageLocation(){
         echo '<script>localStorage.removeItem(\'cenas\');</script>';
     }
+
+    function storeChannelInfo($channel,$userId){
+        echo '
+        <script>
+            localStorage.setItem(\'channel\',' . json_encode($channel) .');
+            localStorage.setItem(\'userId\',' . json_encode($userId) .');
+        </script>';
+    }
+
+    function removeChannelInfo(){
+        echo '
+        <script>
+            localStorage.removeItem(\'channel\');
+            localStorage.removeItem(\'userId\');
+        </script>';
+    }
 ?>
