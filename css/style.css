@@ -284,7 +284,19 @@ header #username{
     color: white;
     font-weight: bold;
     width: 30%;
+    cursor: pointer;
 }
+
+ .auth_form .fileContainer{
+    margin: 1em auto;
+}
+ #login footer, #signup footer{
+    margin: 2em auto;
+    cursor: pointer;
+}
+ #login footer a:hover, #signup footer a:hover{
+    text-decoration: underline;
+ }
 
 
 
@@ -884,6 +896,10 @@ input[type='hidden'] {
 }
 
 
+#post #comments .comment .voting_section{
+    margin: 0;
+}
+
 
 #post #comments .comment header {
     grid-area: header;
@@ -901,6 +917,8 @@ input[type='hidden'] {
     grid-area: content;
     padding-left: 0.5em;
     word-wrap: break-word;
+    word-break: break-all;
+
     max-width: 100%;    
     font-weight: lighter;
     font-size: medium;
@@ -1369,9 +1387,6 @@ input[type='hidden'] {
     padding:0;
 }
 
-#posts_search .overview-post{
-    
-}
 
 .search_title {
     color: black;
