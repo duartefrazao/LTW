@@ -27,6 +27,15 @@ function getChannel($channelId)
     return $stmt->fetch();
 }
 
+function getChannelByName($channel)
+{
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT *
+                            FROM CHANNEL WHERE title = ?');
+    $stmt->execute(array($channel));
+    return $stmt->fetch();
+}
+
 function getChannelWithUserInfo($channelId,$user){
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM (SELECT * FROM CHANNEL WHERE CHANNEL.id = ? ) as C 
