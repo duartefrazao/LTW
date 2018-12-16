@@ -9,6 +9,8 @@
     include_once("../includes/session.php");
     include_once('../actions/action_verify_input.php');
     include_once("utilities.php");
+    include_once("../actions/action_store_token.php");
+    
 
     $search= test_input($_POST['search']);
     $user =null;

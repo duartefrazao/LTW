@@ -7,6 +7,8 @@ function insertNewChannel($title, $description)
     $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO CHANNEL VALUES(NULL, ?, ?)');
     $stmt->execute(array($title, $description));
+
+    return $db->lastInsertId();
 }
 
 function getLastChannelId()

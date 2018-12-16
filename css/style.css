@@ -816,6 +816,7 @@ input[type='hidden'] {
 }
 
 
+
 #new-post .drp_channels{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -847,6 +848,7 @@ input[type='hidden'] {
 #new-channel input[name='title']{
     width: 100%;
     grid-area: title;
+    min-width:10em;
     height: 2em;
     border-radius: 5px 5px 5px 5px;
     border: solid rgb(172, 172, 172) 1px;
@@ -881,6 +883,7 @@ input[type='hidden'] {
 }
 
 
+
 /*----------------------------------------------------------*/
 /*--------------------------ADD CHANNEL-----------------------*/
 /*----------------------------------------------------------*/
@@ -907,6 +910,69 @@ input[type='hidden'] {
     grid-area: imageDesc;
     margin: 0;
     margin-bottom: 1em;
+}
+
+
+
+@media(max-width:600px){
+    #new-post, #new-channel{
+        display: flex;
+        flex-direction: column;
+        max-width: 40em;
+        margin: 7em auto;
+        padding: 1em;
+        background-color: white;
+        justify-items: center;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #new-channel .fileContainer, #new-post label{
+        margin-right: auto;
+        margin-left:auto;
+        margin-bottom:0.8em;
+    }
+    
+    #new-channel select, #new-post .drp_channels{
+        margin-left:0;
+    }
+
+    #new-post input[type='submit'], #new-channel input[type='submit']{
+        margin-right:auto;
+        margin-left:auto;
+        justify-self: center;
+        min-width: 6em;
+        max-width: 12em;
+    }
+
+    #new-channel input[name="imageDescription"]{
+        width:100%;
+    }
+
+    #new-post{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:auto;
+        grid-template-areas: "title           title"
+                             "content         content"
+                             "description     description"
+                             "image           channels"
+                             ".               share";
+        max-width: 40em;
+        margin: 7em auto;
+        background-color: white;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #new-post .fileContainer{
+        float:left;  
+        margin:0.8em 0;
+        padding: 0.5em 1em;
+    }
+
+    #new-post .drp_channels{
+        height:auto;
+        margin:1em 0;
+    }
 }
 
 /*----------------------------------------------------------*/
