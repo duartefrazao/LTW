@@ -1170,7 +1170,7 @@ input[type='hidden'] {
 
 
 
-#channel img{
+#channel .info img{
     border-radius: 5px 5px 0px 0px;
 }
 #channel .info h1::before{
