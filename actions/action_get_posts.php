@@ -17,7 +17,11 @@
 
     $channel = test_input($_POST['channel']);
 
-    if($channel === "null"){
+    $page = test_input($_POST['page']);
+    if($page === 'subs'){
+        $posts = getPostsFromUserSubscriptions($sessionUsername,$offset,$criteria);
+    }
+    else if($channel === "null"){
         if($name !="null")
             $posts = getPostsOfUser($name ,$sessionUsername,  $offset, $criteria);
         else
@@ -26,9 +30,6 @@
         $posts = getPostsFromChannel($sessionUsername, $offset, $criteria, $channel);
     }
     
-
-
-
 
     //IMAGES EXTENSIONS
 

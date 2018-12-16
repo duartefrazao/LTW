@@ -11,20 +11,29 @@
     include_once("../actions/action_store_token.php");
 
 
-    $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
-
+    $user =null;
+    $userId = null;
     $channel = $_GET['channel'];
-    $channelInfo = getChannel($channel);
+
+    if(isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+        $userId = $_SESSION['id'];
+        $channelInfo = getChannelWithUserInfo($channel,$userId);
+    }else
+        $channelInfo = getChannel($channel);
+
+    $channelPosts = getPostsFromChannel($user,PHP_INT_MAX,'-mostrecent',$channel);
     draw_header_global($user);
     
-
+    storeChannelInfo($channel,$userId);
     includeScript("vote_system");
     includeScript("posts_scroll"); 
     includeScript("search_system"); 
+    includeScript("channel");
 
     drawChannelPage($channelInfo);
     
-    draw_footer();
+    draw_footer(); 
 
     storeToken();
 ?>

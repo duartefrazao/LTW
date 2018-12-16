@@ -126,5 +126,5 @@
     $ext=array_map("pathinfo",glob('../images/posts/originals/' . $id . '.*'));
     $cArray = count($ext);
     if($cArray != 0 && file_exists('../images/posts/originals/' .$id. '.' .$ext[0]['extension']) ){ ?>
-        <img class="post-image" src="../images/posts/originals/<?= $id ?>.<?= $ext[0]['extension']?>">
+        <img class="post-image-definition" src="../images/posts/originals/<?= $id ?>.<?= $ext[0]['extension']?>">
     <?php }  }?>

@@ -262,6 +262,31 @@
         $stmt->execute(array($username,$user,$offset, $numOfElements));
         return $stmt->fetchAll();
     }
+
+
+    function getPostsFromUserSubscriptions_id($username,$offset,$numOfElements){
+        $db = Database::instance()->db();
+        $stmt = $db->prepare(
+        'SELECT A1.*, A2.up as up FROM 
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
+                AND SUBSCRIPTION.user = USER.id
+            WHERE ENTITY.parentEntity is NULL) as A1
+        LEFT JOIN 
+            (SELECT VOTE.* FROM VOTE JOIN USER 
+                ON USER.username = ?
+                AND VOTE.user = USER.id) as A2
+        ON A2.entity = A1.id
+        WHERE A1.id < ? ORDER BY  A1.id DESC LIMIT ?');
+
+        $stmt->execute(array($username,$offset, $numOfElements));
+        return $stmt->fetchAll();
+    }
+
+
     //============== VOTE ORDERING ===================
 
     function getPostsGuest_votes( $offset, $numOfElements, $timeOffset){
@@ -335,6 +360,31 @@
         return $stmt->fetchAll();
     }
 
+
+    function getPostsFromUserSubscriptions_votes($username,  $offset, $numOfElements, $timeOffset){
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare(
+        'SELECT A1.*, A2.up as up FROM 
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
+                AND SUBSCRIPTION.user = USER.id
+            WHERE ENTITY.parentEntity is NULL) as A1
+        LEFT JOIN 
+            (SELECT VOTE.* FROM VOTE JOIN USER 
+                ON USER.username = ?
+                AND VOTE.user = USER.id) as A2
+        ON A2.entity = A1.id
+        WHERE ? - ? < A1.creationDate  AND
+        A1.votes <= ? ORDER BY  A1.votes DESC LIMIT ?');
+
+        $stmt->execute(array($username, time(), $timeOffset,  $offset, $numOfElements));
+        return $stmt->fetchAll();
+    }
+
     //============== Comment ORDERING ===================
 
     function getPostsGuest_comments($offset, $numOfElements, $timeOffset){
@@ -387,6 +437,7 @@
         $stmt->execute(array($username, time(), $timeOffset, $offset, $numOfElements));
         return $stmt->fetchAll();
     }
+    
 
     function getPostByUser_comments($username,$user,$offset, $numOfElements, $timeOffset){
         $db = Database::instance()->db();
@@ -406,6 +457,57 @@
             WHERE ? - ? < A1.creationDate AND  A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
         $stmt->execute(array($username,$user, time(), $timeOffset,  $offset, $numOfElements));
         return $stmt->fetchAll();
+    }
+
+    function getPostsFromUserSubscriptions_comments($username,$offset, $numOfElements, $timeOffset){
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare(
+        'SELECT A1.*, A2.up as up FROM 
+           (SELECT ENTITY.* , USER.username, CHANNEL.title as channelTitle
+            FROM ENTITY 
+            JOIN USER ON ENTITY.author = USER.id
+            JOIN CHANNEL on CHANNEL.id = ENTITY.channel
+            JOIN SUBSCRIPTION ON SUBSCRIPTION.channel = CHANNEL.id
+                AND SUBSCRIPTION.user = USER.id
+            WHERE ENTITY.parentEntity is NULL) as A1
+        LEFT JOIN 
+            (SELECT VOTE.* FROM VOTE JOIN USER 
+                ON USER.username = ?
+                AND VOTE.user = USER.id) as A2
+        ON A2.entity = A1.id
+        WHERE ? - ? < A1.creationDate AND
+        A1.numComments <= ? ORDER BY  A1.numComments DESC LIMIT ?');
+
+        $stmt->execute(array($username, time(), $timeOffset, $offset, $numOfElements));
+        return $stmt->fetchAll();
+    }
+
+    /***Subscriptions *****/
+    function getPostsFromUserSubscriptions($username,$offset, $criteria){
+
+        $numOfElements=6;
+
+        $terms = explode('-', $criteria);
+
+        $order = $terms[0];
+
+        $timeOffset = 'all';
+
+        if(isset($terms[1]))
+            $timeOffset = getTimeOffset($terms[1]);
+
+        switch($order){
+            case 'mostrecent':
+                return getPostsFromUserSubscriptions_id($username, $offset, $numOfElements);
+            case 'mostvoted':
+                return getPostsFromUserSubscriptions_votes($username, $offset, $numOfElements, $timeOffset);
+            case 'mostcommented':
+                return getPostsFromUserSubscriptions_comments($username, $offset, $numOfElements, $timeOffset);
+            default:
+                return getPostsFromUserSubscriptions_id($username, $offset, $numOfElements);
+        }
+
     }
 
 ?>

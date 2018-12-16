@@ -2,32 +2,6 @@ PRAGMA foreign_keys=ON;
 .mode columns
 .headers on
 
--- Table: channel
-DROP TABLE IF EXISTS channel;
-CREATE TABLE channel(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title VARCHAR NOT NULL,
-    description VARCHAR NOT NULL
-);
-INSERT INTO channel (id, title, description) VALUES (1, 'all', 'All the content you want');
-INSERT INTO channel (id, title, description) VALUES (2, 'fun', 'Your daily dose of funny things!');
-INSERT INTO channel (id, title, description) VALUES (3, 'student life', 'We all been there!');
-INSERT INTO channel (id, title, description) VALUES (4, 'ltw', 'Let Trump Work');
-INSERT INTO channel (id, title, description) VALUES (5, 'science', 'Interesting science information');
-INSERT INTO channel (id, title, description) VALUES (6, 'Memes', 'All the memes');
-
--- Table: channelImages
-DROP TABLE IF EXISTS channelImages;
-CREATE TABLE channelImages(
-    id INTEGER PRIMARY KEY,
-    title VARCHAR NOT NULL
-);
-INSERT INTO channelImages (id, title) VALUES (2, 'fun');
-INSERT INTO channelImages (id, title) VALUES (3, 'life');
-INSERT INTO channelImages (id, title) VALUES (4, 'trump');
-INSERT INTO channelImages (id, title) VALUES (5, 'science');
-INSERT INTO channelImages (id, title) VALUES (6, 'Memes');
-
 -- Table: user
 DROP TABLE IF EXISTS user;
 CREATE TABLE user(
@@ -38,12 +12,22 @@ CREATE TABLE user(
     description VARCHAR,
     creationDate INTEGER NOT NULL
 );
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (1, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@hotmail.com', 'no lo sey, chiquita', 1543162027);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (2, 'miguel', '$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@hotmail.com', 'yo soy guapo', 1543277351);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (3, 'joao', '$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZGoD7YDt0nM3RKqymuP6', 'joao@hotmail.com', 'muy rico yoyo', 1543506410);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (4, 'maria', '$2y$12$Iw7TS8/y9UGEkaDlFaAyY.TRWyNRUy1VGZ0sHS7QP/ehHabi8gOIW', 'maria@hotmail.com', 'Ola, eu sou a Maria!', 1544831117);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (5, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Ent�o, tudo bem?', 1544831225);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (6, 'Nk2016', '$2y$12$vD9Wjh4/x10jGXKdSR65cOVe9xsrdIejGFXopMNs7pNA8NEy.hizS', 'Nk@gmail.com', 'No til', 1544964027);
+
+-- Table: channel
+DROP TABLE IF EXISTS channel;
+CREATE TABLE channel(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR NOT NULL,
+    description VARCHAR NOT NULL
+);
+
+
+-- Table: channelImages
+DROP TABLE IF EXISTS channelImages;
+CREATE TABLE channelImages(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
 
 -- Table: entity
 DROP TABLE IF EXISTS entity;
@@ -58,6 +42,91 @@ CREATE TABLE entity(
     channel INTEGER NOT NULL REFERENCES channel,
     parentEntity INTEGER REFERENCES entity (id)
 );
+
+-- Table: images
+DROP TABLE IF EXISTS images;
+CREATE TABLE images(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
+
+
+-- Table: vote
+DROP TABLE IF EXISTS vote;
+CREATE TABLE vote(
+    entity INTEGER REFERENCES entity (id) NOT NULL,
+    user INTEGER REFERENCES user (id) NOT NULL,
+    up BOOLEAN NOT NULL,
+    PRIMARY KEY (entity,user)
+);
+
+
+-- Table: admin
+DROP TABLE IF EXISTS admin; 
+CREATE TABLE admin(
+    channel INTEGER REFERENCES channel (id) NOT NULL,
+    user INTEGER REFERENCES user (id) NOT NULL,
+    PRIMARY KEY (channel,user)
+);
+
+-- Table: subscription
+DROP TABLE IF EXISTS subscription;
+CREATE TABLE subscription(
+    channel INTEGER REFERENCES channel (id) NOT NULL,
+    user INTEGER REFERENCES user (id) NOT NULL,
+    PRIMARY KEY (channel,user)
+);
+
+
+-- Trigger: UpdateVotesOnDelete
+DROP TRIGGER IF EXISTS UpdateVotesOnDelete;
+CREATE TRIGGER UpdateVotesOnDelete
+BEFORE DELETE ON VOTE
+BEGIN
+    UPDATE entity
+        SET votes = votes -1
+        WHERE old.entity=entity.id AND old.up='true';
+    UPDATE entity 
+        SET votes = votes +1
+        WHERE old.entity=entity.id AND old.up='false';
+END;
+
+-- Trigger: UpdateVotesOnInsert
+DROP TRIGGER IF EXISTS UpdateVotesOnInsert;
+CREATE TRIGGER UpdateVotesOnInsert
+BEFORE INSERT ON VOTE
+BEGIN
+    UPDATE entity
+        SET votes = votes +1
+        WHERE new.entity=entity.id AND new.up='true';
+    UPDATE entity
+        SET votes = votes -1
+        WHERE new.entity=entity.id AND new.up='false';
+END;
+
+
+
+
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (1, 'pedro', '$2y$12$QVyJUELIIIdjAh0PmdsLm.2HiJ5zMEvKu9Ipd7lhb1qkNFRdReFAu', 'pedro@hotmail.com', 'no lo sey, chiquita', 1543162027);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (2, 'miguel', '$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@hotmail.com', 'yo soy guapo', 1543277351);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (3, 'joao', '$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZGoD7YDt0nM3RKqymuP6', 'joao@hotmail.com', 'muy rico yoyo', 1543506410);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (4, 'maria', '$2y$12$Iw7TS8/y9UGEkaDlFaAyY.TRWyNRUy1VGZ0sHS7QP/ehHabi8gOIW', 'maria@hotmail.com', 'Ola, eu sou a Maria!', 1544831117);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (5, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Ent�o, tudo bem?', 1544831225);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (6, 'Nk2016', '$2y$12$vD9Wjh4/x10jGXKdSR65cOVe9xsrdIejGFXopMNs7pNA8NEy.hizS', 'Nk@gmail.com', 'No til', 1544964027);
+
+INSERT INTO channel (id, title, description) VALUES (1, 'all', 'All the content you want');
+INSERT INTO channel (id, title, description) VALUES (2, 'fun', 'Your daily dose of funny things!');
+INSERT INTO channel (id, title, description) VALUES (3, 'student life', 'We all been there!');
+INSERT INTO channel (id, title, description) VALUES (4, 'ltw', 'Let Trump Work');
+INSERT INTO channel (id, title, description) VALUES (5, 'science', 'Interesting science information');
+INSERT INTO channel (id, title, description) VALUES (6, 'Memes', 'All the memes');
+
+INSERT INTO channelImages (id, title) VALUES (2, 'fun');
+INSERT INTO channelImages (id, title) VALUES (3, 'life');
+INSERT INTO channelImages (id, title) VALUES (4, 'trump');
+INSERT INTO channelImages (id, title) VALUES (5, 'science');
+INSERT INTO channelImages (id, title) VALUES (6, 'Memes');
+
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (1, 'Isto � o reddit?????', 'Est� igualzinho', 3, 1, 1500024982, 0, 1, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (2, 'Qual � o melhor dia para casar?', 'Muitas pessoas dizem ser o 31 de julho, mas porqu�?', 4, -1, 1530178573, 0, 2, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (3, 'Vou de viagem.', 'Para onde?', 5, 0, 1543324982, 0, 1, NULL);
@@ -96,12 +165,7 @@ INSERT INTO entity (id, title, content, author, votes, creationDate, numComments
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (34, 'Dogi', '', 1, 0, 1544965164, 0, 6, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (35, 'Just shoot your self', '', 1, 0, 1544965208, 0, 4, NULL);
 
--- Table: images
-DROP TABLE IF EXISTS images;
-CREATE TABLE images(
-    id INTEGER PRIMARY KEY,
-    title VARCHAR NOT NULL
-);
+
 INSERT INTO images (id, title) VALUES (1, 'my face');
 INSERT INTO images (id, title) VALUES (2, 'i''m me');
 INSERT INTO images (id, title) VALUES (3, 'hey it''s me');
@@ -125,40 +189,5 @@ INSERT INTO images (id, title) VALUES (33, '');
 INSERT INTO images (id, title) VALUES (34, '');
 INSERT INTO images (id, title) VALUES (35, '');
 
-
--- Table: vote
-DROP TABLE IF EXISTS vote;
-CREATE TABLE vote(
-    entity INTEGER REFERENCES entity (id) NOT NULL,
-    user INTEGER REFERENCES user (id) NOT NULL,
-    up BOOLEAN NOT NULL,
-    PRIMARY KEY (entity,user)
-);
 INSERT INTO vote (entity, user, up) VALUES (1, 1, 'true');
 INSERT INTO vote (entity, user, up) VALUES (2, 1, 'false');
-
--- Trigger: UpdateVotesOnDelete
-DROP TRIGGER IF EXISTS UpdateVotesOnDelete;
-CREATE TRIGGER UpdateVotesOnDelete
-BEFORE DELETE ON VOTE
-BEGIN
-    UPDATE entity
-        SET votes = votes -1
-        WHERE old.entity=entity.id AND old.up='true';
-    UPDATE entity 
-        SET votes = votes +1
-        WHERE old.entity=entity.id AND old.up='false';
-END;
-
--- Trigger: UpdateVotesOnInsert
-DROP TRIGGER IF EXISTS UpdateVotesOnInsert;
-CREATE TRIGGER UpdateVotesOnInsert
-BEFORE INSERT ON VOTE
-BEGIN
-    UPDATE entity
-        SET votes = votes +1
-        WHERE new.entity=entity.id AND new.up='true';
-    UPDATE entity
-        SET votes = votes -1
-        WHERE new.entity=entity.id AND new.up='false';
-END;

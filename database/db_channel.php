@@ -27,6 +27,16 @@ function getChannel($channelId)
     return $stmt->fetch();
 }
 
+function getChannelWithUserInfo($channelId,$user){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM (SELECT * FROM CHANNEL WHERE CHANNEL.id = ? ) as C 
+                          LEFT JOIN 
+                         (SELECT * FROM SUBSCRIPTION WHERE SUBSCRIPTION.user=?) as S
+                          ON C.id=S.channel');
+    $stmt->execute(array($channelId,$user));
+    return $stmt->fetch();
+}
+
 function getChannels()
 {
     $db = Database::instance()->db();

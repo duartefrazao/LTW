@@ -11,9 +11,12 @@
     include_once("utilities.php");
     include_once("../actions/action_store_token.php");
     
+    $search= test_input($_POST['search']);
+    $user =null;
 
-    $search= test_input($_GET['search']);
-    $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+    if(isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+    }
 
     $posts = getSimilarPosts($user,$search);
     $channels = getSimilarChannels($search);

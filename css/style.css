@@ -521,7 +521,7 @@ header #username{
 
 
 
-.post-image{
+.post-image,.post-image-definition{
     grid-area: image;
     margin: 0 auto;
     margin-bottom: 0.5em;
@@ -530,6 +530,10 @@ header #username{
 
 @media(min-width:100px){
     .post-image{
+        width: 10em;
+        height:auto;
+    }
+    .post-image-definition{
         width:80%;
         height:auto;
     }
@@ -1270,7 +1274,7 @@ input[type='hidden'] {
     color: grey;
 }
 
-.channel-info span{
+.channel-info #channel-description{
     flex-grow: 4;
     padding-left: 1em;
     text-align: left;
@@ -1278,8 +1282,20 @@ input[type='hidden'] {
     font-style: italic;
 }
 
-.channel-info span::before{
+.channel-info #channel-description::before{
     content: "-";
+}
+
+.info .sub-button{
+    padding-top: 0.5em;
+    border-radius: 5px;
+    background-color:var(--background);
+    width:6em;
+    height:2em;
+}
+
+#channel .info .subbed{
+    background-color:var(--nav-bg-color);
 }
 
 

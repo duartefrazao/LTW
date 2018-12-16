@@ -45,6 +45,7 @@
     }
 
     function draw_posts_search($posts){ 
+        print_r($posts);
         if(count($posts)>0){?>
         <section id="posts_search">
         <h1 class="search_title"> Posts </h1>
