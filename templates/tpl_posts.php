@@ -116,9 +116,14 @@
 
 <?php function drawPostImage($id){
     $ext=array_map("pathinfo",glob('../images/posts/originals/' . $id . '.*'));
-    if(count($ext) != 0 && file_exists('../images/posts/originals/' . $id . '.' . $ext[0]['extension']) ){ ?>
+    $cArray = count($ext);
+    if($cArray != 0 && $ext[0]['extension']=="gif" && file_exists('../images/posts/originals/' .$id. '.' .$ext[0]['extension']) ){ ?>
         <img class="post-image" src="../images/posts/originals/<?= $id ?>.<?= $ext[0]['extension']?>">
-<?php } }?>
+    <?php } 
+    else if($cArray != 0 &&  file_exists('../images/posts/thumb_medium/' . $id . '.' .$ext[0]['extension']) )
+     { ?>
+        <img class="post-image" src="../images/posts/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
+     <?php } }?>
 
 
 

@@ -124,17 +124,29 @@
 
 <?php function drawSmallImage($path, $id){
     $ext=array_map("pathinfo",glob('../images/'. $path. '/originals/' . $id . '.*'));
-    if(count($ext) != 0 && file_exists('../images/'. $path. '/originals/' . $id . '.' .$ext[0]['extension']) ){ ?>
+    $cArray = count($ext);
+    if($cArray != 0 && $ext[0]['extension']=="gif" && file_exists('../images/'. $path. '/originals/' . $id . '.' .$ext[0]['extension']) ) { ?>
         <img class="small-image" src="../images/<?=$path?>/originals/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
-    <?php } else { ?>
+<?php } 
+    else if($cArray != 0 &&  file_exists('../images/'. $path. '/thumb_small/' . $id . '.' .$ext[0]['extension']) )
+     { ?>
+        <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
+<?php }
+    else  ?>
         <img class="small-image"  src="../images/<?=$path?>/default/default.png">
-<?php } }?>
+    <?php }?>
 
 <?php function drawMediumImage($path, $id){
-    $ext=array_map("pathinfo",glob('../images/'. $path. '/thumb_medium/' . $id . '.*'));
-    if(count($ext) != 0 && file_exists('../images/' . $path . '/thumb_medium/' .$id. '.' .$ext[0]['extension']) ){ ?>
+    $ext=array_map("pathinfo",glob('../images/'. $path. '/originals/' . $id . '.*'));
+    $cArray = count($ext);
+    if($cArray != 0 && $ext[0]['extension']=="gif" && file_exists('../images/' . $path . '/originals/' .$id. '.' .$ext[0]['extension']) ){ ?>
+        <img class="small-image" src="../images/<?=$path?>/originals/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
+    <?php } 
+    else if($cArray != 0 &&  file_exists('../images/'. $path. '/thumb_medium/' . $id . '.' .$ext[0]['extension']) )
+     { ?>
         <img class="small-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
-    <?php } else { ?>
+     <?php }
+     else {?>
         <img class="small-image" src="../images/<?=$path?>/default/default.png" >
 <?php } }?>
 
