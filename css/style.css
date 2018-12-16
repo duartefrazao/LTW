@@ -74,7 +74,7 @@ body>header {
     z-index: 1;
     align-items: center;
     justify-content: safe;
-    min-width: 100px;
+    min-width: 320px;
     top: 0;
 }
 
@@ -380,11 +380,23 @@ header #username{
     .user_page #ordering{
         margin:0 auto;
     }
+
+    .user_page .overview-post{
+        min-width: 17em;
+    }
+
     #profile_right{
         margin:0 1em;
         padding-left:0;
     }
 
+}
+
+@media(max-width:450px){
+   .user_page #profile_right{
+        margin-left:1em;
+        margin-right:1em;
+    }
 }
 
 /*----------------------------------------------------------*/
