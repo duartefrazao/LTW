@@ -7,9 +7,11 @@ function fill(Value) {
 }
 
 function removePrevious() {
-    if (currentFocus < 1) return;
+    if (currentFocus < 1 || currentFocus==null) return;
     let previousSelection = document.querySelector("#displaySuggestions ul li:nth-child(" + currentFocus + ")");
-    previousSelection.classList.remove("autocomplete-selection");
+
+    if(previousSelection)
+        previousSelection.classList.remove("autocomplete-selection");
 }
 
 let search = document.getElementById("searchInput");
@@ -25,7 +27,8 @@ search.addEventListener("keydown", function (e) {
     if (e.keyCode == 40) {
         currentFocus = (currentFocus + 1) % (sugs.length + 1);
     } else if (e.keyCode == 38) {
-        currentFocus = (currentFocus - 1) % (sugs.length + 1);
+        if(currentFocus ==0)currentFocus = sugs.length;
+        else currentFocus = (currentFocus - 1) % (sugs.length + 1);
     } else if (e.keyCode == 13) {
         if (currentFocus == 0) {
             form.submit();

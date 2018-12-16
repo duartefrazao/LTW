@@ -1171,7 +1171,6 @@ input[type='hidden'] {
 #displaySuggestions  li{
     padding: 9px 10px 9px 10px;
     color: black;
-    width: 100%;
     border-radius: 10em solid;
     text-decoration: none;
     display: block;   
@@ -1179,11 +1178,15 @@ input[type='hidden'] {
 
 #displaySuggestions li a{
     margin: 0px;
-    display: block;
 }
 
 #search_results #posts{
     padding-top:0;
+}
+
+.autocomplete-selection{
+    background-color: var(--background);
+
 }
 
 
