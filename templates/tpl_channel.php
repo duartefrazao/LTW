@@ -40,7 +40,7 @@
 <?php } ?>
 
 
-<?php function drawChannelPage($channelInfo,$channelPosts){ ?>
+<?php function drawChannelPage($channelInfo){ ?>
     
         <article id="channel">
 
@@ -59,13 +59,8 @@
                 </span>
             </section>
             <section id="channel_right"> <?php
-            if(count($channelPosts) >0){
-                draw_ordering();
-                draw_posts($channelPosts);
-            }else{ 
-                ?> 
-                     <a id="go_back_search" href="posts.php">No results found, click to go back</a>
-               <?php }?>
+            draw_ordering();
+            draw_posts(); ?>
             </section>
         </article>
 <?php } ?>

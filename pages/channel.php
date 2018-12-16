@@ -31,7 +31,7 @@
     includeScript("search_system"); 
     includeScript("channel");
 
-    drawChannelPage($channelInfo,$channelPosts);
+    drawChannelPage($channelInfo);
     
     draw_footer(); 
 
