@@ -40,7 +40,7 @@
 <?php } ?>
 
 
-<?php function drawChannelPage($channelInfo){ ?>
+<?php function drawChannelPage($channelInfo,$channelPosts){ ?>
     
         <article id="channel">
 
@@ -52,14 +52,9 @@
                     <?=$channelInfo['description'] ?>
                 </span>
             </section>
-<<<<<<< HEAD
-
-            <?php draw_posts(); ?>
-=======
             <section id="channel_right"> <?php
             draw_ordering();
-            draw_posts($posts); ?>
+            draw_posts($channelPosts); ?>
             </section>
->>>>>>> mobile
         </article>
 <?php } ?>

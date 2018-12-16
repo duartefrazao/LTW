@@ -19,10 +19,7 @@
 
     $channel = $_GET['channel'];
     $channelInfo = getChannel($channel);
-<<<<<<< HEAD
-=======
-    $channelPosts = getPostsFromChannel($user,PHP_INT_MAX,$channel);
->>>>>>> mobile
+    $channelPosts = getPostsFromChannel($user,PHP_INT_MAX,'-mostrecent',$channel);
 
     draw_header_global($user);
     
@@ -31,9 +28,7 @@
     includeScript("posts_scroll"); 
     includeScript("search_system"); 
 
-    draw_ordering();
-
-    drawChannelPage($channelInfo);
+    drawChannelPage($channelInfo,$channelPosts);
     
     draw_footer();
 

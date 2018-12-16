@@ -322,7 +322,8 @@ header #username{
 #settings{
     margin-top:6.8em;
     margin-left:1em;
-    max-width: 21em;
+    max-width: 40%;
+    width: auto;
     position: fixed;
 }
 
@@ -353,9 +354,11 @@ header #username{
     display:flex;
     flex-direction: column;
 }
+#information,#settings{
+    min-width: 20%;
+}
 
-
-#information header{
+#information header,#information table,#settings header,#settings form{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -410,9 +413,12 @@ header #username{
 
 @media(max-width:900px){
 
-    #information, #channel .info{
+    #information, #channel .info , #settings{
         margin:4em auto 1em auto;
         position: relative;
+    }
+    #settings{
+        min-width: 50%;
     }
     .user_page, #channel{
         flex-direction: column;
