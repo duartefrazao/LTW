@@ -100,15 +100,14 @@ INSERT INTO channel VALUES(NULL, "science",      "Interesting science informatio
 
 
 /* POSTS */
-
-INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1543878773,0,1,NULL);
-INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de julho, mas porquê?',4,0,1543878573,0,2,NULL);
-INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',5,0,1543878173,0,1,NULL);
-INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543158350,10,1,NULL);
-INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1543162827,1,1,NULL);
+INSERT INTO entity VALUES(NULL,'Isto é o reddit?????','Está igualzinho',3,0,1500024982,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Qual é o melhor dia para casar?','Muitas pessoas dizem ser o 31 de julho, mas porquê?',4,0,1530178573,0,2,NULL);
+INSERT INTO entity VALUES(NULL,'Vou de viagem.','Para onde?',5,0,1543324982,0,1,NULL);
+INSERT INTO entity VALUES(NULL,'Já ninguém me responde no yahoo, este site é bom?','Yahoo é uma porcaria...',1,0,1543924982,10,1,NULL);
+INSERT INTO entity VALUES(NULL,'Acho que o meu pai me anda a roubar dinheiro, ajudem.','Ultimamente anda-me a desaparecer dinheiro da mesinha.',2,0,1544224982,1,1,NULL);
 INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest's queen and bathes in her pheromones, 
-                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1543573496,0,3,NULL);
+                                becoming the new queen. Her soldiers overrun the colony and take control.",'Kill the Queen, become the Queen',3,0,1544924982,0,3,NULL);
 
 
 
@@ -116,29 +115,6 @@ INSERT INTO entity VALUES(NULL,"TIL Ravoux's slavemaker ant is a species where t
 INSERT INTO entity VALUES(NULL,'O Mate é fixe, também gosto',NULL,1,0,1543274764,2,1,4);
 INSERT INTO entity VALUES(NULL,'Gosto bastante deste site!',NULL,3,0,1543506451,0,1,4);
 INSERT INTO entity VALUES(NULL,'Olá Boa Noite!',NULL,4,0,1543506451,0,1,4);
-/* INSERT INTO entity VALUES(NULL,"What the fuck did you just fucking say about me, you little bitch? 
-                                I'll have you know I graduated top of my class in the Navy Seals, 
-                                and I've been involved in numerous secret raids on Al-Quaeda, and I
-                                have over 300 confirmed kills. I am trained in gorilla warfare and 
-                                I'm the top sniper in the entire US armed forces. You are nothing 
-                                to me but just another target. I will wipe you the fuck out with 
-                                precision the likes of which has never been seen before on this Earth,
-                                mark my fucking words. You think you can get away with saying that 
-                                shit to me over the Internet? Think again, fucker. As we speak I am 
-                                contacting my secret network of spies across the USA and your IP is 
-                                being traced right now so you better prepare for the storm, maggot. 
-                                The storm that wipes out the pathetic little thing you call your life.
-                                You're fucking dead, kid. I can be anywhere, anytime, and I can kill 
-                                you in over seven hundred ways, and that's just with my bare hands.
-                                Not only am I extensively trained in unarmed combat, but I have 
-                                access to the entire arsenal of the United States Marine Corps and 
-                                I will use it to its full extent to wipe your miserable ass off the 
-                                face of the continent, you little shit. If only you could have known
-                                what unholy retribution your little 'clever' comment was about to bring
-                                down upon you, maybe you would have held your fucking tongue. But you 
-                                couldn't, you didn't, and now you're paying the price, you goddamn 
-                                idiot. I will shit fury all over you and you will drown in it. 
-                                You're fucking dead, kiddo.",NULL,2,0,1543509751,0,4); */
 INSERT INTO entity VALUES(NULL,'Podes reformular a tua questão?',NULL,5,0,1543506451,3,1,4);
 INSERT INTO entity VALUES(NULL,'Concordo',NULL,2,0,1543162627,0,2,5);
 

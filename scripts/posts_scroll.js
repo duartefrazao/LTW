@@ -1,3 +1,6 @@
+//retrieve the initial comments
+window.onload = createRequest(receivePost, '../actions/action_get_posts.php', getOffsetToOrder(null));
+
 document.addEventListener('scroll', function () {
     checkForNewPosts();
 });
@@ -6,100 +9,13 @@ document.querySelector('.order').addEventListener('change', function (event) {
     changePostsOrder(this);
 });
 
-
-const spanTimes = [{
-        text: 'Today',
-        value: 'day'
-    },
-    {
-        text: 'Last Week',
-        value: 'week'
-    },
-    {
-        text: 'Last Month',
-        value: 'month'
-    },
-    {
-        text: 'Last Year',
-        value: 'year'
-    }
-];
+function addVoteListeners(element) {
+    let votes = element.querySelectorAll('.vote');
+    votes.forEach((vote) => vote.addEventListener('click', voteHandler));
+  }
+  
 
 
-
-
-
-function changePostsOrder(elem) {
-
-    let order = elem.value;
-
-    let offset = Number.MAX_SAFE_INTEGER;
-
-    let timeSpan = document.querySelector('.timeSpan');
-
-    if ((elem.value === 'mostvoted' || elem.value === 'mostcommented') && timeSpan === null) {
-
-        let timeSpan = document.createElement('select');
-
-        timeSpan.classList.add('timeSpan');
-
-        spanTimes.forEach(span => {
-            let option = document.createElement('option');
-            option.text = span.text;
-            option.value = span.value;
-
-            timeSpan.add(option);
-        });
-
-        timeSpan.addEventListener('change', changeSpanValue);
-
-        elem.parentNode.appendChild(timeSpan);
-
-    } else if (elem.value == 'mostrecent') {
-
-        if (!(elem.parentNode.childNodes[3] == null))
-            elem.parentNode.removeChild(elem.parentNode.childNodes[3]);
-    }
-
-    //DEFAULT
-    let ordering = order + '-today';
-
-    
-    if( timeSpan !== null)
-        ordering = order + '-' + timeSpan.value;
-
-
-    document.querySelector('#posts').innerHTML = "";
-
-
-    createRequest(receivePost, '../actions/action_get_posts.php', {
-        offset: offset,
-        criteria: ordering,
-        name:pageWhereIam()
-    });
-}
-
-
-function changeSpanValue(elem) {
-
-    let order = document.querySelector('.order').value;
-
-    let timeSpan = document.querySelector('.timeSpan').value;
-
-    let ordering = order + "-" + timeSpan;
-
-    let offset = Number.MAX_SAFE_INTEGER;
-
-
-    document.querySelector('#posts').innerHTML = "";
-
-    createRequest(receivePost, '../actions/action_get_posts.php', {
-        offset: offset,
-        criteria: ordering,
-        name: pageWhereIam()
-    });
-
-}
 
 
 function checkForNewPosts() {
@@ -139,68 +55,10 @@ function receivePost(event) {
 
         if (pass) continue;
 
-        let post = document.createElement('article');
-        post.classList.add('overview-post');
-        let aside =document.createElement("aside");
-        aside.setAttribute("class","voting_section");
-        aside.setAttribute("data-id",posts[i].id);
-        let section1 = document.createElement("section");
-        if(response.id != null && posts[i].up == "true")
-            section1.setAttribute("class","vote upvote upvote_triggered");
-        else 
-            section1.setAttribute("class","vote upvote");
-        let h5 = document.createElement("h5");
-        h5.setAttribute("class","votes")
-        h5.innerText =  posts[i].votes;
-        let section2 = document.createElement("section");
-        if(response.id != null && posts[i].up == "false")
-            section2.setAttribute("class","vote downvote downvote_triggered");
-        else 
-            section2.setAttribute("class","vote downvote");
-        aside.appendChild(section1);
-        aside.appendChild(h5);
-        aside.appendChild(section2);
-        let header = document.createElement("header");
-        let h3 = document.createElement("h3");
-        h3.setAttribute("class","username");
-        let img = document.createElement("img");
-        img.setAttribute("class","small-image");
-        img.setAttribute("src","../images/users/default/default.png");  
-        h3.innerText=" "+posts[i].username;
-        h3.insertBefore(img,h3.childNodes[0]);
-        let h3_1 = document.createElement("h3");
-        h3_1.setAttribute("class","creationDate");
-        h3_1.innerText=humanTiming(posts[i].creationDate);
-        header.appendChild(h3);
-        header.appendChild(h3_1);
-        let a = document.createElement("a");
-        a.setAttribute("href","../pages/post.php?id="+posts[i].id);
-        let h1 = document.createElement("h1");
-        h1.setAttribute("class","title");
-        h1.innerHTML =posts[i].title;
-        a.appendChild(h1);
-        let footer = document.createElement("footer");
-        let h5_1 = document.createElement("h5");
-        h5_1.setAttribute("class","comments");
-        let a_1 = document.createElement("a");
-        a_1.setAttribute("href","post.php?id="+ posts[i].id);
-        a_1.innerText=posts[i].numComments + " Comment" + (posts[i].comments == 1 ? '' : 's');
-        h5_1.appendChild(a_1);
-        footer.appendChild(h5_1);
-        post.appendChild(aside);
-        post.appendChild(header);
-        post.appendChild(a);
-        post.appendChild(footer);
-        if(extensionsUsers[i]!=null)
-            checkUserImage(posts[i].author, post,extensionsUsers[i]);
-        if(extensions[i]!=null)
-            checkPostImage(posts[i].id, post,extensions[i]);
+        let post = createPost(posts[i], extensions[i], extensionsUsers[i]);
 
         section.appendChild(post);
     }
-
-    let voteForms = document.querySelectorAll(".vote");
-    voteForms.forEach((voteInstance) => voteInstance.addEventListener('click', voteHandler));
 }
 
 function getOffsetToOrder(lastPost) {
@@ -213,41 +71,180 @@ function getOffsetToOrder(lastPost) {
 
     let terms = ordering.split('-');
 
-    let value = 0;
+    let value = Number.MAX_SAFE_INTEGER;
 
-    switch (terms[0]) {
+    if (lastPost != null)
+        switch (terms[0]) {
 
-        case 'mostrecent':
-            value = lastPost.querySelector('aside').getAttribute('data-id');
-            break;
-        case 'mostvoted':
-            value = lastPost.querySelector('aside .votes').textContent;
-            break;
-        case 'mostcommented':
-            value = lastPost.querySelector('.comments a').value;
-            break;
-    }
+            case 'mostrecent':
+                value = lastPost.querySelector('aside').getAttribute('data-id');
+                break;
+            case 'mostvoted':
+                value = lastPost.querySelector('aside .votes').textContent;
+                break;
+            case 'mostcommented':
+                value = lastPost.querySelector('.comments a').value;
+                break;
+        }
+
 
     return {
         offset: value,
         criteria: ordering,
-        name:pageWhereIam()
+        name: pageWhereIam()
     };
 
 }
 
 
+function createPost(element, extension, extensionUser){
 
-function checkUserImage(id, post,extension) {
+    let post = document.createElement('article');
+    post.classList.add('overview-post');
+
+    post.innerHTML =
+        '<aside class="voting_section" data-id="' + element.id + '">' +
+        '<section class="vote upvote ' + (element.up === "true" ? 'upvote_triggered' : '') + '"></section>' +
+        '<h5 class="votes">' + element.votes + '</h5>' +
+        '<section class="vote downvote ' + (element.up === "false" ? 'downvote_triggered' : '') + '"> </section></aside>' +
+        '<header> <h3 class="author">' + element.author + '</h3>' +
+        '<a class="user-info" href="../pages/profile.php?user=' + element.username + '">' +
+        '<div> <img class="small-image" src="../images/users/default/default.png"></div>' +
+        '<h3>' + element.username + '</h3> </a>' +
+        '<a class="channel-link" href="../pages/channel.php?channel=' + element.channel + '">' + element.channelTitle + '</a>' +
+        '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +
+        '<a href="../pages/post.php?id=' + element.id + '">' +
+        '<h1 class="title">' + element.title + '</h1> </a>' +
+        '<footer> <h5 class="comments"> <a href="post.php?id=' + element.id + '">' + element.numComments +
+        ' Comment' + (element.comments == 1 ? '' : 's') + '</a> </h5> </footer>';
+
+
+    if (extensionUser != null)
+        checkUserImage(element.author, post, extensionUser);
+    if (extension != null)
+        checkPostImage(element.id, post, extension);
+
+    addVoteListeners(post);
+
+    return post;
+
+}
+
+
+const spanTimes = [{
+        text: 'Today',
+        value: 'day'
+    },
+    {
+        text: 'Last Week',
+        value: 'week'
+    },
+    {
+        text: 'Last Month',
+        value: 'month'
+    },
+    {
+        text: 'Last Year',
+        value: 'year'
+    },
+    {
+        text: 'All Time',
+        value: 'all'
+    }
+];
+
+/*----------------------------------------------------------*/
+/*--------------------------POSTS ORDER---------------------*/
+/*----------------------------------------------------------*/
+
+function changePostsOrder(elem) {
+
+    let order = elem.value;
+
+    let offset = Number.MAX_SAFE_INTEGER;
+
+    let timeSpan = document.querySelector('.timeSpan');
+
+    if ((elem.value === 'mostvoted' || elem.value === 'mostcommented') && timeSpan === null) {
+
+        let timeSpan = document.createElement('select');
+
+        timeSpan.classList.add('timeSpan');
+
+        spanTimes.forEach(span => {
+            let option = document.createElement('option');
+            option.text = span.text;
+            option.value = span.value;
+
+            timeSpan.add(option);
+        });
+
+        timeSpan.addEventListener('change', changeSpanValue);
+
+        elem.parentNode.appendChild(timeSpan);
+
+    } else if (elem.value == 'mostrecent') {
+
+        if (!(elem.parentNode.childNodes[3] == null))
+            elem.parentNode.removeChild(elem.parentNode.childNodes[3]);
+    }
+
+    //DEFAULT
+    let ordering = order + '-today';
+
+
+    if (timeSpan !== null)
+        ordering = order + '-' + timeSpan.value;
+
+
+    document.querySelector('#posts').innerHTML = "";
+
+
+    createRequest(receivePost, '../actions/action_get_posts.php', {
+        offset: offset,
+        criteria: ordering,
+        name: pageWhereIam()
+    });
+}
+
+
+function changeSpanValue(elem) {
+
+    let order = document.querySelector('.order').value;
+
+    let timeSpan = document.querySelector('.timeSpan').value;
+
+    let ordering = order + "-" + timeSpan;
+
+    let offset = Number.MAX_SAFE_INTEGER;
+
+
+    document.querySelector('#posts').innerHTML = "";
+
+    createRequest(receivePost, '../actions/action_get_posts.php', {
+        offset: offset,
+        criteria: ordering,
+        name: pageWhereIam()
+    });
+
+}
+
+
+/*----------------------------------------------------------*/
+/*--------------------------Utilities---------------------*/
+/*----------------------------------------------------------*/
+
+
+function checkUserImage(id, post, extension) {
     var image = new Image();
 
     let element = post.querySelector('.small-image');
 
     image.onload = function () {
         // image exists and is loaded
-        element.setAttribute("width","40");
-        element.setAttribute("height","40");
-        if(extension == "gif")
+        element.setAttribute("width", "40");
+        element.setAttribute("height", "40");
+        if (extension == "gif")
             element.src = '../images/users/originals/' + id + '.' + extension;
         else
             element.src = '../images/users/thumb_medium/' + id + '.' + extension;
@@ -257,7 +254,7 @@ function checkUserImage(id, post,extension) {
         // image did not load
     }
 
-    if(extension == "gif")
+    if (extension == "gif")
         image.src = '../images/users/originals/' + id + '.' + extension;
     else
         image.src = '../images/users/thumb_medium/' + id + '.' + extension;
@@ -275,7 +272,7 @@ function createRequest(handler, url, data) {
 
 
 
-function checkPostImage(id, post,extension) {
+function checkPostImage(id, post, extension) {
 
     var image = new Image();
 
@@ -283,8 +280,8 @@ function checkPostImage(id, post,extension) {
         // image exists and is loaded
         let imageElement = document.createElement('img');
         imageElement.classList.add('post-image');
-        
-        if(extension == "gif")
+
+        if (extension == "gif")
             imageElement.src = '../images/posts/originals/' + id + '.' + extension;
         else
             imageElement.src = '../images/posts/thumb_medium/' + id + '.' + extension;
@@ -294,7 +291,7 @@ function checkPostImage(id, post,extension) {
         // image did not load
     }
 
-    if(extension == "gif")
+    if (extension == "gif")
         image.src = '../images/posts/originals/' + id + '.' + extension;
     else
         image.src = '../images/posts/thumb_medium/' + id + '.' + extension;
