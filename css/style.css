@@ -507,7 +507,7 @@ header #username{
 
 
 
-.post-image{
+.post-image,.post-image-definition{
     grid-area: image;
     margin: 0 auto;
     margin-bottom: 0.5em;
@@ -516,6 +516,10 @@ header #username{
 
 @media(min-width:100px){
     .post-image{
+        width: 10em;
+        height:auto;
+    }
+    .post-image-definition{
         width:80%;
         height:auto;
     }
