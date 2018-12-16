@@ -1,4 +1,4 @@
-const MAX_IMAGE_SIZE = 10000000;
+const MAX_IMAGE_SIZE = 100000000;
 
 let botao_settings = document.getElementById("settings_button");
 let informacao = document.getElementById("information");
