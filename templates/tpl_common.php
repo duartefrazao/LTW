@@ -132,9 +132,9 @@
      { ?>
         <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.<?= $ext[0]['extension']?>" width="40" height="40">
 <?php }
-    else  ?>
+    else{  ?>
         <img class="small-image"  src="../images/<?=$path?>/default/default.png">
-    <?php }?>
+    <?php } }?>
 
 <?php function drawMediumImage($path, $id){
     $ext=array_map("pathinfo",glob('../images/'. $path. '/originals/' . $id . '.*'));
