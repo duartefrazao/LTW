@@ -611,6 +611,11 @@ header #username{
     content: "c/";
 }
 
+.channel-link{
+    margin-right:0.5em;
+    margin-left:1.5em;
+}
+
 .creationDate::before {
     content: 'Posted ';
 }
@@ -1283,6 +1288,11 @@ input[type='hidden'] {
     content: 'c/';
     color: grey;
 }
+.channel-link::after{
+    margin-left:0.2em;
+    content: ' -';
+    color: grey;
+}
 
 .channel-info #channel-description{
     flex-grow: 4;
@@ -1394,7 +1404,7 @@ input[type='hidden'] {
 }
 
 #channels_search , #users_search{
-    min-width: 20em;
+    min-width: 30em;
     display:flex;
     flex-direction: column;
     background-color: white; 
