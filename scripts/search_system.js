@@ -20,6 +20,17 @@ let form = document.getElementById("search");
 let currentFocus = 0;
 let lastInput;
 
+function triggerSubmit(){
+    let search = document.getElementById("searchInput");
+    if(search.value !=""){
+        form.submit();
+    }
+}
+
+form.addEventListener("submit",function(event){
+    event.preventDefault();
+    triggerSubmit();
+})
 search.addEventListener("keydown", function (e) {
     removePrevious();
     let sugs = document.querySelectorAll("#displaySuggestions li")
@@ -30,13 +41,13 @@ search.addEventListener("keydown", function (e) {
         else currentFocus = (currentFocus - 1) % (sugs.length + 1);
     } else if (e.keyCode == 13) {
         if (currentFocus == 0) {
-            form.submit();
+            triggerSubmit();
             return;
         } else {
             e.preventDefault();
             let searchValue = document.querySelector("#displaySuggestions ul li:nth-child(" + currentFocus + ")");
             searchValue.click();
-            form.submit();
+            triggerSubmit();
         }
     }
     let current = document.querySelector("#displaySuggestions ul li:nth-child(" + currentFocus + ")");
@@ -53,8 +64,10 @@ function encodeForAjax(data) {
         .join('&')
 }
 document.querySelector('#displaySuggestions').addEventListener("click", function (e) {
-    form.submit();
+    triggerSubmit();
 })
+
+
 
 document.addEventListener('click', function(e){
     display.innerHTML = "";

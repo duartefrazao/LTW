@@ -371,8 +371,7 @@ header #username{
     flex-direction: column;
 }
 #information,#settings{
-    min-width: 20%;
-    max-width: 40%;
+    width:17em;
 }
 
 #information header,#information table,#settings header,#settings form{
@@ -1213,6 +1212,8 @@ input[type='hidden'] {
     border-radius: 10em solid;
     text-decoration: none;
     display: block;   
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #displaySuggestions li a{
