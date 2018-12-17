@@ -111,7 +111,7 @@ INSERT INTO user (id, username, password, mail, description, creationDate) VALUE
 INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (2, 'miguel', '$2y$12$EXk9tujl4nlaDFAkDdleE.0WUTZHAPLZ/gOk/tJRtaSn9ZnvR9S2W', 'miguel@hotmail.com', 'yo soy guapo', 1543277351);
 INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (3, 'joao', '$2y$12$hLyMtG8eaqZVH2JQnW7feeCHffLsiS9C6ZGoD7YDt0nM3RKqymuP6', 'joao@hotmail.com', 'muy rico yoyo', 1543506410);
 INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (4, 'maria', '$2y$12$Iw7TS8/y9UGEkaDlFaAyY.TRWyNRUy1VGZ0sHS7QP/ehHabi8gOIW', 'maria@hotmail.com', 'Ola, eu sou a Maria!', 1544831117);
-INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (5, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Ent�o, tudo bem?', 1544831225);
+INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (5, 'beatriz', '$2y$12$AL2UKKqq9MhPztpJF612EuYzfubF/QtoZbv0qFoqUfqqjb1NKjS1G', 'beatriz@hotmail.com', 'Então, tudo bem?', 1544831225);
 INSERT INTO user (id, username, password, mail, description, creationDate) VALUES (6, 'Nk2016', '$2y$12$vD9Wjh4/x10jGXKdSR65cOVe9xsrdIejGFXopMNs7pNA8NEy.hizS', 'Nk@gmail.com', 'No til', 1544964027);
 
 INSERT INTO channel (id, title, description) VALUES (1, 'all', 'All the content you want');
@@ -127,25 +127,25 @@ INSERT INTO channelImages (id, title) VALUES (4, 'trump');
 INSERT INTO channelImages (id, title) VALUES (5, 'science');
 INSERT INTO channelImages (id, title) VALUES (6, 'Memes');
 
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (1, 'Isto � o reddit?????', 'Est� igualzinho', 3, 250, 1500024982, 12, 1, NULL);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (2, 'Qual � o melhor dia para casar?', 'Muitas pessoas dizem ser o 31 de julho, mas porqu�?', 4, 157, 1530178573, 5, 2, NULL);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (1, 'Isto é o reddit?????', 'Está igualzinho', 3, 250, 1500024982, 12, 1, NULL);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (2, 'Qual é o melhor dia para casar?', 'Muitas pessoas dizem ser o 31 de julho, mas porquê?', 4, 157, 1530178573, 5, 2, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (3, 'Vou de viagem.', 'Para onde?', 5, -24, 1543324982, 0, 1, NULL);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (4, 'J� ningu�m me responde no yahoo, este site � bom?', 'Yahoo � uma porcaria...', 1, 13, 1543924982, 10, 1, NULL);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (4, 'Já ninguém me responde no yahoo, este site é bom?', 'Yahoo é uma porcaria...', 1, 13, 1543924982, 10, 1, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (5, 'Acho que o meu pai me anda a roubar dinheiro, ajudem.', 'Ultimamente anda-me a desaparecer dinheiro da mesinha.', 2, 0, 1544224982, 1, 1, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (6, 'TIL Ravoux''s slavemaker ant is a species where the queen can fake her own death to encourage ants from a rival 
                                 colony to drag her body back to the nest. When there, she kills the nest''s queen and bathes in her pheromones, 
                                 becoming the new queen. Her soldiers overrun the colony and take control.', 'Kill the Queen, become the Queen', 3, -230 , 1544924982, 23, 3, NULL);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (7, 'O Mate � fixe, tamb�m gosto', NULL, 1, 57, 1543274764, 2, 2, 4);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (7, 'O Mate é fixe, também gosto', NULL, 1, 57, 1543274764, 2, 2, 4);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (8, 'Gosto bastante deste site!', NULL, 3, 12, 1543506451, 5, 1, 4);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (9, 'Ol� Boa Noite!', NULL, 4, 0, 1543506451, 54, 1, 4);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (10, 'Podes reformular a tua quest�o?', NULL, 5, 89, 1543506451, 3, 1, 4);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (9, 'Olá Boa Noite!', NULL, 4, 0, 1543506451, 54, 1, 4);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (10, 'Podes reformular a tua questão?', NULL, 5, 89, 1543506451, 3, 1, 4);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (11, 'Concordo', NULL, 2, 0, 1543162627,-76, 2, 5);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (12, 'Esqueceste-te de trocar de contas?', NULL, 3, 32, 1544204766, 23, 1, 7);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (13, 'A responder ao pr�prio post....', NULL, 4, 56, 1544204906, 3, 1, 7);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (14, 'N�o, tens problemas � � morc�o?', NULL, 1, 78, 1544206766, 1, 1, 12);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (13, 'A responder ao próprio post....', NULL, 4, 56, 1544204906, 3, 1, 7);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (14, 'Não, tens problemas é ó morcão?', NULL, 1, 78, 1544206766, 1, 1, 12);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (15, 'duvido', NULL, 1, -65, 1543506451, 0, 1, 10);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (16, 'Para bom entendedor...', NULL, 5, -34, 1543506451, 5, 1, 10);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (17, 'Para qu�?', NULL, 3, -43, 1543506451, 0, 1, 10);
+INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (17, 'Para quê?', NULL, 3, -43, 1543506451, 0, 1, 10);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (18, 'Thot', 'You are a thot', 6, 97, 1544964146, 12, 6, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (19, 'My best move', 'Why not?', 6, 1, 1544964181, 6, 1, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (20, 'Wholesome guy', '', 6, 8, 1544964249, 9, 6, NULL);
