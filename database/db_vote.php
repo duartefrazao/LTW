@@ -20,10 +20,6 @@ function vote($id, $type, $userId)
         $stmt->execute(array($id, $userId, $type));
     }
 
-/*         $stmt=$db->prepare('SELECT changes() as c FROM VOTE');
-$stmt->execute(array());
-$res = $stmt->fetch()['c']; */
-
 }
 
 function removeVote($id, $userId)

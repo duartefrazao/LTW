@@ -114,5 +114,3 @@ BEGIN
         WHERE new.entity=entity.id AND new.up='false';
 END;
 
-
-/*  */

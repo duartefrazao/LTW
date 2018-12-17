@@ -5,10 +5,7 @@
 
     $permission = true;
     $comments = array();
-    
-/*     if(!isset($_SESSION['username'])){
-        $permission = false;
-    }else{ */
+ 
 
 
         $parent_id = test_input($_POST['parent_id']);
@@ -18,8 +15,6 @@
             $comments = getUserCommentsByPostId($parent_id, $_SESSION['id'], $last_id);
         else
             $comments = getCommentsByPostId($parent_id, $last_id);
-
-/*     } */
 
     
     $extensionsUser = array();
