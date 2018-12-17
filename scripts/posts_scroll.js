@@ -83,7 +83,7 @@ function getOffsetToOrder(lastPost) {
                 value = lastPost.querySelector('aside .votes').textContent;
                 break;
             case 'mostcommented':
-                value = lastPost.querySelector('.comments a').value;
+                value =lastPost.querySelector('.comments').textContent.split(" ")[1];
                 break;
         }
 

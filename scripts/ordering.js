@@ -12,7 +12,6 @@ elems.forEach((f) => f.addEventListener("click",function(e){
 })) 
 
 firstDrop.addEventListener("click",function(e){
-    console.log("here")
     if(!dropped)
      firstDrop.innerHTML = '<li value="0" >  Most Recent </li><li value="1">  Most Voted </li><li value="2">  Most Comments </li>';
 })
