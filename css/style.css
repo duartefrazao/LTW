@@ -342,7 +342,7 @@ header #username{
     border-radius: 5px 5px 5px 5px;
 }
 #settings{
-    margin-top:6.8em;
+    margin-top:1em;
     margin-left:1em;
     max-width: 40%;
     width: auto;
@@ -445,6 +445,31 @@ header #username{
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media(max-height:600px){
+    #information, #channel .info , #settings{
+        margin:4em auto 1em auto;
+        position: relative;
+    }
+    #settings{
+        min-width: 50%;
+    }
+    .user_page, #channel{
+        flex-direction: column;
+    }
+    .user_page #ordering, #channel #ordering{
+        margin:0 auto;
+    }
+
+    .user_page .overview-post, #channel .overview-post{
+        min-width: 17em;
+    }
+
+    #profile_right, #channel_right{
+        margin:0 1em;
+        padding-left:0;
+    }
 }
 
 @media(max-width:900px){
