@@ -163,7 +163,6 @@ INSERT INTO entity (id, title, content, author, votes, creationDate, numComments
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (32, 'We all fill it', 'Admit it', 1, 0, 1544965039, 0, 6, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (33, 'Uno', '', 1, 0, 1544965095, 0, 6, NULL);
 INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (34, 'Dogi', '', 1, 0, 1544965164, 0, 6, NULL);
-INSERT INTO entity (id, title, content, author, votes, creationDate, numComments, channel, parentEntity) VALUES (35, 'Just shoot your self', '', 1, 0, 1544965208, 0, 4, NULL);
 
 
 INSERT INTO images (id, title) VALUES (1, 'my face');
