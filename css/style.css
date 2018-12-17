@@ -273,6 +273,8 @@ header #username{
 
 .auth_form input{
     border-radius: 10em;
+    border:0;
+    background-color: var(--background);
     margin: 1em 0;
     padding: 1em 0;
     text-align: center;
@@ -280,8 +282,9 @@ header #username{
 
 .auth_form .submit_button {
     margin: 0 auto;
-    background-color: var(--nav-bg-color);
-    color: white;
+    background-color: #4abdac81;
+    color: black;
+    border:0;
     font-weight: bold;
     width: 30%;
     cursor: pointer;
