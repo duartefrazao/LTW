@@ -170,7 +170,7 @@ function createPost(element, extension, extensionUser) {
         '<section class="vote downvote ' + (element.up === "false" ? 'downvote_triggered' : '') + '"> </section></aside>' +
         '<header> <h3 class="author">' + element.author + '</h3>' +
         '<a class="user-info" href="../pages/profile.php?user=' + element.username + '">' +
-        '<div> <img class="small-image" src="../images/users/default/default.png"></div>' +
+        '<div> <img class="small-image" src="../images/users/default/default_small.png"></div>' +
         '<h3>' + element.username + '</h3> </a>' +
         '<a class="channel-link" href="../pages/channel.php?channel=' + element.channel + '">' + element.channelTitle + '</a>' +
         '<h3 class="creationDate">' + humanTiming(element.creationDate) + '</h3> </header>' +

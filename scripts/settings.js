@@ -207,7 +207,7 @@ function draw_Image(image,id,extension){
     if(image == true)
         return '<img class="user-image" src="'+ image_url +'" width="100" height="100">';
     else
-        return '<img class="user-image" src="../images/users/default/default.png" width="100" height="100"></img>';
+        return '<img class="user-image" src="../images/users/default/default_medium.png" width="100" height="100"></img>';
 }
 
 function createRequest(handler, url, data) {

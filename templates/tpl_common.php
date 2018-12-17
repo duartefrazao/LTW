@@ -132,7 +132,7 @@
         <img class="small-image" src="../images/<?=$path?>/thumb_small/<?= $id ?>.<?= $ext[0]['extension']?>">
 <?php }
     else{  ?>
-        <img class="small-image"  src="../images/<?=$path?>/default/default.png">
+        <img class="small-image"  src="../images/<?=$path?>/default/default_small.png">
     <?php } }?>
 
 <?php function drawMediumImage($path, $id){
@@ -146,7 +146,7 @@
         <img class="small-image" src="../images/<?=$path?>/thumb_medium/<?= $id ?>.<?= $ext[0]['extension']?>">
      <?php }
      else {?>
-        <img class="small-image" src="../images/<?=$path?>/default/default.png" >
+        <img class="small-image" src="../images/<?=$path?>/default/default_medium.png" >
 <?php } }?>
 
 

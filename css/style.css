@@ -533,7 +533,7 @@ header #username{
 
 
 
-.post-image,.post-image-definition{
+.post-image{
     grid-area: image;
     margin: 0 auto;
     margin-bottom: 0.5em;
@@ -542,14 +542,9 @@ header #username{
 
 @media(min-width:100px){
     .post-image{
-        width: 10em;
+        width: 80%;
         height:auto;
     }
-    .post-image-definition{
-        width:80%;
-        height:auto;
-    }
-
 }
 
 .small-image , .gif_small{

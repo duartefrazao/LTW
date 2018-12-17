@@ -11,17 +11,19 @@
     include_once("utilities.php");
     include_once("../actions/action_store_token.php");
     
-    $search= test_input($_POST['search']);
+    $search= test_input($_GET['search']);
     $user =null;
 
     if(isset($_SESSION['username'])){
         $user = $_SESSION['username'];
     }
 
+    draw_header_global($user);
+
     $posts = getSimilarPosts($user,$search);
     $channels = getSimilarChannels($search);
     $users = getSimilarUsers($search);
-    draw_header_global($user);
+    
    
 
     includeScript("vote_system"); 
