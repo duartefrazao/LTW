@@ -22,12 +22,7 @@ CREATE TABLE channel(
 );
 
 
--- Table: channelImages
-DROP TABLE IF EXISTS channelImages;
-CREATE TABLE channelImages(
-    id INTEGER PRIMARY KEY,
-    title VARCHAR NOT NULL
-);
+
 
 -- Table: entity
 DROP TABLE IF EXISTS entity;
@@ -46,6 +41,21 @@ CREATE TABLE entity(
 -- Table: images
 DROP TABLE IF EXISTS images;
 CREATE TABLE images(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
+
+-- Table: channelImages
+DROP TABLE IF EXISTS channelImages;
+CREATE TABLE channelImages(
+    id INTEGER PRIMARY KEY,
+    title VARCHAR NOT NULL
+);
+
+
+-- Table: channelImages
+DROP TABLE IF EXISTS postImages;
+CREATE TABLE postImages(
     id INTEGER PRIMARY KEY,
     title VARCHAR NOT NULL
 );
@@ -206,7 +216,6 @@ INSERT INTO vote (entity, user, up) VALUES (3, 4, 'false');
 INSERT INTO vote (entity, user, up) VALUES (3, 5, 'false');
 INSERT INTO vote (entity, user, up) VALUES (3, 6, 'false');
 
-
 INSERT INTO vote (entity, user, up) VALUES (10, 1, 'true');
 INSERT INTO vote (entity, user, up) VALUES (10, 2, 'false');
 INSERT INTO vote (entity, user, up) VALUES (10, 3, 'true');
@@ -214,8 +223,6 @@ INSERT INTO vote (entity, user, up) VALUES (10, 4, 'false');
 INSERT INTO vote (entity, user, up) VALUES (10, 5, 'true');
 INSERT INTO vote (entity, user, up) VALUES (10, 6, 'false');
 
-
-INSERT INTO vote (entity, user, up) VALUES (10, 1, 'true');
 INSERT INTO vote (entity, user, up) VALUES (11, 2, 'false');
 INSERT INTO vote (entity, user, up) VALUES (12, 3, 'true');
 INSERT INTO vote (entity, user, up) VALUES (13, 4, 'false');
