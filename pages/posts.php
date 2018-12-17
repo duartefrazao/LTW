@@ -13,8 +13,8 @@
     draw_header_global($user);
 
     includeScript("posts_scroll");
-    includeScript("vote_system");
     includeScript("search_system");
+    includeScript("vote_system");
 
     draw_ordering();
 

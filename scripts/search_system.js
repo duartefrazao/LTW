@@ -53,7 +53,7 @@ function encodeForAjax(data) {
         .join('&')
 }
 document.querySelector('#displaySuggestions').addEventListener("click", function (e) {
-    //form.submit();
+    form.submit();
 })
 
 document.addEventListener('click', function(e){
